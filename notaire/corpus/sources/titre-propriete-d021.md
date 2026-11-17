@@ -1,0 +1,12 @@
+---
+id: titre-propriete-d021
+titre: Extrait du titre de propriété de M. Penhoat
+type: acte
+date: 2013-06-14
+statut: en_vigueur
+---
+DOCUMENT FICTIF (Étude Bruyère & Associés, étude inventée)
+
+# Extrait du titre de propriété
+
+Par acte du 14 juin 2013, M. Tanguy Penhoat a acquis la maison du hameau « Kerdu-Fictif », à Quimper, de M. et Mme Alix Lezoray, au prix de 255 000 €.

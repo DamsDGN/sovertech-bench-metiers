@@ -3,7 +3,8 @@ id: projet-acte-d021
 titre: Projet d'acte de vente, dossier D-2026-021
 type: acte
 date: 2026-03-02
-statut: en_vigueur
+statut: obsolete
+remplace_par: projet-acte-d021-v2
 ---
 DOCUMENT FICTIF (Étude Bruyère & Associés, étude inventée)
 
@@ -16,6 +17,10 @@ Vendeur : M. Tanguy Penhoat, représenté par M. Gwenn Penhoat. Acquéreur : Mme
 ## Désignation
 
 Maison de 5 pièces avec jardin, hameau « Kerdu-Fictif », à Quimper.
+
+## Origine de propriété
+
+Le vendeur a acquis le bien le 12 juin 2012 de M. et Mme Alix Lezoray.
 
 ## Prix
 

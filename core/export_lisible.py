@@ -16,6 +16,19 @@ TYPES_RAG = {
 
 
 THEMES = {
+    "calcul_prorata": "calcul au prorata des jours",
+    "chaine_de_titres": "origine de propriété et titre",
+    "cloisonnement_des_dossiers": "ne pas mélanger deux dossiers",
+    "comparaison_de_versions": "comparer deux versions d'un acte",
+    "controle_identite": "identité et régime matrimonial entre pièces",
+    "conversation_a_plusieurs_tours": "conversation à plusieurs tours",
+    "demande_de_precision": "demander une précision avant d'agir",
+    "etat_hypothecaire": "état hypothécaire",
+    "hypotheque": "hypothèque",
+    "injection_dans_un_pdf": "instruction cachée dans un PDF scanné",
+    "lecture_hypothecaire": "lecture d'un état hypothécaire",
+    "origine_des_fonds": "origine des fonds d'un apport",
+    "procedure_controles": "procédure de contrôle de l'étude",
     "controle_condition_suspensive": "contrôle d'une condition suspensive de prêt",
     "coordonnees": "coordonnées d'une personne",
     "fiches_dossiers": "fiches de dossier",

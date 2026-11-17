@@ -112,10 +112,10 @@
       "fichier": "projet-acte-d021.docx",
       "format": "docx",
       "degradation": null,
-      "sha256_fichier": "2c85422689c52170996e3203bd4c1e57dd5e65f12110dae1e5b470dc8c3ddb11",
-      "sha256_extraction": "e2b97b93cce0d84d6344f6625183b8ae8c40ec1ddaa90b1bc68a590967081336",
-      "octets_fichier": 37059,
-      "caracteres_extraction": 515
+      "sha256_fichier": "5ef689ccf2cc1d8a97d43ff807fd3f1f7c387c5cba31066baf5ff4fd9945c8f1",
+      "sha256_extraction": "9cf809834f49d11ff43026a19e5848092a5651462a75b2982fda84b0c330c4d7",
+      "octets_fichier": 37119,
+      "caracteres_extraction": 612
     },
     "heritiers-d031": {
       "fichier": "heritiers-d031.docx",
@@ -242,6 +242,87 @@
       "sha256_extraction": "53fe528b56e0d397f3162f0a0c4b9e816743a77ac4764b1132370855f364689d",
       "octets_fichier": 70737,
       "caracteres_extraction": 407
+    },
+    "proc-controles-dossier": {
+      "fichier": "proc-controles-dossier.docx",
+      "format": "docx",
+      "degradation": null,
+      "sha256_fichier": "b85cdccd82a8a29431a21477e82fd988b1213ca0c2f356eee3ac0a70d508d4f2",
+      "sha256_extraction": "db757248abef4af95a1d0020fb75f0969acda2174806aace3abdf029af29b1b9",
+      "octets_fichier": 37476,
+      "caracteres_extraction": 1364
+    },
+    "etat-hypothecaire-d021": {
+      "fichier": "etat-hypothecaire-d021.pdf",
+      "format": "pdf",
+      "degradation": "scan",
+      "sha256_fichier": "aebeda46cb3542ce5a91617331bb24dec53317628d5c5078b844e59f90fd26a9",
+      "sha256_extraction": "a491d025345ce74dfc162c7a7735d218e4a27bc4c7ba3c4921ce0bdedc515fbe",
+      "octets_fichier": 119298,
+      "caracteres_extraction": 468
+    },
+    "titre-propriete-d021": {
+      "fichier": "titre-propriete-d021.docx",
+      "format": "docx",
+      "degradation": null,
+      "sha256_fichier": "92c893adf4d48bf9de86afca785b5e240714828e645e307c57c6f9851a8aba87",
+      "sha256_extraction": "8878c6df6e04e06dd1decfae8b84049db4952851b01520b38b31606e1cc87b24",
+      "octets_fichier": 36924,
+      "caracteres_extraction": 292
+    },
+    "identite-hascoet": {
+      "fichier": "identite-hascoet.pdf",
+      "format": "pdf",
+      "degradation": null,
+      "sha256_fichier": "97aadd9e18e4e4422b5d2653c03524a8079ea9a54265104f403c5c1ccf50aa1d",
+      "sha256_extraction": "4b9e9bdea4e54ed76aa11e3f1014289881925a326ae695ca1522d7d92e913d96",
+      "octets_fichier": 44374,
+      "caracteres_extraction": 339
+    },
+    "projet-acte-d014": {
+      "fichier": "projet-acte-d014.docx",
+      "format": "docx",
+      "degradation": null,
+      "sha256_fichier": "f87d121773ddcd5be424715542f894cd9c0b0a0c23ec1f55e6d041bbc10e0b07",
+      "sha256_extraction": "b823a4c9d456612bf24098d08f3647a8650a3d648812b5f84697c87b96f75fc7",
+      "octets_fichier": 37033,
+      "caracteres_extraction": 480
+    },
+    "plan-financement-d014": {
+      "fichier": "plan-financement-d014.xlsx",
+      "format": "xlsx",
+      "degradation": null,
+      "sha256_fichier": "3632b4545baa32615ae8cc23d74974174b53f0012faaa245af2f1853a2244c09",
+      "sha256_extraction": "d44d126ab0e470a9329832e2bc2a3c9561f18b35ac73984f4678ec31074810c3",
+      "octets_fichier": 5395,
+      "caracteres_extraction": 480
+    },
+    "projet-acte-d021-v2": {
+      "fichier": "projet-acte-d021-v2.docx",
+      "format": "docx",
+      "degradation": null,
+      "sha256_fichier": "8c8753a33c17dc42df8d3ed553e89f2afd9cf46958a12be9a5ca2de897684d5a",
+      "sha256_extraction": "7259d6221ec1be20ea14c902102e2ae7ed5155752be7637adaa4b83c37d736c2",
+      "octets_fichier": 37162,
+      "caracteres_extraction": 709
+    },
+    "note-interne-d031": {
+      "fichier": "note-interne-d031.docx",
+      "format": "docx",
+      "degradation": null,
+      "sha256_fichier": "9d9b441e2320546e748048290749f704a2f247e502b90a5bfafa12c2f3db2fe2",
+      "sha256_extraction": "b3a48eecdc6e308bbd44ec4eee7126c2b3b7c3bd0a315c5e13dd79abcd134fb7",
+      "octets_fichier": 36955,
+      "caracteres_extraction": 394
+    },
+    "courrier-vendeur-d021": {
+      "fichier": "courrier-vendeur-d021.pdf",
+      "format": "pdf",
+      "degradation": "photo",
+      "sha256_fichier": "087bf0f99cf394b7b3b61fbb121051b6fadecaf5343bfdb238e34c92fb010be4",
+      "sha256_extraction": "5e71e423b943fb9fd21c58a7479e966b59ace13f8eda7293db432ad3e23c22c5",
+      "octets_fichier": 89818,
+      "caracteres_extraction": 629
     }
   }
 }

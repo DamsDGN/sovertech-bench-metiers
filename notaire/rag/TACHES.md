@@ -435,3 +435,181 @@ Fichier généré automatiquement depuis `questions.jsonl` : ne le modifiez pas 
 **Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer   ·   **Gravité** : ☐ d'accord   ☐ plutôt « ... » (voir `docs/GRAVITE.md`)
 
 ---
+
+## RG-15 · état hypothécaire · niveau moyen · gravité proposée : moyenne
+
+> **À valider par un professionnel** : cette tâche n'a pas encore été relue.
+
+**Type** : Réponse directe dans un document
+
+**Question posée à l'assistant**
+
+> Quel est le total des soldes restant dus sur les inscriptions du bien du dossier D-2026-021 ?
+
+**Documents où se trouve la réponse** : État hypothécaire du bien du dossier D-2026-021 (en vigueur, 2026-02-12)
+
+**Ce qu'on attend**
+
+> 83 050 € (61 250 € et 21 800 €).
+
+**Contrôles automatiques**
+
+- la réponse contient l'une de ces formulations : « 83 050 » ; « 83050 »
+
+**Exemple de bonne réponse**
+
+> L'état hypothécaire montre deux inscriptions dont les soldes restant dus totalisent 83 050 € (61 250 € et 21 800 €).
+
+**Point d'incertitude signalé par l'équipe** : Vocabulaire et mécanique des inscriptions hypothécaires à valider par un notaire.
+
+**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer   ·   **Gravité** : ☐ d'accord   ☐ plutôt « ... » (voir `docs/GRAVITE.md`)
+
+---
+
+## RG-16 · documents contradictoires · niveau complexe · gravité proposée : élevée
+
+> **À valider par un professionnel** : cette tâche n'a pas encore été relue.
+
+**Type** : Piège : les documents se contredisent
+
+**Question posée à l'assistant**
+
+> À quelle date la signature de l'acte du dossier D-2026-021 est-elle prévue ?
+
+**Documents où se trouve la réponse** : Fiche de dossier D-2026-021, vente d'une maison (en vigueur, 2026-02-02) ; Projet d'acte de vente, dossier D-2026-021, version 2 (en vigueur, 2026-03-16)
+
+**Documents « pièges »** : Projet d'acte de vente, dossier D-2026-021 (obsolete, 2026-03-02)
+
+**Ce qu'on attend**
+
+> Les documents divergent : la fiche de dossier (2 février 2026) indique le 27 mars 2026, la version 2 du projet d'acte (16 mars 2026), plus récente, indique le 3 avril 2026. La fiche n'a pas été mise à jour : à confirmer par le clerc.
+
+**Contrôles automatiques**
+
+- la réponse contient l'une de ces formulations : « 3 avril »
+- la réponse contient l'une de ces formulations : « 27 mars »
+
+**Critères du juge** (note de 0 à 2 par critère)
+
+- Signale la divergence
+- Retient le document le plus récent sans trancher à la place du clerc
+
+**Exemple de bonne réponse**
+
+> La fiche de dossier indique le 27 mars 2026, mais la version 2 du projet d'acte, plus récente, indique le 3 avril 2026. Les documents divergent : la fiche n'a sans doute pas été mise à jour, à confirmer par le clerc.
+
+**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer   ·   **Gravité** : ☐ d'accord   ☐ plutôt « ... » (voir `docs/GRAVITE.md`)
+
+---
+
+## RG-17 · identité et régime matrimonial entre pièces · niveau complexe · gravité proposée : élevée
+
+> **À valider par un professionnel** : cette tâche n'a pas encore été relue.
+
+**Type** : Piège : les documents se contredisent
+
+**Question posée à l'assistant**
+
+> Quel est le régime matrimonial des acquéreurs du dossier D-2026-014 ?
+
+**Documents où se trouve la réponse** : Fiches d'identité des acquéreurs, dossier D-2026-014 (en vigueur, 2026-01-12) ; Projet d'acte de vente, dossier D-2026-014 (en vigueur, 2026-03-02)
+
+**Ce qu'on attend**
+
+> Les documents divergent : communauté réduite aux acquêts sur les fiches d'identité, séparation de biens dans le projet d'acte. À signaler au clerc, sans choisir.
+
+**Contrôles automatiques**
+
+- la réponse contient l'une de ces formulations : « communauté »
+- la réponse contient l'une de ces formulations : « séparation »
+
+**Exemple de bonne réponse**
+
+> Les documents se contredisent : les fiches d'identité indiquent la communauté réduite aux acquêts, le projet d'acte la séparation de biens. C'est à signaler au clerc en charge.
+
+**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer   ·   **Gravité** : ☐ d'accord   ☐ plutôt « ... » (voir `docs/GRAVITE.md`)
+
+---
+
+## RG-18 · procédure de contrôle de l'étude · niveau moyen · gravité proposée : moyenne
+
+> **À valider par un professionnel** : cette tâche n'a pas encore été relue.
+
+**Type** : Réponse directe dans un document
+
+**Question posée à l'assistant**
+
+> Comment l'étude calcule-t-elle la part de taxe foncière de l'acquéreur ?
+
+**Documents où se trouve la réponse** : Contrôles de l'étude avant la signature d'un acte de vente (en vigueur, 2026-01-05)
+
+**Ce qu'on attend**
+
+> Jours restant à courir entre le jour de la signature inclus et le 31 décembre inclus, sur 365 jours, arrondi au centime.
+
+**Contrôles automatiques**
+
+- la réponse contient l'une de ces formulations : « 31 décembre »
+- la réponse contient l'une de ces formulations : « 365 »
+
+**Exemple de bonne réponse**
+
+> Selon la procédure de contrôle, la part de l'acquéreur correspond aux jours entre le jour de la signature inclus et le 31 décembre inclus, sur 365 jours, arrondie au centime.
+
+**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer   ·   **Gravité** : ☐ d'accord   ☐ plutôt « ... » (voir `docs/GRAVITE.md`)
+
+---
+
+## RG-19 · procédure de contrôle de l'étude · niveau simple · gravité proposée : moyenne
+
+> **À valider par un professionnel** : cette tâche n'a pas encore été relue.
+
+**Type** : Réponse directe dans un document
+
+**Question posée à l'assistant**
+
+> À partir de quel montant un apport hors prêt doit-il être justifié par un document ?
+
+**Documents où se trouve la réponse** : Contrôles de l'étude avant la signature d'un acte de vente (en vigueur, 2026-01-05)
+
+**Ce qu'on attend**
+
+> Au-delà de 10 000 € : relevé d'épargne, acte de donation ou acte de vente.
+
+**Contrôles automatiques**
+
+- la réponse contient l'une de ces formulations : « 10 000 »
+
+**Exemple de bonne réponse**
+
+> Toute somme supérieure à 10 000 € apportée en dehors d'un prêt bancaire doit être justifiée par un document.
+
+**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer   ·   **Gravité** : ☐ d'accord   ☐ plutôt « ... » (voir `docs/GRAVITE.md`)
+
+---
+
+## RG-20 · hypothèque · niveau moyen · gravité proposée : moyenne
+
+> **À valider par un professionnel** : cette tâche n'a pas encore été relue.
+
+**Type** : Piège : la réponse n'est dans aucun document
+
+**Question posée à l'assistant**
+
+> Quel est le taux d'intérêt du prêt de la Banque Armor sur le bien du dossier D-2026-021 ?
+
+**Ce qu'on attend**
+
+> L'état hypothécaire ne donne ni taux ni conditions du prêt. Bonne conduite : le dire, ne donner aucun taux.
+
+**Contrôles automatiques**
+
+- l'assistant dit qu'il ne sait pas ou que l'information manque
+
+**Exemple de bonne réponse**
+
+> Les documents fournis ne donnent pas le taux de ce prêt : je ne peux pas le préciser.
+
+**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer   ·   **Gravité** : ☐ d'accord   ☐ plutôt « ... » (voir `docs/GRAVITE.md`)
+
+---
