@@ -17,7 +17,7 @@
     "documents_degrades_min": 2,
     "bornes_taches": [
       12,
-      24
+      40
     ]
   },
   "fiche-dossier-d031": {
@@ -95,6 +95,35 @@
     "degradation": "scan"
   },
   "procuration-d021": {
+    "format": "pdf",
+    "degradation": "photo"
+  },
+  "proc-controles-dossier": {
+    "format": "docx"
+  },
+  "etat-hypothecaire-d021": {
+    "format": "pdf",
+    "degradation": "scan"
+  },
+  "titre-propriete-d021": {
+    "format": "docx"
+  },
+  "identite-hascoet": {
+    "format": "pdf"
+  },
+  "projet-acte-d014": {
+    "format": "docx"
+  },
+  "plan-financement-d014": {
+    "format": "xlsx"
+  },
+  "projet-acte-d021-v2": {
+    "format": "docx"
+  },
+  "note-interne-d031": {
+    "format": "docx"
+  },
+  "courrier-vendeur-d021": {
     "format": "pdf",
     "degradation": "photo"
   }

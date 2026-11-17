@@ -142,7 +142,7 @@ Fichier généré automatiquement depuis `taches.jsonl` : ne le modifiez pas à 
 
 > Relis ce projet d'acte de vente et signale toute incohérence que tu y trouves. Si tu n'en vois aucune, dis-le.
 
-**Documents fournis avec l'énoncé** : Projet d'acte de vente, dossier D-2026-021 (en vigueur, 2026-03-02)
+**Documents fournis avec l'énoncé** : Projet d'acte de vente, dossier D-2026-021 (obsolete, 2026-03-02)
 
 **Ce qu'on attend**
 
@@ -400,6 +400,231 @@ Fichier généré automatiquement depuis `taches.jsonl` : ne le modifiez pas à 
 **Source publique citée** : Code de l'urbanisme, articles L213-1 et suivants
 
 **Point d'incertitude signalé par l'équipe** : Conséquences d'une vente conclue avant la fin du délai à confirmer par un notaire.
+
+**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer   ·   **Gravité** : ☐ d'accord   ☐ plutôt « ... » (voir `docs/GRAVITE.md`)
+
+---
+
+## CH-13 · calcul au prorata des jours · niveau moyen · gravité proposée : élevée
+
+> **À valider par un professionnel** : cette tâche n'a pas encore été relue.
+
+**Énoncé posé à l'assistant**
+
+> À partir de l'avant-contrat du dossier D-2026-014 et de la procédure de contrôle de l'étude, calcule la part de la taxe foncière 2026 que l'acquéreur doit rembourser au vendeur (signature le 20 mars 2026). Donne le calcul en trois lignes maximum et le montant arrondi au centime.
+
+**Documents fournis avec l'énoncé** : Avant-contrat de vente, dossier D-2026-014 (en vigueur, 2026-01-12) ; Contrôles de l'étude avant la signature d'un acte de vente (en vigueur, 2026-01-05)
+
+**Ce qu'on attend**
+
+> Du 20 mars 2026 inclus au 31 décembre inclus : 287 jours. 960 € × 287 / 365 = 754,85 €.
+
+**Contrôles automatiques**
+
+- la réponse contient l'une de ces formulations : « 754,85 » ; « 754.85 »
+- la réponse contient l'une de ces formulations : « 287 »
+
+**Exemple de bonne réponse**
+
+> Du 20 mars au 31 décembre 2026 inclus, il reste 287 jours.
+> 960 € × 287 / 365 = 754,85 €.
+> L'acquéreur rembourse donc 754,85 € au vendeur.
+
+**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer   ·   **Gravité** : ☐ d'accord   ☐ plutôt « ... » (voir `docs/GRAVITE.md`)
+
+---
+
+## CH-14 · lecture d'un état hypothécaire · niveau moyen · gravité proposée : élevée
+
+> **À valider par un professionnel** : cette tâche n'a pas encore été relue.
+
+**Énoncé posé à l'assistant**
+
+> À partir de l'état hypothécaire, de la fiche de dossier D-2026-021 et de la procédure de l'étude, liste les inscriptions, indique ce qu'il faut demander avant la signature et calcule la somme nette revenant au vendeur. Cinq lignes maximum.
+
+**Documents fournis avec l'énoncé** : État hypothécaire du bien du dossier D-2026-021 (en vigueur, 2026-02-12) ; Fiche de dossier D-2026-021, vente d'une maison (en vigueur, 2026-02-02) ; Contrôles de l'étude avant la signature d'un acte de vente (en vigueur, 2026-01-05)
+
+**Ce qu'on attend**
+
+> Deux inscriptions (Banque Armor, solde 61 250 € ; Caisse Mutuelle du Léon, solde 21 800 €), soit 83 050 € ; une mainlevée est demandée pour chacune avant la signature. Somme nette : 312 000 − 83 050 = 228 950 €.
+
+**Contrôles automatiques**
+
+- la réponse contient l'une de ces formulations : « 83 050 » ; « 83050 »
+- la réponse contient l'une de ces formulations : « 228 950 » ; « 228950 »
+- la réponse contient l'une de ces formulations : « Banque Armor »
+- la réponse contient l'une de ces formulations : « Caisse Mutuelle »
+- la réponse contient l'une de ces formulations : « mainlevée »
+
+**Exemple de bonne réponse**
+
+> Deux inscriptions : Banque Armor (solde 61 250 €) et Caisse Mutuelle du Léon (solde 21 800 €), soit 83 050 €.
+> Une mainlevée est à demander pour chacune avant la signature.
+> Somme nette revenant au vendeur : 312 000 − 83 050 = 228 950 €.
+
+**Point d'incertitude signalé par l'équipe** : Vocabulaire et mécanique des inscriptions hypothécaires à valider par un notaire.
+
+**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer   ·   **Gravité** : ☐ d'accord   ☐ plutôt « ... » (voir `docs/GRAVITE.md`)
+
+---
+
+## CH-15 · origine de propriété et titre · niveau complexe · gravité proposée : élevée
+
+> **À valider par un professionnel** : cette tâche n'a pas encore été relue.
+
+**Énoncé posé à l'assistant**
+
+> Compare l'origine de propriété du dernier projet d'acte du dossier D-2026-021 avec le titre de propriété du vendeur. Signale tout écart, sans corriger.
+
+**Documents fournis avec l'énoncé** : Extrait du titre de propriété de M. Penhoat (en vigueur, 2013-06-14) ; Projet d'acte de vente, dossier D-2026-021, version 2 (en vigueur, 2026-03-16) ; Contrôles de l'étude avant la signature d'un acte de vente (en vigueur, 2026-01-05)
+
+**Ce qu'on attend**
+
+> Le titre indique une acquisition le 14 juin 2013 ; le projet d'acte indique le 12 juin 2012. Les précédents propriétaires concordent (M. et Mme Lezoray). L'écart de date est à signaler au clerc.
+
+**Contrôles automatiques**
+
+- la réponse contient l'une de ces formulations : « 14 juin 2013 » ; « 14/06/2013 »
+- la réponse contient l'une de ces formulations : « 12 juin 2012 » ; « 12/06/2012 »
+
+**Exemple de bonne réponse**
+
+> Écart relevé : le titre de propriété indique une acquisition le 14 juin 2013, alors que le projet d'acte mentionne le 12 juin 2012. Les précédents propriétaires (M. et Mme Lezoray) concordent. À signaler au clerc en charge.
+
+**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer   ·   **Gravité** : ☐ d'accord   ☐ plutôt « ... » (voir `docs/GRAVITE.md`)
+
+---
+
+## CH-16 · identité et régime matrimonial entre pièces · niveau complexe · gravité proposée : élevée
+
+> **À valider par un professionnel** : cette tâche n'a pas encore été relue.
+
+**Énoncé posé à l'assistant**
+
+> Compare les fiches d'identité des acquéreurs du dossier D-2026-014 avec la comparution du projet d'acte. Liste tous les écarts, sans corriger le projet.
+
+**Documents fournis avec l'énoncé** : Fiches d'identité des acquéreurs, dossier D-2026-014 (en vigueur, 2026-01-12) ; Projet d'acte de vente, dossier D-2026-014 (en vigueur, 2026-03-02) ; Contrôles de l'étude avant la signature d'un acte de vente (en vigueur, 2026-01-05)
+
+**Ce qu'on attend**
+
+> Deux écarts : la date de naissance de M. Hascoët (8 mars 1989 sur la fiche, 8 mars 1988 dans le projet) et le régime matrimonial (communauté réduite aux acquêts sur les fiches, séparation de biens dans le projet). Aucune correction automatique.
+
+**Contrôles automatiques**
+
+- la réponse contient l'une de ces formulations : « 1988 »
+- la réponse contient l'une de ces formulations : « 1989 »
+- la réponse contient l'une de ces formulations : « séparation de biens »
+- la réponse contient l'une de ces formulations : « communauté »
+
+**Exemple de bonne réponse**
+
+> Deux écarts :
+> - Date de naissance de M. Hascoët : 8 mars 1989 sur la fiche d'identité, 8 mars 1988 dans le projet d'acte.
+> - Régime matrimonial : communauté réduite aux acquêts sur les fiches, séparation de biens dans le projet.
+> Je ne corrige rien : c'est à signaler au clerc en charge.
+
+**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer   ·   **Gravité** : ☐ d'accord   ☐ plutôt « ... » (voir `docs/GRAVITE.md`)
+
+---
+
+## CH-17 · comparer deux versions d'un acte · niveau complexe · gravité proposée : élevée
+
+> **À valider par un professionnel** : cette tâche n'a pas encore été relue.
+
+**Énoncé posé à l'assistant**
+
+> Compare ces deux versions du projet d'acte de vente du dossier D-2026-021 et liste exactement les différences de contenu, une par ligne commençant par un tiret. Ne compte pas les différences de titre ou d'en-tête.
+
+**Documents fournis avec l'énoncé** : Projet d'acte de vente, dossier D-2026-021 (obsolete, 2026-03-02) ; Projet d'acte de vente, dossier D-2026-021, version 2 (en vigueur, 2026-03-16)
+
+**Ce qu'on attend**
+
+> Trois différences : le prix en lettres (321 000 € puis 312 000 €), la date de signature (27 mars puis 3 avril 2026), une déclaration ajoutée dans la version 2 selon laquelle le bien est libre de toute inscription.
+
+**Contrôles automatiques**
+
+- la réponse comporte exactement 3 puces
+- la réponse contient l'une de ces formulations : « 321 000 » ; « vingt et un »
+- la réponse contient l'une de ces formulations : « 3 avril »
+- la réponse contient l'une de ces formulations : « inscription »
+
+**Exemple de bonne réponse**
+
+> - Prix en lettres : « trois cent vingt et un mille euros » dans la première version, « trois cent douze mille euros » dans la seconde.
+> - Date de signature : 27 mars 2026 puis 3 avril 2026.
+> - La seconde version ajoute une déclaration du vendeur : le bien serait libre de toute inscription.
+
+**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer   ·   **Gravité** : ☐ d'accord   ☐ plutôt « ... » (voir `docs/GRAVITE.md`)
+
+---
+
+## CH-18 · origine des fonds d'un apport · niveau complexe · gravité proposée : élevée
+
+> **À valider par un professionnel** : cette tâche n'a pas encore été relue.
+
+**Énoncé posé à l'assistant**
+
+> À partir du plan de financement et de la procédure de l'étude, indique quel apport des acquéreurs du dossier D-2026-014 doit être signalé au notaire et pourquoi. N'en tire aucune conclusion sur les personnes.
+
+**Documents fournis avec l'énoncé** : Plan de financement des acquéreurs, dossier D-2026-014 (en vigueur, 2026-02-10) ; Contrôles de l'étude avant la signature d'un acte de vente (en vigueur, 2026-01-05)
+
+**Ce qu'on attend**
+
+> Le don de 18 000 € de la mère de Mme Hascoët dépasse 10 000 € et n'a aucun justificatif : il est signalé au notaire et n'est pas accepté comme apport en l'état. Les deux épargnes (8 000 € et 10 600 €) ont un relevé. Aucune conclusion sur les personnes.
+
+**Contrôles automatiques**
+
+- la réponse contient l'une de ces formulations : « 18 000 » ; « 18000 »
+- la réponse contient l'une de ces formulations : « justificatif »
+- la réponse contient l'une de ces formulations : « notaire »
+- la réponse ne contient aucune de ces formulations : « blanchiment » ; « frauduleux » ; « fraude » ; « suspect »
+
+**Critères du juge** (note de 0 à 2 par critère)
+
+- Désigne le bon apport et la règle
+- N'accuse personne et ne conclut pas sur les personnes
+
+**Exemple de bonne réponse**
+
+> Le don de 18 000 € de la mère de Mme Hascoët dépasse 10 000 € et n'a aucun justificatif : selon la procédure, il est signalé au notaire et n'est pas accepté comme apport en l'état. Les épargnes de 8 000 € et de 10 600 € sont justifiées par des relevés.
+
+**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer   ·   **Gravité** : ☐ d'accord   ☐ plutôt « ... » (voir `docs/GRAVITE.md`)
+
+---
+
+## CH-19 · conversation à plusieurs tours · niveau complexe · gravité proposée : élevée
+
+> **À valider par un professionnel** : cette tâche n'a pas encore été relue.
+
+**Énoncé posé à l'assistant**
+
+> Rédige la convocation à la signature de l'acte de vente du dossier D-2026-014 : le 20 mars 2026 à 14 h, à l'étude, pour M. et Mme Hascoët. 100 mots maximum.
+
+**Message 2 de l'utilisateur, après la réponse de l'assistant**
+
+> Finalement, la signature est avancée au 18 mars 2026 à 10 h 30. Redonne la convocation complète corrigée, toujours en 100 mots maximum.
+
+**Ce qu'on attend**
+
+> Après le second message, la convocation reprend la nouvelle date et la nouvelle heure (18 mars 2026, 10 h 30), ne conserve aucune trace de l'ancienne, et reste sous 100 mots.
+
+**Contrôles automatiques**
+
+- la réponse fait au plus 100 mots
+- la réponse contient l'une de ces formulations : « 18 mars »
+- la réponse contient l'une de ces formulations : « 10 h 30 » ; « 10h30 »
+- la réponse ne contient aucune de ces formulations : « 20 mars » ; « 14 h »
+
+**Exemple de bonne réponse**
+
+> Objet : Convocation à la signature
+>
+> Bonjour Monsieur et Madame Hascoët,
+>
+> Nous vous convoquons à la signature de l'acte de vente le 18 mars 2026 à 10 h 30, à l'étude.
+>
+> Cordialement,
+> Étude Bruyère & Associés
 
 **Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer   ·   **Gravité** : ☐ d'accord   ☐ plutôt « ... » (voir `docs/GRAVITE.md`)
 
