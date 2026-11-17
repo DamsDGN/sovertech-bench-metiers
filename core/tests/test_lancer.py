@@ -3,7 +3,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from core import lancer
+from core import catalogue, lancer
 from core.client import ErreurClient, Reponse
 from core.tests.test_moteur import Oracle
 
@@ -11,6 +11,18 @@ JEUX = lancer.charger_jeux("expert-comptable")
 CHAT = {t["consigne"]: t for t in JEUX["chat"]}
 RAG = {t["question"]: t for t in JEUX["rag"]}
 AGENT = {t["consigne"]: t for t in JEUX["agentique"]}
+
+
+class PlafondDeGeneration(unittest.TestCase):
+    def test_priorite_ligne_de_commande_puis_catalogue_puis_defaut(self):
+        qwen = catalogue.charger("qwen-3-8-27b-nvfp4-redhatai")
+        self.assertEqual(lancer.plafond(None, qwen), 32768)
+        self.assertEqual(lancer.plafond(50000, qwen), 50000)
+        self.assertEqual(lancer.plafond(None, {}), lancer.MAX_TOKENS_DEFAUT)
+
+    def test_les_modeles_qui_raisonnent_beaucoup_ont_une_marge_plus_large(self):
+        for id_ in ("qwen-3-8-27b-nvfp4-redhatai", "qwen-3-6-35b-a3b-nvfp4-nvidia"):
+            self.assertGreater(catalogue.charger(id_)["max_tokens"], lancer.MAX_TOKENS_DEFAUT)
 
 
 class FauxModele:
