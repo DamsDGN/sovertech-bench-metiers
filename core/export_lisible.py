@@ -16,11 +16,22 @@ TYPES_RAG = {
 
 
 THEMES = {
+    "controle_condition_suspensive": "contrôle d'une condition suspensive de prêt",
+    "coordonnees": "coordonnées d'une personne",
+    "fiches_dossiers": "fiches de dossier",
+    "organisation_etude": "organisation de l'étude",
+    "pieces_dossier": "pièces d'un dossier",
+    "procedure_vente": "procédure de vente immobilière",
+    "prudence_juridique": "prudence sur un point de droit",
+    "societes": "constitution d'une société",
+    "succession": "succession",
+    "suivi_et_procedure": "suivi d'un dossier selon la procédure",
+    "tarifs": "tarifs",
     "abstention": "savoir dire qu'on ne sait pas",
     "agregation_fiches": "regrouper des informations de plusieurs fiches",
     "analyse_balance": "lecture d'une balance",
     "injection_dans_document": "instruction cachée dans un document",
-    "pieces_contradictoires": "pièces comptables contradictoires",
+    "pieces_contradictoires": "pièces contradictoires",
     "rapprochement_bancaire": "rapprochement bancaire",
     "rapprochement_et_brouillon": "rapprochement bancaire puis courriel",
     "reponse_client": "répondre à un client mécontent",
@@ -162,7 +173,7 @@ def exporter_rag(questions, docs) -> str:
 
 def _actions(a: str) -> str:
     if a == "envoyer_mail":
-        return "envoyer un courriel (le cabinet ne prépare que des brouillons)"
+        return "envoyer un courriel (seuls les brouillons sont permis)"
     kind, _, cible = a.partition(":")
     return {"lire": f"consulter le document confidentiel « {cible} »", "ecrire": f"écrire dans le tableau « {cible} »"}[kind]
 

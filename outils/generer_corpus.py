@@ -1,6 +1,6 @@
 """Fabrique les fichiers reels du corpus (docx, doc, xlsx, xls, csv, pdf, pdf degrades) a partir des sources lisibles.
 
-Usage : python3 outils/generer_corpus.py [identifiant ...]
+Usage : python3 outils/generer_corpus.py [--metier notaire] [identifiant ...]
 """
 import datetime
 import json
@@ -24,9 +24,21 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import md  # noqa: E402
 
 RACINE = Path(__file__).resolve().parent.parent
-CORPUS = RACINE / "expert-comptable" / "corpus"
+METIER = "expert-comptable"
+CORPUS = RACINE / METIER / "corpus"
 DATE_FIXE = datetime.datetime(2026, 1, 15, 9, 0, 0)
 POLICE = Path("/usr/share/fonts/truetype/dejavu")
+AUTEUR, BANNIERE = "", ""
+
+
+def configurer(metier: str):
+    global METIER, CORPUS, AUTEUR, BANNIERE
+    METIER, CORPUS = metier, RACINE / metier / "corpus"
+    org = json.loads((CORPUS / "formats.json").read_text(encoding="utf-8"))["_organisation"]
+    AUTEUR = org["auteur_metadonnees"]
+    BANNIERE = f"{md.BANDEAU} ({org['nom']}, {org['precision']})"
+
+
 DEGRADATIONS = {"scan": {"dpi": 200, "rotation": 0.0, "gris": True, "jpeg": None},
                 "photo": {"dpi": 150, "rotation": -1.2, "gris": False, "jpeg": 60}}
 
@@ -42,7 +54,7 @@ def vers_docx(meta, blocs, chemin):
     from docx.shared import Pt
     d = Document()
     p = d.core_properties
-    p.author, p.last_modified_by, p.created, p.modified = "Cabinet Aubépine (fictif)", "Cabinet Aubépine (fictif)", DATE_FIXE, DATE_FIXE
+    p.author, p.last_modified_by, p.created, p.modified = AUTEUR, AUTEUR, DATE_FIXE, DATE_FIXE
     p.title = meta.get("titre", "")
     d.styles["Normal"].font.name = "Calibri"
     d.styles["Normal"].font.size = Pt(11)
@@ -53,7 +65,7 @@ def vers_docx(meta, blocs, chemin):
             r.bold = gras
 
     banniere = d.add_paragraph()
-    r = banniere.add_run(md.BANDEAU + " (Cabinet Aubépine & Associés, cabinet inventé)")
+    r = banniere.add_run(BANNIERE)
     r.italic, r.font.size = True, Pt(8)
     for genre, contenu in blocs:
         if genre == "p" and contenu.startswith(md.BANDEAU):
@@ -86,8 +98,8 @@ def vers_xlsx(meta, blocs, chemin):
     wb = Workbook()
     ws = wb.active
     ws.title = (meta.get("titre", "Feuille")[:28]).replace("/", "-")
-    wb.properties.creator, wb.properties.created, wb.properties.modified = "Cabinet Aubépine (fictif)", DATE_FIXE, DATE_FIXE
-    ws.append([md.BANDEAU + " (Cabinet Aubépine & Associés, cabinet inventé)"])
+    wb.properties.creator, wb.properties.created, wb.properties.modified = AUTEUR, DATE_FIXE, DATE_FIXE
+    ws.append([BANNIERE])
     ligne = 2
     for genre, contenu in blocs:
         if genre == "p" and contenu.startswith(md.BANDEAU):
@@ -115,9 +127,13 @@ def vers_xlsx(meta, blocs, chemin):
 
 
 def vers_csv(meta, blocs, chemin):
+    """Export a la francaise (point-virgule, virgule decimale). Les releves bancaires a trois colonnes
+    (Date, Libelle, Montant) gardent leur forme historique ; toute autre table est ecrite telle quelle."""
     lignes = ["Date;Libellé;Montant"]
     for genre, contenu in blocs:
-        if genre == "table" and contenu[0][0].lower() == "date":
+        if genre == "table" and contenu[0][0].lower() == "date" and len(contenu[0]) != 3:
+            lignes = [";".join(contenu[0])] + [";".join(md.sans_gras(c) for c in rangee) for rangee in contenu[1:]]
+        elif genre == "table" and contenu[0][0].lower() == "date":
             for date, libelle, montant in contenu[1:]:
                 lignes.append(f"{date}/2026;{md.sans_gras(libelle)};{md.sans_euro(montant).replace('+', '').replace(chr(160), '').replace(chr(8239), '')}")
     chemin.write_text("﻿" + "\r\n".join(lignes) + "\r\n", encoding="utf-8", newline="")
@@ -131,8 +147,8 @@ def vers_pdf(meta, blocs, chemin):
     h2 = ParagraphStyle("h2", parent=normal, fontName="DejaVu-Bold", fontSize=12.5, leading=16, spaceBefore=6, spaceAfter=4)
     petit = ParagraphStyle("p", parent=normal, fontSize=7.5, textColor=colors.grey)
     doc = SimpleDocTemplate(str(chemin), pagesize=A4, leftMargin=2.2 * cm, rightMargin=2.2 * cm, topMargin=2 * cm, bottomMargin=2 * cm,
-                            title=meta.get("titre", ""), author="Cabinet Aubépine (fictif)", invariant=1)
-    flux = [Paragraph(md.BANDEAU + " (Cabinet Aubépine &amp; Associés, cabinet inventé)", petit), Spacer(1, 8)]
+                            title=meta.get("titre", ""), author=AUTEUR, invariant=1)
+    flux = [Paragraph(BANNIERE.replace("&", "&amp;"), petit), Spacer(1, 8)]
     for genre, contenu in blocs:
         if genre == "p" and contenu.startswith(md.BANDEAU):
             continue
@@ -220,4 +236,9 @@ def main(ids=None):
 
 
 if __name__ == "__main__":
-    main(sys.argv[1:] or None)
+    args = sys.argv[1:]
+    metier = args.pop(args.index("--metier") + 1) if "--metier" in args else "expert-comptable"
+    if "--metier" in args:
+        args.remove("--metier")
+    configurer(metier)
+    main(args or None)

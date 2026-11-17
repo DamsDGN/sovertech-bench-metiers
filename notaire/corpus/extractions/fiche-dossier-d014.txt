@@ -1,0 +1,20 @@
+Fiche de dossier D-2026-014, vente d'un appartement
+
+*DOCUMENT FICTIF (Étude Bruyère \& Associés, étude inventée)*
+
+# Fiche de dossier D-2026-014
+
+|**Rubrique**|**Information**|
+|---|---|
+|Nature de l'acte|vente d'un appartement|
+|Vendeur|Mme Armelle Quéméner|
+|Acquéreurs|M. Corentin Hascoët et Mme Maëlle Hascoët|
+|Bien|appartement de 3 pièces, 2e étage, résidence « Les Embruns » (fictive), Quimper, lot 12|
+|Prix|245 000 €|
+|Avant-contrat|12 janvier 2026, remis aux acquéreurs le jour même|
+|Signature de l'acte prévue|20 mars 2026|
+|Dépôt de garantie|12 250 €|
+|Condition suspensive de prêt|230 000 €, date limite le 26 février 2026|
+|Droit de préemption|déclaration déposée en mairie le 14 janvier 2026, renonciation de la commune reçue le 2 février 2026|
+|Courriel des acquéreurs|hascoet.corentin@mail-fictif.example|
+|Clerc en charge|Lucas Mével|

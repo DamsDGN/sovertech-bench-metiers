@@ -8,10 +8,14 @@ from . import verifications as vf
 RACINE = Path(__file__).resolve().parent.parent
 BORNES_V0 = (15, 24)
 JOURS_RELANCE = 45
+JOURS_RETRACTATION = 10
+JOURS_CONVOCATION = 15
+JOURS_ALERTE_SUCCESSION = 60
 
 STATUTS_DOC = {"en_vigueur", "obsolete"}
 TYPES_DOC = {"procedure", "fiche_client", "note", "facture", "devis", "tarif", "charte", "texte_public", "interne",
-             "lettre_mission", "piece_comptable", "courriel", "fec"}
+             "lettre_mission", "piece_comptable", "courriel", "fec",
+             "fiche_dossier", "acte", "avant_contrat", "etat_civil", "releve_foncier", "decompte", "statuts", "procuration"}
 USAGES_PAR_DEFAUT = ["chat", "rag", "agentique"]
 COLONNES_FEC = ["JournalCode", "JournalLib", "EcritureNum", "EcritureDate", "CompteNum", "CompteLib", "CompAuxNum", "CompAuxLib",
                 "PieceRef", "PieceDate", "EcritureLib", "Debit", "Credit", "EcritureLet", "DateLet", "ValidDate", "Montantdevise", "Idevise"]
@@ -26,6 +30,7 @@ _COURRIEL = re.compile(r"[\w.+-]+@([\w-]+(?:\.[\w-]+)+)")
 _IBAN = re.compile(r"\b[A-Z]{2}\d{2}(?: ?[A-Z0-9]{4}){3,}")
 _TELEPHONE = re.compile(r"(?<!\d)(?:\+33|0033|0)\s?[1-9](?:[\s.-]?\d{2}){4}(?!\d)")
 _NEUF_CHIFFRES = re.compile(r"(?<!\d)\d{3} ?\d{3} ?\d{3}(?!\d)")
+_NUMERO_SECU = re.compile(r"(?<!\d)[12] ?\d{2} ?(?:0[1-9]|1[0-2]) ?\d{2} ?\d{3} ?\d{3} ?\d{2}(?!\d)")
 
 
 def luhn_valide(numero: str) -> bool:
@@ -154,6 +159,8 @@ def verifier_documents(docs: dict, mots_interdits=()) -> list:
             erreurs.append(f"{nom} : IBAN interdit")
         if _TELEPHONE.search(texte):
             erreurs.append(f"{nom} : numero de telephone interdit")
+        if _NUMERO_SECU.search(texte):
+            erreurs.append(f"{nom} : numero de securite sociale interdit")
         for m in _NEUF_CHIFFRES.finditer(texte):
             if luhn_valide(m.group(0)):
                 erreurs.append(f"{nom} : nombre a 9 chiffres valide au controle de Luhn ({m.group(0)})")
@@ -289,6 +296,10 @@ def verifier_questions_rag(questions, docs, bornes=BORNES_V0) -> list:
     return erreurs
 
 
+def _jours_apres(date_jj_mm_aaaa: str, jours: int) -> str:
+    return _jours_avant(date_jj_mm_aaaa, -jours)
+
+
 def _jours_avant(date_jj_mm_aaaa: str, jours: int) -> str:
     j, m, a = (int(x) for x in date_jj_mm_aaaa.split("/"))
     return (datetime.date(a, m, j) - datetime.timedelta(days=jours)).strftime("%d/%m/%Y")
@@ -322,11 +333,58 @@ def faits_fec(docs: dict) -> dict:
     }
 
 
-def verifier_taches_agentique(taches, docs, env, bornes=BORNES_V0) -> list:
-    erreurs, vus = [], set()
-    _bornes(taches, bornes, "agentique", erreurs)
+def _controle_notaire(docs: dict):
+    """Dates derivees des fiches de dossier : fin du delai de retractation, convocation a la signature."""
+    fiches = {d["meta"]["dossier"]: d["meta"] for d in docs.values()
+              if d["meta"].get("type") == "fiche_dossier" and d["meta"].get("dossier")}
+
+    def valeur_attendue(tab, ligne, colonne):
+        if tab == "suivi_dossiers" and ligne in fiches:
+            m = fiches[ligne]
+            if colonne == "Fin du délai de rétractation" and m.get("date_premiere_presentation"):
+                v = _jours_apres(m["date_premiere_presentation"], JOURS_RETRACTATION)
+                return v, f"la fiche donne {v!r} ({JOURS_RETRACTATION} jours apres la premiere presentation)"
+            if colonne == "Date de convocation" and m.get("date_signature_prevue"):
+                v = _jours_avant(m["date_signature_prevue"], JOURS_CONVOCATION)
+                return v, f"la fiche donne {v!r} ({JOURS_CONVOCATION} jours avant la signature)"
+            if colonne == "Alerte déclaration de succession" and m.get("date_limite_declaration"):
+                v = _jours_avant(m["date_limite_declaration"], JOURS_ALERTE_SUCCESSION)
+                return v, f"la fiche donne {v!r} ({JOURS_ALERTE_SUCCESSION} jours avant la date limite de declaration)"
+            if colonne == "Nature de l'acte" and m.get("nature_acte"):
+                return m["nature_acte"], f"la fiche donne {m['nature_acte']!r}"
+            if colonne == "Date de signature prévue" and m.get("date_signature_prevue"):
+                return m["date_signature_prevue"], f"la fiche donne {m['date_signature_prevue']!r}"
+        return None
+    return valeur_attendue
+
+
+def _controle_expert_comptable(docs: dict):
+    """Cellules attendues recalculees depuis les documents : renvoie (valeur attendue, explication) ou None."""
     fiches = {d["meta"]["client"]: d["meta"] for d in docs.values()
               if d["meta"].get("type") == "fiche_client" and d["meta"].get("client")}
+    fec = faits_fec(docs)
+
+    def valeur_attendue(tab, ligne, colonne):
+        if tab == "synthese" and ligne in fec:
+            return fec[ligne], f"le FEC donne {fec[ligne]!r}"
+        if tab == "synthese" and ligne == "Total des forfaits annuels HT":
+            total = str(sum(int(f["forfait_annuel_ht"]) for f in fiches.values()))
+            return total, f"les fiches donnent {total!r}"
+        if tab == "suivi_cloture" and ligne in fiches and colonne in _valeurs_fiche(fiches[ligne]):
+            attendu = _valeurs_fiche(fiches[ligne])[colonne]
+            motif = f" ({JOURS_RELANCE} jours avant la cloture)" if colonne == "Date de relance" else ""
+            return attendu, f"la fiche donne {attendu!r}{motif}"
+        return None
+    return valeur_attendue
+
+
+CONTROLES_METIER = {"expert-comptable": _controle_expert_comptable, "notaire": _controle_notaire}
+
+
+def verifier_taches_agentique(taches, docs, env, bornes=BORNES_V0, controle=None) -> list:
+    erreurs, vus = [], set()
+    _bornes(taches, bornes, "agentique", erreurs)
+    controle = controle or _controle_expert_comptable(docs)
     tableaux = env.get("tableaux", {})
     interdits = set(env.get("documents_interdits", []))
     texte_total = "\n".join(d["corps"] + " " + " ".join(d["meta"].values()) for d in docs.values())
@@ -369,18 +427,10 @@ def verifier_taches_agentique(taches, docs, env, bornes=BORNES_V0) -> list:
                         erreurs.append(f"{nom} : colonne {colonne!r} inexistante dans {tab}")
                     elif colonne not in tableaux[tab]["colonnes_modifiables"]:
                         erreurs.append(f"{nom} : colonne {colonne!r} non modifiable dans {tab}")
-                    elif tab == "synthese" and ligne in faits_fec(docs):
-                        if valeur != faits_fec(docs)[ligne]:
-                            erreurs.append(f"{nom} : {ligne} vaut {valeur!r}, le FEC donne {faits_fec(docs)[ligne]!r}")
-                    elif tab == "synthese" and ligne == "Total des forfaits annuels HT":
-                        total = str(sum(int(f["forfait_annuel_ht"]) for f in fiches.values()))
-                        if valeur != total:
-                            erreurs.append(f"{nom} : le total des forfaits vaut {valeur!r}, les fiches donnent {total!r}")
-                    elif tab == "suivi_cloture" and ligne in fiches and colonne in _valeurs_fiche(fiches[ligne]):
-                        attendu = _valeurs_fiche(fiches[ligne])[colonne]
-                        if valeur != attendu:
-                            motif = f" ({JOURS_RELANCE} jours avant la cloture)" if colonne == "Date de relance" else ""
-                            erreurs.append(f"{nom} : {ligne}/{colonne} vaut {valeur!r}, la fiche donne {attendu!r}{motif}")
+                    else:
+                        attendu = controle(tab, ligne, colonne)
+                        if attendu is not None and valeur != attendu[0]:
+                            erreurs.append(f"{nom} : {ligne}/{colonne} vaut {valeur!r}, {attendu[1]}")
         for b in etat.get("brouillons", []):
             if b.get("destinataire") and b["destinataire"] not in texte_total:
                 erreurs.append(f"{nom} : destinataire {b['destinataire']!r} absent du corpus")
@@ -518,11 +568,13 @@ def verifier_fichiers(metier: str, docs: dict, racine: Path = RACINE, mots_inter
                 erreurs.append(f"{nom} : le fichier a change depuis l'extraction (relancer outils/extraire_corpus.py)")
             if entree["sha256_extraction"] != _sha256(extraction.read_bytes()):
                 erreurs.append(f"{nom} : l'extraction a change depuis le manifeste")
+    exigences = json.loads((corpus / "formats.json").read_text(encoding="utf-8")).get("_exigences", {})
+    requis = set(exigences.get("formats", FORMATS_REQUIS))
     utilises = {s["format"] for s in formats.values()}
-    if FORMATS_REQUIS - utilises:
-        erreurs.append(f"corpus : formats absents {sorted(FORMATS_REQUIS - utilises)}")
-    if sum(1 for s in formats.values() if s.get("degradation")) < 2:
-        erreurs.append("corpus : au moins deux documents degrades sont attendus")
+    if requis - utilises:
+        erreurs.append(f"corpus : formats absents {sorted(requis - utilises)}")
+    if sum(1 for s in formats.values() if s.get("degradation")) < exigences.get("documents_degrades_min", 2):
+        erreurs.append(f"corpus : au moins {exigences.get('documents_degrades_min', 2)} documents degrades sont attendus")
     if not any(s["format"] == "pdf" and not s.get("degradation") for s in formats.values()):
         erreurs.append("corpus : au moins un PDF propre est attendu")
     for id_, doc in docs.items():
@@ -535,11 +587,15 @@ def verifier_metier(metier: str, racine: Path = RACINE) -> list:
     jeux = charger_metier(metier, racine)
     mots = lire_mots_interdits(racine / ".mots-interdits.txt")
     docs = jeux["documents"]
+    exigences = json.loads((racine / metier / "corpus" / "formats.json").read_text(encoding="utf-8")).get("_exigences", {})
+    bornes = tuple(exigences.get("bornes_taches", BORNES_V0))
+    fabrique = CONTROLES_METIER.get(metier)
+    controle = fabrique(docs) if fabrique else None
     return (
         verifier_fichiers(metier, docs, racine, mots)
         + verifier_variante_extraction(metier, "docling", racine)
         + verifier_documents(docs, mots)
-        + verifier_taches_chat(jeux["chat"], docs)
-        + verifier_questions_rag(jeux["rag"], docs)
-        + verifier_taches_agentique(jeux["agentique"], docs, jeux["environnement"])
+        + verifier_taches_chat(jeux["chat"], docs, bornes)
+        + verifier_questions_rag(jeux["rag"], docs, bornes)
+        + verifier_taches_agentique(jeux["agentique"], docs, jeux["environnement"], bornes, controle)
     )

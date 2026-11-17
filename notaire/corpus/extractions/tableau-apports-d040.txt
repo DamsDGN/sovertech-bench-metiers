@@ -1,0 +1,9 @@
+# Tableau des apports de la SC
+
+|DOCUMENT FICTIF (Étude Bruyère \& Associés, étude inventée)|
+|---|
+|Tableau des apports|
+|Associé|Apport en numéraire (€)|Parts attribuées|
+|Mme Nolwenn Abgrall|600|60|
+|M. Pol Abgrall|450|45|
+|Total|1 050|105|

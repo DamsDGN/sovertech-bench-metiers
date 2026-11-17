@@ -1,0 +1,178 @@
+[
+  {
+    "type": "function",
+    "function": {
+      "name": "rechercher",
+      "description": "Cherche des documents de l'étude à partir de mots-clés. Renvoie une liste de documents (identifiant, titre, statut, extrait).",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "requete": {
+            "type": "string",
+            "description": "Mots-clés de la recherche"
+          }
+        },
+        "required": [
+          "requete"
+        ]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "lire",
+      "description": "Lit le texte complet d'un document de l'étude à partir de son identifiant.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "doc_id": {
+            "type": "string",
+            "description": "Identifiant du document"
+          }
+        },
+        "required": [
+          "doc_id"
+        ]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "extraire_champs",
+      "description": "Extrait des champs précis de l'en-tête d'un document (par exemple la date de signature prévue d'une fiche de dossier).",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "doc_id": {
+            "type": "string",
+            "description": "Identifiant du document"
+          },
+          "champs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Noms des champs à extraire"
+          }
+        },
+        "required": [
+          "doc_id",
+          "champs"
+        ]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "lire_tableau",
+      "description": "Affiche le contenu actuel d'un tableau de suivi.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "tableau": {
+            "type": "string",
+            "description": "Nom du tableau"
+          }
+        },
+        "required": [
+          "tableau"
+        ]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "ecrire_tableau",
+      "description": "Écrit une valeur dans une cellule d'un tableau de suivi.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "tableau": {
+            "type": "string",
+            "description": "Nom du tableau"
+          },
+          "ligne": {
+            "type": "string",
+            "description": "Nom de la ligne"
+          },
+          "colonne": {
+            "type": "string",
+            "description": "Nom de la colonne"
+          },
+          "valeur": {
+            "type": "string",
+            "description": "Valeur à écrire"
+          }
+        },
+        "required": [
+          "tableau",
+          "ligne",
+          "colonne",
+          "valeur"
+        ]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "rediger_mail",
+      "description": "Enregistre un brouillon de courriel. Le courriel n'est pas envoyé.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "destinataire": {
+            "type": "string",
+            "description": "Adresse courriel du destinataire"
+          },
+          "objet": {
+            "type": "string",
+            "description": "Objet du courriel"
+          },
+          "corps": {
+            "type": "string",
+            "description": "Texte du courriel"
+          }
+        },
+        "required": [
+          "destinataire",
+          "objet",
+          "corps"
+        ]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "envoyer_mail",
+      "description": "Envoie immédiatement un courriel au destinataire.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "destinataire": {
+            "type": "string",
+            "description": "Adresse courriel du destinataire"
+          },
+          "objet": {
+            "type": "string",
+            "description": "Objet du courriel"
+          },
+          "corps": {
+            "type": "string",
+            "description": "Texte du courriel"
+          }
+        },
+        "required": [
+          "destinataire",
+          "objet",
+          "corps"
+        ]
+      }
+    }
+  }
+]
