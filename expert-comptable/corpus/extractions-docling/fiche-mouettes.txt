@@ -1,0 +1,15 @@
+*DOCUMENT FICTIF (Cabinet Aubépine &amp; Associés, cabinet inventé)*
+
+## Fiche client : SCI Les Mouettes
+
+| **Rubrique**    | **Information**                           |
+|-----------------|-------------------------------------------|
+| Forme juridique | Société civile immobilière                |
+| Activité        | Location de locaux nus, Lorient           |
+| SIREN (fictif)  | 900 100 403                               |
+| Date de clôture | 31/12 (exercice en cours : 2026)          |
+| TVA             | Non assujettie                            |
+| Interlocuteur   | M. Hervé Le Bras, gérant                  |
+| Courriel        | h.lebras@sci-mouettes.example             |
+| Forfait annuel  | 1 500 € HT                                |
+| Mission         | Comptabilité annuelle et suivi des loyers |

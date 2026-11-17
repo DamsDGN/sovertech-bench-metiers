@@ -1,12 +1,15 @@
 """Extrait le texte de chaque fichier du corpus avec Apache Tika (meme image et meme configuration que la stack de Sover.tech).
 
 Le texte extrait est versionne avec le corpus (extractions/) : le benchmark n'a besoin ni de Docker ni d'OCR pour tourner.
-Usage : python3 outils/extraire_corpus.py
+Moteurs : tika (reference, extractions/) ou docling (variante, extractions-docling/, avec conversion LibreOffice prealable des .doc et .xls).
+Usage : python3 outils/extraire_corpus.py [tika|docling]
 """
 import datetime
 import hashlib
 import json
+import shutil
 import subprocess
+import sys
 import tempfile
 import time
 import urllib.error
@@ -19,6 +22,14 @@ IMAGE = "apache/tika:4.2.0-1-full"
 CONFIGURATION = {"server": {}, "pipes": {"numClients": 4}, "parse-context": {"tesseract-ocr-parser": {"language": "fra+eng"}}}
 PORT = 19998
 CONTENEUR = "bench-metiers-tika"
+IMAGE_DOCLING = "ghcr.io/docling-project/docling-serve-cpu:v1.38.2"
+PARAMETRES_DOCLING = {"image_export_mode": "placeholder", "table_mode": "accurate", "to_formats": "md", "force_ocr": "true", "ocr_lang": ["fr", "en"]}
+CONVERSIONS = {"doc": "docx", "xls": "xlsx"}
+TYPES_MIME = {"docx": "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "doc": "application/msword",
+              "xlsx": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "xls": "application/vnd.ms-excel",
+              "csv": "text/csv", "pdf": "application/pdf", "txt": "text/plain"}
+PORT_DOCLING = 15001
+CONTENEUR_DOCLING = "bench-metiers-docling"
 
 
 def sha256(octets: bytes) -> str:
@@ -46,6 +57,71 @@ def extraire(chemin: Path) -> str:
     while lignes and not lignes[-1]:
         lignes.pop()
     return "\n".join(lignes) + "\n"
+
+
+def nettoyer(texte: str) -> str:
+    lignes = [l.rstrip() for l in texte.replace("\r\n", "\n").replace("\r", "\n").split("\n")]
+    while lignes and not lignes[0]:
+        lignes.pop(0)
+    while lignes and not lignes[-1]:
+        lignes.pop()
+    return "\n".join(lignes) + "\n"
+
+
+def convertir_heritage(fichier: Path, dossier: Path) -> tuple:
+    """Docling ne lit pas .doc et .xls : conversion prealable avec LibreOffice (traitee comme une etape du pipeline)."""
+    cible = CONVERSIONS[fichier.suffix[1:]]
+    subprocess.run(["soffice", "--headless", "--convert-to", cible, "--outdir", str(dossier), str(fichier)], check=True, capture_output=True, timeout=180)
+    return dossier / f"{fichier.stem}.{cible}", cible
+
+
+def extraire_docling(chemin: Path, format_: str) -> str:
+    import requests
+    r = requests.post(f"http://127.0.0.1:{PORT_DOCLING}/v1/convert/file", files={"files": (chemin.name, chemin.read_bytes(), TYPES_MIME[format_])},
+                      data=PARAMETRES_DOCLING, timeout=900)
+    r.raise_for_status()
+    j = r.json()
+    if j.get("status") != "success":
+        raise SystemExit(f"Docling a echoue sur {chemin.name} : {j.get('errors')}")
+    return nettoyer(j["document"]["md_content"])
+
+
+def lancer_conteneur(nom, port_hote, port_conteneur, args, url_sante):
+    subprocess.run(["docker", "rm", "-f", nom], capture_output=True)
+    subprocess.run(["docker", "run", "-d", "--rm", "--name", nom, "-p", f"127.0.0.1:{port_hote}:{port_conteneur}"] + args, check=True, capture_output=True)
+    attendre(url_sante)
+
+
+def main_docling():
+    formats = json.loads((CORPUS / "formats.json").read_text(encoding="utf-8"))
+    sortie = CORPUS / "extractions-docling"
+    sortie.mkdir(exist_ok=True)
+    lancer_conteneur(CONTENEUR_DOCLING, PORT_DOCLING, 5001, ["-e", "DOCLING_SERVE_ENABLE_UI=false", IMAGE_DOCLING], f"http://127.0.0.1:{PORT_DOCLING}/health")
+    docs, tmp = {}, Path(tempfile.mkdtemp())
+    try:
+        identifiant = subprocess.run(["docker", "image", "inspect", "--format", "{{.Id}}", IMAGE_DOCLING], capture_output=True, text=True).stdout.strip()
+        version_lo = subprocess.run(["soffice", "--version"], capture_output=True, text=True).stdout.strip()
+        for id_, spec in formats.items():
+            if id_.startswith("_"):
+                continue
+            fichier, fmt, prealable = CORPUS / "fichiers" / f"{id_}.{spec['format']}", spec["format"], None
+            if fmt in CONVERSIONS:
+                fichier, fmt = convertir_heritage(fichier, tmp)
+                prealable = f"{spec['format']} vers {fmt} avec {version_lo}"
+            texte = extraire_docling(fichier, fmt)
+            (sortie / f"{id_}.txt").write_text(texte, encoding="utf-8", newline="\n")
+            docs[id_] = {"fichier": f"{id_}.{spec['format']}", "format": spec["format"], "degradation": spec.get("degradation"),
+                         "conversion_prealable": prealable, "sha256_fichier": sha256((CORPUS / "fichiers" / f"{id_}.{spec['format']}").read_bytes()),
+                         "sha256_extraction": sha256(texte.encode("utf-8")), "caracteres_extraction": len(texte)}
+            print(f"{id_:32s} {spec['format']:5s} {prealable or '':32s} {len(texte):>7,} caracteres", flush=True)
+    finally:
+        subprocess.run(["docker", "stop", CONTENEUR_DOCLING], capture_output=True)
+        shutil.rmtree(tmp, ignore_errors=True)
+    manifeste = {"extraction": {"outil": IMAGE_DOCLING, "identifiant_image": identifiant, "parametres": PARAMETRES_DOCLING,
+                                "date": datetime.date.today().isoformat(),
+                                "note": "variante de comparaison : memes reglages que la stack Sover.tech (force_ocr, OCR fra+eng), Markdown ; .doc et .xls convertis au prealable par LibreOffice"},
+                 "documents": docs}
+    (CORPUS / "MANIFESTE-docling.json").write_text(json.dumps(manifeste, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
 
 
 def main():
@@ -82,4 +158,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    {"tika": main, "docling": main_docling}[(sys.argv[1] if len(sys.argv) > 1 else "tika")]()
