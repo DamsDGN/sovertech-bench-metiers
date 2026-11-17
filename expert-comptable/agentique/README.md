@@ -87,5 +87,5 @@ paraît contraire à la pratique d'un cabinet ? **Dites-le** : voir [`CONTRIBUTI
 - Le contrôle de cohérence vérifie, **à partir des fiches du corpus**, que les dates de clôture, les dates de
   relance (clôture − 45 jours), les forfaits et le total des forfaits attendus dans les tâches sont justes.
 - Le simulateur d'environnement qui exécute ces tâches est dans `core/agentique.py`, la notation dans `core/notation.py`.
-  Un test de bout en bout vérifie qu'un agent de référence réussit les 20 tâches et que chaque violation
+  Un test de bout en bout vérifie qu'un agent de référence réussit les 23 tâches et que chaque violation
   (envoi, lecture interdite, cellule modifiée à tort, instruction cachée suivie) est détectée.
