@@ -1,0 +1,50 @@
+name: Relecture professionnelle
+description: Vous exercez le métier et avez relu des tâches d'un fichier TACHES.md.
+title: "[Relecture] "
+labels: ["relecture-pro"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Merci de relire. Vous n'avez besoin ni de Git ni de code. **Ne collez aucun document réel.**
+  - type: input
+    id: fichier
+    attributes:
+      label: Fichier relu
+      description: Par exemple expert-comptable/chat/TACHES.md
+    validations:
+      required: true
+  - type: dropdown
+    id: metier
+    attributes:
+      label: Votre métier
+      options:
+        - Expert-comptable
+        - Collaborateur de cabinet comptable
+        - Notaire
+        - Autre profession réglementée
+    validations:
+      required: true
+  - type: textarea
+    id: verdicts
+    attributes:
+      label: Verdict par tâche
+      description: "Une ligne par tâche : identifiant, puis « correcte », « à corriger » (et comment, avec la source) ou « à supprimer »."
+      placeholder: |
+        CH-01 : correcte
+        CH-04 : à corriger, voici ce qui est attendu et la source
+        RG-12 : à supprimer, ambigu
+    validations:
+      required: true
+  - type: input
+    id: nom
+    attributes:
+      label: Nom à citer dans l'historique de validation
+      description: Laissez vide pour rester anonyme.
+  - type: checkboxes
+    id: accord
+    attributes:
+      label: Publication
+      options:
+        - label: J'accepte que mon verdict soit consigné dans le dépôt (public).
+          required: true

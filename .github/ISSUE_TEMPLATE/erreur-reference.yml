@@ -1,0 +1,38 @@
+name: Erreur dans une référence
+description: Une réponse de référence, une grille ou un document du corpus est faux, imprécis ou périmé.
+title: "[Erreur] "
+labels: ["erreur-reference"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Merci. Toute correction est la bienvenue. **Ne collez aucun document réel** (client, acte, facture), même anonymisé : décrivez la règle et citez sa source publique.
+  - type: input
+    id: tache
+    attributes:
+      label: Tâche ou document concerné
+      description: Par exemple CH-07, RG-12, AG-05 ou corpus/documents/honoraires-2026.md
+    validations:
+      required: true
+  - type: textarea
+    id: probleme
+    attributes:
+      label: Ce qui est faux ou discutable
+    validations:
+      required: true
+  - type: textarea
+    id: source
+    attributes:
+      label: Source publique
+      description: Article de loi, règlement, norme, page officielle.
+    validations:
+      required: true
+  - type: textarea
+    id: correction
+    attributes:
+      label: Correction proposée
+  - type: input
+    id: nom
+    attributes:
+      label: Nom à citer dans l'historique de validation
+      description: Laissez vide pour rester anonyme.
