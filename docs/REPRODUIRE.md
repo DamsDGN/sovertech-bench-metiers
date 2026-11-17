@@ -58,7 +58,7 @@ tâche et par passe, avec la réponse complète), `releve.json` (configuration),
 | `--materiel "..."` | Décrire la machine : nécessaire pour qu'un résultat soit « comparable » |
 | `--prix-horaire X` | Tarif horaire de la machine : active le coût par tâche |
 | `--pause S` | Secondes entre deux tâches, pour ne pas saturer un serveur partagé |
-| `--max-tokens N` | Plafond de génération (celui du catalogue s'il y en a un, sinon 16384 ; 32768 pour la famille Qwen). **Avec un modèle qui raisonne, le raisonnement compte dans ce plafond** : sur les tâches à long contexte (fichier des écritures comptables), 8192 ne suffisait pas et la réponse restait vide. Le rapport signale les réponses coupées ; augmenter si nécessaire |
+| `--max-tokens N` | Plafond de génération, **raisonnement compris** (32768 par défaut, le même pour tous les modèles). Sur les tâches à long contexte (fichier des écritures comptables), 8192 ne suffisait pas et 16384 coupait encore des réponses. Le rapport signale les réponses coupées ; ne comparez pas deux modèles dont le plafond diffère |
 
 Le lanceur envoie **une requête à la fois**. Si votre serveur est partagé, prévenez ses utilisateurs ou
 lancez le benchmark hors des heures d'usage.
