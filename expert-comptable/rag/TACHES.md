@@ -578,7 +578,7 @@ Fichier généré automatiquement depuis `questions.jsonl` : ne le modifiez pas 
 
 **Question posée à l'assistant**
 
-> Quels clients du cabinet bénéficient d'un point intermédiaire avec le cabinet avant leur clôture 2026, et à quelle période ce point a-t-il lieu ?
+> Parmi les fiches clients, lesquels ont un forfait annuel qui donne droit au point intermédiaire de la procédure de clôture en vigueur, et à quelle période ce point a-t-il lieu ?
 
 **Documents où se trouve la réponse** : Procédure de clôture annuelle, version 2 (en vigueur, 2026-01-15) ; Fiche client, SARL Les Épis d'Or (en vigueur, 2026-01-12) ; Fiche client, SAS Atelier Kerloc'h (en vigueur, 2026-01-12) ; Fiche client, SCI Les Mouettes (en vigueur, 2026-01-12) ; Fiche client, Mme Anaïs Rolland (en vigueur, 2026-01-12) ; Fiche client, Association Les Amis du Phare (en vigueur, 2026-01-12)
 
