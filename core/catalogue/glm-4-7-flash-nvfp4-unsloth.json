@@ -10,16 +10,18 @@
   "licence": "MIT",
   "parametres_milliards": 31,
   "architecture": "moe, parametres actifs non verifies",
-  "parseur_outils_vllm": null,
+  "parseur_outils_vllm": "glm47",
   "echantillonnage": {
-    "temperature": 1.0
+    "temperature": 1.0,
+    "top_p": 0.95
   },
-  "source_echantillonnage": "generation_config.json du depot zai-org/GLM-4.7-Flash, releve le 2026-11-17 (temperature seule ; le depot quantifie ajoute top_p 0,95, non retenu : on suit l'editeur d'origine)",
+  "source_echantillonnage": "fiche zai-org/GLM-4.7-Flash, releve le 2026-11-17 : parametres par defaut des evaluations de l'editeur (temperature 1,0, top_p 0,95)",
   "statut_catalogue": "ajoute le 2026-11-17 a la demande du mainteneur (voir docs/PLAN.md, section 4)",
-  "notes": "Parseurs d'outils et de raisonnement vLLM a confirmer au premier chargement.",
+  "notes": "Contexte maximal de l'editeur : 202 752 tokens (inferieur aux 262 144 des autres modeles).",
   "a_determiner_au_premier_chargement": [
-    "parseur_outils_vllm",
-    "parseur_raisonnement_vllm",
-    "support vLLM"
-  ]
+    "support vLLM 0.33"
+  ],
+  "parseur_raisonnement_vllm": "glm45",
+  "contexte_max_editeur": 202752,
+  "source_parseurs": "fiche zai-org/GLM-4.7-Flash, releve le 2026-11-17 ; variable VLLM_ATTENTION_BACKEND=TRITON_MLA et exclusion du backend Marlin selon la fiche unsloth/GLM-4.7-Flash-NVFP4"
 }

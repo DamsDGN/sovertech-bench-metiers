@@ -10,16 +10,17 @@
   "licence": "OpenMDW 1.1 (https://openmdw.ai/license/1-1/)",
   "parametres_milliards": 30,
   "architecture": "moe, environ 3 milliards de parametres actifs",
-  "parseur_outils_vllm": null,
+  "parseur_outils_vllm": "qwen3_coder",
   "echantillonnage": {
     "temperature": 1.0,
     "top_p": 0.95
   },
   "source_echantillonnage": "generation_config.json du depot nvidia/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-BF16, releve le 2026-11-17",
   "statut_catalogue": "retenu en v0 (voir docs/PLAN.md, section 4)",
-  "notes": "Licence OpenMDW 1.1 : a lire avant publication de resultats. Parseur d'outils vLLM et support a confirmer au premier chargement.",
+  "notes": "Licence OpenMDW 1.1 : a lire avant publication de resultats.",
   "a_determiner_au_premier_chargement": [
-    "parseur_outils_vllm",
-    "support vLLM"
-  ]
+    "backend MoE sur RTX PRO 5000 (marlin retenu, recette DGX Spark)"
+  ],
+  "parseur_raisonnement_vllm": "nemotron_v3",
+  "source_parseurs": "fiche nvidia/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4, releve le 2026-11-17 : parseurs, cache de prefixe, options Mamba ; recette validee sur vLLM 0.27.1, non publiee pour la RTX PRO 5000"
 }

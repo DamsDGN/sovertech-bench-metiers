@@ -160,10 +160,19 @@ class CatalogueEtalons(unittest.TestCase):
         self.assertIn("0,05", catalogue.charger("ministral-3-14b-nvfp4-redhatai")["source_echantillonnage"])
 
     def test_les_inconnues_sont_declarees_et_non_devinees(self):
-        for id_ in ("nemotron-3-5-lightning-30b-a3b-nvfp4-nvidia", "muse-glimmer-30b-nvfp4-redhatai", "glm-4-7-flash-nvfp4-unsloth", "gpt-oss-20b-mxfp4-openai"):
+        e = catalogue.charger("gpt-oss-20b-mxfp4-openai")
+        self.assertIsNone(e["parseur_outils_vllm"])
+        self.assertIn("parseur_outils_vllm", e["a_determiner_au_premier_chargement"])
+
+    def test_les_parseurs_viennent_d_une_source_citee(self):
+        for id_ in ("nemotron-3-5-lightning-30b-a3b-nvfp4-nvidia", "muse-glimmer-30b-nvfp4-redhatai", "glm-4-7-flash-nvfp4-unsloth"):
             e = catalogue.charger(id_)
-            self.assertIsNone(e["parseur_outils_vllm"])
-            self.assertIn("parseur_outils_vllm", e["a_determiner_au_premier_chargement"])
+            self.assertTrue(e["parseur_outils_vllm"] and e["parseur_raisonnement_vllm"], id_)
+            self.assertIn("fiche", e["source_parseurs"], id_)
+
+    def test_le_contexte_demande_ne_depasse_pas_celui_de_l_editeur(self):
+        self.assertEqual(catalogue.charger("muse-glimmer-30b-nvfp4-redhatai")["contexte_max_editeur"], 131072)
+        self.assertEqual(catalogue.charger("glm-4-7-flash-nvfp4-unsloth")["contexte_max_editeur"], 202752)
 
     def test_un_format_autre_que_nvfp4_exige_une_exception_motivee(self):
         with tempfile.TemporaryDirectory() as tmp:
