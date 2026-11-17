@@ -1,43 +1,96 @@
 # Rejouer le benchmark
 
-**Statut : le moteur d'exécution est en cours d'écriture.** Ce guide fixe l'engagement de portabilité et
-sera complété avec les commandes réelles quand le moteur sera livré.
-
-## Principe
-
 Le benchmark **ne dépend d'aucun fournisseur**. Il parle à une **API compatible OpenAI**
-(`/v1/chat/completions`, appels d'outils compris). Sover.tech lance ses mesures avec le logiciel vLLM sur
-des cartes louées chez Runpod, mais n'importe quel serveur compatible convient : vLLM, SGLang, llama.cpp en
-mode serveur, Ollama en mode `/v1`, ou le vôtre.
+(`/v1/chat/completions`, appels d'outils compris). Sover.tech lance ses mesures publiées avec le logiciel
+vLLM sur des cartes louées chez Runpod, mais n'importe quel serveur compatible convient : vLLM, SGLang,
+llama.cpp en mode serveur, Ollama en mode `/v1`, ou le vôtre.
 
-## Deux parcours
+## Ce qu'il faut
 
-**A. Sur votre infrastructure.** Vous disposez déjà d'un serveur de modèles. Vous indiquez son adresse, le
-nom du modèle servi et, si besoin, une clé. Vous lancez les épreuves contre cette adresse.
+- **Python 3.11 ou plus récent.** Aucune bibliothèque à installer : le moteur n'utilise que la bibliothèque
+  standard.
+- **Un serveur de modèle joignable** (adresse, nom du modèle servi, éventuellement une clé).
+- Rien d'autre : pas de GPU sur la machine qui lance le benchmark, c'est le serveur qui en a besoin.
 
-**B. Sur Runpod, comme Sover.tech.** Le module facultatif `core/runpod/` loue une carte, y lance vLLM avec
-le modèle voulu, lance le benchmark, puis détruit la machine. Il demande votre clé Runpod et affiche
-**le tarif horaire avant toute création**.
+## Parcours A : sur votre infrastructure
+
+1. Vérifiez que tout est en place (aucun réseau, aucun GPU) :
+
+   ```
+   python3 -m unittest discover
+   ```
+
+2. Indiquez où est votre serveur. **Ces valeurs restent sur votre machine** : ne les versionnez pas.
+
+   ```
+   export BENCH_BASE_URL=http://mon-serveur:8000/v1     # adresse de l'API
+   export BENCH_MODEL=nom-du-modele-servi                # nom donné au modèle par le serveur
+   export BENCH_API_KEY=...                              # facultatif
+   export BENCH_CA_CERT=/chemin/vers/ca.crt              # facultatif, pour un TLS interne
+   ```
+
+3. Choisissez le modèle dans le catalogue (`core/catalogue/`, un fichier par modèle) et lancez un
+   **essai rapide** : 2 tâches par épreuve, 1 passe.
+
+   ```
+   python3 -m core.lancer --modele-catalogue gemma-4-12b-nvfp4-redhatai --passes 1 --limite 2
+   ```
+
+4. Lancez la mesure complète : **5 passes**, comme la méthode le prévoit.
+
+   ```
+   python3 -m core.lancer --modele-catalogue gemma-4-12b-nvfp4-redhatai --passes 5 \
+       --materiel "carte Blackwell 48 Go" --prix-horaire 1.2
+   ```
+
+Les résultats sont écrits dans `results/expert-comptable/<date>/<modèle>/` : `resultats.jsonl` (une ligne par
+tâche et par passe, avec la réponse complète), `releve.json` (configuration), `rapport.md` et `resume.csv`.
+
+### Options utiles
+
+| Option | Effet |
+|---|---|
+| `--blocs chat,rag,agentique` | Ne lancer que certaines épreuves |
+| `--taches CH-01,RG-02` | Ne lancer que ces tâches |
+| `--limite N` | N tâches par épreuve (essais rapides) |
+| `--passes N` | Nombre de passes (5 pour une mesure complète) |
+| `--reprise` | Reprendre une passe interrompue sans refaire ce qui est fait |
+| `--materiel "..."` | Décrire la machine : nécessaire pour qu'un résultat soit « comparable » |
+| `--prix-horaire X` | Tarif horaire de la machine : active le coût par tâche |
+| `--pause S` | Secondes entre deux tâches, pour ne pas saturer un serveur partagé |
+| `--max-tokens N` | Plafond de génération (8192 par défaut) |
+
+Le lanceur envoie **une requête à la fois**. Si votre serveur est partagé, prévenez ses utilisateurs ou
+lancez le benchmark hors des heures d'usage.
+
+## Parcours B : sur Runpod, comme Sover.tech
+
+Le module facultatif `core/runpod/` (location d'une carte, lancement de vLLM, destruction de la machine)
+**n'est pas encore écrit**. D'ici là, on lance vLLM soi-même sur le pod de son choix, puis on suit le
+parcours A en pointant `BENCH_BASE_URL` sur ce pod. Le tarif horaire du pod se passe avec `--prix-horaire`.
 
 ## Ce qui est facultatif selon votre infrastructure
 
-- **Mémoire graphique utilisée** : relevée si le moteur peut joindre `nvidia-smi` ou les métriques de
-  vLLM. Sinon le champ reste vide, avec la raison écrite.
-- **Coût par tâche** : calculé si vous fournissez le tarif horaire de votre machine. Sinon le rapport
-  donne le temps de GPU, sans coût.
+- **Mémoire graphique utilisée** : relevée seulement si `nvidia-smi` est disponible sur la machine qui
+  lance le benchmark. Sinon le champ reste vide, avec la raison écrite dans le relevé et le rapport.
+- **Coût par tâche** : calculé si vous fournissez `--prix-horaire`. Sinon le rapport ne donne que les durées.
 
 ## Votre résultat est-il comparable au nôtre ?
 
 Nos résultats publiés utilisent des modèles au format **NVFP4** sur une carte graphique **Blackwell** de
-48 Go. Si vous utilisez un autre format ou une autre carte, votre résultat est **enregistré et accepté**,
-mais **marqué « non comparable »** aux nôtres : un écart de note mélangerait l'effet du modèle et celui de
-la configuration.
-
-Chaque résultat porte son contexte : serveur et version, modèle servi, quantification déclarée, matériel si
-connu, version des tâches, date.
+48 Go. Le relevé déclare un résultat « comparable » seulement si **le modèle servi est bien celui du
+catalogue** et si **vous avez décrit votre matériel** (`--materiel`). Sinon il est **enregistré et accepté**,
+mais **marqué « non comparable »** dans le rapport : un écart de note mélangerait l'effet du modèle et celui de
+la configuration. La déclaration du matériel n'est pas vérifiée par le moteur : elle engage son auteur.
 
 ## Ajouter votre modèle
 
-Le dossier `core/catalogue/` contient un fichier par modèle (dépôt, quantification, réglages recommandés
-par l'éditeur). Copiez-en un, adaptez-le, et lancez. Les réglages d'échantillonnage sont ceux de l'éditeur
-du modèle, écrits dans le fichier.
+Copiez un fichier de `core/catalogue/`, adaptez-le (dépôt, révision, réglages d'échantillonnage de
+l'éditeur du modèle, avec la source de ces réglages) et vérifiez-le avec `python3 -m unittest discover`.
+Le catalogue **publié** est en NVFP4 uniquement ; pour tester un autre format, gardez votre fichier
+localement : le résultat sera marqué « non comparable ».
+
+## Reprendre le rapport
+
+`python3 -m core.rapport results/expert-comptable/<date>/<modèle>` régénère `rapport.md` et `resume.csv` à
+partir de `resultats.jsonl` et `releve.json`.

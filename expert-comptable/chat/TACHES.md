@@ -560,7 +560,6 @@ Fichier généré automatiquement depuis `taches.jsonl` : ne le modifiez pas à 
 
 - la réponse contient l'une de ces formulations : « 10 000 » ; « 10000 »
 - la réponse contient l'une de ces formulations : « bénéfice » ; « bénéficiaire »
-- la réponse fait au plus 80 mots
 
 **Critères du juge** (note de 0 à 2 par critère)
 

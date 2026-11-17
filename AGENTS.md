@@ -97,6 +97,17 @@ tâches hors des bornes de la version, un nom de client interdit.
 - Si vous touchez au contenu métier, **dites ce que vous avez vérifié et ce que vous n'avez pas pu
   vérifier**. Un relecteur humain s'appuiera dessus.
 
+## Lancer le benchmark
+
+```
+export BENCH_BASE_URL=... BENCH_MODEL=... BENCH_API_KEY=...   # ne jamais versionner ces valeurs
+python3 -m core.lancer --modele-catalogue <id> --passes 1 --limite 2   # essai rapide
+```
+
+Les résultats vont dans `results/` (ignoré par Git). **Ne lancez jamais une mesure payante** (pod loué,
+API facturée) sans l'accord explicite de l'utilisateur : annoncez le tarif horaire d'abord. Un serveur
+local partagé reçoit une requête à la fois ; lancez les mesures longues hors des heures d'usage.
+
 ## Tester sur sa propre infrastructure
 
 Le moteur ne parle qu'à une API compatible OpenAI. Ne câblez jamais un fournisseur précis (Runpod,
