@@ -67,6 +67,7 @@ répond « de mémoire » alors qu'on lui demande de s'appuyer sur le dossier es
 - Les trois **textes publics** du corpus (taux de TVA, plan comptable, conservation) sont des résumés
   rédigés par l'équipe : **ils sont à relire en priorité**.
 - Avec 23 questions, un petit écart entre deux modèles n'est pas significatif.
+- Le moteur de recherche est **le même pour tous et volontairement simple** : on mesure comment le modèle exploite des passages déjà retrouvés, pas une solution documentaire complète (lecture des scans, index, classement des résultats).
 
 ## Corriger ou relire
 

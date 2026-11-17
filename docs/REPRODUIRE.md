@@ -52,6 +52,7 @@ tâche et par passe, avec la réponse complète), `releve.json` (configuration),
 |---|---|
 | `--blocs chat,rag,agentique` | Ne lancer que certaines épreuves |
 | `--taches CH-01,RG-02` | Ne lancer que ces tâches |
+| `--metier M` | `expert-comptable` (défaut) ou `notaire` |
 | `--limite N` | N tâches par épreuve (essais rapides) |
 | `--passes N` | Nombre de passes (5 pour une mesure complète) |
 | `--reprise` | Reprendre une passe interrompue sans refaire ce qui est fait |
