@@ -28,11 +28,9 @@ Lire d'abord [`README.md`](README.md), puis [`docs/PLAN.md`](docs/PLAN.md) pour 
    `statut_validation`. Ne présentez jamais une justesse métier comme établie sans cela.
 4. **Aucun résultat de mesure versionné** avant la première version publiée du métier. `results/` est
    ignoré par Git : ne le forcez pas avec `git add -f`.
-5. **Aucun nom de client ou de prospect de Sover.tech**, ni dans un fichier, ni dans un message de
-   commit, ni dans une description de pull request.
-6. **Aucun secret versionné.** Seul un `.env.example` est poussé. Ne jamais afficher une clé d'API dans
+5. **Aucun secret versionné.** Seul un `.env.example` est poussé. Ne jamais afficher une clé d'API dans
    un message ou un journal.
-7. **Un seul paramètre varie : le modèle.** Documents, outils, consignes, récupérateur et réglages sont
+6. **Un seul paramètre varie : le modèle.** Documents, outils, consignes, récupérateur et réglages sont
    figés et versionnés. Changer une tâche, une grille ou un réglage rend les mesures antérieures
    incomparables : c'est une décision, pas un ajustement. Le dire dans la pull request.
 
@@ -88,14 +86,6 @@ docs/                PLAN, EXTRACTION, GRAVITE, REPRODUIRE, GLOSSAIRE
 - **Les README sont lisibles par un non-technicien** : phrases courtes, un exemple, aucun sigle sans
   explication (voir `docs/GLOSSAIRE.md`).
 
-## Noms à ne jamais laisser passer
-
-Chaque contributeur peut créer un fichier local `.mots-interdits.txt` (ignoré par Git, un mot ou un nom
-par ligne) : les contrôles de données refusent alors tout document qui le contient. Ne versionnez jamais
-cette liste : la nommer en clair dans un dépôt public reviendrait à publier ce qu'on veut protéger.
-**Ce fichier n'existe pas dans un clone neuf** : sans lui le contrôle ne se déclenche pas. Le mainteneur le
-crée avant toute publication, avec les noms de clients, de prospects et de partenaires de Sover.tech.
-
 ## Vérifier avant de proposer
 
 ```
@@ -105,7 +95,7 @@ python3 -m core.export_lisible <metier>   # régénère les TACHES.md ; le diff 
 
 Les contrôles de données refusent notamment : un identifiant en double, un document cité qui n'existe
 pas, un SIREN valide, un courriel hors `.example`, une tâche métier sans `a_valider_par_pro`, un nombre de
-tâches hors des bornes de la version, un nom de client interdit.
+tâches hors des bornes de la version.
 
 ## Livrer
 
