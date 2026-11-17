@@ -441,7 +441,10 @@ def verifier_fec(metier: str, id_: str, docs: dict, racine: Path = RACINE) -> li
     return erreurs
 
 
-def verifier_fichiers(metier: str, docs: dict, racine: Path = RACINE) -> list:
+TRACES_DE_MACHINE = (b"/home/", b"C:\\Users\\", b"/Users/", b"\\Users\\")
+
+
+def verifier_fichiers(metier: str, docs: dict, racine: Path = RACINE, mots_interdits=()) -> list:
     corpus = racine / metier / "corpus"
     erreurs = []
     formats = {k: v for k, v in json.loads((corpus / "formats.json").read_text(encoding="utf-8")).items() if not k.startswith("_")}
@@ -458,6 +461,13 @@ def verifier_fichiers(metier: str, docs: dict, racine: Path = RACINE) -> list:
             erreurs.append(f"{nom} : fichier ou extraction manquant")
             continue
         octets = fichier.read_bytes()
+        bas = octets.lower()
+        for trace in TRACES_DE_MACHINE:
+            if trace.lower() in bas:
+                erreurs.append(f"{nom} : trace d'une machine ou d'un utilisateur dans les metadonnees ({trace.decode()})")
+        for mot in mots_interdits:
+            if mot.lower().encode("utf-8") in bas or mot.lower().encode("utf-16-le") in bas:
+                erreurs.append(f"{nom} : mot interdit present dans le fichier")
         signature = SIGNATURES.get(spec["format"])
         if signature and not octets.startswith(signature):
             erreurs.append(f"{nom} : le contenu n'est pas un vrai fichier {spec['format']}")
@@ -490,7 +500,7 @@ def verifier_metier(metier: str, racine: Path = RACINE) -> list:
     mots = lire_mots_interdits(racine / ".mots-interdits.txt")
     docs = jeux["documents"]
     return (
-        verifier_fichiers(metier, docs, racine)
+        verifier_fichiers(metier, docs, racine, mots)
         + verifier_documents(docs, mots)
         + verifier_taches_chat(jeux["chat"], docs)
         + verifier_questions_rag(jeux["rag"], docs)

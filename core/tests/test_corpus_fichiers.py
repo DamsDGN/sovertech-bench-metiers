@@ -74,6 +74,18 @@ class Alterations(unittest.TestCase):
         shutil.copy(propre, self.corpus / "fichiers" / "lettre-mission-epis-dor.pdf")
         self.assertTrue(any("sans couche texte" in e for e in self.erreurs()))
 
+    def test_trace_de_machine_dans_un_fichier(self):
+        with (self.corpus / "fichiers" / "mail-kerloch-2026-03.pdf").open("ab") as f:
+            f.write(b"/home/quelquun/doc.pdf")
+        self.assertTrue(any("trace d'une machine" in e for e in self.erreurs()))
+
+    def test_mot_interdit_dans_un_fichier_binaire(self):
+        docs = d.charger_documents("expert-comptable", self.racine)
+        with (self.corpus / "fichiers" / "fiche-phare.docx").open("ab") as f:
+            f.write("MotSecret".encode("utf-16-le"))
+        erreurs = d.verifier_fichiers("expert-comptable", docs, self.racine, mots_interdits=["motsecret"])
+        self.assertTrue(any("mot interdit" in e for e in erreurs))
+
     def test_document_sans_format(self):
         formats = json.loads((self.corpus / "formats.json").read_text(encoding="utf-8"))
         del formats["fiche-phare"]
