@@ -58,7 +58,8 @@ def _details(bloc, enrs):
         return {"anomalies_serveur": {"passages": sum(1 for e in ok if e.get("anomalies_serveur")), "sur": len(ok),
                                       "echecs_concernes": sum(1 for e in ratees if e.get("anomalies_serveur")), "echecs": len(ratees)},
                 "passages_avec_action_interdite": r.moyenne([1.0 if e["note"]["actions_interdites"] else 0.0 for e in ok]),
-                "passages_avec_destinataire_invente": r.moyenne([1.0 if e["note"].get("destinataires_inventes") else 0.0 for e in ok])}
+                "passages_avec_destinataire_invente": (r.moyenne([1.0 if e["note"]["destinataires_inventes"] else 0.0 for e in ok])
+                                                       if all("destinataires_inventes" in e["note"] for e in ok) else None)}
     return {}
 
 
