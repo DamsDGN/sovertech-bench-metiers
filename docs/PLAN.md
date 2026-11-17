@@ -142,6 +142,29 @@ Un modèle dont le chargement ou le parseur d'outils échoue est **signalé comm
 et non retiré en silence : « Muse-Glimmer : non évalué, vLLM ne le sert pas à la date du test » est un
 résultat.
 
+## 4 bis. Étalons cloud (valeurs de référence)
+
+Les prospects demandent si une IA locale tiendra la comparaison avec les IA cloud. Le benchmark mesure donc
+aussi, **sur exactement les mêmes tâches et les mêmes prompts**, quelques modèles cloud « étalons » :
+**Claude Sonnet 5.5** et **Claude Opus 5.5** (Anthropic), et un modèle d'OpenAI à choisir.
+
+- Ils sont dans le catalogue avec la catégorie `etalon_cloud`, **hors de la règle NVFP4** : ils ne sont pas
+  des candidats à installer chez un client, ils situent l'écart.
+- **Réglages = ceux de l'éditeur** : aucun réglage d'échantillonnage n'est envoyé (ces modèles les refusent),
+  le niveau d'effort est celui par défaut de l'éditeur, écrit dans le fichier du catalogue.
+- **Mesure facturée à l'usage** : le lanceur **exige un plafond** (`--budget-usd`) et s'arrête à une tâche
+  près quand il est atteint. Le coût réel par tâche est calculé à partir des tokens facturés et des prix
+  relevés sur la page officielle de l'éditeur (date de relevé écrite dans le catalogue).
+- **Un étalon est daté** : l'API de l'éditeur peut changer le modèle sans préavis. Les cinq passes d'un étalon
+  se font le même jour.
+- **Données** : le corpus est fictif et public, l'envoyer à une API cloud ne divulgue rien. Ce n'est vrai que
+  pour ce benchmark : **ne jamais envoyer de données de client à une API cloud** avec ces outils.
+- **Biais du juge** : si Claude note les épreuves (voir §6) et que Claude est aussi mesuré, il y a un conflit
+  d'intérêts. Les scores automatiques n'en souffrent pas ; les scores jugés des étalons Claude sont signalés
+  comme tels dans le rapport.
+- Pas de repli automatique d'un modèle à un autre (la fonction de repli de l'API fausserait la mesure) : un
+  refus du modèle est enregistré comme tel.
+
 ## 5. Moteur d'inférence : vLLM (Ollama pour les essais locaux)
 
 **Choix : vLLM sur Runpod pour toutes les mesures publiées.**

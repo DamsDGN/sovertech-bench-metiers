@@ -13,7 +13,8 @@ from . import agentique as ag
 from . import catalogue, prompts, rag
 from . import donnees as d
 from . import notation as n
-from .client import Client, ErreurClient
+from .client import ErreurClient
+from .fournisseurs import creer_client
 
 MAX_TOKENS_DEFAUT = 8192
 
@@ -40,11 +41,14 @@ def memoire_gpu_locale():
 def construire_releve(config, entree, infos_serveur, jeux) -> dict:
     servi = infos_serveur.get("modele_servi")
     raisons = []
-    if not config.get("materiel"):
-        raisons.append("materiel non declare (--materiel)")
-    if servi != entree["depot_hf"]:
-        raisons.append(f"modele servi ({servi}) different du catalogue ({entree['depot_hf']})")
+    etalon = catalogue.est_etalon(entree)
+    if not etalon:
+        if not config.get("materiel"):
+            raisons.append("materiel non declare (--materiel)")
+        if servi != entree["depot_hf"]:
+            raisons.append(f"modele servi ({servi}) different du catalogue ({entree['depot_hf']})")
     return {
+        "etalon_cloud": etalon, "budget_usd": config.get("budget_usd"),
         "date": datetime.datetime.now().astimezone().isoformat(timespec="seconds"),
         "metier": config["metier"], "modele_catalogue": entree, "serveur": infos_serveur,
         "materiel_declare": config.get("materiel"), "memoire_gpu": memoire_gpu_locale(),
@@ -142,11 +146,16 @@ def executer(config: dict, client, jeux: dict, sortie: Path, journal=print) -> P
         if bloc in config["blocs"]:
             lot = [t for t in jeux[cle] if not config.get("taches") or t["id"] in config["taches"]]
             taches += [(bloc, t) for t in (lot[:config["limite"]] if config.get("limite") else lot)]
+    depense = sum(json.loads(l).get("cout_usd", 0) for l in chemin.read_text(encoding="utf-8").splitlines() if l.strip()) if chemin.exists() else 0.0
+    budget, arret = config.get("budget_usd"), None
     with chemin.open("a", encoding="utf-8") as f:
         for passe in range(1, config["passes"] + 1):
             for bloc, t in taches:
                 if (t["id"], passe) in faits:
                     continue
+                if budget is not None and depense >= budget:
+                    arret = {"depense_usd": round(depense, 4), "budget_usd": budget, "derniere_tache": t["id"], "passe": passe}
+                    break
                 debut = time.monotonic()
                 enr = {"metier": config["metier"], "bloc": bloc, "tache": t["id"], "niveau": t["niveau"], "passe": passe,
                        "modele_id": entree["id"], "date": datetime.datetime.now().astimezone().isoformat(timespec="seconds"),
@@ -160,6 +169,10 @@ def executer(config: dict, client, jeux: dict, sortie: Path, journal=print) -> P
                         enr.update(jouer_agentique(client, t, jeux, config))
                     if config.get("prix_horaire"):
                         enr["cout"] = enr["mesures"]["duree"] / 3600 * config["prix_horaire"]
+                    cout = catalogue.cout_usd(entree, enr["mesures"]["tokens_prompt"], enr["mesures"]["tokens_completion"])
+                    if cout is not None:
+                        enr["cout_usd"] = cout
+                        depense += cout
                 except ErreurClient as e:
                     enr["erreur"] = str(e)
                 f.write(json.dumps(enr, ensure_ascii=False, default=str) + "\n")
@@ -168,6 +181,13 @@ def executer(config: dict, client, jeux: dict, sortie: Path, journal=print) -> P
                 journal(f"[passe {passe}/{config['passes']}] {t['id']} {statut} ({time.monotonic() - debut:.1f} s)")
                 if config.get("pause"):
                     time.sleep(config["pause"])
+            if arret:
+                break
+    if arret:
+        releve["arret_budget"] = arret
+        journal(f"PLAFOND DE DEPENSE ATTEINT : {arret['depense_usd']} USD sur {arret['budget_usd']} USD, passe interrompue avant {arret['derniere_tache']}")
+    releve["depense_usd"] = round(depense, 4) if entree.get("prix_mtok") else None
+    (sortie / "releve.json").write_text(json.dumps(releve, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     from . import rapport
     rapport.generer(sortie)
     return sortie
@@ -190,6 +210,8 @@ def analyser(argv=None):
     p.add_argument("--prix-horaire", type=float, default=None, help="tarif horaire de la machine, pour le cout par tache")
     p.add_argument("--materiel", default=None, help="description du materiel (ex. carte Blackwell 48 Go)")
     p.add_argument("--etiquette", default=None)
+    p.add_argument("--budget-usd", type=float, default=None,
+                   help="plafond de depense en dollars, OBLIGATOIRE pour un modele facture a l'usage (la passe s'arrete a une tache pres)")
     p.add_argument("--pause", type=float, default=0, help="secondes entre deux taches")
     p.add_argument("--reprise", action="store_true")
     p.add_argument("--sortie", default=None)
@@ -198,11 +220,15 @@ def analyser(argv=None):
 
 def main(argv=None):
     a = analyser(argv)
-    base, modele = os.environ.get("BENCH_BASE_URL"), os.environ.get("BENCH_MODEL")
-    if not base or not modele:
-        sys.exit("Definir BENCH_BASE_URL (ex. http://hote:8000/v1) et BENCH_MODEL (nom servi). BENCH_API_KEY et BENCH_CA_CERT sont facultatifs.")
-    client = Client(base, modele, os.environ.get("BENCH_API_KEY"), os.environ.get("BENCH_CA_CERT"))
-    config = {"metier": a.metier, "modele_catalogue": a.modele_catalogue, "blocs": [b for b in a.blocs.split(",") if b],
+    entree = catalogue.charger(a.modele_catalogue)
+    if catalogue.est_etalon(entree) and not a.budget_usd:
+        sys.exit(f"{entree['nom']} est facture a l'usage ({entree['prix_mtok']['entree']} / {entree['prix_mtok']['sortie']} USD par million de tokens). "
+                 "Relancer avec --budget-usd N : la passe s'arrete a une tache pres quand N dollars sont depenses.")
+    try:
+        client = creer_client(entree)
+    except ErreurClient as e:
+        sys.exit(str(e))
+    config = {"budget_usd": a.budget_usd, "metier": a.metier, "modele_catalogue": a.modele_catalogue, "blocs": [b for b in a.blocs.split(",") if b],
               "passes": a.passes, "taches": [t for t in a.taches.split(",") if t], "limite": a.limite,
               "max_tokens": a.max_tokens, "prix_horaire": a.prix_horaire, "materiel": a.materiel,
               "etiquette": a.etiquette, "pause": a.pause, "reprise": a.reprise}

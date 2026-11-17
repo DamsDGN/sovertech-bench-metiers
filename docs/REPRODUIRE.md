@@ -63,6 +63,20 @@ tâche et par passe, avec la réponse complète), `releve.json` (configuration),
 Le lanceur envoie **une requête à la fois**. Si votre serveur est partagé, prévenez ses utilisateurs ou
 lancez le benchmark hors des heures d'usage.
 
+## Étalons cloud (modèles facturés à l'usage)
+
+Les fichiers `claude-*-etalon.json` du catalogue pointent sur l'API de l'éditeur. Ils demandent une clé dans
+l'environnement (`ANTHROPIC_API_KEY`, `OPENAI_API_KEY`), le paquet Python de l'éditeur
+(`pip install anthropic`) et **un plafond de dépense obligatoire** :
+
+```
+python3 -m core.lancer --modele-catalogue claude-sonnet-5-5-etalon --passes 5 --budget-usd 20
+```
+
+La passe s'arrête à une tâche près quand le plafond est atteint, et le rapport le dit. Le coût réel est
+calculé depuis les tokens facturés. **Le corpus du benchmark est fictif : ne l'étendez jamais avec des données
+réelles avant de l'envoyer à une API cloud.**
+
 ## Parcours B : sur Runpod, comme Sover.tech
 
 Le module facultatif `core/runpod/` (location d'une carte, lancement de vLLM, destruction de la machine)

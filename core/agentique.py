@@ -141,9 +141,12 @@ def executer_agent(client, tache: dict, env: Environnement, systeme: str, outils
         if not rep.appels_outils:
             message_final, arret = rep.texte, "termine"
             break
-        messages.append({"role": "assistant", "content": rep.texte or None, "tool_calls": [
+        message = {"role": "assistant", "content": rep.texte or None, "tool_calls": [
             {"id": a["id"], "type": "function", "function": {"name": a["name"], "arguments": a["arguments"]}}
-            for a in rep.appels_outils]})
+            for a in rep.appels_outils]}
+        if rep.brut is not None:
+            message["_brut"] = rep.brut
+        messages.append(message)
         for a in rep.appels_outils:
             try:
                 args = json.loads(a["arguments"] or "{}")
