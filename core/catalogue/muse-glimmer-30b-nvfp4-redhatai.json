@@ -10,7 +10,7 @@
   "licence": "Apache 2.0",
   "parametres_milliards": 30,
   "architecture": "non verifiee",
-  "parseur_outils_vllm": null,
+  "parseur_outils_vllm": "muse_glimmer",
   "echantillonnage": {
     "temperature": 1.0,
     "top_p": 0.95,
@@ -18,9 +18,12 @@
   },
   "source_echantillonnage": "generation_config.json du depot meta-models/Muse-Glimmer-30B, releve le 2026-11-17",
   "statut_catalogue": "retenu en v0 (voir docs/PLAN.md, section 4)",
-  "notes": "Support vLLM et parseur d'outils a confirmer au premier chargement : sinon le modele est consigne non evalue avec la raison.",
+  "notes": "Exige l'image vllm/vllm-openai:muse-glimmer. Contexte maximal de l'editeur : 131 072 tokens.",
   "a_determiner_au_premier_chargement": [
-    "parseur_outils_vllm",
-    "support vLLM"
-  ]
+    "support vLLM (image dediee)"
+  ],
+  "parseur_raisonnement_vllm": "muse_glimmer",
+  "contexte_max_editeur": 131072,
+  "image_vllm": "vllm/vllm-openai:muse-glimmer",
+  "source_parseurs": "fiche RedHatAI/Muse-Glimmer-30B-NVFP4, releve le 2026-11-17 : image vLLM dediee, --generation-config auto, parseurs muse_glimmer"
 }
