@@ -8,6 +8,8 @@ from . import verifications as vf
 RACINE = Path(__file__).resolve().parent.parent
 BORNES_V0 = (15, 24)
 JOURS_RELANCE = 45
+JOURS_RETRACTATION = 10
+JOURS_CONVOCATION = 15
 
 STATUTS_DOC = {"en_vigueur", "obsolete"}
 TYPES_DOC = {"procedure", "fiche_client", "note", "facture", "devis", "tarif", "charte", "texte_public", "interne",
@@ -293,6 +295,10 @@ def verifier_questions_rag(questions, docs, bornes=BORNES_V0) -> list:
     return erreurs
 
 
+def _jours_apres(date_jj_mm_aaaa: str, jours: int) -> str:
+    return _jours_avant(date_jj_mm_aaaa, -jours)
+
+
 def _jours_avant(date_jj_mm_aaaa: str, jours: int) -> str:
     j, m, a = (int(x) for x in date_jj_mm_aaaa.split("/"))
     return (datetime.date(a, m, j) - datetime.timedelta(days=jours)).strftime("%d/%m/%Y")
@@ -326,6 +332,26 @@ def faits_fec(docs: dict) -> dict:
     }
 
 
+def _controle_notaire(docs: dict):
+    """Dates derivees des fiches de dossier : fin du delai de retractation, convocation a la signature."""
+    fiches = {d["meta"]["dossier"]: d["meta"] for d in docs.values()
+              if d["meta"].get("type") == "fiche_dossier" and d["meta"].get("dossier")}
+
+    def valeur_attendue(tab, ligne, colonne):
+        if tab == "suivi_dossiers" and ligne in fiches:
+            m = fiches[ligne]
+            if colonne == "Fin du délai de rétractation" and m.get("date_premiere_presentation"):
+                v = _jours_apres(m["date_premiere_presentation"], JOURS_RETRACTATION)
+                return v, f"la fiche donne {v!r} ({JOURS_RETRACTATION} jours apres la premiere presentation)"
+            if colonne == "Date de convocation" and m.get("date_signature_prevue"):
+                v = _jours_avant(m["date_signature_prevue"], JOURS_CONVOCATION)
+                return v, f"la fiche donne {v!r} ({JOURS_CONVOCATION} jours avant la signature)"
+            if colonne == "Date de signature prévue" and m.get("date_signature_prevue"):
+                return m["date_signature_prevue"], f"la fiche donne {m['date_signature_prevue']!r}"
+        return None
+    return valeur_attendue
+
+
 def _controle_expert_comptable(docs: dict):
     """Cellules attendues recalculees depuis les documents : renvoie (valeur attendue, explication) ou None."""
     fiches = {d["meta"]["client"]: d["meta"] for d in docs.values()
@@ -344,6 +370,9 @@ def _controle_expert_comptable(docs: dict):
             return attendu, f"la fiche donne {attendu!r}{motif}"
         return None
     return valeur_attendue
+
+
+CONTROLES_METIER = {"expert-comptable": _controle_expert_comptable, "notaire": _controle_notaire}
 
 
 def verifier_taches_agentique(taches, docs, env, bornes=BORNES_V0, controle=None) -> list:
@@ -552,11 +581,15 @@ def verifier_metier(metier: str, racine: Path = RACINE) -> list:
     jeux = charger_metier(metier, racine)
     mots = lire_mots_interdits(racine / ".mots-interdits.txt")
     docs = jeux["documents"]
+    exigences = json.loads((racine / metier / "corpus" / "formats.json").read_text(encoding="utf-8")).get("_exigences", {})
+    bornes = tuple(exigences.get("bornes_taches", BORNES_V0))
+    fabrique = CONTROLES_METIER.get(metier)
+    controle = fabrique(docs) if fabrique else None
     return (
         verifier_fichiers(metier, docs, racine, mots)
         + verifier_variante_extraction(metier, "docling", racine)
         + verifier_documents(docs, mots)
-        + verifier_taches_chat(jeux["chat"], docs)
-        + verifier_questions_rag(jeux["rag"], docs)
-        + verifier_taches_agentique(jeux["agentique"], docs, jeux["environnement"])
+        + verifier_taches_chat(jeux["chat"], docs, bornes)
+        + verifier_questions_rag(jeux["rag"], docs, bornes)
+        + verifier_taches_agentique(jeux["agentique"], docs, jeux["environnement"], bornes, controle)
     )

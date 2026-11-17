@@ -13,6 +13,10 @@ ETIQUETTES = {
     "cloture_jour_mois": "date de clôture (jour/mois)", "exercice_en_cours": "exercice en cours",
     "forfait_annuel_ht": "forfait annuel (€ HT)", "regime_tva": "régime de TVA", "email": "courriel",
     "forme_juridique": "forme juridique", "activite": "activité", "interlocuteur": "interlocuteur", "siren": "SIREN",
+    "dossier": "numéro de dossier", "nature_acte": "nature de l'acte", "parties": "parties", "bien": "bien concerné",
+    "prix_euros": "prix (€)", "date_avant_contrat": "date de l'avant-contrat", "date_premiere_presentation": "date de première présentation",
+    "date_signature_prevue": "date de signature prévue", "date_deces": "date du décès", "regime_matrimonial": "régime matrimonial",
+    "clerc": "clerc en charge",
 }
 
 
