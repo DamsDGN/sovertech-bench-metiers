@@ -1,7 +1,9 @@
 import json
 import os
+import shutil
 import time
 
+from .claude_cli import ClientClaudeCli
 from .client import Client, ErreurClient, Reponse
 
 FIN_ANTHROPIC = {"end_turn": "stop", "tool_use": "tool_calls", "max_tokens": "length", "stop_sequence": "stop"}
@@ -95,6 +97,10 @@ def creer_client(entree: dict, env=None):
         if not env.get("ANTHROPIC_API_KEY"):
             raise ErreurClient("ANTHROPIC_API_KEY absente de l'environnement")
         return ClientAnthropic(entree["modele_api"], entree.get("reglages_api"))
+    if fournisseur == "claude_cli":
+        if not shutil.which("claude"):
+            raise ErreurClient("le CLI 'claude' est introuvable dans le PATH")
+        return ClientClaudeCli(entree["modele_api"], entree.get("reglages_api"))
     if fournisseur == "openai":
         if not env.get("OPENAI_API_KEY"):
             raise ErreurClient("OPENAI_API_KEY absente de l'environnement")

@@ -4,7 +4,7 @@ from pathlib import Path
 
 DOSSIER = Path(__file__).resolve().parent / "catalogue"
 CLES_ECHANTILLONNAGE = {"temperature", "top_p", "top_k", "min_p", "presence_penalty", "repetition_penalty"}
-FOURNISSEURS_CLOUD = {"anthropic", "openai"}
+FOURNISSEURS_CLOUD = {"anthropic", "openai", "claude_cli"}
 CHAMPS_LOCAL = {"id", "nom", "depot_hf", "quantification", "echantillonnage", "source_echantillonnage"}
 CHAMPS_ETALON = {"id", "nom", "fournisseur", "modele_api", "echantillonnage", "reglages_api",
                  "source_echantillonnage", "prix_mtok"}

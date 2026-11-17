@@ -78,6 +78,22 @@ La passe s'arrête à une tâche près quand le plafond est atteint, et le rappo
 calculé depuis les tokens facturés. **Le corpus du benchmark est fictif : ne l'étendez jamais avec des données
 réelles avant de l'envoyer à une API cloud.**
 
+### Interroger Claude par le CLI plutôt que par l'API
+
+Sans clé d'API, l'étalon Anthropic peut être interrogé par le CLI `claude` (abonnement) :
+
+```
+python3 -m core.lancer --modele-catalogue claude-sonnet-5-5-etalon --via-cli --passes 1 --budget-usd 3
+```
+
+Chaque appel lance un processus neuf, dans un dossier temporaire vide, **sans aucun outil**, sans mémoire ni
+configuration, avec le prompt système du benchmark : le modèle ne peut pas lire le dépôt ni les réponses de
+référence. Le plafond `--budget-usd` reste exigé ; il porte sur un équivalent calculé au tarif du catalogue,
+car rien n'est facturé à l'usage. Cette voie diffère d'un appel d'API direct : le CLI ajoute son propre contexte,
+les appels d'outils sont émulés en texte, les conversations à plusieurs tours sont rejouées sous forme de
+transcription, et le raisonnement ne se règle pas comme avec l'API. Le résultat est donc toujours
+**marqué « non comparable »**.
+
 ## Parcours B : sur Runpod, comme Sover.tech
 
 Le module facultatif `core/runpod/` (location d'une carte, lancement de vLLM, destruction de la machine)
