@@ -60,8 +60,8 @@ def verifier(dossier: Path = DOSSIER) -> list:
             if not {"entree", "sortie", "source", "releve"} <= set(p) or p["entree"] <= 0 or p["sortie"] <= 0:
                 erreurs.append(f"{f.name} : prix_mtok doit donner entree, sortie, source et date de releve")
         else:
-            if e["quantification"] != "NVFP4":
-                erreurs.append(f"{f.name} : un modele local du catalogue publie est en NVFP4 uniquement")
+            if e["quantification"] != "NVFP4" and not e.get("exception_format"):
+                erreurs.append(f"{f.name} : un modele local du catalogue publie est en NVFP4 uniquement, sauf exception_format motivee")
             if "max_tokens" in e and not (isinstance(e["max_tokens"], int) and e["max_tokens"] >= 1024):
                 erreurs.append(f"{f.name} : max_tokens doit etre un entier d'au moins 1024")
             if not re.fullmatch(r"[0-9a-f]{40}", str(e.get("revision_hf", ""))):

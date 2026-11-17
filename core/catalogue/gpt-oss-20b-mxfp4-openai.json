@@ -1,0 +1,25 @@
+{
+  "id": "gpt-oss-20b-mxfp4-openai",
+  "nom": "gpt-oss-20b",
+  "categorie": "local",
+  "editeur_modele": "OpenAI",
+  "depot_hf": "openai/gpt-oss-20b",
+  "revision_hf": "6cee5e81ee83917806bbde320786a8fb61efebee",
+  "quantification": "MXFP4",
+  "quantifie_par": "OpenAI (poids officiels, publies tels quels)",
+  "licence": "Apache 2.0",
+  "parametres_milliards": 21,
+  "architecture": "moe, 32 experts dont 4 actifs par jeton",
+  "parseur_outils_vllm": null,
+  "echantillonnage": {},
+  "source_echantillonnage": "generation_config.json du depot openai/gpt-oss-20b, releve le 2026-11-17 : aucun reglage de decodage ; valeurs par defaut du serveur vLLM",
+  "exception_format": "aucun NVFP4 chez nvidia, RedHatAI ou unsloth ; le modele est publie nativement en MXFP4 par son editeur, sans conversion tierce (decision du mainteneur, 2026-11-17). A afficher a cote de son score.",
+  "contexte_max_editeur": 131072,
+  "statut_catalogue": "ajoute le 2026-11-17 a la demande du mainteneur, en exception au format NVFP4 (voir docs/PLAN.md, section 4)",
+  "notes": "Contexte maximal de 131 072 tokens (les autres modeles tournent a 262 144). Parseurs vLLM d'outils et de raisonnement a confirmer au premier chargement.",
+  "a_determiner_au_premier_chargement": [
+    "parseur_outils_vllm",
+    "parseur_raisonnement_vllm",
+    "support vLLM"
+  ]
+}

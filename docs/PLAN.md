@@ -118,13 +118,16 @@ Muse-Glimmer vient de RedHatAI (seul dépôt balisé `vllm`).
 | 5 | Nemotron 3.5 Lightning 30B-A3B (NVIDIA) | `nvidia/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4` | **licence « other »** à lire avant publication ; ne pas prendre les variantes DSpark et DFlash (décodage spéculatif) |
 | 6 | Muse-Glimmer 30B (Meta) | `RedHatAI/Muse-Glimmer-30B-NVFP4` | Apache 2.0 ; **support vLLM à confirmer au chargement** |
 | 7 | Ministral 3 14B Instruct (Mistral) | `RedHatAI/Ministral-3-14B-Instruct-2512-NVFP4` | Apache 2.0, le plus récent des Mistral qui tiennent sur 48 Go ; dépôt balisé `compressed-tensors`, sans balise `vllm` : à confirmer au chargement |
+| 8 | GLM 4.7 Flash (Z.ai) | `unsloth/GLM-4.7-Flash-NVFP4` | MIT, ajouté le 17/11/2026 à la demande du mainteneur ; parseurs vLLM à confirmer au chargement |
+| 9 | gpt-oss-20b (OpenAI) | `openai/gpt-oss-20b` | Apache 2.0, **exception au NVFP4** : publié nativement en **MXFP4** par OpenAI, aucun NVFP4 chez nvidia, RedHatAI ou unsloth ; poids officiels sans conversion tierce ; contexte maximal de 131 072 tokens (262 144 pour les autres) ; à afficher à côté de son score |
 
 **Candidats NVFP4 disponibles, non retenus d'office** (à confirmer par Damien) : Mistral Small 3.2 24B
 (`RedHatAI/Mistral-Small-3.2-24B-Instruct-2506-NVFP4`, juin 2025), Qwen 3.6 27B
 (`nvidia/Qwen3.6-27B-NVFP4`), Gemma 4 12B (`RedHatAI/gemma-4-12B-it-NVFP4`), Nemotron 3 Nano 30B-A3B
 (`nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-NVFP4`, remplacé par la version 3.5).
 
-**Hors périmètre faute de NVFP4 chez ces trois éditeurs** : gpt-oss-20b (format natif MXFP4, pas NVFP4).
+**Exception au NVFP4 (décision du 17/11/2026)** : gpt-oss-20b est mesuré dans son format natif MXFP4, parce qu'aucun des trois éditeurs n'en publie de NVFP4. Un écart de note entre lui et les autres modèles
+mélange donc modèle et format : c'est écrit à côté de son score. Le catalogue exige un champ `exception_format` motivé pour tout format autre que le NVFP4.
 
 **Erreur corrigée le 17/11/2026** : une première recherche concluait à l'absence de NVFP4 Mistral. Elle
 était tronquée à 40 résultats triés par date et avait manqué les dépôts RedHatAI de février 2026 et

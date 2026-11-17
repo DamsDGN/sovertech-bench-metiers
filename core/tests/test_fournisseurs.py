@@ -141,7 +141,7 @@ class CatalogueEtalons(unittest.TestCase):
         ids = {e["id"] for e in catalogue.lister()}
         attendus = {"qwen-3-8-27b-nvfp4-redhatai", "qwen-3-6-35b-a3b-nvfp4-nvidia", "gemma-4-26b-a4b-nvfp4-redhatai",
                     "gemma-4-31b-nvfp4-redhatai", "nemotron-3-5-lightning-30b-a3b-nvfp4-nvidia", "muse-glimmer-30b-nvfp4-redhatai",
-                    "ministral-3-14b-nvfp4-redhatai", "glm-4-7-flash-nvfp4-unsloth", "gemma-4-12b-nvfp4-redhatai", "claude-sonnet-5-5-etalon", "claude-opus-5-5-etalon"}
+                    "ministral-3-14b-nvfp4-redhatai", "glm-4-7-flash-nvfp4-unsloth", "gpt-oss-20b-mxfp4-openai", "gemma-4-12b-nvfp4-redhatai", "claude-sonnet-5-5-etalon", "claude-opus-5-5-etalon"}
         self.assertEqual(attendus - ids, set())
 
     def test_chaque_modele_local_est_epingle(self):
@@ -149,7 +149,8 @@ class CatalogueEtalons(unittest.TestCase):
             if not catalogue.est_etalon(e):
                 self.assertRegex(e["revision_hf"], r"^[0-9a-f]{40}$", e["id"])
                 self.assertTrue(e["licence"], e["id"])
-                self.assertEqual(e["quantification"], "NVFP4", e["id"])
+                if e["quantification"] != "NVFP4":
+                    self.assertTrue(e.get("exception_format"), f"{e['id']} : format different de NVFP4 sans exception motivee")
 
     def test_les_reglages_sont_ceux_de_l_editeur_avec_leur_source(self):
         for e in catalogue.lister():
@@ -159,10 +160,23 @@ class CatalogueEtalons(unittest.TestCase):
         self.assertIn("0,05", catalogue.charger("ministral-3-14b-nvfp4-redhatai")["source_echantillonnage"])
 
     def test_les_inconnues_sont_declarees_et_non_devinees(self):
-        for id_ in ("nemotron-3-5-lightning-30b-a3b-nvfp4-nvidia", "muse-glimmer-30b-nvfp4-redhatai", "glm-4-7-flash-nvfp4-unsloth"):
+        for id_ in ("nemotron-3-5-lightning-30b-a3b-nvfp4-nvidia", "muse-glimmer-30b-nvfp4-redhatai", "glm-4-7-flash-nvfp4-unsloth", "gpt-oss-20b-mxfp4-openai"):
             e = catalogue.charger(id_)
             self.assertIsNone(e["parseur_outils_vllm"])
             self.assertIn("parseur_outils_vllm", e["a_determiner_au_premier_chargement"])
+
+    def test_un_format_autre_que_nvfp4_exige_une_exception_motivee(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            base = dict(catalogue.charger("gemma-4-12b-nvfp4-redhatai"), id="x", quantification="MXFP4")
+            (Path(tmp) / "x.json").write_text(json.dumps(base), encoding="utf-8")
+            self.assertTrue(any("NVFP4 uniquement" in m for m in catalogue.verifier(Path(tmp))))
+            (Path(tmp) / "x.json").write_text(json.dumps(dict(base, exception_format="poids officiels de l'editeur")), encoding="utf-8")
+            self.assertEqual(catalogue.verifier(Path(tmp)), [])
+
+    def test_gpt_oss_est_la_seule_exception_et_elle_est_documentee(self):
+        autres = [e["id"] for e in catalogue.lister() if not catalogue.est_etalon(e) and e["quantification"] != "NVFP4"]
+        self.assertEqual(autres, ["gpt-oss-20b-mxfp4-openai"])
+        self.assertIn("MXFP4", catalogue.charger("gpt-oss-20b-mxfp4-openai")["exception_format"])
 
     def test_revision_incomplete_refusee(self):
         with tempfile.TemporaryDirectory() as tmp:
