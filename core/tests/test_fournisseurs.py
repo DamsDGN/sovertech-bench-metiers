@@ -141,7 +141,7 @@ class CatalogueEtalons(unittest.TestCase):
         ids = {e["id"] for e in catalogue.lister()}
         attendus = {"qwen-3-8-27b-nvfp4-redhatai", "qwen-3-6-35b-a3b-nvfp4-nvidia", "gemma-4-26b-a4b-nvfp4-redhatai",
                     "gemma-4-31b-nvfp4-redhatai", "nemotron-3-5-lightning-30b-a3b-nvfp4-nvidia", "muse-glimmer-30b-nvfp4-redhatai",
-                    "ministral-3-14b-nvfp4-redhatai", "gemma-4-12b-nvfp4-redhatai", "claude-sonnet-5-5-etalon", "claude-opus-5-5-etalon"}
+                    "ministral-3-14b-nvfp4-redhatai", "glm-4-7-flash-nvfp4-unsloth", "gemma-4-12b-nvfp4-redhatai", "claude-sonnet-5-5-etalon", "claude-opus-5-5-etalon"}
         self.assertEqual(attendus - ids, set())
 
     def test_chaque_modele_local_est_epingle(self):
@@ -159,7 +159,7 @@ class CatalogueEtalons(unittest.TestCase):
         self.assertIn("0,05", catalogue.charger("ministral-3-14b-nvfp4-redhatai")["source_echantillonnage"])
 
     def test_les_inconnues_sont_declarees_et_non_devinees(self):
-        for id_ in ("nemotron-3-5-lightning-30b-a3b-nvfp4-nvidia", "muse-glimmer-30b-nvfp4-redhatai"):
+        for id_ in ("nemotron-3-5-lightning-30b-a3b-nvfp4-nvidia", "muse-glimmer-30b-nvfp4-redhatai", "glm-4-7-flash-nvfp4-unsloth"):
             e = catalogue.charger(id_)
             self.assertIsNone(e["parseur_outils_vllm"])
             self.assertIn("parseur_outils_vllm", e["a_determiner_au_premier_chargement"])
