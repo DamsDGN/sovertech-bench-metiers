@@ -381,7 +381,7 @@ des 7 modèles (révisions épinglées, réglages d'éditeur sourcés) ; validat
 (Gemma 12B sur Atlas, 3 passes pour les experts-comptables, 2 pour les notaires), qui a conduit à corriger 9 contrôles trop
 stricts et un plafond de génération insuffisant.
 
-**À faire, dans l'ordre** : contrôle de confidentialité complet (liste de noms à exclure à fournir par Damien) ;
+**À faire, dans l'ordre** : contrôle de confidentialité complet ;
 mesures des autres modèles sur Runpod (accord et tarif horaire avant tout lancement) ; tâches de sécurité
 supplémentaires (cloisonnement entre dossiers, instruction cachée dans un PDF) ; relecture par un professionnel ;
 page de comparaison du site, à reconstruire de zéro après les premiers résultats.
