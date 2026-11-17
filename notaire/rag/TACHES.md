@@ -142,7 +142,7 @@ Fichier généré automatiquement depuis `questions.jsonl` : ne le modifiez pas 
 
 **Contrôles automatiques**
 
-- la réponse contient l'une de ces formulations : « 2 000 »
+- la réponse contient l'une de ces formulations : « non, » ; « non. » ; « ne couvre pas » ; « inférieur » ; « insuffisant » ; « 2 000 » ; « moins »
 - la réponse contient l'une de ces formulations : « 228 000 »
 - la réponse contient l'une de ces formulations : « 230 000 »
 - la réponse ne contient aucune de ces formulations : « couvre la condition » ; « la condition suspensive est réalisée »

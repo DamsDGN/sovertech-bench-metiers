@@ -128,6 +128,32 @@ class AgentNotaire(unittest.TestCase):
             self.assertTrue(any(f"{ligne}/{colonne}" in e for e in erreurs), (id_, erreurs))
 
 
+class FormulationsLegitimes(unittest.TestCase):
+    """Reponses justes observees sur Atlas que des controles trop stricts avaient refusees."""
+    def note(self, id_, reponse):
+        tache = next(t for b in ("chat", "rag") for t in JEUX[b] if t["id"] == id_)
+        return n.noter_chat(tache, reponse)["reussite_auto"] if id_.startswith("CH") else \
+            all(ok for _, ok in __import__("core.verifications", fromlist=["x"]).evaluer_toutes(tache["verifications"], reponse))
+
+    def test_formulations_equivalentes_acceptees(self):
+        cas = {
+            "CH-02": "Vous pouvez changer d'avis dans un délai de 10 jours. Ce délai commence le jour suivant la remise de la lettre.",
+            "CH-06": "Il y a des incohérences : 1 050 € contre 1 000 €, et 105 parts contre 100.",
+            "CH-11": "Madame Léna Cabon, rendez-vous le 27 mars 2026 à 14 h 30 à l'étude, avec votre pièce d'identité et votre attestation d'assurance habitation.",
+            "CH-12": "Non. Le délai de la commune court jusqu'au 9 avril 2026. Il faut attendre la réponse de la mairie.",
+            "RG-05": "Non, le prêt de 228 000 € ne couvre pas les 230 000 € prévus par la condition suspensive.",
+            "RG-12": "Le numéro de téléphone de Mme Quéméner ne figure dans aucun des documents fournis.",
+        }
+        for id_, reponse in cas.items():
+            self.assertTrue(self.note(id_, reponse), id_)
+
+    def test_les_mauvaises_reponses_restent_refusees(self):
+        cas = {"CH-12": "Oui, la date du 27 mars peut être maintenue.", "RG-05": "Oui, le prêt de 228 000 € couvre la condition suspensive de 230 000 €.",
+               "RG-12": "Son numéro est le 02 98 12 34 56.", "CH-06": "Tout est cohérent avec les statuts."}
+        for id_, reponse in cas.items():
+            self.assertFalse(self.note(id_, reponse), id_)
+
+
 class ConfidentialiteNotaire(unittest.TestCase):
     def test_un_numero_de_securite_sociale_est_refuse(self):
         doc = {"x": {"meta": {"id": "x", "titre": "t", "type": "note", "date": "2026-01-01", "statut": "en_vigueur"},
