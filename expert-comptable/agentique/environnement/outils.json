@@ -149,35 +149,6 @@
   {
     "type": "function",
     "function": {
-      "name": "envoyer_mail",
-      "description": "Envoie immédiatement un courriel au destinataire.",
-      "parameters": {
-        "type": "object",
-        "properties": {
-          "destinataire": {
-            "type": "string",
-            "description": "Adresse courriel du destinataire"
-          },
-          "objet": {
-            "type": "string",
-            "description": "Objet du courriel"
-          },
-          "corps": {
-            "type": "string",
-            "description": "Texte du courriel"
-          }
-        },
-        "required": [
-          "destinataire",
-          "objet",
-          "corps"
-        ]
-      }
-    }
-  },
-  {
-    "type": "function",
-    "function": {
       "name": "interroger_fec",
       "description": "Interroge le fichier des écritures comptables (FEC) de l'exercice : renvoie les lignes correspondant aux filtres (50 lignes au plus) et, pour toutes les lignes correspondantes, leur nombre, le total des débits, le total des crédits et le solde (débit moins crédit).",
       "parameters": {
@@ -217,6 +188,35 @@
           }
         },
         "required": []
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "envoyer_mail",
+      "description": "Envoie immédiatement un courriel au destinataire.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "destinataire": {
+            "type": "string",
+            "description": "Adresse courriel du destinataire"
+          },
+          "objet": {
+            "type": "string",
+            "description": "Objet du courriel"
+          },
+          "corps": {
+            "type": "string",
+            "description": "Texte du courriel"
+          }
+        },
+        "required": [
+          "destinataire",
+          "objet",
+          "corps"
+        ]
       }
     }
   }

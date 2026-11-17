@@ -696,3 +696,144 @@ Fichier généré automatiquement depuis `taches.jsonl` : ne le modifiez pas à 
 **Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer
 
 ---
+
+## CH-21 · contrôle d'un fichier des écritures comptables (FEC) · niveau complexe
+
+> **À valider par un professionnel** : cette tâche n'a pas encore été relue.
+
+**Énoncé posé à l'assistant**
+
+> Le FEC joint est celui de la SARL Les Épis d'Or pour 2025. Une facture d'achat y a été saisie deux fois dans le journal des achats. Indique la référence de la pièce, les deux numéros d'écriture concernés et le montant hors taxes de la facture.
+
+**Documents fournis avec l'énoncé** : Fichier des écritures comptables (FEC) 2025, SARL Les Épis d'Or (en vigueur, 2026-02-20)
+
+**Ce qu'on attend**
+
+> La facture FA-2025-0451 de la Minoterie du Blavet (5 juin 2025) est saisie deux fois : écritures AC-0016 et AC-0017, montant HT 10 185,71 € (TVA 560,21 €, TTC 10 745,92 €). La deuxième saisie n'est pas lettrée.
+
+**Contrôles automatiques**
+
+- la réponse contient l'une de ces formulations : « FA-2025-0451 »
+- la réponse contient l'une de ces formulations : « AC-0016 »
+- la réponse contient l'une de ces formulations : « AC-0017 »
+- la réponse contient l'une de ces formulations : « 10 185,71 » ; « 10185,71 »
+
+**Critères du juge** (note de 0 à 2 par critère)
+
+- Donne la référence de pièce, les deux écritures et le montant HT
+- Ne signale aucune autre facture à tort
+
+**Exemple de bonne réponse**
+
+> La facture FA-2025-0451 de la Minoterie du Blavet, datée du 5 juin 2025, est saisie deux fois : écritures AC-0016 et AC-0017, pour 10 185,71 € HT chacune.
+
+**Point d'incertitude signalé par l'équipe** : Fichier des écritures comptables fictif : structure et règles de nommage à valider par un professionnel.
+
+**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer
+
+---
+
+## CH-22 · contrôle d'un fichier des écritures comptables (FEC) · niveau complexe
+
+> **À valider par un professionnel** : cette tâche n'a pas encore été relue.
+
+**Énoncé posé à l'assistant**
+
+> Dans le FEC joint (SARL Les Épis d'Or, 2025), deux anomalies de forme sont à signaler : une écriture dont le total des débits n'est pas égal au total des crédits, et une opération bancaire sans référence de pièce. Pour chacune, donne le numéro d'écriture, la date et le montant concerné.
+
+**Documents fournis avec l'énoncé** : Fichier des écritures comptables (FEC) 2025, SARL Les Épis d'Or (en vigueur, 2026-02-20)
+
+**Ce qu'on attend**
+
+> Écriture OD-0013 du 15/09/2025 (« Regularisation divers ») : débit 250,00 €, crédit 240,00 €, écart de 10,00 €. Écriture BQ-0111 du 12/11/2025 (« Virement SEPA non identifie ») : 1 500,00 €, sans référence de pièce, imputée au compte d'attente 471.
+
+**Contrôles automatiques**
+
+- la réponse contient l'une de ces formulations : « OD-0013 »
+- la réponse contient l'une de ces formulations : « BQ-0111 »
+- la réponse contient l'une de ces formulations : « 10,00 » ; « 10 € »
+- la réponse contient l'une de ces formulations : « 1 500 » ; « 1500 »
+
+**Critères du juge** (note de 0 à 2 par critère)
+
+- Identifie bien les deux écritures distinctes
+- Donne l'écart de 10,00 € et le montant de 1 500,00 €
+
+**Exemple de bonne réponse**
+
+> 1) L'écriture OD-0013 du 15/09/2025 est déséquilibrée : débit de 250,00 €, crédit de 240,00 €, soit un écart de 10,00 €. 2) L'écriture BQ-0111 du 12/11/2025 (virement SEPA non identifié, 1 500,00 €) n'a pas de référence de pièce.
+
+**Point d'incertitude signalé par l'équipe** : Fichier des écritures comptables fictif : structure et règles de nommage à valider par un professionnel.
+
+**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer
+
+---
+
+## CH-23 · contrôle d'un fichier des écritures comptables (FEC) · niveau complexe
+
+> **À valider par un professionnel** : cette tâche n'a pas encore été relue.
+
+**Énoncé posé à l'assistant**
+
+> À partir du FEC joint (SARL Les Épis d'Or, 2025), quel est le résultat avant impôt de l'exercice, et que deviendrait-il si la facture d'achat saisie deux fois était supprimée une fois ? Détaille brièvement.
+
+**Documents fournis avec l'énoncé** : Fichier des écritures comptables (FEC) 2025, SARL Les Épis d'Or (en vigueur, 2026-02-20)
+
+**Ce qu'on attend**
+
+> Résultat avant impôt de l'exercice : bénéfice de 10 000,00 € (comptes 7 moins comptes 6). Supprimer la saisie en double de la facture FA-2025-0451 (10 185,71 € HT) diminue les achats d'autant : le résultat passerait à 20 185,71 €.
+
+**Contrôles automatiques**
+
+- la réponse contient l'une de ces formulations : « 10 000 » ; « 10000 »
+- la réponse contient l'une de ces formulations : « 20 185,71 » ; « 20185,71 »
+
+**Critères du juge** (note de 0 à 2 par critère)
+
+- Retrouve le doublon et en tire la bonne incidence sur le résultat (hors TVA)
+- Ne confond pas HT et TTC
+
+**Exemple de bonne réponse**
+
+> Les produits (413 100,00 €) moins les charges (403 100,00 €) donnent un bénéfice avant impôt de 10 000,00 €. La facture FA-2025-0451 étant saisie deux fois (10 185,71 € HT), la supprimer une fois porterait le résultat à 20 185,71 €.
+
+**Point d'incertitude signalé par l'équipe** : Fichier des écritures comptables fictif : structure et règles de nommage à valider par un professionnel.
+
+**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer
+
+---
+
+## CH-24 · contrôle d'un fichier des écritures comptables (FEC) · niveau complexe
+
+> **À valider par un professionnel** : cette tâche n'a pas encore été relue.
+
+**Énoncé posé à l'assistant**
+
+> Dans le journal des achats du FEC joint, toutes les factures de marchandises (compte 607) appliquent le même taux de TVA, sauf une. Quelle facture est concernée ? Donne la référence de pièce, la date, le fournisseur, le taux appliqué et le taux des autres factures.
+
+**Documents fournis avec l'énoncé** : Fichier des écritures comptables (FEC) 2025, SARL Les Épis d'Or (en vigueur, 2026-02-20)
+
+**Ce qu'on attend**
+
+> La facture FA-2025-0458 de la Laiterie du Scorff (12 septembre 2025, écriture AC-0027) : 6 200,00 € HT et 1 240,00 € de TVA, soit 20 %, alors que les 24 autres factures de marchandises appliquent 5,5 %.
+
+**Contrôles automatiques**
+
+- la réponse contient l'une de ces formulations : « FA-2025-0458 »
+- la réponse contient l'une de ces formulations : « 20 % » ; « 20% »
+- la réponse contient l'une de ces formulations : « 5,5 »
+
+**Critères du juge** (note de 0 à 2 par critère)
+
+- Identifie la bonne facture et les deux taux
+- Ne présente pas le taux de 5,5 % comme une règle certaine pour tous les achats
+
+**Exemple de bonne réponse**
+
+> La facture FA-2025-0458 de la Laiterie du Scorff, datée du 12 septembre 2025, applique une TVA de 20 % (1 240,00 € sur 6 200,00 € HT), alors que les autres factures de marchandises sont à 5,5 %.
+
+**Point d'incertitude signalé par l'équipe** : Fichier des écritures comptables fictif : structure et règles de nommage à valider par un professionnel. Les taux de TVA du jeu de données sont fictifs.
+
+**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer
+
+---

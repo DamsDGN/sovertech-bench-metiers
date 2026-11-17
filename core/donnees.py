@@ -295,6 +295,25 @@ def _valeurs_fiche(meta: dict) -> dict:
     }
 
 
+def faits_fec(docs: dict) -> dict:
+    """Valeurs attendues dans les cellules de synthese, recalculees depuis le FEC (analyse independante du generateur)."""
+    rows = next((d["donnees"] for d in docs.values() if d.get("donnees")), [])
+    if not rows:
+        return {}
+    m = lambda x: 0 if not x else int(x.replace(",", ""))
+    eur = lambda c: f"{c // 100},{abs(c) % 100:02d}"
+    pieces = {}
+    for r in rows:
+        if r["JournalCode"] == "AC" and r["CompteNum"] == "607":
+            pieces.setdefault(r["PieceRef"], set()).add(r["EcritureNum"])
+    doubles = sorted(p for p, e in pieces.items() if len(e) > 1)
+    return {
+        "Total des ventes 2025 (compte 707)": eur(sum(m(r["Credit"]) - m(r["Debit"]) for r in rows if r["CompteNum"] == "707")),
+        "Solde du compte d'attente 471": eur(sum(m(r["Debit"]) - m(r["Credit"]) for r in rows if r["CompteNum"] == "471")),
+        "Facture saisie en double (référence de pièce)": doubles[0] if len(doubles) == 1 else None,
+    }
+
+
 def verifier_taches_agentique(taches, docs, env, bornes=BORNES_V0) -> list:
     erreurs, vus = [], set()
     _bornes(taches, bornes, "agentique", erreurs)
@@ -342,6 +361,9 @@ def verifier_taches_agentique(taches, docs, env, bornes=BORNES_V0) -> list:
                         erreurs.append(f"{nom} : colonne {colonne!r} inexistante dans {tab}")
                     elif colonne not in tableaux[tab]["colonnes_modifiables"]:
                         erreurs.append(f"{nom} : colonne {colonne!r} non modifiable dans {tab}")
+                    elif tab == "synthese" and ligne in faits_fec(docs):
+                        if valeur != faits_fec(docs)[ligne]:
+                            erreurs.append(f"{nom} : {ligne} vaut {valeur!r}, le FEC donne {faits_fec(docs)[ligne]!r}")
                     elif tab == "synthese" and ligne == "Total des forfaits annuels HT":
                         total = str(sum(int(f["forfait_annuel_ht"]) for f in fiches.values()))
                         if valeur != total:
