@@ -35,6 +35,13 @@ C'est le principe de cette épreuve : **savoir si un mauvais résultat vient de 
 Chaque passage est présenté au modèle avec une ligne d'en-tête qui donne **le titre, la date et le statut
 (en vigueur ou obsolète)** du document : c'est ce qu'un vrai gestionnaire de documents fournirait.
 
+## Ce que lit l'assistant : du texte extrait de vrais fichiers
+
+Les documents du cabinet fictif sont des **fichiers réels** (Word, Excel, CSV, PDF, dont un scan et une photo
+sans texte). Avant la recherche, leur texte est **extrait** par un outil unique, le même pour tous les modèles
+(voir [le corpus](../corpus/README.md)). La question « où est la réponse ? » inclut donc les défauts d'une
+vraie extraction : un montant lu sur une facture photographiée, un tableau Excel mis à plat, un CSV aplati.
+
 ## Comment c'est noté
 
 | Ce qu'on vérifie | Comment | Rejouable chez soi ? |
@@ -55,7 +62,7 @@ répond « de mémoire » alors qu'on lui demande de s'appuyer sur le dossier es
 
 ## Ce que ces résultats disent et ne disent pas
 
-- Ils disent comment un modèle se comporte **avec ce corpus de 25 documents** : c'est très petit comparé à
+- Ils disent comment un modèle se comporte **avec ce corpus de 25 documents (le 26e, le FEC, n'est pas proposé à la recherche documentaire)** : c'est très petit comparé à
   un vrai cabinet, où chercher la bonne pièce est plus difficile.
 - Les trois **textes publics** du corpus (taux de TVA, plan comptable, conservation) sont des résumés
   rédigés par l'équipe : **ils sont à relire en priorité**.

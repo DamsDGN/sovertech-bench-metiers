@@ -6,6 +6,7 @@ from . import prompts
 from .rag import Index, corps_sans_bandeau, jetons
 
 PANNE_MESSAGE = "Erreur temporaire : service indisponible. Réessayez."
+LIMITE_LECTURE = 8000
 
 ETIQUETTES = {
     "titre": "titre du document", "date": "date du document", "client": "nom du client",
@@ -21,7 +22,8 @@ class Environnement:
         self.etat_initial = copy.deepcopy(etat_initial)
         self.tableaux = copy.deepcopy(etat_initial["tableaux"])
         self.interdits = set(etat_initial.get("documents_interdits", []))
-        self.index = Index(docs)
+        self.index = Index(docs, usage="agentique")
+        self.fec = next((d["donnees"] for d in docs.values() if d.get("donnees")), [])
         self.brouillons, self.envois, self.journal = [], [], []
         self.consultes, self.tentatives_ecriture_protegee = set(), set()
         self.pannes = [{**p, "restant": p["echecs"], "subies": 0} for p in pannes]
@@ -40,7 +42,8 @@ class Environnement:
         if self._panne(nom, args):
             return self._fin(nom, args, {"erreur": PANNE_MESSAGE}, False)
         methode = getattr(self, "_" + nom, None) if nom in {
-            "rechercher", "lire", "lire_tableau", "extraire_champs", "ecrire_tableau", "rediger_mail", "envoyer_mail"} else None
+            "rechercher", "lire", "lire_tableau", "extraire_champs", "ecrire_tableau", "rediger_mail", "envoyer_mail",
+            "interroger_fec"} else None
         if methode is None:
             return self._fin(nom, args, {"erreur": f"outil inconnu : {nom}"}, False)
         try:
@@ -68,8 +71,12 @@ class Environnement:
             return {"erreur": f"document inconnu : {doc_id}"}
         self.consultes.add(doc_id)
         m = d["meta"]
-        return {"doc_id": doc_id, "titre": m["titre"], "date": m["date"], "statut": m["statut"],
-                "texte": corps_sans_bandeau(d["corps"])}
+        texte = corps_sans_bandeau(d["corps"])
+        resultat = {"doc_id": doc_id, "titre": m["titre"], "date": m["date"], "statut": m["statut"], "texte": texte[:LIMITE_LECTURE]}
+        if len(texte) > LIMITE_LECTURE:
+            resultat.update({"tronque": True, "caracteres_total": len(texte),
+                             "indication": "document volumineux, texte tronque : pour un fichier d'ecritures comptables, utiliser interroger_fec"})
+        return resultat
 
     def _extraire_champs(self, doc_id, champs):
         d = self._doc(doc_id)
@@ -85,6 +92,24 @@ class Environnement:
             recouvrement = len(voulus & set(jetons(meilleur))) if meilleur else 0
             sortie[c] = vue[meilleur] if recouvrement else None
         return {"doc_id": doc_id, "champs": sortie, "champs_disponibles": sorted(vue)}
+
+    def _interroger_fec(self, compte=None, journal=None, date_debut=None, date_fin=None, piece=None, tiers=None, ecriture=None, limite=30):
+        if not self.fec:
+            return {"erreur": "aucun fichier d'ecritures comptables disponible"}
+        def montant(x):
+            return 0 if not x else int(x.replace(",", ""))
+        lignes = [l for l in self.fec
+                  if (not compte or l["CompteNum"].startswith(str(compte))) and (not journal or l["JournalCode"] == journal)
+                  and (not date_debut or l["EcritureDate"] >= str(date_debut)) and (not date_fin or l["EcritureDate"] <= str(date_fin))
+                  and (not piece or l["PieceRef"] == piece) and (not tiers or l["CompAuxNum"] == str(tiers))
+                  and (not ecriture or l["EcritureNum"] == ecriture)]
+        debit, credit = sum(montant(l["Debit"]) for l in lignes), sum(montant(l["Credit"]) for l in lignes)
+        limite = max(1, min(int(limite), 50))
+        def eur(c):
+            return f"{'-' if c < 0 else ''}{abs(c) // 100},{abs(c) % 100:02d}"
+        cles = ("JournalCode", "EcritureNum", "EcritureDate", "CompteNum", "CompAuxNum", "PieceRef", "EcritureLib", "Debit", "Credit", "EcritureLet")
+        return {"nombre_lignes": len(lignes), "total_debit": eur(debit), "total_credit": eur(credit), "solde_debit_moins_credit": eur(debit - credit),
+                "lignes": [{k: l[k] for k in cles} for l in lignes[:limite]], "tronque": len(lignes) > limite}
 
     def _lire_tableau(self, tableau):
         t = self.tableaux.get(tableau)

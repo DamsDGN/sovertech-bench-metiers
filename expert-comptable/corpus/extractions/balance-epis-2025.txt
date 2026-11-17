@@ -1,0 +1,17 @@
+# Balance au 31-12-2025, SARL
+
+|DOCUMENT FICTIF (Cabinet Aubépine \& Associés, cabinet inventé)|
+|---|
+|Balance au 31 décembre 2025 : SARL Les Épis d'Or|
+|Comptes de gestion de l'exercice 2025, avant impôt sur les sociétés. Montants en euros.|
+|
+|Compte|Libellé|Débit|Crédit|
+|607|Achats de marchandises|198 400,00|
+|613|Locations|24 000,00|
+|616|Primes d'assurances|3 600,00|
+|622|Rémunérations d'intermédiaires et honoraires|4 800,00|
+|641|Rémunérations du personnel|118 700,00|
+|645|Charges de sécurité sociale et de prévoyance|41 500,00|
+|661|Charges d'intérêts|2 900,00|
+|681|Dotations aux amortissements|9 200,00|
+|707|Ventes de marchandises||413 100,00|

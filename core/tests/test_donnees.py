@@ -353,9 +353,9 @@ class JeuxReels(unittest.TestCase):
 
     def test_effectifs_de_la_v0(self):
         jeux = d.charger_metier("expert-comptable")
-        self.assertEqual(len(jeux["chat"]), 20)
+        self.assertEqual(len(jeux["chat"]), 24)
         self.assertEqual(len(jeux["rag"]), 23)
-        self.assertEqual(len(jeux["agentique"]), 20)
+        self.assertEqual(len(jeux["agentique"]), 23)
 
 
 if __name__ == "__main__":

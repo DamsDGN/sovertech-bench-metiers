@@ -149,6 +149,51 @@
   {
     "type": "function",
     "function": {
+      "name": "interroger_fec",
+      "description": "Interroge le fichier des écritures comptables (FEC) de l'exercice : renvoie les lignes correspondant aux filtres (50 lignes au plus) et, pour toutes les lignes correspondantes, leur nombre, le total des débits, le total des crédits et le solde (débit moins crédit).",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "compte": {
+            "type": "string",
+            "description": "Numéro de compte ou début de numéro (par exemple 607 ou 4456)"
+          },
+          "journal": {
+            "type": "string",
+            "description": "Code du journal (AN, AC, VT, BQ, PA, OD)"
+          },
+          "date_debut": {
+            "type": "string",
+            "description": "Date de début au format AAAAMMJJ"
+          },
+          "date_fin": {
+            "type": "string",
+            "description": "Date de fin au format AAAAMMJJ"
+          },
+          "piece": {
+            "type": "string",
+            "description": "Référence de la pièce"
+          },
+          "tiers": {
+            "type": "string",
+            "description": "Numéro de compte auxiliaire du tiers"
+          },
+          "ecriture": {
+            "type": "string",
+            "description": "Numéro d'écriture (par exemple AC-0016)"
+          },
+          "limite": {
+            "type": "integer",
+            "description": "Nombre maximal de lignes renvoyées (50 au plus, 30 par défaut)"
+          }
+        },
+        "required": []
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
       "name": "envoyer_mail",
       "description": "Envoie immédiatement un courriel au destinataire.",
       "parameters": {
