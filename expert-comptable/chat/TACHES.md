@@ -538,6 +538,8 @@ Fichier généré automatiquement depuis `taches.jsonl` : ne le modifiez pas à 
 
 **Source publique citée** : Plan comptable général, règlement ANC n° 2014-03
 
+**Point d'incertitude signalé par l'équipe** : Numéros de comptes (411, 706, 44571) à reconfirmer à la relecture professionnelle.
+
 **Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer   ·   **Gravité** : ☐ d'accord   ☐ plutôt « ... » (voir `docs/GRAVITE.md`)
 
 ---

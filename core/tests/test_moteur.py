@@ -189,7 +189,7 @@ class Simulateur(unittest.TestCase):
 
 
 class OracleDeTouteLesTaches(unittest.TestCase):
-    def test_un_agent_parfait_reussit_les_20_taches(self):
+    def test_un_agent_parfait_reussit_toutes_les_taches(self):
         for id_, tache in TACHES.items():
             env, note, _ = jouer(tache)
             self.assertTrue(note["reussite"], f"{id_} : {note}")

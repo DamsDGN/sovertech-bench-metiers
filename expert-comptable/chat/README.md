@@ -40,7 +40,7 @@ Deux sources de notes, **affichées séparément** dans les rapports :
    réponse contient-elle le bon montant ? respecte-t-elle la limite de mots ? a-t-elle dit « je ne sais
    pas » quand il le fallait ? ne contient-elle pas de numéro à 9 chiffres inventé ? Ces contrôles sont
    **rejouables par n'importe qui avec le même résultat**.
-2. **Un modèle juge** (11 situations en ont, en plus des contrôles). Pour ce qu'un programme ne peut pas
+2. **Un modèle juge** (15 situations en ont, en plus des contrôles). Pour ce qu'un programme ne peut pas
    vérifier (la qualité du français, la clarté pour un non-comptable, la prudence), un modèle note de 0 à 2
    chaque critère de [`grille.md`](grille.md). **Ces notes ne sont pas rejouables par un tiers** : elles
    dépendent d'une session de notation à l'aveugle. Un échantillon est relu par un humain, et l'accord
