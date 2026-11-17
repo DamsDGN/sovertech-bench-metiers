@@ -233,6 +233,14 @@ class VerifierRag(unittest.TestCase):
         q["documents_attendus"] = []
         self.assertEqual(d.verifier_questions_rag([q], self.docs, bornes=(1, 5)), [])
 
+    def test_reponse_partielle_cite_un_document_et_exige_l_abstention(self):
+        q = question_rag(type_question="reponse_partielle", abstention_attendue=True,
+                         verifications=[{"type": "contient_un_de", "valeurs": ["45"]}] + ABST,
+                         reponse_modele="45 jours, mais le reste ne figure pas dans les documents.")
+        self.assertEqual(d.verifier_questions_rag([q], self.docs, bornes=(1, 5)), [])
+        q["documents_attendus"] = []
+        self.assertTrue(erreurs_contiennent(d.verifier_questions_rag([q], self.docs, bornes=(1, 5)), "aucun document"))
+
     def test_sans_reponse_exige_l_abstention(self):
         q = question_rag(type_question="sans_reponse", documents_attendus=[], abstention_attendue=False,
                          verifications=ABST, reponse_modele=REP_ABST, elements_documents=[])
@@ -336,6 +344,18 @@ class VerifierAgentique(unittest.TestCase):
     def test_panne_sur_un_outil_inconnu(self):
         t = tache_ag(pannes=[{"outil": "teleporter", "echecs": 1}])
         self.assertTrue(erreurs_contiennent(d.verifier_taches_agentique([t], self.docs, ENV, bornes=(1, 5)), "teleporter"))
+
+
+class JeuxReels(unittest.TestCase):
+    def test_les_jeux_expert_comptable_sont_valides(self):
+        erreurs = d.verifier_metier("expert-comptable")
+        self.assertEqual(erreurs, [], "\n".join(erreurs))
+
+    def test_effectifs_de_la_v0(self):
+        jeux = d.charger_metier("expert-comptable")
+        self.assertEqual(len(jeux["chat"]), 20)
+        self.assertEqual(len(jeux["rag"]), 23)
+        self.assertEqual(len(jeux["agentique"]), 20)
 
 
 if __name__ == "__main__":

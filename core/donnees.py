@@ -6,13 +6,15 @@ from pathlib import Path
 from . import verifications as vf
 
 RACINE = Path(__file__).resolve().parent.parent
-BORNES_V0 = (15, 20)
+BORNES_V0 = (15, 24)
 JOURS_RELANCE = 45
 
 STATUTS_DOC = {"en_vigueur", "obsolete"}
-TYPES_DOC = {"procedure", "fiche_client", "note", "facture", "devis", "tarif", "charte", "texte_public", "interne"}
+TYPES_DOC = {"procedure", "fiche_client", "note", "facture", "devis", "tarif", "charte", "texte_public", "interne",
+             "lettre_mission", "piece_comptable", "courriel"}
 NIVEAUX = {"simple", "moyen", "complexe"}
-TYPES_RAG = {"reponse_directe", "version_obsolete", "contradiction", "sans_reponse", "plusieurs_documents"}
+TYPES_RAG = {"reponse_directe", "version_obsolete", "contradiction", "sans_reponse", "plusieurs_documents",
+             "reponse_partielle"}
 OUTILS = {"rechercher", "lire", "lire_tableau", "extraire_champs", "ecrire_tableau", "rediger_mail", "envoyer_mail"}
 CHAMPS_VALIDATION = {"relu_par", "date", "commentaire"}
 
@@ -223,7 +225,7 @@ def verifier_questions_rag(questions, docs, bornes=BORNES_V0) -> list:
         _verifier_verifications(q, nom, erreurs)
         if q.get("abstention_attendue") is True and not any(
                 v.get("type") == "abstention" and v.get("attendue") is True for v in q.get("verifications", [])):
-            erreurs.append(f"{nom} : sans_reponse exige la verification abstention")
+            erreurs.append(f"{nom} : une question avec abstention attendue exige la verification abstention")
         attendus = q.get("documents_attendus", [])
         for doc_id in attendus + q.get("documents_pieges", []):
             if doc_id not in docs:
@@ -231,8 +233,8 @@ def verifier_questions_rag(questions, docs, bornes=BORNES_V0) -> list:
         for doc_id in attendus:
             if doc_id in docs and docs[doc_id]["meta"].get("statut") != "en_vigueur":
                 erreurs.append(f"{nom} : le document attendu {doc_id!r} doit etre en vigueur")
-        if q.get("abstention_attendue") != (type_q == "sans_reponse"):
-            erreurs.append(f"{nom} : abstention_attendue doit valoir vrai si et seulement si sans_reponse")
+        if q.get("abstention_attendue") != (type_q in ("sans_reponse", "reponse_partielle")):
+            erreurs.append(f"{nom} : abstention_attendue doit valoir vrai si et seulement si sans_reponse ou reponse_partielle")
         if type_q == "sans_reponse":
             if attendus:
                 erreurs.append(f"{nom} : sans_reponse ne doit citer aucun document attendu")
@@ -316,6 +318,10 @@ def verifier_taches_agentique(taches, docs, env, bornes=BORNES_V0) -> list:
                         erreurs.append(f"{nom} : colonne {colonne!r} inexistante dans {tab}")
                     elif colonne not in tableaux[tab]["colonnes_modifiables"]:
                         erreurs.append(f"{nom} : colonne {colonne!r} non modifiable dans {tab}")
+                    elif tab == "synthese" and ligne == "Total des forfaits annuels HT":
+                        total = str(sum(int(f["forfait_annuel_ht"]) for f in fiches.values()))
+                        if valeur != total:
+                            erreurs.append(f"{nom} : le total des forfaits vaut {valeur!r}, les fiches donnent {total!r}")
                     elif tab == "suivi_cloture" and ligne in fiches and colonne in _valeurs_fiche(fiches[ligne]):
                         attendu = _valeurs_fiche(fiches[ligne])[colonne]
                         if valeur != attendu:
