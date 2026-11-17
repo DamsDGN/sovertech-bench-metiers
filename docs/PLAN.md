@@ -10,7 +10,8 @@ choix, et ce qu'on ne sait pas encore.
 |---|---|
 | Dépôt | **Nouveau dépôt public dès le début** : GitHub `DamsDGN/sovertech-bench-metiers` (décision du 17/11/2026, construction « en public »). Conditions : voir §1 bis. |
 | Banc interne | Sover.tech garde un banc interne privé de sélection de modèles, qui reste intact. Ce dépôt-ci est indépendant. |
-| Structure | Monorepo : un moteur commun (`core/`), un dossier par profession (`domains/`). |
+| Structure | Monorepo : un moteur commun (`core/`) et **un dossier par métier à la racine** (`expert-comptable/`, `notaire/`), chacun avec son `README.md`. |
+| Portabilité | Sover.tech lance ses mesures avec vLLM sur Runpod, mais **chacun peut rejouer le benchmark sur sa propre infrastructure** (API compatible OpenAI). Voir §5 bis. |
 | Blocs | Trois par profession : chat, RAG, agentique. |
 | Données | 100 % synthétiques ou publiques. Aucun document de client, même anonymisé. |
 | Licences | Apache 2.0 pour le code, CC BY 4.0 pour les jeux de données fictifs. |
@@ -51,37 +52,41 @@ est repris dans son principe (§6), pas dans son code.
 
 ```
 sovertech-bench-metiers/
-  README.md                 présentation publique, lisible hors métier tech
+  README.md                 présentation du projet, lisible hors métier tech
+  AGENTS.md                 guide des contributeurs qui travaillent avec un agent IA
+  CONTRIBUTING.md           règle « aucune donnée réelle », processus de validation par des pros
   LICENSE                   Apache 2.0 (code)
   LICENSE-DATA              CC BY 4.0 (jeux de données fictifs)
-  CONTRIBUTING.md           règle « aucune donnée réelle », processus de validation par des pros
-  core/
-    catalogue/              un fichier par modèle (YAML) : dépôt HF, quantification, réglages vLLM
-    execution/              lancement vLLM sur Runpod ou en local, client, reprise
-    mesures/                débit, TTFT, temps par tâche, VRAM, coût par tâche
-    notation/               scoreurs automatiques, juge, agrégation (moyenne, écart-type)
-    rapport/                génération du rapport (Markdown, JSON, CSV)
+  expert-comptable/         un dossier par métier, à la racine
+    README.md               ce que fait le benchmark, en langage clair
+    AGENTS.md               consignes propres au métier
+    corpus/                 cabinet fictif : fiches clients, procédures, textes publics
+    chat/                   README.md, taches.jsonl, grille.md, TACHES.md (version lisible)
+    rag/                    README.md, questions.jsonl, grille.md, TACHES.md
+    agentique/              README.md, taches.jsonl, grille.md, environnement/, TACHES.md
+  notaire/                  squelette en v0 : README.md et AGENTS.md, pas de tâches
+  core/                     moteur commun
+    catalogue/              un fichier par modèle : dépôt HF, quantification, réglages
+    execution/              client OpenAI compatible, reprise, mesures
+    notation/               scoreurs automatiques, agrégation (moyenne, écart-type)
+    rapport/                génération du rapport
+    runpod/                 lancement sur Runpod (facultatif, voir §5 bis)
     tests/
-  domains/
-    expert-comptable/
-      README.md
-      corpus/               cabinet fictif : dossiers clients fictifs, pièces, textes publics
-      chat/    (README.md, taches/, grilles/)
-      rag/     (README.md, taches/, grilles/, questions sans réponse, versions obsolètes)
-      agentic/ (README.md, taches/, grilles/, environnement simulé)
-    notaire/                squelette (README.md, dossiers vides), pas de tâches en v0
-  results/<profession>/<date>/<modele>/   JSON et CSV bruts
-  docs/
-    PLAN.md  METHODOLOGIE.md  LIMITES.md  REPRODUIRE.md  GLOSSAIRE.md
+  docs/                     PLAN, méthodologie, limites, reproduire, glossaire
+  results/                  résultats bruts, ignorés par Git avant comptable-v1
 ```
 
 Versions publiées : étiquettes Git `comptable-v1`, `notaire-v1`. Une version fige les tâches, les
 grilles, les prompts, le retriever et les réglages. Changer l'un d'eux crée une nouvelle version.
 
+Chaque dossier de métier et chaque bloc a un `README.md` écrit pour un professionnel non technicien :
+ce qu'on teste, pourquoi ça compte dans un cabinet ou une étude, un exemple, comment on note, ce que le
+résultat veut dire et ne veut pas dire, comment signaler une erreur. Un `TACHES.md` lisible, généré
+depuis les fichiers de données, permet à un professionnel de relire chaque tâche sans ouvrir de JSON.
+
 Conventions reprises du banc interne de Sover.tech : tests écrits avant le code, `unittest` de la
 bibliothèque standard, aucun test ne demande de GPU, de réseau ni de clé ; code et noms de fichiers en
 français sans accents ; peu de commentaires ; commits Conventional Commits ; branches et pull requests.
-Le nouveau dépôt aura son propre `AGENTS.md` qui les recopie.
 
 ## 4. Catalogue de modèles (NVFP4 uniquement)
 
@@ -155,6 +160,30 @@ sens qu'avec le FP4 natif (la RTX PRO 5000 48 Go, déjà utilisée par Sover.tec
 Ada (A40, L40S) il tournerait sans le gain de débit et fausserait les mesures de performance. Le prix horaire est relevé et affiché avant chaque création de pod, et rien
 ne se lance sans l'accord de Damien, comme sur le banc interne. L'image vLLM, sa version exacte, le SHA de
 révision de chaque modèle et la ligne de commande sont épinglés dans le relevé de rejouabilité.
+
+## 5 bis. Portabilité : le benchmark ne dépend pas de Runpod
+
+**Principe (17/11/2026)** : Sover.tech lance ses mesures avec vLLM sur Runpod, mais **toute personne
+doit pouvoir rejouer le benchmark sur sa propre infrastructure**. Runpod est notre façon de louer des
+cartes, pas une dépendance du benchmark.
+
+- **Le moteur ne parle qu'à une API compatible OpenAI** (`/v1/chat/completions`, appels d'outils
+  compris). vLLM, SGLang, llama.cpp en mode serveur, Ollama en mode `/v1`, ou un autre serveur maison
+  conviennent. Réglages par ligne de commande ou variables d'environnement : adresse, modèle, clé.
+- **Le module `core/runpod/` est facultatif** : il crée le pod, y lance vLLM et le détruit. Sans lui,
+  on lance le benchmark contre l'adresse de son choix. Aucun test ni aucune étape de notation n'en
+  dépend.
+- **Mesures qui demandent l'infra, rendues facultatives** : le pic de VRAM vient de `nvidia-smi` ou des
+  métriques de vLLM si elles sont joignables, sinon le champ reste vide avec sa raison écrite (jamais
+  une valeur inventée). Le coût par tâche demande un **tarif horaire fourni par l'utilisateur**
+  (`--prix-horaire`) ; sans lui, le rapport donne le temps de GPU et pas de coût.
+- **Un résultat porte son contexte** : serveur, version, modèle servi, quantification déclarée, matériel
+  si connu. Un résultat obtenu avec une autre quantification que le NVFP4 (autre carte, autre format)
+  est enregistré et **marqué « non comparable » aux résultats publiés**, sans être refusé.
+- **Le catalogue sert deux usages** : liste des modèles que Sover.tech publie (avec leur dépôt NVFP4),
+  et modèle d'un fichier que chacun peut copier pour tester le sien.
+- **Guide `docs/REPRODUIRE.md`** : deux parcours, « sur Runpod comme Sover.tech » et « sur mon infra »,
+  avec le matériel minimal, les commandes et ce qu'on peut attendre du budget.
 
 ## 6. Méthode de mesure
 
