@@ -106,7 +106,7 @@ cette configuration.
 ## Les modèles testés
 
 Des modèles « ouverts », de 12 à 35 milliards de paramètres, qui tiennent sur **une carte graphique de
-48 Go**, dans un format compact nommé **NVFP4**. La liste et les dépôts exacts sont dans
+48 Go**, dans un format compact nommé **NVFP4** (une seule exception, gpt-oss-20b, mesuré dans son format natif MXFP4 et signalé comme tel). La liste et les dépôts exacts sont dans
 [`docs/PLAN.md`](../docs/PLAN.md), section 4. Vous pouvez en ajouter un (voir
 [`docs/REPRODUIRE.md`](../docs/REPRODUIRE.md)).
 
