@@ -1,0 +1,7 @@
+results/
+.env
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+lots-de-notation/
