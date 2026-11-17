@@ -15,14 +15,15 @@ AGENT = {t["consigne"]: t for t in JEUX["agentique"]}
 
 class PlafondDeGeneration(unittest.TestCase):
     def test_priorite_ligne_de_commande_puis_catalogue_puis_defaut(self):
-        qwen = catalogue.charger("qwen-3-8-27b-nvfp4-redhatai")
-        self.assertEqual(lancer.plafond(None, qwen), 32768)
-        self.assertEqual(lancer.plafond(50000, qwen), 50000)
-        self.assertEqual(lancer.plafond(None, {}), lancer.MAX_TOKENS_DEFAUT)
+        self.assertEqual(lancer.plafond(None, {}), 32768)
+        self.assertEqual(lancer.plafond(50000, {}), 50000)
+        self.assertEqual(lancer.plafond(None, {"max_tokens": 4096}), 4096)
 
-    def test_les_modeles_qui_raisonnent_beaucoup_ont_une_marge_plus_large(self):
-        for id_ in ("qwen-3-8-27b-nvfp4-redhatai", "qwen-3-6-35b-a3b-nvfp4-nvidia"):
-            self.assertGreater(catalogue.charger(id_)["max_tokens"], lancer.MAX_TOKENS_DEFAUT)
+    def test_meme_plafond_pour_tous_les_modeles_du_catalogue_publie(self):
+        """Mesurer tous les modeles dans les memes conditions : aucune surcharge par modele pour la v0."""
+        for entree in catalogue.lister():
+            self.assertNotIn("max_tokens", entree, entree["id"])
+        self.assertEqual(lancer.MAX_TOKENS_DEFAUT, 32768)
 
 
 class FauxModele:

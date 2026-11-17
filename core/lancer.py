@@ -16,7 +16,7 @@ from . import notation as n
 from .client import ErreurClient
 from .fournisseurs import creer_client
 
-MAX_TOKENS_DEFAUT = 16384
+MAX_TOKENS_DEFAUT = 32768
 
 
 def _commit():
