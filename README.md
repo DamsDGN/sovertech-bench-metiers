@@ -57,8 +57,8 @@ teste, comment il note, et ce que ses résultats veulent dire ou ne veulent pas 
 
 Le benchmark **ne dépend d'aucun fournisseur**. Sover.tech le lance avec le logiciel vLLM sur des cartes
 graphiques louées chez Runpod, mais vous pouvez le lancer sur **votre propre infrastructure** : il suffit
-qu'un serveur de modèles compatible avec l'API d'OpenAI soit joignable. La marche à suivre sera dans
-[`docs/REPRODUIRE.md`](docs/REPRODUIRE.md). Un résultat obtenu avec une autre configuration que la nôtre est
+qu'un serveur de modèles compatible avec l'API d'OpenAI soit joignable. La marche à suivre est dans
+[`docs/REPRODUIRE.md`](docs/REPRODUIRE.md) : Python, aucune bibliothèque à installer. Un résultat obtenu avec une autre configuration que la nôtre est
 accepté, et clairement marqué comme tel.
 
 ## Pour aller plus loin
