@@ -167,7 +167,7 @@ def executer(config: dict, client, jeux: dict, sortie: Path, journal=print) -> P
                     arret = {"depense_usd": round(depense, 4), "budget_usd": budget, "derniere_tache": t["id"], "passe": passe}
                     break
                 debut = time.monotonic()
-                enr = {"metier": config["metier"], "bloc": bloc, "tache": t["id"], "niveau": t["niveau"], "passe": passe,
+                enr = {"metier": config["metier"], "bloc": bloc, "tache": t["id"], "niveau": t["niveau"], "gravite": t.get("gravite"), "passe": passe,
                        "modele_id": entree["id"], "date": datetime.datetime.now().astimezone().isoformat(timespec="seconds"),
                        "erreur": None}
                 try:

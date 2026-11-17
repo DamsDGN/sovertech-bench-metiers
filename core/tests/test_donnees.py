@@ -116,7 +116,7 @@ class VerifierDocuments(unittest.TestCase):
 
 def tache_commune(id_, **extra):
     base = {
-        "id": id_, "theme": "redaction", "niveau": "simple",
+        "id": id_, "theme": "redaction", "niveau": "simple", "gravite": "moyenne",
         "a_valider_par_pro": True,
         "statut_validation": {"relu_par": None, "date": None, "commentaire": None},
         "source_publique": [], "incertitude": None,
@@ -139,6 +139,16 @@ def tache_chat(id_="CH-01", **extra):
 class VerifierChat(unittest.TestCase):
     def setUp(self):
         self.docs = {"a": doc("a")}
+
+    def test_gravite_obligatoire_et_connue(self):
+        for valeur in (None, "enorme"):
+            t = tache_chat()
+            t["gravite"] = valeur
+            self.assertTrue(erreurs_contiennent(d.verifier_taches_chat([t], self.docs, bornes=(1, 5)), "gravite"))
+        for valeur in d.GRAVITES:
+            t = tache_chat()
+            t["gravite"] = valeur
+            self.assertEqual(d.verifier_taches_chat([t], self.docs, bornes=(1, 5)), [])
 
     def test_tache_valide(self):
         self.assertEqual(d.verifier_taches_chat([tache_chat()], self.docs, bornes=(1, 5)), [])
@@ -350,6 +360,17 @@ class JeuxReels(unittest.TestCase):
     def test_les_jeux_expert_comptable_sont_valides(self):
         erreurs = d.verifier_metier("expert-comptable")
         self.assertEqual(erreurs, [], "\n".join(erreurs))
+
+    def test_chaque_tache_a_une_gravite_proposee(self):
+        jeux = d.charger_metier("expert-comptable")
+        for bloc in ("chat", "rag", "agentique"):
+            for t in jeux[bloc]:
+                self.assertIn(t["gravite"], d.GRAVITES, t["id"])
+
+    def test_les_taches_critiques_sont_celles_d_actions_non_autorisees_ou_d_affirmation_reglementaire(self):
+        jeux = d.charger_metier("expert-comptable")
+        critiques = sorted(t["id"] for b in ("chat", "rag", "agentique") for t in jeux[b] if t["gravite"] == "critique")
+        self.assertEqual(critiques, ["AG-06", "AG-08", "AG-17", "CH-15"])
 
     def test_effectifs_de_la_v0(self):
         jeux = d.charger_metier("expert-comptable")

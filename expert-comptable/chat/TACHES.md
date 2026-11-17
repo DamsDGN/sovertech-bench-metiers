@@ -2,7 +2,7 @@
 
 Fichier généré automatiquement depuis `taches.jsonl` : ne le modifiez pas à la main. Pour chaque tâche, dites si elle est correcte, à corriger ou à supprimer (voir `CONTRIBUTING.md`).
 
-## CH-01 · rédaction d'un courriel · niveau simple
+## CH-01 · rédaction d'un courriel · niveau simple · gravité proposée : faible
 
 > **À valider par un professionnel** : cette tâche n'a pas encore été relue.
 
@@ -43,11 +43,11 @@ Fichier généré automatiquement depuis `taches.jsonl` : ne le modifiez pas à 
 > Bien cordialement,
 > Cabinet Aubépine & Associés
 
-**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer
+**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer   ·   **Gravité** : ☐ d'accord   ☐ plutôt « ... » (voir `docs/GRAVITE.md`)
 
 ---
 
-## CH-02 · calcul · niveau simple
+## CH-02 · calcul · niveau simple · gravité proposée : moyenne
 
 > **À valider par un professionnel** : cette tâche n'a pas encore été relue.
 
@@ -73,11 +73,11 @@ Fichier généré automatiquement depuis `taches.jsonl` : ne le modifiez pas à 
 
 **Point d'incertitude signalé par l'équipe** : Taux de 20 % donné dans l'énoncé : le calcul ne dépend d'aucune règle à vérifier.
 
-**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer
+**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer   ·   **Gravité** : ☐ d'accord   ☐ plutôt « ... » (voir `docs/GRAVITE.md`)
 
 ---
 
-## CH-03 · calcul · niveau moyen
+## CH-03 · calcul · niveau moyen · gravité proposée : moyenne
 
 > **À valider par un professionnel** : cette tâche n'a pas encore été relue.
 
@@ -102,11 +102,11 @@ Fichier généré automatiquement depuis `taches.jsonl` : ne le modifiez pas à 
 
 **Point d'incertitude signalé par l'équipe** : Taux de 20 % donné dans l'énoncé : le calcul ne dépend d'aucune règle à vérifier.
 
-**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer
+**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer   ·   **Gravité** : ☐ d'accord   ☐ plutôt « ... » (voir `docs/GRAVITE.md`)
 
 ---
 
-## CH-04 · plan comptable · niveau simple
+## CH-04 · plan comptable · niveau simple · gravité proposée : moyenne
 
 > **À valider par un professionnel** : cette tâche n'a pas encore été relue.
 
@@ -136,11 +136,11 @@ Fichier généré automatiquement depuis `taches.jsonl` : ne le modifiez pas à 
 
 **Point d'incertitude signalé par l'équipe** : Pour les fournitures, 606 et 6064 sont tous deux acceptés ; libellés à comparer au texte officiel lors de la relecture.
 
-**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer
+**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer   ·   **Gravité** : ☐ d'accord   ☐ plutôt « ... » (voir `docs/GRAVITE.md`)
 
 ---
 
-## CH-05 · pédagogie · niveau moyen
+## CH-05 · pédagogie · niveau moyen · gravité proposée : faible
 
 > **À valider par un professionnel** : cette tâche n'a pas encore été relue.
 
@@ -170,11 +170,11 @@ Fichier généré automatiquement depuis `taches.jsonl` : ne le modifiez pas à 
 
 **Point d'incertitude signalé par l'équipe** : Notion générale, sans source citée : à valider.
 
-**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer
+**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer   ·   **Gravité** : ☐ d'accord   ☐ plutôt « ... » (voir `docs/GRAVITE.md`)
 
 ---
 
-## CH-06 · résumé · niveau moyen
+## CH-06 · résumé · niveau moyen · gravité proposée : faible
 
 > **À valider par un professionnel** : cette tâche n'a pas encore été relue.
 
@@ -205,11 +205,11 @@ Fichier généré automatiquement depuis `taches.jsonl` : ne le modifiez pas à 
 > - Les relevés bancaires de janvier ne sont pas encore parvenus au cabinet.
 > - Le prochain point est fixé au 12 mars 2026.
 
-**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer
+**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer   ·   **Gravité** : ☐ d'accord   ☐ plutôt « ... » (voir `docs/GRAVITE.md`)
 
 ---
 
-## CH-07 · savoir dire qu'on ne sait pas · niveau moyen
+## CH-07 · savoir dire qu'on ne sait pas · niveau moyen · gravité proposée : élevée
 
 > **À valider par un professionnel** : cette tâche n'a pas encore été relue.
 
@@ -235,11 +235,11 @@ Fichier généré automatiquement depuis `taches.jsonl` : ne le modifiez pas à 
 
 > Je ne peux pas répondre : le chiffre d'affaires 2025 de la SCI Les Mouettes ne figure pas dans la fiche client fournie. Elle donne seulement le forfait annuel du cabinet (1 500 € HT), qui n'est pas le chiffre d'affaires.
 
-**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer
+**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer   ·   **Gravité** : ☐ d'accord   ☐ plutôt « ... » (voir `docs/GRAVITE.md`)
 
 ---
 
-## CH-08 · savoir dire qu'on ne sait pas · niveau moyen
+## CH-08 · savoir dire qu'on ne sait pas · niveau moyen · gravité proposée : moyenne
 
 > **À valider par un professionnel** : cette tâche n'a pas encore été relue.
 
@@ -262,11 +262,11 @@ Fichier généré automatiquement depuis `taches.jsonl` : ne le modifiez pas à 
 
 > Je n'ai pas cette information : aucun numéro de téléphone n'a été communiqué au cabinet. Mme Rolland est joignable uniquement par courriel, à l'adresse a.rolland@rolland-conseil.example.
 
-**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer
+**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer   ·   **Gravité** : ☐ d'accord   ☐ plutôt « ... » (voir `docs/GRAVITE.md`)
 
 ---
 
-## CH-09 · ne pas inventer · niveau moyen
+## CH-09 · ne pas inventer · niveau moyen · gravité proposée : élevée
 
 > **À valider par un professionnel** : cette tâche n'a pas encore été relue.
 
@@ -289,11 +289,11 @@ Fichier généré automatiquement depuis `taches.jsonl` : ne le modifiez pas à 
 
 > Le SIREN de l'Atelier Kerloc'h n'est pas renseigné dans la fiche client fournie : je ne peux pas le donner.
 
-**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer
+**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer   ·   **Gravité** : ☐ d'accord   ☐ plutôt « ... » (voir `docs/GRAVITE.md`)
 
 ---
 
-## CH-10 · plan comptable · niveau simple
+## CH-10 · plan comptable · niveau simple · gravité proposée : faible
 
 > **À valider par un professionnel** : cette tâche n'a pas encore été relue.
 
@@ -327,11 +327,11 @@ Fichier généré automatiquement depuis `taches.jsonl` : ne le modifiez pas à 
 
 **Point d'incertitude signalé par l'équipe** : Sens habituel des soldes : à valider par un professionnel.
 
-**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer
+**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer   ·   **Gravité** : ☐ d'accord   ☐ plutôt « ... » (voir `docs/GRAVITE.md`)
 
 ---
 
-## CH-11 · reformulation · niveau moyen
+## CH-11 · reformulation · niveau moyen · gravité proposée : faible
 
 > **À valider par un professionnel** : cette tâche n'a pas encore été relue.
 
@@ -358,11 +358,11 @@ Fichier généré automatiquement depuis `taches.jsonl` : ne le modifiez pas à 
 
 > En comparant votre comptabilité à votre relevé de banque, nous constatons des différences : certains encaissements n'ont pas encore de justificatif.
 
-**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer
+**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer   ·   **Gravité** : ☐ d'accord   ☐ plutôt « ... » (voir `docs/GRAVITE.md`)
 
 ---
 
-## CH-12 · respect d'une consigne stricte · niveau simple
+## CH-12 · respect d'une consigne stricte · niveau simple · gravité proposée : faible
 
 > **À valider par un professionnel** : cette tâche n'a pas encore été relue.
 
@@ -386,11 +386,11 @@ Fichier généré automatiquement depuis `taches.jsonl` : ne le modifiez pas à 
 
 **Point d'incertitude signalé par l'équipe** : Taux à reconfirmer à la date de la relecture professionnelle.
 
-**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer
+**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer   ·   **Gravité** : ☐ d'accord   ☐ plutôt « ... » (voir `docs/GRAVITE.md`)
 
 ---
 
-## CH-13 · lecture de données · niveau moyen
+## CH-13 · lecture de données · niveau moyen · gravité proposée : moyenne
 
 > **À valider par un professionnel** : cette tâche n'a pas encore été relue.
 
@@ -420,11 +420,11 @@ Fichier généré automatiquement depuis `taches.jsonl` : ne le modifiez pas à 
 
 > Le compte 411 Clients a le solde le plus élevé (18 920,50 €). Il dépasse le deuxième, le compte 401 Fournisseurs (12 480,00 €), de 6 440,50 €.
 
-**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer
+**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer   ·   **Gravité** : ☐ d'accord   ☐ plutôt « ... » (voir `docs/GRAVITE.md`)
 
 ---
 
-## CH-14 · rédaction d'un courrier · niveau complexe
+## CH-14 · rédaction d'un courrier · niveau complexe · gravité proposée : moyenne
 
 > **À valider par un professionnel** : cette tâche n'a pas encore été relue.
 
@@ -469,11 +469,11 @@ Fichier généré automatiquement depuis `taches.jsonl` : ne le modifiez pas à 
 > Cordialement,
 > Cabinet Aubépine & Associés
 
-**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer
+**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer   ·   **Gravité** : ☐ d'accord   ☐ plutôt « ... » (voir `docs/GRAVITE.md`)
 
 ---
 
-## CH-15 · prudence sur un point réglementaire · niveau complexe
+## CH-15 · prudence sur un point réglementaire · niveau complexe · gravité proposée : critique
 
 > **À valider par un professionnel** : cette tâche n'a pas encore été relue.
 
@@ -507,11 +507,11 @@ Fichier généré automatiquement depuis `taches.jsonl` : ne le modifiez pas à 
 
 **Point d'incertitude signalé par l'équipe** : Règle de déduction des véhicules de tourisme complexe et variable : la référence décrit un comportement de prudence, pas la règle. Aucune source citée volontairement.
 
-**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer
+**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer   ·   **Gravité** : ☐ d'accord   ☐ plutôt « ... » (voir `docs/GRAVITE.md`)
 
 ---
 
-## CH-16 · détection d'une erreur · niveau complexe
+## CH-16 · détection d'une erreur · niveau complexe · gravité proposée : moyenne
 
 > **À valider par un professionnel** : cette tâche n'a pas encore été relue.
 
@@ -538,11 +538,11 @@ Fichier généré automatiquement depuis `taches.jsonl` : ne le modifiez pas à 
 
 **Source publique citée** : Plan comptable général, règlement ANC n° 2014-03
 
-**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer
+**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer   ·   **Gravité** : ☐ d'accord   ☐ plutôt « ... » (voir `docs/GRAVITE.md`)
 
 ---
 
-## CH-17 · lecture d'une balance · niveau complexe
+## CH-17 · lecture d'une balance · niveau complexe · gravité proposée : élevée
 
 > **À valider par un professionnel** : cette tâche n'a pas encore été relue.
 
@@ -574,11 +574,11 @@ Fichier généré automatiquement depuis `taches.jsonl` : ne le modifiez pas à 
 
 **Point d'incertitude signalé par l'équipe** : Résultat calculé comme produits moins charges des comptes de gestion fournis, avant impôt : à valider.
 
-**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer
+**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer   ·   **Gravité** : ☐ d'accord   ☐ plutôt « ... » (voir `docs/GRAVITE.md`)
 
 ---
 
-## CH-18 · rapprochement bancaire · niveau complexe
+## CH-18 · rapprochement bancaire · niveau complexe · gravité proposée : élevée
 
 > **À valider par un professionnel** : cette tâche n'a pas encore été relue.
 
@@ -607,11 +607,11 @@ Fichier généré automatiquement depuis `taches.jsonl` : ne le modifiez pas à 
 
 > L'opération du 25/01, « Virement SEPA, référence 8841 », d'un montant de -1 500,00 €, n'a aucun justificatif parmi les pièces reçues.
 
-**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer
+**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer   ·   **Gravité** : ☐ d'accord   ☐ plutôt « ... » (voir `docs/GRAVITE.md`)
 
 ---
 
-## CH-19 · répondre à un client mécontent · niveau complexe
+## CH-19 · répondre à un client mécontent · niveau complexe · gravité proposée : moyenne
 
 > **À valider par un professionnel** : cette tâche n'a pas encore été relue.
 
@@ -652,11 +652,11 @@ Fichier généré automatiquement depuis `taches.jsonl` : ne le modifiez pas à 
 > Bien cordialement,
 > Cabinet Aubépine & Associés
 
-**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer
+**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer   ·   **Gravité** : ☐ d'accord   ☐ plutôt « ... » (voir `docs/GRAVITE.md`)
 
 ---
 
-## CH-20 · synthèse de plusieurs documents · niveau complexe
+## CH-20 · synthèse de plusieurs documents · niveau complexe · gravité proposée : élevée
 
 > **À valider par un professionnel** : cette tâche n'a pas encore été relue.
 
@@ -693,11 +693,11 @@ Fichier généré automatiquement depuis `taches.jsonl` : ne le modifiez pas à 
 
 **Point d'incertitude signalé par l'équipe** : Le point intermédiaire « 3 mois avant la clôture » donne fin septembre : la date exacte est laissée à l'appréciation du relecteur.
 
-**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer
+**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer   ·   **Gravité** : ☐ d'accord   ☐ plutôt « ... » (voir `docs/GRAVITE.md`)
 
 ---
 
-## CH-21 · contrôle d'un fichier des écritures comptables (FEC) · niveau complexe
+## CH-21 · contrôle d'un fichier des écritures comptables (FEC) · niveau complexe · gravité proposée : élevée
 
 > **À valider par un professionnel** : cette tâche n'a pas encore été relue.
 
@@ -729,11 +729,11 @@ Fichier généré automatiquement depuis `taches.jsonl` : ne le modifiez pas à 
 
 **Point d'incertitude signalé par l'équipe** : Fichier des écritures comptables fictif : structure et règles de nommage à valider par un professionnel.
 
-**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer
+**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer   ·   **Gravité** : ☐ d'accord   ☐ plutôt « ... » (voir `docs/GRAVITE.md`)
 
 ---
 
-## CH-22 · contrôle d'un fichier des écritures comptables (FEC) · niveau complexe
+## CH-22 · contrôle d'un fichier des écritures comptables (FEC) · niveau complexe · gravité proposée : élevée
 
 > **À valider par un professionnel** : cette tâche n'a pas encore été relue.
 
@@ -765,11 +765,11 @@ Fichier généré automatiquement depuis `taches.jsonl` : ne le modifiez pas à 
 
 **Point d'incertitude signalé par l'équipe** : Fichier des écritures comptables fictif : structure et règles de nommage à valider par un professionnel.
 
-**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer
+**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer   ·   **Gravité** : ☐ d'accord   ☐ plutôt « ... » (voir `docs/GRAVITE.md`)
 
 ---
 
-## CH-23 · contrôle d'un fichier des écritures comptables (FEC) · niveau complexe
+## CH-23 · contrôle d'un fichier des écritures comptables (FEC) · niveau complexe · gravité proposée : élevée
 
 > **À valider par un professionnel** : cette tâche n'a pas encore été relue.
 
@@ -799,11 +799,11 @@ Fichier généré automatiquement depuis `taches.jsonl` : ne le modifiez pas à 
 
 **Point d'incertitude signalé par l'équipe** : Fichier des écritures comptables fictif : structure et règles de nommage à valider par un professionnel.
 
-**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer
+**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer   ·   **Gravité** : ☐ d'accord   ☐ plutôt « ... » (voir `docs/GRAVITE.md`)
 
 ---
 
-## CH-24 · contrôle d'un fichier des écritures comptables (FEC) · niveau complexe
+## CH-24 · contrôle d'un fichier des écritures comptables (FEC) · niveau complexe · gravité proposée : élevée
 
 > **À valider par un professionnel** : cette tâche n'a pas encore été relue.
 
@@ -834,6 +834,6 @@ Fichier généré automatiquement depuis `taches.jsonl` : ne le modifiez pas à 
 
 **Point d'incertitude signalé par l'équipe** : Fichier des écritures comptables fictif : structure et règles de nommage à valider par un professionnel. Les taux de TVA du jeu de données sont fictifs.
 
-**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer
+**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer   ·   **Gravité** : ☐ d'accord   ☐ plutôt « ... » (voir `docs/GRAVITE.md`)
 
 ---

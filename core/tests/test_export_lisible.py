@@ -22,6 +22,14 @@ class DecrireVerification(unittest.TestCase):
         self.assertEqual({v["type"] for v in VERIFS}, set(vf.TYPES))
 
 
+class Gravite(unittest.TestCase):
+    def test_la_gravite_proposee_apparait_dans_la_version_lisible(self):
+        sorties = {c.parent.name: t for c, t in e.generer("expert-comptable").items()}
+        self.assertIn("CH-15 · prudence sur un point réglementaire · niveau complexe · gravité proposée : critique", sorties["chat"])
+        self.assertIn("gravité proposée : élevée", sorties["rag"])
+        self.assertIn("**Gravité** : ☐ d'accord", sorties["agentique"])
+
+
 class Themes(unittest.TestCase):
     def test_tous_les_themes_utilises_ont_un_libelle(self):
         jeux = d.charger_metier("expert-comptable")
