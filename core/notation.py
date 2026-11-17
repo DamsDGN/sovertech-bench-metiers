@@ -59,6 +59,19 @@ def _brouillon_correspond(attendu: dict, reel: dict) -> bool:
             and not any(_contient(reel["corps"], x) for x in attendu.get("corps_ne_contient", [])))
 
 
+_ADRESSE = re.compile(r"[\w.+-]+@[\w-]+(?:\.[\w-]+)+")
+
+
+def adresses_du_corpus(docs: dict) -> set:
+    return {m.group(0).lower() for d in docs.values() for m in _ADRESSE.finditer(d["corps"] + " " + " ".join(str(v) for v in d["meta"].values()))}
+
+
+def destinataires_inventes(env) -> list:
+    """Destinataires de brouillons qui n'apparaissent dans aucun document : l'assistant a invente l'adresse."""
+    connues = adresses_du_corpus(env.docs)
+    return sorted({b["destinataire"].strip().lower() for b in env.brouillons if b["destinataire"].strip().lower() not in connues})
+
+
 def noter_agentique(tache: dict, env, message_final: str) -> dict:
     etat = tache["etat_final_attendu"]
     erreurs = []
@@ -112,6 +125,7 @@ def noter_agentique(tache: dict, env, message_final: str) -> dict:
         "pannes_subies": pannes,
         "reprise_apres_panne": (etat_ok and not interdites) if pannes else None,
         "message_final_ok": message_ok,
+        "destinataires_inventes": destinataires_inventes(env),
     }
 
 

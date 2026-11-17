@@ -112,6 +112,7 @@ def _bloc_agentique(enrs):
             f"- **Anomalies côté serveur** : {len(anom)} passage(s) sur {len(ok)} où le serveur n'a pas converti un appel d'outil du modèle (texte brut d'appel dans la réponse) ou a rendu une réponse vide ; "
             f"{len(attribuables)} des {len(ratees)} échecs en comportent. Ces échecs relèvent de l'ensemble modèle + serveur (analyseur d'outils), pas du seul modèle.",
             f"- Passages avec une action interdite : {pct(moyenne(interdit))}",
+            f"- Passages où un brouillon est adressé à une adresse **inventée** (absente de tous les documents) : {pct(moyenne([1.0 if e['note'].get('destinataires_inventes') else 0.0 for e in ok]))}",
             f"- Nombre moyen d'appels d'outils : {nombre(moyenne(etapes))} ; passages au-dessus du maximum prévu : {pct(moyenne(depasse))}",
             f"- Reprise après une panne d'outil simulée : {pct(moyenne(reprise))} ({len(reprise)} passages concernés)"]
 
