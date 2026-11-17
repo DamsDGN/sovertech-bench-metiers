@@ -36,20 +36,25 @@ class Comparer(unittest.TestCase):
         self.assertEqual(len(enrs), 1)
         self.assertFalse(enrs[0]["note"]["reussite_auto"])
 
-    def test_verdict_une_seule_passe(self):
-        self.assertIn("non évaluable", comparer.verdict([0.5], [0.6]))
+    def test_phrase_trop_peu_de_taches(self):
+        from core import statistiques
+        texte = " ".join(comparer.phrase_appariee(statistiques.comparaison_appariee({"A": 0.0, "B": 0.0}, {"A": 1.0, "B": 1.0}), "A", "B"))
+        self.assertIn("trop peu pour conclure", texte)
 
-    def test_verdict_dans_la_dispersion(self):
-        self.assertIn("dans la dispersion", comparer.verdict([0.50, 0.60, 0.55], [0.52, 0.58, 0.60]))
-
-    def test_verdict_au_dessus_de_la_dispersion(self):
-        self.assertIn("au-dessus de la dispersion", comparer.verdict([0.50, 0.52, 0.51], [0.80, 0.82, 0.81]))
+    def test_phrase_difference_demontree_et_non_demontree(self):
+        from core import statistiques
+        a = {f"T{i}": 0.0 for i in range(12)}
+        b = {f"T{i}": 1.0 for i in range(12)}
+        self.assertIn("différence démontrée", " ".join(comparer.phrase_appariee(statistiques.comparaison_appariee(a, b), "A", "B")))
+        c = {f"T{i}": float(i % 2) for i in range(12)}
+        d = {f"T{i}": float((i + 1) % 2) for i in range(12)}
+        self.assertIn("différence non démontrée", " ".join(comparer.phrase_appariee(statistiques.comparaison_appariee(c, d), "A", "B")))
 
     def test_rapport_complet(self):
         a = ecrire(self.racine / "a", [ligne(t, p, ok) for p in (1, 2) for t, ok in (("CH-01", True), ("CH-02", True), ("CH-03", False))])
         b = ecrire(self.racine / "b", [ligne(t, p, ok) for p in (1, 2) for t, ok in (("CH-01", True), ("CH-02", False), ("CH-03", False))])
         texte = comparer.comparer(a, b, "Tika", "Docling")
-        for attendu in ("Tika contre Docling", "Épreuve « Discuter »", "| CH-02 | 100 % | 0 % |", "Ce que cette comparaison ne dit pas"):
+        for attendu in ("Tika contre Docling", "Épreuve « Discuter »", "| CH-02 | 100 % | 0 % |", "Ce que cette comparaison ne dit pas", "appariée par tâche", "trop peu pour conclure"):
             self.assertIn(attendu, texte)
         self.assertNotIn("| CH-01 |", texte)
 

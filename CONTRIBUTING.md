@@ -38,6 +38,9 @@ C'est la contribution la plus utile. Pour chaque métier, un fichier `TACHES.md`
 3. Envoyez-le par un [ticket « Relecture professionnelle »](../../issues/new/choose) : vous n'avez
    besoin ni de Git ni de code.
 
+Dites aussi si la **gravité proposée** vous semble juste (voir [`docs/GRAVITE.md`](docs/GRAVITE.md)) : classer la gravité
+d'une erreur est un jugement métier que nous ne pouvons pas porter seuls.
+
 Votre relecture est consignée dans le champ `statut_validation` de la tâche : votre nom (ou le nom que
 vous souhaitez voir publié), la date, et vos commentaires. Vous pouvez demander à rester anonyme.
 **Une tâche n'est marquée validée que par une relecture de ce type.**

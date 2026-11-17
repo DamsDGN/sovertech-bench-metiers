@@ -50,6 +50,12 @@ teste, comment il note, et ce que ses résultats veulent dire ou ne veulent pas 
 - **Nous ne sommes ni experts-comptables ni notaires.** Toute réponse de référence qui touche au
   métier est marquée **« à valider par un professionnel »** tant qu'elle n'a pas été relue. Un résultat
   de justesse métier n'est jamais présenté comme établi sans cette validation.
+- **Toutes les erreurs ne se valent pas.** Chaque tâche porte une **gravité** (faible, moyenne, élevée, critique), et
+  les rapports publient le **taux d'échec sur les tâches graves** à côté du score global : un modèle qui réussit 90 %
+  des tâches mais se trompe sur les plus graves n'est pas présenté comme fiable (voir [`docs/GRAVITE.md`](docs/GRAVITE.md)).
+- **Une incertitude honnête.** Rejouer cinq fois les mêmes tâches mesure la variabilité du modèle, pas le fait que
+  l'on n'ait testé qu'un échantillon de situations. Les écarts entre modèles sont donc comparés **tâche par tâche**,
+  avec un intervalle de confiance : deux modèles ne sont départagés que si cet intervalle exclut zéro.
 - **Les limites sont écrites** dans chaque publication : nombre de tâches, nombre de passes, méthode de
   notation.
 

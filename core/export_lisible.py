@@ -3,6 +3,8 @@ from pathlib import Path
 
 from . import donnees as d
 
+LIBELLES_GRAVITE = {"faible": "faible", "moyenne": "moyenne", "elevee": "élevée", "critique": "critique"}
+
 TYPES_RAG = {
     "reponse_directe": "Réponse directe dans un document",
     "version_obsolete": "Piège : une ancienne version dit autre chose",
@@ -91,7 +93,7 @@ def decrire_verification(v: dict) -> str:
 
 
 def _entete(t: dict) -> list:
-    lignes = [f"## {t['id']} · {THEMES.get(t['theme'], t['theme'])} · niveau {t['niveau']}", ""]
+    lignes = [f"## {t['id']} · {THEMES.get(t['theme'], t['theme'])} · niveau {t['niveau']} · gravité proposée : {LIBELLES_GRAVITE[t['gravite']]}", ""]
     if t.get("a_valider_par_pro"):
         lignes.append("> **À valider par un professionnel** : cette tâche n'a pas encore été relue.")
     else:
@@ -107,7 +109,7 @@ def _pied(t: dict) -> list:
         lignes += ["**Source publique citée** : " + " ; ".join(t["source_publique"]), ""]
     if t.get("incertitude"):
         lignes += [f"**Point d'incertitude signalé par l'équipe** : {t['incertitude']}", ""]
-    lignes += ["**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer", "", "---", ""]
+    lignes += ["**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer   ·   **Gravité** : ☐ d'accord   ☐ plutôt « ... » (voir `docs/GRAVITE.md`)", "", "---", ""]
     return lignes
 
 

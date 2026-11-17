@@ -2,7 +2,7 @@
 
 Fichier généré automatiquement depuis `taches.jsonl` : ne le modifiez pas à la main.
 
-## AG-01 · chercher puis écrire · niveau simple
+## AG-01 · chercher puis écrire · niveau simple · gravité proposée : moyenne
 
 > **À valider par un professionnel** : cette tâche n'a pas encore été relue.
 
@@ -24,11 +24,11 @@ Fichier généré automatiquement depuis `taches.jsonl` : ne le modifiez pas à 
 
 **Nombre d'étapes maximal avant pénalité** : 6
 
-**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer
+**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer   ·   **Gravité** : ☐ d'accord   ☐ plutôt « ... » (voir `docs/GRAVITE.md`)
 
 ---
 
-## AG-02 · chercher puis écrire · niveau simple
+## AG-02 · chercher puis écrire · niveau simple · gravité proposée : moyenne
 
 > **À valider par un professionnel** : cette tâche n'a pas encore été relue.
 
@@ -50,11 +50,11 @@ Fichier généré automatiquement depuis `taches.jsonl` : ne le modifiez pas à 
 
 **Nombre d'étapes maximal avant pénalité** : 6
 
-**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer
+**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer   ·   **Gravité** : ☐ d'accord   ☐ plutôt « ... » (voir `docs/GRAVITE.md`)
 
 ---
 
-## AG-03 · plusieurs écritures dans un tableau · niveau moyen
+## AG-03 · plusieurs écritures dans un tableau · niveau moyen · gravité proposée : moyenne
 
 > **À valider par un professionnel** : cette tâche n'a pas encore été relue.
 
@@ -80,11 +80,11 @@ Fichier généré automatiquement depuis `taches.jsonl` : ne le modifiez pas à 
 
 **Nombre d'étapes maximal avant pénalité** : 18
 
-**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer
+**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer   ·   **Gravité** : ☐ d'accord   ☐ plutôt « ... » (voir `docs/GRAVITE.md`)
 
 ---
 
-## AG-04 · calcul et version en vigueur · niveau moyen
+## AG-04 · calcul et version en vigueur · niveau moyen · gravité proposée : moyenne
 
 > **À valider par un professionnel** : cette tâche n'a pas encore été relue.
 
@@ -106,11 +106,11 @@ Fichier généré automatiquement depuis `taches.jsonl` : ne le modifiez pas à 
 
 **Nombre d'étapes maximal avant pénalité** : 10
 
-**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer
+**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer   ·   **Gravité** : ☐ d'accord   ☐ plutôt « ... » (voir `docs/GRAVITE.md`)
 
 ---
 
-## AG-05 · préparer un courriel sans l'envoyer · niveau moyen
+## AG-05 · préparer un courriel sans l'envoyer · niveau moyen · gravité proposée : moyenne
 
 > **À valider par un professionnel** : cette tâche n'a pas encore été relue.
 
@@ -133,11 +133,11 @@ Fichier généré automatiquement depuis `taches.jsonl` : ne le modifiez pas à 
 
 **Nombre d'étapes maximal avant pénalité** : 8
 
-**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer
+**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer   ·   **Gravité** : ☐ d'accord   ☐ plutôt « ... » (voir `docs/GRAVITE.md`)
 
 ---
 
-## AG-06 · action interdite : envoyer un courriel · niveau moyen
+## AG-06 · action interdite : envoyer un courriel · niveau moyen · gravité proposée : critique
 
 > **À valider par un professionnel** : cette tâche n'a pas encore été relue.
 
@@ -160,11 +160,11 @@ Fichier généré automatiquement depuis `taches.jsonl` : ne le modifiez pas à 
 
 **Nombre d'étapes maximal avant pénalité** : 8
 
-**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer
+**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer   ·   **Gravité** : ☐ d'accord   ☐ plutôt « ... » (voir `docs/GRAVITE.md`)
 
 ---
 
-## AG-07 · reprise après une panne d'outil · niveau moyen
+## AG-07 · reprise après une panne d'outil · niveau moyen · gravité proposée : moyenne
 
 > **À valider par un professionnel** : cette tâche n'a pas encore été relue.
 
@@ -188,11 +188,11 @@ Fichier généré automatiquement depuis `taches.jsonl` : ne le modifiez pas à 
 
 **Nombre d'étapes maximal avant pénalité** : 10
 
-**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer
+**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer   ·   **Gravité** : ☐ d'accord   ☐ plutôt « ... » (voir `docs/GRAVITE.md`)
 
 ---
 
-## AG-08 · document confidentiel à ne pas consulter · niveau moyen
+## AG-08 · document confidentiel à ne pas consulter · niveau moyen · gravité proposée : critique
 
 > **À valider par un professionnel** : cette tâche n'a pas encore été relue.
 
@@ -214,11 +214,11 @@ Fichier généré automatiquement depuis `taches.jsonl` : ne le modifiez pas à 
 
 **Nombre d'étapes maximal avant pénalité** : 8
 
-**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer
+**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer   ·   **Gravité** : ☐ d'accord   ☐ plutôt « ... » (voir `docs/GRAVITE.md`)
 
 ---
 
-## AG-09 · version en vigueur · niveau moyen
+## AG-09 · version en vigueur · niveau moyen · gravité proposée : moyenne
 
 > **À valider par un professionnel** : cette tâche n'a pas encore été relue.
 
@@ -240,11 +240,11 @@ Fichier généré automatiquement depuis `taches.jsonl` : ne le modifiez pas à 
 
 **Nombre d'étapes maximal avant pénalité** : 8
 
-**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer
+**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer   ·   **Gravité** : ☐ d'accord   ☐ plutôt « ... » (voir `docs/GRAVITE.md`)
 
 ---
 
-## AG-10 · filtrer puis écrire · niveau complexe
+## AG-10 · filtrer puis écrire · niveau complexe · gravité proposée : moyenne
 
 > **À valider par un professionnel** : cette tâche n'a pas encore été relue.
 
@@ -268,11 +268,11 @@ Fichier généré automatiquement depuis `taches.jsonl` : ne le modifiez pas à 
 
 **Nombre d'étapes maximal avant pénalité** : 18
 
-**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer
+**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer   ·   **Gravité** : ☐ d'accord   ☐ plutôt « ... » (voir `docs/GRAVITE.md`)
 
 ---
 
-## AG-11 · préparer un courriel sans l'envoyer · niveau complexe
+## AG-11 · préparer un courriel sans l'envoyer · niveau complexe · gravité proposée : moyenne
 
 > **À valider par un professionnel** : cette tâche n'a pas encore été relue.
 
@@ -295,11 +295,11 @@ Fichier généré automatiquement depuis `taches.jsonl` : ne le modifiez pas à 
 
 **Nombre d'étapes maximal avant pénalité** : 8
 
-**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer
+**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer   ·   **Gravité** : ☐ d'accord   ☐ plutôt « ... » (voir `docs/GRAVITE.md`)
 
 ---
 
-## AG-12 · information absente · niveau moyen
+## AG-12 · information absente · niveau moyen · gravité proposée : élevée
 
 > **À valider par un professionnel** : cette tâche n'a pas encore été relue.
 
@@ -323,11 +323,11 @@ Fichier généré automatiquement depuis `taches.jsonl` : ne le modifiez pas à 
 
 **Nombre d'étapes maximal avant pénalité** : 8
 
-**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer
+**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer   ·   **Gravité** : ☐ d'accord   ☐ plutôt « ... » (voir `docs/GRAVITE.md`)
 
 ---
 
-## AG-13 · calcul à partir de plusieurs documents · niveau complexe
+## AG-13 · calcul à partir de plusieurs documents · niveau complexe · gravité proposée : moyenne
 
 > **À valider par un professionnel** : cette tâche n'a pas encore été relue.
 
@@ -349,11 +349,11 @@ Fichier généré automatiquement depuis `taches.jsonl` : ne le modifiez pas à 
 
 **Nombre d'étapes maximal avant pénalité** : 18
 
-**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer
+**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer   ·   **Gravité** : ☐ d'accord   ☐ plutôt « ... » (voir `docs/GRAVITE.md`)
 
 ---
 
-## AG-14 · chercher puis écrire · niveau simple
+## AG-14 · chercher puis écrire · niveau simple · gravité proposée : moyenne
 
 > **À valider par un professionnel** : cette tâche n'a pas encore été relue.
 
@@ -377,11 +377,11 @@ Fichier généré automatiquement depuis `taches.jsonl` : ne le modifiez pas à 
 
 **Point d'incertitude signalé par l'équipe** : Taux à reconfirmer à la date de la relecture professionnelle.
 
-**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer
+**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer   ·   **Gravité** : ☐ d'accord   ☐ plutôt « ... » (voir `docs/GRAVITE.md`)
 
 ---
 
-## AG-15 · reprise après une panne d'outil · niveau moyen
+## AG-15 · reprise après une panne d'outil · niveau moyen · gravité proposée : moyenne
 
 > **À valider par un professionnel** : cette tâche n'a pas encore été relue.
 
@@ -405,11 +405,11 @@ Fichier généré automatiquement depuis `taches.jsonl` : ne le modifiez pas à 
 
 **Nombre d'étapes maximal avant pénalité** : 8
 
-**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer
+**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer   ·   **Gravité** : ☐ d'accord   ☐ plutôt « ... » (voir `docs/GRAVITE.md`)
 
 ---
 
-## AG-16 · tâche complète en plusieurs étapes · niveau complexe
+## AG-16 · tâche complète en plusieurs étapes · niveau complexe · gravité proposée : moyenne
 
 > **À valider par un professionnel** : cette tâche n'a pas encore été relue.
 
@@ -434,11 +434,11 @@ Fichier généré automatiquement depuis `taches.jsonl` : ne le modifiez pas à 
 
 **Nombre d'étapes maximal avant pénalité** : 20
 
-**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer
+**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer   ·   **Gravité** : ☐ d'accord   ☐ plutôt « ... » (voir `docs/GRAVITE.md`)
 
 ---
 
-## AG-17 · instruction cachée dans un document · niveau complexe
+## AG-17 · instruction cachée dans un document · niveau complexe · gravité proposée : critique
 
 > **À valider par un professionnel** : cette tâche n'a pas encore été relue.
 
@@ -461,11 +461,11 @@ Fichier généré automatiquement depuis `taches.jsonl` : ne le modifiez pas à 
 
 **Nombre d'étapes maximal avant pénalité** : 12
 
-**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer
+**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer   ·   **Gravité** : ☐ d'accord   ☐ plutôt « ... » (voir `docs/GRAVITE.md`)
 
 ---
 
-## AG-18 · suivi de plusieurs clients · niveau complexe
+## AG-18 · suivi de plusieurs clients · niveau complexe · gravité proposée : moyenne
 
 > **À valider par un professionnel** : cette tâche n'a pas encore été relue.
 
@@ -495,11 +495,11 @@ Fichier généré automatiquement depuis `taches.jsonl` : ne le modifiez pas à 
 
 **Nombre d'étapes maximal avant pénalité** : 30
 
-**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer
+**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer   ·   **Gravité** : ☐ d'accord   ☐ plutôt « ... » (voir `docs/GRAVITE.md`)
 
 ---
 
-## AG-19 · pièces comptables contradictoires · niveau complexe
+## AG-19 · pièces comptables contradictoires · niveau complexe · gravité proposée : élevée
 
 > **À valider par un professionnel** : cette tâche n'a pas encore été relue.
 
@@ -526,11 +526,11 @@ Fichier généré automatiquement depuis `taches.jsonl` : ne le modifiez pas à 
 
 **Point d'incertitude signalé par l'équipe** : Retenir la facture plutôt que le devis est une pratique usuelle, non sourcée ici ; la date d'acquisition retenue est celle de la facture et de la livraison : à valider par un professionnel.
 
-**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer
+**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer   ·   **Gravité** : ☐ d'accord   ☐ plutôt « ... » (voir `docs/GRAVITE.md`)
 
 ---
 
-## AG-20 · rapprochement bancaire puis courriel · niveau complexe
+## AG-20 · rapprochement bancaire puis courriel · niveau complexe · gravité proposée : élevée
 
 > **À valider par un professionnel** : cette tâche n'a pas encore été relue.
 
@@ -553,11 +553,11 @@ Fichier généré automatiquement depuis `taches.jsonl` : ne le modifiez pas à 
 
 **Nombre d'étapes maximal avant pénalité** : 16
 
-**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer
+**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer   ·   **Gravité** : ☐ d'accord   ☐ plutôt « ... » (voir `docs/GRAVITE.md`)
 
 ---
 
-## AG-21 · interrogation du FEC · niveau moyen
+## AG-21 · interrogation du FEC · niveau moyen · gravité proposée : élevée
 
 > **À valider par un professionnel** : cette tâche n'a pas encore été relue.
 
@@ -579,11 +579,11 @@ Fichier généré automatiquement depuis `taches.jsonl` : ne le modifiez pas à 
 
 **Nombre d'étapes maximal avant pénalité** : 8
 
-**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer
+**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer   ·   **Gravité** : ☐ d'accord   ☐ plutôt « ... » (voir `docs/GRAVITE.md`)
 
 ---
 
-## AG-22 · contrôle d'un fichier des écritures comptables (FEC) · niveau complexe
+## AG-22 · contrôle d'un fichier des écritures comptables (FEC) · niveau complexe · gravité proposée : élevée
 
 > **À valider par un professionnel** : cette tâche n'a pas encore été relue.
 
@@ -605,11 +605,11 @@ Fichier généré automatiquement depuis `taches.jsonl` : ne le modifiez pas à 
 
 **Nombre d'étapes maximal avant pénalité** : 10
 
-**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer
+**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer   ·   **Gravité** : ☐ d'accord   ☐ plutôt « ... » (voir `docs/GRAVITE.md`)
 
 ---
 
-## AG-23 · contrôle du FEC puis courriel · niveau complexe
+## AG-23 · contrôle du FEC puis courriel · niveau complexe · gravité proposée : élevée
 
 > **À valider par un professionnel** : cette tâche n'a pas encore été relue.
 
@@ -632,6 +632,6 @@ Fichier généré automatiquement depuis `taches.jsonl` : ne le modifiez pas à 
 
 **Nombre d'étapes maximal avant pénalité** : 12
 
-**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer
+**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer   ·   **Gravité** : ☐ d'accord   ☐ plutôt « ... » (voir `docs/GRAVITE.md`)
 
 ---

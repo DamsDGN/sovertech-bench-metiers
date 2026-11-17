@@ -63,7 +63,7 @@ docs/                PLAN, METHODOLOGIE, LIMITES, REPRODUIRE, GLOSSAIRE
 - `TACHES.md` est **généré** depuis les fichiers de données (`python3 -m core.export_lisible`) : ne le
   modifiez pas à la main, modifiez la source et régénérez-le.
 - Un `.jsonl` contient **un objet JSON par ligne**. Champs communs : `id`, `bloc`, `theme`, `niveau`
-  (`simple`, `moyen`, `complexe`), `a_valider_par_pro`, `statut_validation`, `source_publique`,
+  (`simple`, `moyen`, `complexe`), `gravite` (`faible`, `moyenne`, `elevee`, `critique`), `a_valider_par_pro`, `statut_validation`, `source_publique`,
   `incertitude`. Les champs propres à chaque bloc sont décrits dans le `README.md` du bloc.
 
 ## Conventions

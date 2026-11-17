@@ -42,6 +42,8 @@ supprimer ou les corriger change les mesures : signalez-le dans la pull request.
 
 ## Blocs
 
+- **Chaque tâche porte une `gravite`** (`faible`, `moyenne`, `elevee`, `critique`), définie dans `docs/GRAVITE.md`. C'est
+  une proposition de l'équipe, à valider par un professionnel : ne la présentez pas comme établie.
 - Chaque bloc mêle **tâches simples et complexes** (de l'ordre d'un quart à un tiers de complexes) et reste
   représentatif du travail d'un cabinet : une tâche qu'aucun cabinet ne ferait n'a pas sa place. Classer
   honnêtement : une tâche à réponse unique reste « simple », même si son énoncé est long.

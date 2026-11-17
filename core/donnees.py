@@ -16,6 +16,7 @@ USAGES_PAR_DEFAUT = ["chat", "rag", "agentique"]
 COLONNES_FEC = ["JournalCode", "JournalLib", "EcritureNum", "EcritureDate", "CompteNum", "CompteLib", "CompAuxNum", "CompAuxLib",
                 "PieceRef", "PieceDate", "EcritureLib", "Debit", "Credit", "EcritureLet", "DateLet", "ValidDate", "Montantdevise", "Idevise"]
 NIVEAUX = {"simple", "moyen", "complexe"}
+GRAVITES = ("faible", "moyenne", "elevee", "critique")
 TYPES_RAG = {"reponse_directe", "version_obsolete", "contradiction", "sans_reponse", "plusieurs_documents",
              "reponse_partielle"}
 OUTILS = {"rechercher", "lire", "lire_tableau", "extraire_champs", "ecrire_tableau", "rediger_mail", "envoyer_mail", "interroger_fec"}
@@ -175,6 +176,8 @@ def _commun(t, prefixe, vus, erreurs):
         erreurs.append(f"{nom} : niveau {t.get('niveau')!r} inconnu")
     if not t.get("theme"):
         erreurs.append(f"{nom} : theme manquant")
+    if t.get("gravite") not in GRAVITES:
+        erreurs.append(f"{nom} : gravite {t.get('gravite')!r} inconnue (attendues : {', '.join(GRAVITES)})")
     if not isinstance(t.get("a_valider_par_pro"), bool):
         erreurs.append(f"{nom} : a_valider_par_pro doit etre un booleen")
     sv = t.get("statut_validation")

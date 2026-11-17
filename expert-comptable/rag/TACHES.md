@@ -2,7 +2,7 @@
 
 Fichier généré automatiquement depuis `questions.jsonl` : ne le modifiez pas à la main.
 
-## RG-01 · procédure de clôture · niveau moyen
+## RG-01 · procédure de clôture · niveau moyen · gravité proposée : moyenne
 
 > **À valider par un professionnel** : cette tâche n'a pas encore été relue.
 
@@ -33,11 +33,11 @@ Fichier généré automatiquement depuis `questions.jsonl` : ne le modifiez pas 
 
 > Selon la procédure de clôture annuelle en vigueur (version 2 du 15 janvier 2026), la relance des pièces manquantes se fait 45 jours avant la date de clôture.
 
-**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer
+**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer   ·   **Gravité** : ☐ d'accord   ☐ plutôt « ... » (voir `docs/GRAVITE.md`)
 
 ---
 
-## RG-02 · délais de réponse aux clients · niveau moyen
+## RG-02 · délais de réponse aux clients · niveau moyen · gravité proposée : faible
 
 > **À valider par un professionnel** : cette tâche n'a pas encore été relue.
 
@@ -68,11 +68,11 @@ Fichier généré automatiquement depuis `questions.jsonl` : ne le modifiez pas 
 
 > Selon la charte des délais de réponse en vigueur (version 2), le cabinet répond aux courriels de ses clients sous 2 jours ouvrés.
 
-**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer
+**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer   ·   **Gravité** : ☐ d'accord   ☐ plutôt « ... » (voir `docs/GRAVITE.md`)
 
 ---
 
-## RG-03 · honoraires · niveau moyen
+## RG-03 · honoraires · niveau moyen · gravité proposée : élevée
 
 > **À valider par un professionnel** : cette tâche n'a pas encore été relue.
 
@@ -103,11 +103,11 @@ Fichier généré automatiquement depuis `questions.jsonl` : ne le modifiez pas 
 
 > D'après la grille des taux horaires 2026, un collaborateur est facturé 85 € HT de l'heure.
 
-**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer
+**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer   ·   **Gravité** : ☐ d'accord   ☐ plutôt « ... » (voir `docs/GRAVITE.md`)
 
 ---
 
-## RG-04 · honoraires · niveau moyen
+## RG-04 · honoraires · niveau moyen · gravité proposée : élevée
 
 > **À valider par un professionnel** : cette tâche n'a pas encore été relue.
 
@@ -138,11 +138,11 @@ Fichier généré automatiquement depuis `questions.jsonl` : ne le modifiez pas 
 
 > D'après la grille des taux horaires 2026, l'associée est facturée 140 € HT de l'heure.
 
-**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer
+**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer   ·   **Gravité** : ☐ d'accord   ☐ plutôt « ... » (voir `docs/GRAVITE.md`)
 
 ---
 
-## RG-05 · relance des pièces manquantes · niveau simple
+## RG-05 · relance des pièces manquantes · niveau simple · gravité proposée : faible
 
 > **À valider par un professionnel** : cette tâche n'a pas encore été relue.
 
@@ -166,11 +166,11 @@ Fichier généré automatiquement depuis `questions.jsonl` : ne le modifiez pas 
 
 > Selon la procédure de relance des pièces manquantes, à J+14 le collaborateur appelle le client par téléphone.
 
-**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer
+**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer   ·   **Gravité** : ☐ d'accord   ☐ plutôt « ... » (voir `docs/GRAVITE.md`)
 
 ---
 
-## RG-06 · relance des pièces manquantes · niveau moyen
+## RG-06 · relance des pièces manquantes · niveau moyen · gravité proposée : moyenne
 
 > **À valider par un professionnel** : cette tâche n'a pas encore été relue.
 
@@ -195,11 +195,11 @@ Fichier généré automatiquement depuis `questions.jsonl` : ne le modifiez pas 
 
 > D'après la procédure de relance, au-delà de J+30 le dossier est signalé « en suspens » et des honoraires de relance de 45 € HT par dossier peuvent être facturés, si la lettre de mission le prévoit.
 
-**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer
+**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer   ·   **Gravité** : ☐ d'accord   ☐ plutôt « ... » (voir `docs/GRAVITE.md`)
 
 ---
 
-## RG-07 · fiches clients · niveau simple
+## RG-07 · fiches clients · niveau simple · gravité proposée : élevée
 
 > **À valider par un professionnel** : cette tâche n'a pas encore été relue.
 
@@ -223,11 +223,11 @@ Fichier généré automatiquement depuis `questions.jsonl` : ne le modifiez pas 
 
 > D'après sa fiche client, l'Atelier Kerloc'h clôture son exercice le 30 juin (exercice en cours clos le 30/06/2026).
 
-**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer
+**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer   ·   **Gravité** : ☐ d'accord   ☐ plutôt « ... » (voir `docs/GRAVITE.md`)
 
 ---
 
-## RG-08 · fiches clients · niveau simple
+## RG-08 · fiches clients · niveau simple · gravité proposée : moyenne
 
 > **À valider par un professionnel** : cette tâche n'a pas encore été relue.
 
@@ -251,11 +251,11 @@ Fichier généré automatiquement depuis `questions.jsonl` : ne le modifiez pas 
 
 > D'après sa fiche client, le forfait annuel de la SARL Les Épis d'Or est de 4 800 € HT.
 
-**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer
+**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer   ·   **Gravité** : ☐ d'accord   ☐ plutôt « ... » (voir `docs/GRAVITE.md`)
 
 ---
 
-## RG-09 · documents contradictoires · niveau complexe
+## RG-09 · documents contradictoires · niveau complexe · gravité proposée : élevée
 
 > **À valider par un professionnel** : cette tâche n'a pas encore été relue.
 
@@ -286,11 +286,11 @@ Fichier généré automatiquement depuis `questions.jsonl` : ne le modifiez pas 
 
 **Point d'incertitude signalé par l'équipe** : Le principe « la facture fait foi sur le devis » est une pratique usuelle, non sourcée ici : à valider par un professionnel.
 
-**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer
+**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer   ·   **Gravité** : ☐ d'accord   ☐ plutôt « ... » (voir `docs/GRAVITE.md`)
 
 ---
 
-## RG-10 · calcul de date · niveau complexe
+## RG-10 · calcul de date · niveau complexe · gravité proposée : élevée
 
 > **À valider par un professionnel** : cette tâche n'a pas encore été relue.
 
@@ -321,11 +321,11 @@ Fichier généré automatiquement depuis `questions.jsonl` : ne le modifiez pas 
 
 > La fiche client indique une clôture au 30 juin 2026 et la procédure de clôture en vigueur (version 2) prévoit une relance 45 jours avant : soit le 16 mai 2026.
 
-**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer
+**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer   ·   **Gravité** : ☐ d'accord   ☐ plutôt « ... » (voir `docs/GRAVITE.md`)
 
 ---
 
-## RG-11 · textes publics · niveau simple
+## RG-11 · textes publics · niveau simple · gravité proposée : élevée
 
 > **À valider par un professionnel** : cette tâche n'a pas encore été relue.
 
@@ -353,11 +353,11 @@ Fichier généré automatiquement depuis `questions.jsonl` : ne le modifiez pas 
 
 **Point d'incertitude signalé par l'équipe** : Taux à reconfirmer à la date de la relecture professionnelle.
 
-**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer
+**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer   ·   **Gravité** : ☐ d'accord   ☐ plutôt « ... » (voir `docs/GRAVITE.md`)
 
 ---
 
-## RG-12 · question sans réponse · niveau moyen
+## RG-12 · question sans réponse · niveau moyen · gravité proposée : élevée
 
 > **À valider par un professionnel** : cette tâche n'a pas encore été relue.
 
@@ -381,11 +381,11 @@ Fichier généré automatiquement depuis `questions.jsonl` : ne le modifiez pas 
 
 **Point d'incertitude signalé par l'équipe** : La question teste la fidélité aux extraits, pas la connaissance du taux : le corpus ne dit pas quelle activité relève de quel taux.
 
-**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer
+**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer   ·   **Gravité** : ☐ d'accord   ☐ plutôt « ... » (voir `docs/GRAVITE.md`)
 
 ---
 
-## RG-13 · question sans réponse · niveau moyen
+## RG-13 · question sans réponse · niveau moyen · gravité proposée : moyenne
 
 > **À valider par un professionnel** : cette tâche n'a pas encore été relue.
 
@@ -407,11 +407,11 @@ Fichier généré automatiquement depuis `questions.jsonl` : ne le modifiez pas 
 
 > Les documents fournis ne donnent pas de taux horaire pour un stagiaire : seuls l'associée, le collaborateur et l'assistante figurent dans la grille.
 
-**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer
+**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer   ·   **Gravité** : ☐ d'accord   ☐ plutôt « ... » (voir `docs/GRAVITE.md`)
 
 ---
 
-## RG-14 · question sans réponse · niveau moyen
+## RG-14 · question sans réponse · niveau moyen · gravité proposée : élevée
 
 > **À valider par un professionnel** : cette tâche n'a pas encore été relue.
 
@@ -433,11 +433,11 @@ Fichier généré automatiquement depuis `questions.jsonl` : ne le modifiez pas 
 
 > Je ne peux pas répondre : la fiche de l'association ne mentionne ni chiffre d'affaires ni budget, seulement le forfait annuel du cabinet.
 
-**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer
+**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer   ·   **Gravité** : ☐ d'accord   ☐ plutôt « ... » (voir `docs/GRAVITE.md`)
 
 ---
 
-## RG-15 · procédure de clôture · niveau moyen
+## RG-15 · procédure de clôture · niveau moyen · gravité proposée : faible
 
 > **À valider par un professionnel** : cette tâche n'a pas encore été relue.
 
@@ -467,11 +467,11 @@ Fichier généré automatiquement depuis `questions.jsonl` : ne le modifiez pas 
 
 > Selon la procédure de clôture en vigueur (version 2), le dossier est archivé dans les 15 jours qui suivent la signature des comptes.
 
-**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer
+**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer   ·   **Gravité** : ☐ d'accord   ☐ plutôt « ... » (voir `docs/GRAVITE.md`)
 
 ---
 
-## RG-16 · procédure de clôture · niveau moyen
+## RG-16 · procédure de clôture · niveau moyen · gravité proposée : faible
 
 > **À valider par un professionnel** : cette tâche n'a pas encore été relue.
 
@@ -501,11 +501,11 @@ Fichier généré automatiquement depuis `questions.jsonl` : ne le modifiez pas 
 
 > Selon la procédure de clôture en vigueur (version 2), l'associée référente relit le dossier 8 jours ouvrés avant la signature des comptes.
 
-**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer
+**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer   ·   **Gravité** : ☐ d'accord   ☐ plutôt « ... » (voir `docs/GRAVITE.md`)
 
 ---
 
-## RG-17 · textes publics · niveau moyen
+## RG-17 · textes publics · niveau moyen · gravité proposée : élevée
 
 > **À valider par un professionnel** : cette tâche n'a pas encore été relue.
 
@@ -539,11 +539,11 @@ Fichier généré automatiquement depuis `questions.jsonl` : ne le modifiez pas 
 
 **Point d'incertitude signalé par l'équipe** : Numéro d'article cité de mémoire dans le corpus : à vérifier lors de la relecture professionnelle.
 
-**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer
+**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer   ·   **Gravité** : ☐ d'accord   ☐ plutôt « ... » (voir `docs/GRAVITE.md`)
 
 ---
 
-## RG-18 · question sans réponse · niveau moyen
+## RG-18 · question sans réponse · niveau moyen · gravité proposée : moyenne
 
 > **À valider par un professionnel** : cette tâche n'a pas encore été relue.
 
@@ -566,11 +566,11 @@ Fichier généré automatiquement depuis `questions.jsonl` : ne le modifiez pas 
 
 > Aucun numéro de téléphone n'est indiqué pour le trésorier : la fiche donne seulement son courriel, tresorier@amis-du-phare.example.
 
-**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer
+**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer   ·   **Gravité** : ☐ d'accord   ☐ plutôt « ... » (voir `docs/GRAVITE.md`)
 
 ---
 
-## RG-19 · regrouper des informations de plusieurs fiches · niveau complexe
+## RG-19 · regrouper des informations de plusieurs fiches · niveau complexe · gravité proposée : moyenne
 
 > **À valider par un professionnel** : cette tâche n'a pas encore été relue.
 
@@ -607,11 +607,11 @@ Fichier généré automatiquement depuis `questions.jsonl` : ne le modifiez pas 
 
 **Point d'incertitude signalé par l'équipe** : « 3 mois avant la clôture » : la date exacte (fin de mois) peut varier, la référence accepte la période.
 
-**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer
+**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer   ·   **Gravité** : ☐ d'accord   ☐ plutôt « ... » (voir `docs/GRAVITE.md`)
 
 ---
 
-## RG-20 · réponse partielle · niveau complexe
+## RG-20 · réponse partielle · niveau complexe · gravité proposée : élevée
 
 > **À valider par un professionnel** : cette tâche n'a pas encore été relue.
 
@@ -643,11 +643,11 @@ Fichier généré automatiquement depuis `questions.jsonl` : ne le modifiez pas 
 
 **Point d'incertitude signalé par l'équipe** : Assimiler les ventes de marchandises (compte 707) au chiffre d'affaires est une simplification de l'équipe : à valider par un professionnel.
 
-**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer
+**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer   ·   **Gravité** : ☐ d'accord   ☐ plutôt « ... » (voir `docs/GRAVITE.md`)
 
 ---
 
-## RG-21 · tarifs et calcul · niveau complexe
+## RG-21 · tarifs et calcul · niveau complexe · gravité proposée : élevée
 
 > **À valider par un professionnel** : cette tâche n'a pas encore été relue.
 
@@ -678,11 +678,11 @@ Fichier généré automatiquement depuis `questions.jsonl` : ne le modifiez pas 
 
 > D'après la grille des taux horaires 2026 : 3 heures de collaborateur à 85 € HT font 255 € HT, auxquelles s'ajoute 1 heure de l'associée à 140 € HT, soit 395 € HT au total.
 
-**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer
+**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer   ·   **Gravité** : ☐ d'accord   ☐ plutôt « ... » (voir `docs/GRAVITE.md`)
 
 ---
 
-## RG-22 · regrouper des informations de plusieurs fiches · niveau complexe
+## RG-22 · regrouper des informations de plusieurs fiches · niveau complexe · gravité proposée : moyenne
 
 > **À valider par un professionnel** : cette tâche n'a pas encore été relue.
 
@@ -711,11 +711,11 @@ Fichier généré automatiquement depuis `questions.jsonl` : ne le modifiez pas 
 
 > Trois clients clôturent leur exercice au 31 décembre : Les Épis d'Or (4 800 € HT), Les Mouettes (1 500 € HT) et Anaïs Rolland (600 € HT). Le total de leurs forfaits annuels est de 6 900 € HT.
 
-**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer
+**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer   ·   **Gravité** : ☐ d'accord   ☐ plutôt « ... » (voir `docs/GRAVITE.md`)
 
 ---
 
-## RG-23 · relances et honoraires de relance · niveau complexe
+## RG-23 · relances et honoraires de relance · niveau complexe · gravité proposée : élevée
 
 > **À valider par un professionnel** : cette tâche n'a pas encore été relue.
 
@@ -746,6 +746,6 @@ Fichier généré automatiquement depuis `questions.jsonl` : ne le modifiez pas 
 
 > D'après la procédure de relance, le cabinet a relancé à J+7 (courriel), J+14 (appel du collaborateur) et J+21 (courrier signé de l'associée). Les pièces étant arrivées après J+30, le dossier a été signalé « en suspens » et des honoraires de relance de 45 € HT par dossier peuvent être facturés, ce que la lettre de mission des Épis d'Or prévoit.
 
-**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer
+**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer   ·   **Gravité** : ☐ d'accord   ☐ plutôt « ... » (voir `docs/GRAVITE.md`)
 
 ---
