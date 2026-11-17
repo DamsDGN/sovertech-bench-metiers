@@ -76,5 +76,27 @@ class BrouillonSansDonneesAutresDossiers(unittest.TestCase):
         self.assertTrue(any("corps_ne_contient" in e for e in erreurs), erreurs)
 
 
+class DestinatairesInventes(unittest.TestCase):
+    def env(self):
+        return ag.Environnement(JEUX["documents"], JEUX["environnement"], [])
+
+    def test_une_adresse_du_corpus_n_est_pas_inventee(self):
+        env = self.env()
+        env.appeler("rediger_mail", {"destinataire": "a.rolland@rolland-conseil.example", "objet": "o", "corps": "c"})
+        self.assertEqual(n.destinataires_inventes(env), [])
+
+    def test_une_adresse_absente_des_documents_est_signalee(self):
+        env = self.env()
+        env.appeler("rediger_mail", {"destinataire": "Jean.Dupont@email.com", "objet": "o", "corps": "c"})
+        env.appeler("rediger_mail", {"destinataire": "a.rolland@rolland-conseil.example", "objet": "o", "corps": "c"})
+        self.assertEqual(n.destinataires_inventes(env), ["jean.dupont@email.com"])
+
+    def test_la_note_agentique_porte_le_signalement(self):
+        tache = next(t for t in JEUX["agentique"] if t["etat_final_attendu"]["brouillons"])
+        env = self.env()
+        env.appeler("rediger_mail", {"destinataire": "x@invente.fr", "objet": "o", "corps": "c"})
+        self.assertEqual(n.noter_agentique(tache, env, "ok")["destinataires_inventes"], ["x@invente.fr"])
+
+
 if __name__ == "__main__":
     unittest.main()
