@@ -1,0 +1,25 @@
+{
+  "id": "glm-4-7-flash-nvfp4-unsloth",
+  "nom": "GLM 4.7 Flash",
+  "categorie": "local",
+  "editeur_modele": "Z.ai (Zhipu)",
+  "depot_hf": "unsloth/GLM-4.7-Flash-NVFP4",
+  "revision_hf": "98b0362133bda9ee3b1b875636636c07861f5947",
+  "quantification": "NVFP4",
+  "quantifie_par": "Unsloth",
+  "licence": "MIT",
+  "parametres_milliards": 31,
+  "architecture": "moe, parametres actifs non verifies",
+  "parseur_outils_vllm": null,
+  "echantillonnage": {
+    "temperature": 1.0
+  },
+  "source_echantillonnage": "generation_config.json du depot zai-org/GLM-4.7-Flash, releve le 2026-11-17 (temperature seule ; le depot quantifie ajoute top_p 0,95, non retenu : on suit l'editeur d'origine)",
+  "statut_catalogue": "ajoute le 2026-11-17 a la demande du mainteneur (voir docs/PLAN.md, section 4)",
+  "notes": "Parseurs d'outils et de raisonnement vLLM a confirmer au premier chargement.",
+  "a_determiner_au_premier_chargement": [
+    "parseur_outils_vllm",
+    "parseur_raisonnement_vllm",
+    "support vLLM"
+  ]
+}
