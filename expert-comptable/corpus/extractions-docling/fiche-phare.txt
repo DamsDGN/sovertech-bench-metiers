@@ -1,0 +1,17 @@
+*DOCUMENT FICTIF (Cabinet Aubépine &amp; Associés, cabinet inventé)*
+
+## Fiche client : Association Les Amis du Phare
+
+| **Rubrique**    | **Information**                        |
+|-----------------|----------------------------------------|
+| Forme juridique | Association loi 1901                   |
+| Activité        | Sauvegarde du patrimoine maritime      |
+| SIREN (fictif)  | 900 100 706                            |
+| Date de clôture | 31/08 (exercice en cours : 2026)       |
+| TVA             | Non assujettie                         |
+| Interlocuteur   | M. Paul Le Roux, trésorier             |
+| Courriel        | tresorier@amis-du-phare.example        |
+| Forfait annuel  | 1 100 € HT                             |
+| Mission         | Comptes annuels et suivi de trésorerie |
+
+La revue finale des comptes d'une association est assurée par l'associée référente du cabinet.

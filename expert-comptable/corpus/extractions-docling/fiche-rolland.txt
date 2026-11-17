@@ -1,0 +1,14 @@
+## Fiche client : Mme Anaïs Rolland
+
+| Rubrique        | Information                               |
+|-----------------|-------------------------------------------|
+| Forme juridique | Entreprise individuelle, micro-entreprise |
+| Activité        | Conseil indépendant                       |
+| SIREN (fictif)  | 900 100 605                               |
+| Date de clôture | 31/12 (exercice en cours : 2026)          |
+| TVA             | Franchise en base de TVA                  |
+| Courriel        | a.rolland@rolland-conseil.example         |
+| Forfait annuel  | 600 € HT                                  |
+| Mission         | Assistance aux déclarations uniquement    |
+
+Cliente joignable uniquement par courriel : aucun numéro de téléphone n'a été communiqué au cabinet.

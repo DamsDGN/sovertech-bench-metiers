@@ -1,0 +1,11 @@
+DOCUMENT FICTIF (Cabinet Aubépine &amp; Associés, cabinet inventé)
+
+## Facture n° F-2026-0231du 5 février 2026
+
+Fournisseur : Garage Océane (garage fictif). Client : SARL Les Épis d'Or.
+
+| Désignation                                  | Montant        |
+|----------------------------------------------|----------------|
+| Véhicule utilitaire, livré le 5 février 2026 | 17 800,00 € HT |
+| TVA 20 %                                     | 3 560,00 €     |
+| Total TTC                                    | 21360,00 €     |

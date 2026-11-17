@@ -1,0 +1,10 @@
+*DOCUMENT FICTIF (Cabinet Aubépine &amp; Associés, cabinet inventé)*
+
+## Relance des pièces manquantes
+
+Quand une pièce a été demandée au client et n'est pas reçue :
+
+- **J+7** : le collaborateur envoie un courriel de relance.
+- **J+14** : le collaborateur appelle le client par téléphone.
+- **J+21** : l'associée référente envoie un courrier signé.
+- **Au-delà de J+30** : le dossier est signalé « en suspens » et des honoraires de relance de 45 € HT par dossier peuvent être facturés, si la lettre de mission le prévoit.

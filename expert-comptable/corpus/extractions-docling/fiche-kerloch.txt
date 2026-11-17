@@ -1,0 +1,15 @@
+*DOCUMENT FICTIF (Cabinet Aubépine &amp; Associés, cabinet inventé)*
+
+## Fiche client : SAS Atelier Kerloc'h
+
+| **Rubrique**    | **Information**                              |
+|-----------------|----------------------------------------------|
+| Forme juridique | SAS                                          |
+| Activité        | Menuiserie, Quimperlé                        |
+| SIREN           | non renseigné dans le dossier                |
+| Date de clôture | 30/06 (exercice en cours clos le 30/06/2026) |
+| Régime de TVA   | Réel simplifié                               |
+| Interlocuteur   | M. Erwan Kerloc'h, président                 |
+| Courriel        | contact@atelier-kerloch.example              |
+| Forfait annuel  | 6 200 € HT                                   |
+| Mission         | Tenue comptable, bilan, déclarations de TVA  |

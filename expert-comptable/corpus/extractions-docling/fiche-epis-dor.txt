@@ -1,0 +1,17 @@
+*DOCUMENT FICTIF (Cabinet Aubépine &amp; Associés, cabinet inventé)*
+
+## Fiche client : SARL Les Épis d'Or
+
+| **Rubrique**    | **Information**                          |
+|-----------------|------------------------------------------|
+| Forme juridique | SARL                                     |
+| Activité        | Boulangerie-pâtisserie, Lorient          |
+| SIREN (fictif)  | 900 100 201                              |
+| Date de clôture | 31/12 (exercice en cours : 2026)         |
+| Régime de TVA   | Réel normal, déclaration mensuelle       |
+| Interlocutrice  | Mme Gwenaëlle Morvan, gérante            |
+| Courriel        | g.morvan@epis-dor.example                |
+| Forfait annuel  | 4 800 € HT                               |
+| Mission         | Tenue comptable, bilan et liasse fiscale |
+
+**Pièces souvent en retard** : relevés bancaires du mois, tickets de caisse.
