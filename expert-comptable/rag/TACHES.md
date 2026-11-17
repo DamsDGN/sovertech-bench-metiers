@@ -592,8 +592,7 @@ Fichier généré automatiquement depuis `questions.jsonl` : ne le modifiez pas 
 
 - la réponse contient l'une de ces formulations : « Épis d'Or »
 - la réponse contient l'une de ces formulations : « Kerloc'h »
-- la réponse contient l'une de ces formulations : « septembre »
-- la réponse contient l'une de ces formulations : « mars »
+- la réponse contient l'une de ces formulations : « 3 mois avant » ; « trois mois avant » ; « septembre » ; « mars »
 
 **Critères du juge** (note de 0 à 2 par critère)
 

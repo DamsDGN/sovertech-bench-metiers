@@ -230,6 +230,10 @@ def generer(dossier: Path) -> Path:
                    f"**coût par tâche réussie {nombre(p['cout_usd_par_reussite'], 4, ' $')}** (toutes les tentatives, échecs compris, rapportées aux seules réussites)" if p["cout_usd_moyen"] is not None
                    else f" ; coût moyen par tâche {nombre(p['cout_moyen'], 4, ' €')}" if p["cout_moyen"] is not None
                    else " ; coût par tâche non calculé (aucun tarif horaire fourni)"), ""]
+        if p["tronquees"]:
+            out += [f"> **{p['tronquees']} exécution(s) coupée(s) au plafond de génération** ({releve['max_tokens']} tokens) : le modèle a épuisé son budget, "
+                    "souvent en raisonnant, avant d'écrire sa réponse. Leur échec dit que le plafond est trop bas pour ce modèle, pas que le modèle ne sait pas répondre. "
+                    "Relancer avec un `--max-tokens` plus grand avant de comparer.", ""]
         lignes_csv.append([bloc, len({e['tache'] for e in sel}), len({e['passe'] for e in sel}), moyenne(taux_par_passe(sel)),
                            ecart_type(taux_par_passe(sel)), p["ttft_median"], p["debit_moyen"], p["duree_moyenne"], p["cout_moyen"]])
     out += ["## Limites de ce rapport", "",

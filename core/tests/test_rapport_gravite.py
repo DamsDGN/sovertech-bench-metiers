@@ -13,6 +13,13 @@ def e(tache, gravite, ok, passe=1, bloc="chat", erreur=None, cout=None):
     return r
 
 
+class Plafond(unittest.TestCase):
+    def test_les_reponses_coupees_sont_comptees(self):
+        coupee = e("A", "faible", False)
+        coupee["fin"] = "length"
+        self.assertEqual(rapport.performance([coupee, e("B", "faible", True)])["tronquees"], 1)
+
+
 class ErreursGraves(unittest.TestCase):
     def test_comptage(self):
         enrs = [e("A", "faible", False), e("B", "elevee", True), e("C", "elevee", False), e("D", "critique", False), e("E", "critique", True)]
