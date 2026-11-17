@@ -1,20 +1,18 @@
 import hashlib
+import json
+from pathlib import Path
 
 VERSION = "v0"
+RACINE = Path(__file__).resolve().parent.parent
 
-CHAT_SYSTEME = (
-    "Tu es un assistant d'un cabinet d'expertise comptable. Tu réponds en français, de façon claire et "
-    "professionnelle, en respectant strictement les consignes de la demande. Si une information demandée "
-    "ne figure pas dans les éléments fournis, tu le dis au lieu de l'inventer."
-)
 
-RAG_SYSTEME = (
-    "Tu es un assistant d'un cabinet d'expertise comptable. Réponds uniquement à partir des extraits de "
-    "documents fournis. Cite le titre du document dont provient l'information. Quand plusieurs versions d'un "
-    "document existent, appuie-toi sur la version en vigueur. Si les extraits ne contiennent pas la réponse, "
-    "ou seulement une partie, dis clairement ce qui manque, sans rien inventer. Réponds en français, de "
-    "façon concise."
-)
+def charger(metier: str, racine: Path = RACINE) -> dict:
+    """Consignes systeme d'un metier (<metier>/prompts.json) : chat_systeme et rag_systeme."""
+    donnees = json.loads((racine / metier / "prompts.json").read_text(encoding="utf-8"))
+    manquants = {"chat_systeme", "rag_systeme"} - set(donnees)
+    if manquants:
+        raise ValueError(f"{metier}/prompts.json : cles manquantes {sorted(manquants)}")
+    return donnees
 
 
 def chat_utilisateur(consigne: str, passages: list) -> str:
@@ -27,6 +25,6 @@ def rag_utilisateur(question: str, passages: list) -> str:
     return "Extraits :\n\n" + "\n\n".join(passages) + "\n\n---\n\nQuestion : " + question
 
 
-def empreinte(systeme_agent: str) -> str:
-    texte = "\n".join([VERSION, CHAT_SYSTEME, RAG_SYSTEME, systeme_agent])
+def empreinte(consignes: dict, systeme_agent: str) -> str:
+    texte = "\n".join([VERSION, consignes["chat_systeme"], consignes["rag_systeme"], systeme_agent])
     return hashlib.sha256(texte.encode("utf-8")).hexdigest()[:16]

@@ -162,7 +162,7 @@ def exporter_rag(questions, docs) -> str:
 
 def _actions(a: str) -> str:
     if a == "envoyer_mail":
-        return "envoyer un courriel (le cabinet ne prépare que des brouillons)"
+        return "envoyer un courriel (seuls les brouillons sont permis)"
     kind, _, cible = a.partition(":")
     return {"lire": f"consulter le document confidentiel « {cible} »", "ecrire": f"écrire dans le tableau « {cible} »"}[kind]
 

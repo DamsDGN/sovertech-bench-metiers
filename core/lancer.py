@@ -49,13 +49,13 @@ def construire_releve(config, entree, infos_serveur, jeux) -> dict:
             raisons.append(f"modele servi ({servi}) different du catalogue ({entree['depot_hf']})")
     return {
         "etalon_cloud": etalon, "budget_usd": config.get("budget_usd"),
-        "extraction": informations_extraction(jeux.get("extraction", "tika")),
+        "extraction": informations_extraction(jeux.get("extraction", "tika"), config["metier"]),
         "date": datetime.datetime.now().astimezone().isoformat(timespec="seconds"),
         "metier": config["metier"], "modele_catalogue": entree, "serveur": infos_serveur,
         "materiel_declare": config.get("materiel"), "memoire_gpu": memoire_gpu_locale(),
         "etiquette": config.get("etiquette"),
         "moteur": {"commit": _commit(), "python": platform.python_version(), "prompts": prompts.VERSION,
-                   "empreinte_prompts": prompts.empreinte(jeux["systeme_agent"])},
+                   "empreinte_prompts": prompts.empreinte(jeux["prompts"], jeux["systeme_agent"])},
         "recuperateur": rag.PARAMETRES, "echantillonnage": entree["echantillonnage"],
         "max_tokens": config["max_tokens"], "passes": config["passes"], "blocs": config["blocs"],
         "prix_horaire": config.get("prix_horaire"),
@@ -63,8 +63,8 @@ def construire_releve(config, entree, infos_serveur, jeux) -> dict:
     }
 
 
-def informations_extraction(moteur: str) -> dict:
-    fichier = d.RACINE / "expert-comptable" / "corpus" / ("MANIFESTE.json" if moteur == "tika" else f"MANIFESTE-{moteur}.json")
+def informations_extraction(moteur: str, metier: str = "expert-comptable") -> dict:
+    fichier = d.RACINE / metier / "corpus" / ("MANIFESTE.json" if moteur == "tika" else f"MANIFESTE-{moteur}.json")
     if not fichier.exists():
         return {"moteur": moteur}
     e = json.loads(fichier.read_text(encoding="utf-8"))["extraction"]
@@ -74,6 +74,8 @@ def informations_extraction(moteur: str) -> dict:
 def charger_jeux(metier: str, extraction: str = "tika") -> dict:
     jeux = d.charger_metier(metier, extraction=extraction)
     jeux["extraction"] = extraction
+    jeux["metier"] = metier
+    jeux["prompts"] = prompts.charger(metier)
     base = d.RACINE / metier / "agentique" / "environnement"
     jeux["outils"] = json.loads((base / "outils.json").read_text(encoding="utf-8"))
     jeux["systeme_agent"] = (base / "consigne_systeme.md").read_text(encoding="utf-8").strip()
@@ -98,7 +100,7 @@ def _resume_reponse(r):
 def jouer_chat(client, tache, jeux, config):
     docs = jeux["documents"]
     passages = [rag.passage(docs[i]) for i in tache["contexte"]]
-    msgs = [{"role": "system", "content": prompts.CHAT_SYSTEME},
+    msgs = [{"role": "system", "content": jeux["prompts"]["chat_systeme"]},
             {"role": "user", "content": prompts.chat_utilisateur(tache["consigne"], passages)}]
     r = client.completer(msgs, None, config["echantillonnage"], config["max_tokens"])
     return {"reponse": r.texte, "fin": r.fin, "mesures": _mesures([_resume_reponse(r)]),
@@ -109,7 +111,7 @@ def jouer_rag(client, question, jeux, config, index):
     docs = jeux["documents"]
     recuperes = index.rechercher(question["question"], rag.PARAMETRES["k"])
     passages = [rag.passage(docs[i]) for i in recuperes]
-    msgs = [{"role": "system", "content": prompts.RAG_SYSTEME},
+    msgs = [{"role": "system", "content": jeux["prompts"]["rag_systeme"]},
             {"role": "user", "content": prompts.rag_utilisateur(question["question"], passages)}]
     r = client.completer(msgs, None, config["echantillonnage"], config["max_tokens"])
     return {"reponse": r.texte, "fin": r.fin, "mesures": _mesures([_resume_reponse(r)]), "type_question": question["type_question"],

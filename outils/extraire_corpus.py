@@ -2,7 +2,7 @@
 
 Le texte extrait est versionne avec le corpus (extractions/) : le benchmark n'a besoin ni de Docker ni d'OCR pour tourner.
 Moteurs : tika (reference, extractions/) ou docling (variante, extractions-docling/, avec conversion LibreOffice prealable des .doc et .xls).
-Usage : python3 outils/extraire_corpus.py [tika|docling]
+Usage : python3 outils/extraire_corpus.py [tika|docling] [--metier expert-comptable]
 """
 import datetime
 import hashlib
@@ -17,7 +17,8 @@ import urllib.request
 from pathlib import Path
 
 RACINE = Path(__file__).resolve().parent.parent
-CORPUS = RACINE / "expert-comptable" / "corpus"
+METIER = "expert-comptable"
+CORPUS = RACINE / METIER / "corpus"
 IMAGE = "apache/tika:4.2.0-1-full"
 CONFIGURATION = {"server": {}, "pipes": {"numClients": 4}, "parse-context": {"tesseract-ocr-parser": {"language": "fra+eng"}}}
 PORT = 19998
@@ -158,4 +159,9 @@ def main():
 
 
 if __name__ == "__main__":
-    {"tika": main, "docling": main_docling}[(sys.argv[1] if len(sys.argv) > 1 else "tika")]()
+    args = sys.argv[1:]
+    if "--metier" in args:
+        METIER = args.pop(args.index("--metier") + 1)
+        args.remove("--metier")
+        CORPUS = RACINE / METIER / "corpus"
+    {"tika": main, "docling": main_docling}[(args[0] if args else "tika")]()

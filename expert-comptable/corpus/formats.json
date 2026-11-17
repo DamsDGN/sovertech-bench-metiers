@@ -1,29 +1,105 @@
 {
   "_commentaire": "Format reel de chaque document du corpus. Les sources lisibles sont dans sources/, les fichiers que voient les modeles dans fichiers/, leur texte extrait dans extractions/.",
-  "fiche-epis-dor": {"format": "docx"},
-  "fiche-kerloch": {"format": "docx"},
-  "fiche-mouettes": {"format": "docx"},
-  "fiche-rolland": {"format": "pdf"},
-  "fiche-phare": {"format": "docx"},
-  "proc-cloture-v1": {"format": "doc"},
-  "proc-cloture-v2": {"format": "docx"},
-  "proc-relance-pieces": {"format": "docx"},
-  "charte-delais-v1": {"format": "doc"},
-  "charte-delais-v2": {"format": "docx"},
-  "honoraires-2025": {"format": "xls"},
-  "honoraires-2026": {"format": "xlsx"},
-  "archivage-cabinet": {"format": "pdf", "degradation": "scan"},
-  "rh-remunerations-2026": {"format": "xlsx"},
-  "lettre-mission-epis-dor": {"format": "pdf", "degradation": "scan"},
-  "devis-vehicule-epis": {"format": "pdf"},
-  "facture-vehicule-epis": {"format": "pdf", "degradation": "photo"},
-  "note-reunion-epis-2026-02": {"format": "docx"},
-  "balance-epis-2025": {"format": "xlsx"},
-  "releve-banque-epis-2026-01": {"format": "csv"},
-  "justificatifs-epis-2026-01": {"format": "xls"},
-  "mail-kerloch-2026-03": {"format": "pdf"},
-  "pub-tva-taux": {"format": "pdf"},
-  "pub-pcg-classes": {"format": "xlsx"},
-  "pub-conservation": {"format": "docx"},
-  "fec-epis-dor-2025": {"format": "txt", "usage": ["chat", "agentique"]}
+  "_organisation": {
+    "nom": "Cabinet Aubépine & Associés",
+    "auteur_metadonnees": "Cabinet Aubépine (fictif)",
+    "precision": "cabinet inventé"
+  },
+  "_exigences": {
+    "formats": [
+      "csv",
+      "xls",
+      "xlsx",
+      "doc",
+      "docx",
+      "pdf",
+      "txt"
+    ],
+    "documents_degrades_min": 2
+  },
+  "fiche-epis-dor": {
+    "format": "docx"
+  },
+  "fiche-kerloch": {
+    "format": "docx"
+  },
+  "fiche-mouettes": {
+    "format": "docx"
+  },
+  "fiche-rolland": {
+    "format": "pdf"
+  },
+  "fiche-phare": {
+    "format": "docx"
+  },
+  "proc-cloture-v1": {
+    "format": "doc"
+  },
+  "proc-cloture-v2": {
+    "format": "docx"
+  },
+  "proc-relance-pieces": {
+    "format": "docx"
+  },
+  "charte-delais-v1": {
+    "format": "doc"
+  },
+  "charte-delais-v2": {
+    "format": "docx"
+  },
+  "honoraires-2025": {
+    "format": "xls"
+  },
+  "honoraires-2026": {
+    "format": "xlsx"
+  },
+  "archivage-cabinet": {
+    "format": "pdf",
+    "degradation": "scan"
+  },
+  "rh-remunerations-2026": {
+    "format": "xlsx"
+  },
+  "lettre-mission-epis-dor": {
+    "format": "pdf",
+    "degradation": "scan"
+  },
+  "devis-vehicule-epis": {
+    "format": "pdf"
+  },
+  "facture-vehicule-epis": {
+    "format": "pdf",
+    "degradation": "photo"
+  },
+  "note-reunion-epis-2026-02": {
+    "format": "docx"
+  },
+  "balance-epis-2025": {
+    "format": "xlsx"
+  },
+  "releve-banque-epis-2026-01": {
+    "format": "csv"
+  },
+  "justificatifs-epis-2026-01": {
+    "format": "xls"
+  },
+  "mail-kerloch-2026-03": {
+    "format": "pdf"
+  },
+  "pub-tva-taux": {
+    "format": "pdf"
+  },
+  "pub-pcg-classes": {
+    "format": "xlsx"
+  },
+  "pub-conservation": {
+    "format": "docx"
+  },
+  "fec-epis-dor-2025": {
+    "format": "txt",
+    "usage": [
+      "chat",
+      "agentique"
+    ]
+  }
 }
