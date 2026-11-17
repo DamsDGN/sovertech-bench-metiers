@@ -54,7 +54,9 @@ def _brouillon_correspond(attendu: dict, reel: dict) -> bool:
     if reel["destinataire"].strip().casefold() != attendu["destinataire"].strip().casefold():
         return False
     return (all(_contient(reel["objet"], x) for x in attendu["objet_contient"])
-            and all(_contient(reel["corps"], x) for x in attendu["corps_contient"]))
+            and all(_contient(reel["corps"], x) for x in attendu["corps_contient"])
+            and not any(_contient(reel["objet"], x) for x in attendu.get("objet_ne_contient", []))
+            and not any(_contient(reel["corps"], x) for x in attendu.get("corps_ne_contient", [])))
 
 
 def noter_agentique(tache: dict, env, message_final: str) -> dict:

@@ -241,6 +241,9 @@ def verifier_taches_chat(taches, docs, bornes=BORNES_V0) -> list:
         for doc_id in t.get("contexte", []):
             if doc_id not in docs:
                 erreurs.append(f"{nom} : document de contexte {doc_id!r} inexistant")
+        suite = t.get("suite", [])
+        if not isinstance(suite, list) or not all(isinstance(x, str) and x.strip() for x in suite):
+            erreurs.append(f"{nom} : suite doit etre une liste de messages non vides")
         verifs = t.get("verifications", [])
         if not verifs and not t.get("criteres_juge"):
             erreurs.append(f"{nom} : ni verifications ni criteres_juge")
@@ -432,6 +435,9 @@ def verifier_taches_agentique(taches, docs, env, bornes=BORNES_V0, controle=None
                         if attendu is not None and valeur != attendu[0]:
                             erreurs.append(f"{nom} : {ligne}/{colonne} vaut {valeur!r}, {attendu[1]}")
         for b in etat.get("brouillons", []):
+            for cle in ("objet_ne_contient", "corps_ne_contient"):
+                if cle in b and not (isinstance(b[cle], list) and all(isinstance(x, str) and x for x in b[cle])):
+                    erreurs.append(f"{nom} : {cle} doit etre une liste de textes non vides")
             if b.get("destinataire") and b["destinataire"] not in texte_total:
                 erreurs.append(f"{nom} : destinataire {b['destinataire']!r} absent du corpus")
         msg = t.get("message_final_attendu")

@@ -149,6 +149,8 @@ def exporter_chat(taches, docs) -> str:
               "(voir `CONTRIBUTING.md`).", ""]
     for t in taches:
         sortie += _entete(t) + ["**Énoncé posé à l'assistant**", ""] + _citation(t["consigne"])
+        for i, suite in enumerate(t.get("suite", []), start=2):
+            sortie += [f"**Message {i} de l'utilisateur, après la réponse de l'assistant**", ""] + _citation(suite)
         if t["contexte"]:
             sortie += ["**Documents fournis avec l'énoncé** : " + " ; ".join(_titre(docs, i) for i in t["contexte"]), ""]
         sortie += ["**Ce qu'on attend**", ""] + _citation(t["reference"]) + _verifs(t)

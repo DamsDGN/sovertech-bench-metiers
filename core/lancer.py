@@ -103,8 +103,18 @@ def jouer_chat(client, tache, jeux, config):
     msgs = [{"role": "system", "content": jeux["prompts"]["chat_systeme"]},
             {"role": "user", "content": prompts.chat_utilisateur(tache["consigne"], passages)}]
     r = client.completer(msgs, None, config["echantillonnage"], config["max_tokens"])
-    return {"reponse": r.texte, "fin": r.fin, "mesures": _mesures([_resume_reponse(r)]),
-            "note": n.noter_chat(tache, r.texte), "raisonnement_caracteres": len(r.raisonnement)}
+    reponses, mesures, raisonnement = [r], [_resume_reponse(r)], len(r.raisonnement)
+    for suite in tache.get("suite", []):
+        msgs += [{"role": "assistant", "content": r.texte}, {"role": "user", "content": suite}]
+        r = client.completer(msgs, None, config["echantillonnage"], config["max_tokens"])
+        reponses.append(r)
+        mesures.append(_resume_reponse(r))
+        raisonnement += len(r.raisonnement)
+    sortie = {"reponse": r.texte, "fin": r.fin, "mesures": _mesures(mesures),
+              "note": n.noter_chat(tache, r.texte), "raisonnement_caracteres": raisonnement}
+    if len(reponses) > 1:
+        sortie["reponses_precedentes"] = [x.texte for x in reponses[:-1]]
+    return sortie
 
 
 def jouer_rag(client, question, jeux, config, index):
