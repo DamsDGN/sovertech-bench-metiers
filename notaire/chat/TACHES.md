@@ -63,7 +63,7 @@ Fichier généré automatiquement depuis `taches.jsonl` : ne le modifiez pas à 
 
 - la réponse fait au plus 60 mots
 - la réponse contient l'une de ces formulations : « dix jours » ; « 10 jours »
-- la réponse contient l'une de ces formulations : « lendemain »
+- la réponse contient l'une de ces formulations : « lendemain » ; « jour suivant » ; « jour d'après »
 
 **Critères du juge** (note de 0 à 2 par critère)
 
@@ -184,7 +184,7 @@ Fichier généré automatiquement depuis `taches.jsonl` : ne le modifiez pas à 
 
 - la réponse contient l'une de ces formulations : « 1 050 » ; « 1050 »
 - la réponse contient l'une de ces formulations : « 105 »
-- la réponse contient l'une de ces formulations : « incohérent » ; « pas cohérent » ; « écart » ; « ne correspond » ; « ne concordent » ; « différen »
+- la réponse contient l'une de ces formulations : « incohérent » ; « incohérence » ; « pas cohérent » ; « écart » ; « ne correspond » ; « ne concordent » ; « différen »
 
 **Exemple de bonne réponse**
 
@@ -275,7 +275,7 @@ Fichier généré automatiquement depuis `taches.jsonl` : ne le modifiez pas à 
 
 **Énoncé posé à l'assistant**
 
-> Résume en exactement 4 puces la situation du dossier D-2026-014 à partir de la fiche et du courriel de la banque joints. Une puce par ligne, commençant par un tiret.
+> Résume en exactement 4 puces la situation du dossier D-2026-014 à partir de la fiche et du courriel de la banque joints. Une puce par ligne, commençant par un tiret. Une des puces signale le point d'attention du dossier.
 
 **Documents fournis avec l'énoncé** : Fiche de dossier D-2026-014, vente d'un appartement (en vigueur, 2026-01-12) ; Courriel de la banque du 18 février 2026 (en vigueur, 2026-02-18)
 
@@ -348,7 +348,7 @@ Fichier généré automatiquement depuis `taches.jsonl` : ne le modifiez pas à 
 - la réponse contient l'une de ces formulations : « 14 h 30 » ; « 14h30 » ; « 14:30 »
 - la réponse contient l'une de ces formulations : « pièce d'identité »
 - la réponse contient l'une de ces formulations : « assurance »
-- la réponse contient l'une de ces formulations : « Madame Cabon » ; « Mme Cabon »
+- la réponse contient l'une de ces formulations : « Cabon »
 - la réponse ne contient aucune de ces formulations : « [ » ; « ] »
 - la réponse ne contient aucune de ces formulations : «  tu  » ; «  ton  » ; «  ta  » ; «  tes  »
 
@@ -390,7 +390,7 @@ Fichier généré automatiquement depuis `taches.jsonl` : ne le modifiez pas à 
 **Contrôles automatiques**
 
 - la réponse contient l'une de ces formulations : « 9 avril » ; « 09/04/2026 »
-- la réponse contient l'une de ces formulations : « renonc » ; « réponse de la commune »
+- la réponse contient l'une de ces formulations : « renonc » ; « réponse de la commune » ; « réponse de la mairie » ; « expiration » ; « avant cette date »
 - la réponse ne contient aucune de ces formulations : « oui, la date du 27 mars peut être maintenue » ; « la signature peut avoir lieu le 27 mars sans »
 
 **Exemple de bonne réponse**
