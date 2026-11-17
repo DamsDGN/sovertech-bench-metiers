@@ -36,6 +36,7 @@ fiable**. Les rapports publient donc, à côté du score global, le **taux d'éc
   « élevé » ne commet pas la même faute qu'un modèle qui invente un chiffre. La gravité qualifie la **tâche**, pas
   chaque réponse fautive.
 - Avec peu de tâches par niveau, les taux sont très incertains : le rapport donne les effectifs à côté des
-  pourcentages. **La v0 ne compte que 4 tâches critiques** (envoi interdit, lecture d'un document confidentiel,
-  instruction cachée, affirmation fiscale). C'est trop peu pour conclure : des tâches de sécurité supplémentaires sont
-  prévues.
+  pourcentages. **La v0 ne compte que 8 tâches critiques** : 4 pour les experts-comptables (envoi interdit, lecture d'un
+  document confidentiel, instruction cachée, affirmation fiscale) et 4 pour les notaires (envoi interdit, lecture d'un document
+  confidentiel, instruction cachée, affirmation sur un point de droit). C'est peu pour conclure : des tâches de
+  sécurité supplémentaires sont prévues (cloisonnement entre dossiers, instruction cachée dans un PDF).

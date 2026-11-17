@@ -18,7 +18,7 @@ choix, et ce qu'on ne sait pas encore.
 | Posture publique | Corrections et signalements bienvenus, écrits en tête de chaque README et dans `CONTRIBUTING.md`. Elle complète la validation par un professionnel, elle ne la remplace pas. |
 | Lisibilité | Un `README.md` par benchmark (6) et par profession (2), écrit pour un expert-comptable non technicien. Le jargon va dans `docs/` et dans un glossaire en langage clair. |
 | Périmètre modèles | Modèles de 12 à 35 milliards de paramètres qui tiennent sur **48 Go de VRAM**, **uniquement en NVFP4**, publiés par nvidia, RedHatAI ou unsloth : **7 en v0** (§4). |
-| v0 | Domaine expert-comptable seul. Le dossier notaire existe en squelette, sans tâches. |
+| v0 | Deux métiers : experts-comptables (70 tâches) et notaires (38 tâches, jeu plus petit). Aucune référence n'est relue par un professionnel, aucun résultat n'est publié. |
 
 ## 1 bis. Conditions d'un dépôt public dès le premier commit
 
@@ -64,15 +64,16 @@ sovertech-bench-metiers/
     chat/                   README.md, taches.jsonl, grille.md, TACHES.md (version lisible)
     rag/                    README.md, questions.jsonl, grille.md, TACHES.md
     agentique/              README.md, taches.jsonl, grille.md, environnement/, TACHES.md
-  notaire/                  squelette en v0 : README.md et AGENTS.md, pas de tâches
+  notaire/                  même organisation : étude fictive, 25 documents, 38 tâches
   core/                     moteur commun
     catalogue/              un fichier par modèle : dépôt HF, quantification, réglages
-    execution/              client OpenAI compatible, reprise, mesures
-    notation/               scoreurs automatiques, agrégation (moyenne, écart-type)
-    rapport/                génération du rapport
-    runpod/                 lancement sur Runpod (facultatif, voir §5 bis)
+    donnees, verifications, notation, rag, agentique   contrôles de données, scoreurs, simulateur d'outils
+    client, fournisseurs, lancer                       client OpenAI compatible, reprise, mesures
+    rapport, comparer, statistiques                    rapport, comparaison appariée, intervalles de confiance
+    runpod/                 lancement sur Runpod (facultatif, pas encore écrit, voir §5 bis)
     tests/
-  docs/                     PLAN, méthodologie, limites, reproduire, glossaire
+  outils/                   fabrication du corpus (sources Markdown vers vrais fichiers, extraction Tika)
+  docs/                     PLAN, extraction, gravité, reproduire, glossaire
   results/                  résultats bruts, ignorés par Git avant comptable-v1
 ```
 
@@ -225,9 +226,13 @@ figés et versionnés. Un seul réglage échappe à la règle « identique pour 
 - **Mesures systématiques** : débit (tokens/s), TTFT, temps par tâche, pic de VRAM (`nvidia-smi`,
   échantillonné pendant la passe), **coût par tâche** = temps de GPU consommé par la tâche × tarif
   horaire du pod. Le coût exclut le chargement du modèle, qui est rapporté à part.
-- **Budget GPU** : environ 55 tâches × 5 passes ≈ 275 générations par modèle, ×7 ≈ 1 925 au total.
-  Estimation brute ~15 h de GPU, soit **~30 h à budgéter** après doublement de l'estimation brute (règle de prudence de Sover.tech),
-  hors rechargement et incidents. Le tarif horaire exact est à relever avant lancement.
+- **Budget GPU** : 108 tâches (70 + 38) × 5 passes ≈ 540 générations par modèle, ×7 ≈ 3 800 au total.
+  Mesuré sur Atlas (Gemma 12B, une requête à la fois) : environ 20 minutes par passe pour les 70 tâches des
+  experts-comptables et 7 minutes pour les 38 des notaires. À cette vitesse : 5 passes ≈ 2,3 h par modèle,
+  ≈ 16 h pour 7 modèles, soit **~32 h à budgéter** après doublement (règle de prudence de Sover.tech). C'est un
+  **plancher** : les modèles plus gros et ceux qui raisonnent beaucoup (famille Qwen) seront plus lents, l'estimation
+  sera refaite après la première passe sur Runpod. Plafond de génération de 32 768 tokens et contexte maximal du modèle
+  (262 000) sur Runpod. Hors rechargement et incidents. Le tarif horaire exact est à relever avant lancement.
   Corriger une tâche ou une grille après la première lecture oblige à **relancer** tous les modèles.
 
 ### Bloc chat
@@ -302,8 +307,9 @@ la décision d'Inspect AI passe par un essai de une demi-journée avant engageme
 - **Corpus fictif du cabinet** : cabinet, clients et pièces inventés (noms, SIREN et montants fictifs
   et cohérents entre eux), mélangés à des textes publics. Un test automatique refuse un SIREN ou un
   IBAN qui passerait pour réel, et tout motif de données personnelles.
-- **Notaire** : sources publiques (code civil, jurisprudence publiée) et actes clairement fictifs.
-  Squelette seulement en v0.
+- **Notaire** : sources publiques (code civil, code de l'urbanisme, code de la construction et de l'habitation) et actes clairement
+  fictifs. Première version écrite le 17/11/2026 (38 tâches), **aucun notaire ne l'a relue** ; plusieurs règles du corpus sont des
+  conventions internes de l'étude fictive, pas du droit.
 - **Contribution** : ticket « erreur dans une référence » (tâche, source, correction proposée). Un
   professionnel relecteur est crédité dans l'historique de validation.
 
@@ -345,7 +351,7 @@ ou de clé.
 
 ## 9. Ce que les premiers résultats pourront dire, et ce qu'ils ne diront pas
 
-Avec 15 à 20 tâches par bloc et 5 passes, les écarts fins entre deux modèles voisins seront souvent dans
+Avec 12 à 24 tâches par bloc et 5 passes, les écarts fins entre deux modèles voisins seront souvent dans
 le bruit : le rapport donnera la dispersion et dira « non discriminant » quand c'est le cas. Les
 résultats sont valables pour **ce corpus fictif**, ces prompts, ces quantifications et ces versions de
 vLLM, à ces dates. Ils ne disent rien d'un cabinet réel, ni de la justesse métier tant que
@@ -366,3 +372,19 @@ vLLM, à ces dates. Ils ne disent rien d'un cabinet réel, ni de la justesse mé
 - **Q7. Candidats NVFP4 non retenus d'office** : ajouter Mistral Small 3.2 24B, Qwen 3.6 27B, Gemma 4
   12B, Nemotron 3 Nano ?
 - **Q8. Visibilité du dépôt GitHub** : tranchée le 17/11/2026, **public dès le début** (§1 bis).
+
+## 11. État d'avancement au 17/11/2026
+
+**Fait** : moteur indépendant du métier ; corpus en vrais formats pour les deux métiers ; extraction Tika figée
+(variante Docling comparée, pas de différence démontrée sur un modèle) ; statistiques appariées et gravité ; catalogue
+des 7 modèles (révisions épinglées, réglages d'éditeur sourcés) ; validation du fonctionnement sur un modèle local
+(Gemma 12B sur Atlas, 3 passes pour les experts-comptables, 2 pour les notaires), qui a conduit à corriger 9 contrôles trop
+stricts et un plafond de génération insuffisant.
+
+**À faire, dans l'ordre** : contrôle de confidentialité complet (liste de noms à exclure à fournir par Damien) ;
+mesures des autres modèles sur Runpod (accord et tarif horaire avant tout lancement) ; tâches de sécurité
+supplémentaires (cloisonnement entre dossiers, instruction cachée dans un PDF) ; relecture par un professionnel ;
+page de comparaison du site, à reconstruire de zéro après les premiers résultats.
+
+**Non prévu en v0** : mesure du « RAG complet » (OCR, embeddings, classement), étalons cloud (Claude, ChatGPT),
+notation par le modèle juge, certification.

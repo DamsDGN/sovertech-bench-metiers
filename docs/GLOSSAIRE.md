@@ -37,6 +37,10 @@ modèles testés ici sont dans ce format, pour que la comparaison soit équitabl
 **Paramètres (« 27 milliards de paramètres »).** La taille d'un modèle. Plus il y en a, plus le modèle
 est en général capable, et plus il demande de mémoire.
 
+**Plafond de génération.** Le nombre maximal de mots-morceaux (« tokens ») qu'un modèle peut produire pour une
+réponse. Les modèles qui « réfléchissent » avant de répondre comptent cette réflexion dedans : avec un plafond trop
+bas, ils s'arrêtent avant d'écrire la réponse. Nous fixons le même plafond pour tous (32768).
+
 **Quantification.** Le procédé qui rend un modèle plus compact (voir NVFP4).
 
 **RAG.** Pour « génération augmentée par la recherche » : l'assistant **cherche d'abord** les passages

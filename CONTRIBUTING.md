@@ -33,7 +33,7 @@ C'est la contribution la plus utile. Pour chaque métier, un fichier `TACHES.md`
 **dans un format lisible, sans code** : l'énoncé, la réponse attendue, la source citée, et un encadré
 « à valider par un professionnel ».
 
-1. Ouvrez le `TACHES.md` du bloc qui vous intéresse (par exemple `expert-comptable/chat/TACHES.md`).
+1. Ouvrez le `TACHES.md` du bloc qui vous intéresse (par exemple `expert-comptable/chat/TACHES.md` ou `notaire/rag/TACHES.md`).
 2. Pour chaque tâche, dites : **correcte**, **à corriger** (et comment), ou **à supprimer**.
 3. Envoyez-le par un [ticket « Relecture professionnelle »](../../issues/new/choose) : vous n'avez
    besoin ni de Git ni de code.

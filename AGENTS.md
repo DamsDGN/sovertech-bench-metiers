@@ -38,7 +38,7 @@ Lire d'abord [`README.md`](README.md), puis [`docs/PLAN.md`](docs/PLAN.md) pour 
 
 ## Le corpus est fait de vrais fichiers
 
-Les documents d'un métier existent en docx, doc, xlsx, xls, csv, pdf (propres et dégradés) et txt (FEC) :
+Les documents d'un métier existent en docx, doc, xlsx, xls, csv, pdf (propres et dégradés) et, pour les experts-comptables, txt (FEC) :
 **un benchmark qui n'aurait que du Markdown ne serait pas représentatif d'un cabinet**.
 
 - Ce qu'on modifie : `<metier>/corpus/sources/*.md` (une source lisible par document) et `formats.json`.
@@ -56,8 +56,11 @@ Les documents d'un métier existent en docx, doc, xlsx, xls, csv, pdf (propres e
 ```
 <metier>/            README.md  AGENTS.md  corpus/  chat/  rag/  agentique/
 <metier>/<bloc>/     README.md  taches.jsonl (ou questions.jsonl)  grille.md  TACHES.md
-core/                moteur commun (catalogue, execution, notation, rapport, runpod, tests)
-docs/                PLAN, METHODOLOGIE, LIMITES, REPRODUIRE, GLOSSAIRE
+<metier>/prompts.json  consignes données aux modèles pour ce métier (le moteur n'en contient aucune)
+core/                moteur commun : donnees (contrôles), verifications, notation, rag, agentique, lancer,
+                     rapport, comparer, statistiques, catalogue/ (un fichier par modèle), tests/
+outils/              fabrication du corpus (hors moteur, avec dépendances tierces)
+docs/                PLAN, EXTRACTION, GRAVITE, REPRODUIRE, GLOSSAIRE
 ```
 
 - `TACHES.md` est **généré** depuis les fichiers de données (`python3 -m core.export_lisible`) : ne le
@@ -90,12 +93,14 @@ docs/                PLAN, METHODOLOGIE, LIMITES, REPRODUIRE, GLOSSAIRE
 Chaque contributeur peut créer un fichier local `.mots-interdits.txt` (ignoré par Git, un mot ou un nom
 par ligne) : les contrôles de données refusent alors tout document qui le contient. Ne versionnez jamais
 cette liste : la nommer en clair dans un dépôt public reviendrait à publier ce qu'on veut protéger.
+**Ce fichier n'existe pas dans un clone neuf** : sans lui le contrôle ne se déclenche pas. Le mainteneur le
+crée avant toute publication, avec les noms de clients, de prospects et de partenaires de Sover.tech.
 
 ## Vérifier avant de proposer
 
 ```
 python3 -m unittest discover        # tous les tests et les contrôles de données
-python3 -m core.export_lisible      # régénère les TACHES.md ; le diff doit être celui que vous attendez
+python3 -m core.export_lisible <metier>   # régénère les TACHES.md ; le diff doit être celui que vous attendez
 ```
 
 Les contrôles de données refusent notamment : un identifiant en double, un document cité qui n'existe
@@ -116,8 +121,12 @@ tâches hors des bornes de la version, un nom de client interdit.
 
 ```
 export BENCH_BASE_URL=... BENCH_MODEL=... BENCH_API_KEY=...   # ne jamais versionner ces valeurs
-python3 -m core.lancer --modele-catalogue <id> --passes 1 --limite 2   # essai rapide
+python3 -m core.lancer --metier expert-comptable --modele-catalogue <id> --passes 1 --limite 2   # essai rapide
+python3 -m core.lancer --metier notaire --modele-catalogue <id> --passes 1 --limite 2
 ```
+
+Le plafond de génération est de **32768 tokens pour tous les modèles** (le raisonnement compte dedans). Ne le
+changez pas pour un seul modèle : un résultat mesuré avec un autre plafond n'est pas comparable.
 
 Les résultats vont dans `results/` (ignoré par Git). **Ne lancez jamais une mesure payante** (pod loué,
 API facturée) sans l'accord explicite de l'utilisateur : annoncez le tarif horaire d'abord. Un serveur
@@ -126,5 +135,5 @@ local partagé reçoit une requête à la fois ; lancez les mesures longues hors
 ## Tester sur sa propre infrastructure
 
 Le moteur ne parle qu'à une API compatible OpenAI. Ne câblez jamais un fournisseur précis (Runpod,
-vLLM, etc.) dans le code de mesure ou de notation : le module `core/runpod/` est le seul endroit où
-Runpod a le droit d'apparaître, et il est facultatif.
+vLLM, etc.) dans le code de mesure ou de notation : un éventuel module `core/runpod/` (pas encore écrit)
+serait le seul endroit où Runpod a le droit d'apparaître, et il resterait facultatif.

@@ -3,7 +3,8 @@
 **Une intelligence artificielle installée dans votre cabinet ou votre étude est-elle assez bonne pour
 vous aider au quotidien ? Ce projet permet de le mesurer, publiquement et en toute transparence.**
 
-> **Projet en construction.** Aucun résultat n'est publié pour l'instant. Les réponses de référence
+> **Projet en construction.** Aucun résultat n'est publié pour l'instant : seules des mesures de validation du
+> fonctionnement ont été faites, sur un seul modèle. Les réponses de référence
 > écrites par l'équipe n'ont **pas encore été relues par un professionnel** : chacune est marquée
 > « à valider ». **Vous avez repéré une erreur, ou vous exercez le métier et voulez relire ? Votre
 > aide est précieuse** : voir [comment contribuer](CONTRIBUTING.md).
@@ -32,8 +33,8 @@ Chaque métier passe par les trois mêmes épreuves.
 
 | Métier | Dossier | État |
 |---|---|---|
-| Experts-comptables | [`expert-comptable/`](expert-comptable/README.md) | Première version en préparation |
-| Notaires | [`notaire/`](notaire/README.md) | Prévu, pas encore commencé |
+| Experts-comptables | [`expert-comptable/`](expert-comptable/README.md) | Première version : 70 tâches, 26 documents en vrais formats |
+| Notaires | [`notaire/`](notaire/README.md) | Première version, plus petite : 38 tâches, 25 documents, **aucun notaire ne l'a relue** |
 
 Chaque dossier contient un `README.md` qui explique, **sans jargon**, ce que le benchmark de ce métier
 teste, comment il note, et ce que ses résultats veulent dire ou ne veulent pas dire.
@@ -58,6 +59,19 @@ teste, comment il note, et ce que ses résultats veulent dire ou ne veulent pas 
   avec un intervalle de confiance : deux modèles ne sont départagés que si cet intervalle exclut zéro.
 - **Les limites sont écrites** dans chaque publication : nombre de tâches, nombre de passes, méthode de
   notation.
+- **Pour la recherche dans les dossiers, le moteur de recherche est le même pour tous et il est simple.** On
+  mesure donc comment le modèle exploite des passages déjà retrouvés, pas la performance d'une solution
+  documentaire complète (lecture des scans, index, classement des résultats). Ce second sujet est un autre
+  benchmark, qui n'existe pas encore.
+
+## Qui est derrière ce projet, et ce que ça change
+
+Sover.tech **vend des assistants IA installés chez ses clients** : nous avons un intérêt à ce que l'IA locale
+paraisse crédible. Nous ne nous présentons donc pas comme « indépendants ». Pour limiter le biais :
+les épreuves, les références et les contrôles sont publics et rejouables ; les notes automatiques sont séparées
+de celles du modèle juge ; le juge est un modèle (Claude), qui est aussi l'un des modèles de comparaison
+envisagés, ce que nous écrivons dans chaque rapport ; et un écart n'est annoncé que s'il dépasse l'incertitude.
+Ces garde-fous n'effacent pas le conflit d'intérêts : lisez les résultats avec ce recul.
 
 ## Vous voulez tester vous-même ?
 
