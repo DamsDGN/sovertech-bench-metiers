@@ -49,8 +49,12 @@ def taux_par_passe(enrs, filtre=lambda e: True, valeur=reussite):
 
 def charger(dossier: Path):
     releve = json.loads((dossier / "releve.json").read_text(encoding="utf-8"))
-    enrs = [json.loads(l) for l in (dossier / "resultats.jsonl").read_text(encoding="utf-8").splitlines() if l.strip()]
-    return releve, enrs
+    derniers = {}
+    for l in (dossier / "resultats.jsonl").read_text(encoding="utf-8").splitlines():
+        if l.strip():
+            e = json.loads(l)
+            derniers[(e["tache"], e["passe"])] = e
+    return releve, list(derniers.values())
 
 
 def _bloc_chat(enrs):

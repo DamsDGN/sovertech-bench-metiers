@@ -119,6 +119,22 @@ class Lanceur(unittest.TestCase):
         self.assertIn("d'infrastructure", (sortie / "rapport.md").read_text(encoding="utf-8"))
 
 
+class ReprisePuisRapport(unittest.TestCase):
+    def test_une_execution_en_erreur_puis_reprise_ne_compte_qu_une_fois(self):
+        from core import rapport
+        with tempfile.TemporaryDirectory() as tmp:
+            sortie = Path(tmp) / "s"
+            lancer.executer(config(blocs=["chat"], limite=2, passes=1), Panne(), JEUX, sortie, journal=lambda *_: None)
+            self.assertEqual(len(lire(sortie)), 2)
+            lancer.executer(config(blocs=["chat"], limite=2, passes=1, reprise=True), FauxModele(), JEUX, sortie, journal=lambda *_: None)
+            brut = lire(sortie)
+            self.assertEqual(len(brut), 4)
+            releve, enrs = rapport.charger(sortie)
+            self.assertEqual(len(enrs), 2)
+            self.assertTrue(all(e["erreur"] is None for e in enrs))
+            self.assertNotIn("d'infrastructure", (sortie / "rapport.md").read_text(encoding="utf-8"))
+
+
 class Rapport(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
