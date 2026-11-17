@@ -1,0 +1,256 @@
+{
+  "extraction": {
+    "outil": "apache/tika:4.2.0-1-full",
+    "identifiant_image": "sha256:4774eaac44f86cdf648ae7b5a367016eaf6f9052adec31e5cff07cff1a0c6e24",
+    "configuration": {
+      "server": {},
+      "pipes": {
+        "numClients": 4
+      },
+      "parse-context": {
+        "tesseract-ocr-parser": {
+          "language": "fra+eng"
+        }
+      }
+    },
+    "configuration_sha256": "b52f56d299459155ad23b24f95e5972e19d32d1454687062b8a07a8f96c74c57",
+    "date": "2026-11-17",
+    "note": "meme image et meme configuration (OCR fra+eng) que la stack Sover.tech ; texte brut (Accept: text/plain)"
+  },
+  "documents": {
+    "fiche-epis-dor": {
+      "fichier": "fiche-epis-dor.docx",
+      "format": "docx",
+      "degradation": null,
+      "sha256_fichier": "9764cabd6c9e0203b67590e385fa803f633108bf92048cc2d7457bb9f02c41c4",
+      "sha256_extraction": "e3902aadd3185d21f8de9739db0893abfe219c8757cbb9601cf250ea6e8b46d8",
+      "octets_fichier": 37347,
+      "caracteres_extraction": 617
+    },
+    "fiche-kerloch": {
+      "fichier": "fiche-kerloch.docx",
+      "format": "docx",
+      "degradation": null,
+      "sha256_fichier": "ae1fd58154891e9110a7a194a633b1a5f048dd4e0f84fb31f4df37182728a3c7",
+      "sha256_extraction": "daf5a6905ec5e742e38838c32b47bd8f2dc0d8a26607962c9e4324bee47ef147",
+      "octets_fichier": 37250,
+      "caracteres_extraction": 540
+    },
+    "fiche-mouettes": {
+      "fichier": "fiche-mouettes.docx",
+      "format": "docx",
+      "degradation": null,
+      "sha256_fichier": "58b034249f796b2a64b35df3870eb61f423ddf73525a1e935b7893d2367150a3",
+      "sha256_extraction": "edda0d77e09bccdb80c7b9c13b3433433e93f13fe326eefed5d2a73319d80301",
+      "octets_fichier": 37254,
+      "caracteres_extraction": 526
+    },
+    "fiche-rolland": {
+      "fichier": "fiche-rolland.pdf",
+      "format": "pdf",
+      "degradation": null,
+      "sha256_fichier": "a9fe0ab9b4bacbfa26b7092af0cce8475d82d35d6658750cc871c9e596bd5e31",
+      "sha256_extraction": "97dcd64e453e6995c86553ca220a3da9f99c414f6a03f4d0987c3440a8e3fdfb",
+      "octets_fichier": 44875,
+      "caracteres_extraction": 568
+    },
+    "fiche-phare": {
+      "fichier": "fiche-phare.docx",
+      "format": "docx",
+      "degradation": null,
+      "sha256_fichier": "9baf9890bc69dc233eaf80b40815ade51e5c5e52a43b077675693bd5d4b5f494",
+      "sha256_extraction": "4b2f79ef6c36efa69d3083b585a9be0ad697595bfc379c513dbb16b7d4edd9de",
+      "octets_fichier": 37314,
+      "caracteres_extraction": 645
+    },
+    "proc-cloture-v1": {
+      "fichier": "proc-cloture-v1.doc",
+      "format": "doc",
+      "degradation": null,
+      "sha256_fichier": "058d523206c7468bba1b7b13e68a9d3c2e2e7169dcdc72c68fce75fb0c8db130",
+      "sha256_extraction": "5f82ce350698c61f938e77300dd767ec5aa4465785f0f69176ceb30e47222a37",
+      "octets_fichier": 19456,
+      "caracteres_extraction": 472
+    },
+    "proc-cloture-v2": {
+      "fichier": "proc-cloture-v2.docx",
+      "format": "docx",
+      "degradation": null,
+      "sha256_fichier": "bf2af021cac6d6ccbbbff895c8559341c4e19096ba2eb413a401c4366a67aec9",
+      "sha256_extraction": "49cd9529364706fc78d1164bfcfeebf576f11bf2223e319f5290e9f06d3fad9a",
+      "octets_fichier": 37119,
+      "caracteres_extraction": 654
+    },
+    "proc-relance-pieces": {
+      "fichier": "proc-relance-pieces.docx",
+      "format": "docx",
+      "degradation": null,
+      "sha256_fichier": "cc460891b2bbafb921e8eb163611b024616ac7dc1fc3b65733e8499491a1c9c8",
+      "sha256_extraction": "ec1774ec5fb79b067a302fc424e950f54ce44c70b7c4997d1f6e0b6244e87051",
+      "octets_fichier": 37092,
+      "caracteres_extraction": 558
+    },
+    "charte-delais-v1": {
+      "fichier": "charte-delais-v1.doc",
+      "format": "doc",
+      "degradation": null,
+      "sha256_fichier": "e84e16eb343a8919d97877dbe2529854c2f8ea502154b9894cd76e8c58912f2d",
+      "sha256_extraction": "434a4863a96941926903b0a53a4e399f547b68476b1bc0236a6b474944cb8e4f",
+      "octets_fichier": 18432,
+      "caracteres_extraction": 236
+    },
+    "charte-delais-v2": {
+      "fichier": "charte-delais-v2.docx",
+      "format": "docx",
+      "degradation": null,
+      "sha256_fichier": "ff1bdc8d1a69a5e6a410944d22d8bb368829eff06dd01ebc3a2e1df1f0519577",
+      "sha256_extraction": "4271fb04277be520c4285d75e31603b21651d37dca007b2664ad5a351351005e",
+      "octets_fichier": 36955,
+      "caracteres_extraction": 334
+    },
+    "honoraires-2025": {
+      "fichier": "honoraires-2025.xls",
+      "format": "xls",
+      "degradation": null,
+      "sha256_fichier": "4c726ad71a6889831461d8c68042160364d31db5b80129b1de89685f1e17407c",
+      "sha256_extraction": "4cd130b886f65ff015e003eeb00f8763d11f1c755ef9542c8a880daf94c9b217",
+      "octets_fichier": 6144,
+      "caracteres_extraction": 287
+    },
+    "honoraires-2026": {
+      "fichier": "honoraires-2026.xlsx",
+      "format": "xlsx",
+      "degradation": null,
+      "sha256_fichier": "08003dc5f6e7653518201c5dd20a73f4aab502d44caedbee15b3e4bca774f6c9",
+      "sha256_extraction": "749e6b40cf303bf7e7e8919f6b4b0a1de65388dc97b8d8d9b6954755025d5b7a",
+      "octets_fichier": 5234,
+      "caracteres_extraction": 333
+    },
+    "archivage-cabinet": {
+      "fichier": "archivage-cabinet.pdf",
+      "format": "pdf",
+      "degradation": "scan",
+      "sha256_fichier": "4fa0d116550226112f817aa394cea95039a94d4c932f6cc4f9aee2d393d14259",
+      "sha256_extraction": "5e2b08410dab7ac9a621e8e0ae00dc92bb406b043be39a05912808041252c798",
+      "octets_fichier": 103338,
+      "caracteres_extraction": 409
+    },
+    "rh-remunerations-2026": {
+      "fichier": "rh-remunerations-2026.xlsx",
+      "format": "xlsx",
+      "degradation": null,
+      "sha256_fichier": "854c60dd4ad02f95b62c62788ae17f9d8ebd2c469a56be347161d608bdc6eff2",
+      "sha256_extraction": "7687cfe4f3f4946577e18d34b78389f3cca46baa8a142add82a8b0358dbd9ecd",
+      "octets_fichier": 5225,
+      "caracteres_extraction": 323
+    },
+    "lettre-mission-epis-dor": {
+      "fichier": "lettre-mission-epis-dor.pdf",
+      "format": "pdf",
+      "degradation": "scan",
+      "sha256_fichier": "d92dc772a87f1c4a9f07866c71e4611112da7ebd5d56eb4ea5edadb6cf4fcf85",
+      "sha256_extraction": "d8dd094355ca559c10c69c0895e1e03841b1418dee10bd960b2e9fd002fa16b5",
+      "octets_fichier": 132118,
+      "caracteres_extraction": 587
+    },
+    "devis-vehicule-epis": {
+      "fichier": "devis-vehicule-epis.pdf",
+      "format": "pdf",
+      "degradation": null,
+      "sha256_fichier": "f9aee07a53bbae0a9053a17d1f8dd37bd896dc1f2b25a5086de0c9ba2130ad8b",
+      "sha256_extraction": "89ca67bb21b5e9d3e4adb7ab667cc15f1943da52075a7fa97d3b9680c9b64c7b",
+      "octets_fichier": 44824,
+      "caracteres_extraction": 378
+    },
+    "facture-vehicule-epis": {
+      "fichier": "facture-vehicule-epis.pdf",
+      "format": "pdf",
+      "degradation": "photo",
+      "sha256_fichier": "f77dc7d919ac9b72aec760905567a29c2fd97cf3f8e3ad45a7bb7b91f1598c0e",
+      "sha256_extraction": "b34ffd8b8cdb1448eb1371c9d66c5f1e0fd075bcfeefb8841aa9d9c8df26d601",
+      "octets_fichier": 75577,
+      "caracteres_extraction": 335
+    },
+    "note-reunion-epis-2026-02": {
+      "fichier": "note-reunion-epis-2026-02.docx",
+      "format": "docx",
+      "degradation": null,
+      "sha256_fichier": "e1317ec36346a6c21d6eea4290bfd4c8ad41da685d52b2cdf058ceb74c7496fd",
+      "sha256_extraction": "d61389d6dabdadfd8f1b23a6cf1b696cb6175882b6f11c9f5f32e89e6b11ac78",
+      "octets_fichier": 37117,
+      "caracteres_extraction": 570
+    },
+    "balance-epis-2025": {
+      "fichier": "balance-epis-2025.xlsx",
+      "format": "xlsx",
+      "degradation": null,
+      "sha256_fichier": "97db3b64bd7ba0bc161b29f144dd1cb66e6c2f3861361853e51a64cab5e5dd1f",
+      "sha256_extraction": "d68c6c127b2404f453e6dfa0f9df853f7471516f34fd9e1c26512be1c078c1e0",
+      "octets_fichier": 5564,
+      "caracteres_extraction": 661
+    },
+    "releve-banque-epis-2026-01": {
+      "fichier": "releve-banque-epis-2026-01.csv",
+      "format": "csv",
+      "degradation": null,
+      "sha256_fichier": "d5c248c6d90d03d90f3b83a3988d8ab19373d1307ba4b7e4815abb8481cd521d",
+      "sha256_extraction": "c6ef3a5d1bd93de4166347d2b7a1664d89d8c852ec023db7d23de126f7577c48",
+      "octets_fichier": 421,
+      "caracteres_extraction": 409
+    },
+    "justificatifs-epis-2026-01": {
+      "fichier": "justificatifs-epis-2026-01.xls",
+      "format": "xls",
+      "degradation": null,
+      "sha256_fichier": "3e930b7e1f06210e3401d586473ea7eea9ce95078577eb6e71802de2672daa36",
+      "sha256_extraction": "8d9c1d05e112fee07f505e8fca4477cc4cddc172805ff176bdad1140e729c733",
+      "octets_fichier": 6656,
+      "caracteres_extraction": 484
+    },
+    "mail-kerloch-2026-03": {
+      "fichier": "mail-kerloch-2026-03.pdf",
+      "format": "pdf",
+      "degradation": null,
+      "sha256_fichier": "36c09fd93ae4eb72b9a0f461e9eedda2349080a39800d6f88a190de068342679",
+      "sha256_extraction": "a533d6735591a404e459f4fd45d67673e20a52c6b4c1ff56e486b49a8a8ff38c",
+      "octets_fichier": 23510,
+      "caracteres_extraction": 710
+    },
+    "pub-tva-taux": {
+      "fichier": "pub-tva-taux.pdf",
+      "format": "pdf",
+      "degradation": null,
+      "sha256_fichier": "ab50508ccb8d1fac4226c2399b41ddebd440486dbe9bf67000a547d6cd603f83",
+      "sha256_extraction": "31c33752c6f0346cf4e35562263fd2d4eabfe5c15e99681e7462eda5cbea9a4c",
+      "octets_fichier": 44178,
+      "caracteres_extraction": 365
+    },
+    "pub-pcg-classes": {
+      "fichier": "pub-pcg-classes.xlsx",
+      "format": "xlsx",
+      "degradation": null,
+      "sha256_fichier": "23d4bbc95795c7b92786ece62b782ec6d7ac443e24d0a4783418a02875361332",
+      "sha256_extraction": "85d1d3399f399cc4cb0afdff2a244ceb4f67626ec8477fc9da7988f98ac9ef53",
+      "octets_fichier": 5520,
+      "caracteres_extraction": 684
+    },
+    "pub-conservation": {
+      "fichier": "pub-conservation.docx",
+      "format": "docx",
+      "degradation": null,
+      "sha256_fichier": "7dbeb697e2f2e8c6cdbc710e89d7cea16d4f491e4d595a65a0ef8dbdb65a3b13",
+      "sha256_extraction": "fc2b33907d69464a115fc54d2ece6042eb736ce4bb54ce84ef1ea67f2c7a2c0c",
+      "octets_fichier": 36873,
+      "caracteres_extraction": 254
+    },
+    "fec-epis-dor-2025": {
+      "fichier": "fec-epis-dor-2025.txt",
+      "format": "txt",
+      "degradation": null,
+      "sha256_fichier": "4c93a8f50d4d0875e133008db668b60da21fcace04c0990f312f968d7d715688",
+      "sha256_extraction": "a90bd62529d9da307b5bfc665349c5dae1d3423b6e3476a0d6b34720875c2ec5",
+      "octets_fichier": 65077,
+      "caracteres_extraction": 66119
+    }
+  }
+}

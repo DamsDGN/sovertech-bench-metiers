@@ -19,7 +19,7 @@ def jetons(texte: str) -> list:
 
 
 def corps_sans_bandeau(corps: str) -> str:
-    return "\n".join(l for l in corps.splitlines() if not l.startswith("DOCUMENT FICTIF")).strip()
+    return "\n".join(l for l in corps.splitlines() if not (len(l) < 140 and l.lstrip("*").startswith("DOCUMENT FICTIF"))).strip()
 
 
 def passage(doc: dict) -> str:
@@ -28,8 +28,9 @@ def passage(doc: dict) -> str:
 
 
 class Index:
-    def __init__(self, docs: dict, k1=PARAMETRES["k1"], b=PARAMETRES["b"]):
+    def __init__(self, docs: dict, k1=PARAMETRES["k1"], b=PARAMETRES["b"], usage="rag"):
         self.k1, self.b = k1, b
+        docs = {i: d for i, d in docs.items() if usage in d.get("usage", ["chat", "rag", "agentique"])}
         self.ids = sorted(docs)
         self.tf = {i: Counter(jetons(docs[i]["meta"]["titre"] + " " + corps_sans_bandeau(docs[i]["corps"]))) for i in self.ids}
         self.longueur = {i: sum(self.tf[i].values()) for i in self.ids}

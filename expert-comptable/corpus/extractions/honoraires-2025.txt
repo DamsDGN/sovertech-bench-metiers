@@ -1,0 +1,10 @@
+# Taux horaires du cabinet, an
+
+|DOCUMENT FICTIF (Cabinet Aubépine \& Associés, cabinet inventé)|
+|---|
+|Taux horaires 2025 (hors forfait)|
+|Intervenant|Taux horaire|
+|Associée|130 € HT|
+|Collaborateur|80 € HT|
+|Assistante|50 € HT|
+|Les frais de déplacement sont facturés au coût réel.|

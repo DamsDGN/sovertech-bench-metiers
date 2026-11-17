@@ -1,0 +1,17 @@
+Taux de TVA en France métropolitaine
+
+DOCUMENT FICTIF (Cabinet Aubépine \& Associés, cabinet inventé)
+
+Taux de TVA en France métropolitaine Les taux de TVA en vigueur sont :
+
+Taux Valeur
+
+Taux normal 20 %
+
+Taux intermédiaire 10 %
+
+Taux réduit 5,5 %
+
+Taux particulier 2,1 %
+
+Les opérations soumises à chacun de ces taux sont définies par le Code général des impôts.

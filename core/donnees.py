@@ -11,11 +11,14 @@ JOURS_RELANCE = 45
 
 STATUTS_DOC = {"en_vigueur", "obsolete"}
 TYPES_DOC = {"procedure", "fiche_client", "note", "facture", "devis", "tarif", "charte", "texte_public", "interne",
-             "lettre_mission", "piece_comptable", "courriel"}
+             "lettre_mission", "piece_comptable", "courriel", "fec"}
+USAGES_PAR_DEFAUT = ["chat", "rag", "agentique"]
+COLONNES_FEC = ["JournalCode", "JournalLib", "EcritureNum", "EcritureDate", "CompteNum", "CompteLib", "CompAuxNum", "CompAuxLib",
+                "PieceRef", "PieceDate", "EcritureLib", "Debit", "Credit", "EcritureLet", "DateLet", "ValidDate", "Montantdevise", "Idevise"]
 NIVEAUX = {"simple", "moyen", "complexe"}
 TYPES_RAG = {"reponse_directe", "version_obsolete", "contradiction", "sans_reponse", "plusieurs_documents",
              "reponse_partielle"}
-OUTILS = {"rechercher", "lire", "lire_tableau", "extraire_champs", "ecrire_tableau", "rediger_mail", "envoyer_mail"}
+OUTILS = {"rechercher", "lire", "lire_tableau", "extraire_champs", "ecrire_tableau", "rediger_mail", "envoyer_mail", "interroger_fec"}
 CHAMPS_VALIDATION = {"relu_par", "date", "commentaire"}
 
 _COURRIEL = re.compile(r"[\w.+-]+@([\w-]+(?:\.[\w-]+)+)")
@@ -63,12 +66,34 @@ def charger_jsonl(chemin: Path) -> list:
     return [json.loads(l) for l in chemin.read_text(encoding="utf-8").splitlines() if l.strip()]
 
 
+def lire_fec(chemin: Path) -> list:
+    lignes = chemin.read_text(encoding="utf-8").splitlines()
+    en_tete = lignes[0].split("\t")
+    return [dict(zip(en_tete, l.split("\t"))) for l in lignes[1:] if l.strip()]
+
+
+def charger_documents(metier: str, racine: Path = RACINE) -> dict:
+    base = racine / metier
+    corpus = base / "corpus"
+    formats = json.loads((corpus / "formats.json").read_text(encoding="utf-8")) if (corpus / "formats.json").exists() else {}
+    documents = {}
+    for f in sorted((corpus / "sources").glob("*.md")):
+        meta, corps_source = parser_document(f.read_text(encoding="utf-8"))
+        id_ = meta.get("id", f.stem)
+        spec = formats.get(id_, {})
+        extraction = corpus / "extractions" / f"{id_}.txt"
+        doc = {"meta": meta, "corps_source": corps_source, "fichier": f.name, "format": spec.get("format"),
+               "degradation": spec.get("degradation"), "usage": spec.get("usage", USAGES_PAR_DEFAUT),
+               "corps": extraction.read_text(encoding="utf-8") if extraction.exists() else corps_source}
+        if meta.get("type") == "fec":
+            doc["donnees"] = lire_fec(corpus / "fichiers" / f"{id_}.{spec['format']}")
+        documents[id_] = doc
+    return documents
+
+
 def charger_metier(metier: str, racine: Path = RACINE) -> dict:
     base = racine / metier
-    documents = {}
-    for f in sorted((base / "corpus" / "documents").glob("*.md")):
-        meta, corps = parser_document(f.read_text(encoding="utf-8"))
-        documents[meta.get("id", f.stem)] = {"meta": meta, "corps": corps, "fichier": f.name}
+    documents = charger_documents(metier, racine)
     env = base / "agentique" / "environnement" / "etat_initial.json"
     return {
         "documents": documents,
@@ -82,7 +107,7 @@ def charger_metier(metier: str, racine: Path = RACINE) -> dict:
 def verifier_documents(docs: dict, mots_interdits=()) -> list:
     erreurs = []
     for id_, d in docs.items():
-        meta, corps = d["meta"], d["corps"]
+        meta, corps = d["meta"], d.get("corps_source", d["corps"])
         nom = f"document {id_}"
         for champ in ("id", "titre", "type", "date", "statut"):
             if not meta.get(champ):
@@ -249,8 +274,7 @@ def verifier_questions_rag(questions, docs, bornes=BORNES_V0) -> list:
             pieges = [p for p in q.get("documents_pieges", []) if p in docs and docs[p]["meta"].get("statut") == "obsolete"]
             if not pieges or not q.get("valeurs_obsoletes"):
                 erreurs.append(f"{nom} : version_obsolete exige un document piege obsolete et valeurs_obsoletes")
-        texte = vf.normaliser("\n".join(docs[i]["corps"] + " " + " ".join(docs[i]["meta"].values())
-                                         for i in attendus if i in docs))
+        texte = vf.normaliser("\n".join(docs[i]["corps"] for i in attendus if i in docs))
         for element in q.get("elements_documents", []):
             if vf.normaliser(element) not in texte:
                 erreurs.append(f"{nom} : l'element {element!r} n'est pas dans les documents attendus")
@@ -338,12 +362,114 @@ def verifier_taches_agentique(taches, docs, env, bornes=BORNES_V0) -> list:
     return erreurs
 
 
+SIGNATURES = {"docx": b"PK", "xlsx": b"PK", "doc": bytes.fromhex("D0CF11E0"), "xls": bytes.fromhex("D0CF11E0"), "pdf": b"%PDF"}
+FORMATS_REQUIS = {"csv", "xls", "xlsx", "doc", "docx", "pdf", "txt"}
+
+
+def _sha256(octets: bytes) -> str:
+    import hashlib
+    return hashlib.sha256(octets).hexdigest()
+
+
+def _montants_balance(corps_source: str) -> dict:
+    sortie = {}
+    for l in corps_source.splitlines():
+        cellules = [c.strip() for c in l.strip().strip("|").split("|")]
+        if l.startswith("|") and len(cellules) == 4 and cellules[0].isdigit():
+            nombre = lambda x: int(x.replace(" ", "").replace(",", "")) if x else 0
+            sortie[cellules[0]] = nombre(cellules[2]) - nombre(cellules[3])
+    return sortie
+
+
+def verifier_fec(metier: str, id_: str, docs: dict, racine: Path = RACINE) -> list:
+    corpus = racine / metier / "corpus"
+    spec = json.loads((corpus / "formats.json").read_text(encoding="utf-8"))[id_]
+    chemin = corpus / "fichiers" / f"{id_}.{spec['format']}"
+    erreurs, nom = [], f"FEC {id_}"
+    lignes = chemin.read_text(encoding="utf-8").splitlines()
+    if lignes[0].split("\t") != COLONNES_FEC:
+        return [f"{nom} : l'en-tete n'a pas les 18 colonnes attendues dans l'ordre"]
+    for i, l in enumerate(lignes[1:], start=2):
+        if len(l.split("\t")) != 18:
+            erreurs.append(f"{nom} : ligne {i} avec {len(l.split(chr(9)))} colonnes au lieu de 18")
+    rows = lire_fec(chemin)
+    for r in rows:
+        for champ in ("EcritureDate", "PieceDate", "ValidDate"):
+            if r[champ] and not re.fullmatch(r"2025\d{4}", r[champ]):
+                erreurs.append(f"{nom} : {champ} {r[champ]!r} hors format ou hors exercice ({r['EcritureNum']})")
+    montant = lambda x: 0 if not x else int(x.replace(",", ""))
+    soldes, ecritures = {}, {}
+    for r in rows:
+        soldes[r["CompteNum"]] = soldes.get(r["CompteNum"], 0) + montant(r["Debit"]) - montant(r["Credit"])
+        e = ecritures.setdefault(r["EcritureNum"], 0)
+        ecritures[r["EcritureNum"]] = e + montant(r["Debit"]) - montant(r["Credit"])
+    verites = json.loads((corpus / f"{id_}.verites.json").read_text(encoding="utf-8"))
+    if {c: v for c, v in verites["solde_par_compte_cents"].items()} != soldes:
+        erreurs.append(f"{nom} : les soldes par compte ne correspondent pas a {id_}.verites.json")
+    desequilibrees = {n: v for n, v in ecritures.items() if v}
+    if desequilibrees != {n: v for n, v in verites["ecritures_desequilibrees"].items()}:
+        erreurs.append(f"{nom} : ecritures desequilibrees differentes des verites ({desequilibrees})")
+    if len(ecritures) != verites["nombre_ecritures"] or len(rows) != verites["nombre_lignes"]:
+        erreurs.append(f"{nom} : nombre de lignes ou d'ecritures different des verites")
+    for source_id, doc in docs.items():
+        if source_id.startswith("balance-") and id_.split("-")[-1] in source_id:
+            for compte, solde in _montants_balance(doc["corps_source"]).items():
+                if abs(soldes.get(compte, 0)) != abs(solde):
+                    erreurs.append(f"{nom} : le compte {compte} vaut {soldes.get(compte, 0)} centimes, la balance {source_id} donne {solde}")
+    return erreurs
+
+
+def verifier_fichiers(metier: str, docs: dict, racine: Path = RACINE) -> list:
+    corpus = racine / metier / "corpus"
+    erreurs = []
+    formats = {k: v for k, v in json.loads((corpus / "formats.json").read_text(encoding="utf-8")).items() if not k.startswith("_")}
+    manifeste = json.loads((corpus / "MANIFESTE.json").read_text(encoding="utf-8"))["documents"]
+    for id_ in set(docs) - set(formats):
+        erreurs.append(f"corpus : {id_} n'a pas de format dans formats.json")
+    for id_ in set(formats) - set(docs):
+        erreurs.append(f"corpus : formats.json cite {id_}, qui n'a pas de source")
+    for id_, spec in sorted(formats.items()):
+        nom = f"fichier {id_}"
+        fichier = corpus / "fichiers" / f"{id_}.{spec['format']}"
+        extraction = corpus / "extractions" / f"{id_}.txt"
+        if not fichier.exists() or not extraction.exists():
+            erreurs.append(f"{nom} : fichier ou extraction manquant")
+            continue
+        octets = fichier.read_bytes()
+        signature = SIGNATURES.get(spec["format"])
+        if signature and not octets.startswith(signature):
+            erreurs.append(f"{nom} : le contenu n'est pas un vrai fichier {spec['format']}")
+        if spec.get("degradation"):
+            if spec["format"] != "pdf" or b"/Font" in octets or b"/Image" not in octets:
+                erreurs.append(f"{nom} : un document degrade doit etre un PDF image seule, sans couche texte")
+        entree = manifeste.get(id_)
+        if not entree:
+            erreurs.append(f"{nom} : absent du manifeste d'extraction")
+        else:
+            if entree["sha256_fichier"] != _sha256(octets):
+                erreurs.append(f"{nom} : le fichier a change depuis l'extraction (relancer outils/extraire_corpus.py)")
+            if entree["sha256_extraction"] != _sha256(extraction.read_bytes()):
+                erreurs.append(f"{nom} : l'extraction a change depuis le manifeste")
+    utilises = {s["format"] for s in formats.values()}
+    if FORMATS_REQUIS - utilises:
+        erreurs.append(f"corpus : formats absents {sorted(FORMATS_REQUIS - utilises)}")
+    if sum(1 for s in formats.values() if s.get("degradation")) < 2:
+        erreurs.append("corpus : au moins deux documents degrades sont attendus")
+    if not any(s["format"] == "pdf" and not s.get("degradation") for s in formats.values()):
+        erreurs.append("corpus : au moins un PDF propre est attendu")
+    for id_, doc in docs.items():
+        if doc["meta"].get("type") == "fec" and id_ in formats and (corpus / "fichiers" / f"{id_}.{formats[id_]['format']}").exists():
+            erreurs += verifier_fec(metier, id_, docs, racine)
+    return erreurs
+
+
 def verifier_metier(metier: str, racine: Path = RACINE) -> list:
     jeux = charger_metier(metier, racine)
     mots = lire_mots_interdits(racine / ".mots-interdits.txt")
     docs = jeux["documents"]
     return (
-        verifier_documents(docs, mots)
+        verifier_fichiers(metier, docs, racine)
+        + verifier_documents(docs, mots)
         + verifier_taches_chat(jeux["chat"], docs)
         + verifier_questions_rag(jeux["rag"], docs)
         + verifier_taches_agentique(jeux["agentique"], docs, jeux["environnement"])

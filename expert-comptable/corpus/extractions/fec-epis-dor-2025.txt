@@ -1,0 +1,485 @@
+|JournalCode|JournalLib|EcritureNum|EcritureDate|CompteNum|CompteLib|CompAuxNum|CompAuxLib|PieceRef|PieceDate|EcritureLib|Debit|Credit|EcritureLet|DateLet|ValidDate|Montantdevise|Idevise|
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+|AN|A-nouveaux|AN-0001|20250101|215|Materiel et outillage|||AN-0001|20250101|A-nouveaux 2025|45000,00||||20250101|||
+|AN|A-nouveaux|AN-0001|20250101|2182|Materiel de transport|||AN-0001|20250101|A-nouveaux 2025|22000,00||||20250101|||
+|AN|A-nouveaux|AN-0001|20250101|512|Banque|||AN-0001|20250101|A-nouveaux 2025|12500,00||||20250101|||
+|AN|A-nouveaux|AN-0001|20250101|411|Clients|||AN-0001|20250101|A-nouveaux 2025|3200,00||||20250101|||
+|AN|A-nouveaux|AN-0001|20250101|2815|Amortissements materiel et outillage|||AN-0001|20250101|A-nouveaux 2025||18000,00|||20250101|||
+|AN|A-nouveaux|AN-0001|20250101|401|Fournisseurs|||AN-0001|20250101|A-nouveaux 2025||9800,00|||20250101|||
+|AN|A-nouveaux|AN-0001|20250101|101|Capital|||AN-0001|20250101|A-nouveaux 2025||10000,00|||20250101|||
+|AN|A-nouveaux|AN-0001|20250101|106|Reserves|||AN-0001|20250101|A-nouveaux 2025||14900,00|||20250101|||
+|AN|A-nouveaux|AN-0001|20250101|164|Emprunts aupres des etablissements de credit|||AN-0001|20250101|A-nouveaux 2025||30000,00|||20250101|||
+|AC|Achats|AC-0001|20250105|607|Achats de marchandises|||FA-2025-0441|20250105|Facture Minoterie du Blavet FA-2025-0441|7971,43||||20250105|||
+|AC|Achats|AC-0001|20250105|44566|TVA deductible sur biens et services|||FA-2025-0441|20250105|Facture Minoterie du Blavet FA-2025-0441|438,43||||20250105|||
+|AC|Achats|AC-0001|20250105|401|Fournisseurs|4010001|Minoterie du Blavet|FA-2025-0441|20250105|Facture Minoterie du Blavet FA-2025-0441||8409,86|AA|20250204|20250105|||
+|AC|Achats|AC-0002|20250112|607|Achats de marchandises|||FA-2025-0442|20250112|Facture Laiterie du Scorff FA-2025-0442|5314,28||||20250112|||
+|AC|Achats|AC-0002|20250112|44566|TVA deductible sur biens et services|||FA-2025-0442|20250112|Facture Laiterie du Scorff FA-2025-0442|292,29||||20250112|||
+|AC|Achats|AC-0002|20250112|401|Fournisseurs|4010002|Laiterie du Scorff|FA-2025-0442|20250112|Facture Laiterie du Scorff FA-2025-0442||5606,57|AB|20250211|20250112|||
+|AC|Achats|AC-0003|20250128|622|Remunerations d'intermediaires et honoraires|||HON-2025-01|20250128|Honoraires Cabinet Aubepine et Associes 01/2025|400,00||||20250128|||
+|AC|Achats|AC-0003|20250128|44566|TVA deductible sur biens et services|||HON-2025-01|20250128|Honoraires Cabinet Aubepine et Associes 01/2025|80,00||||20250128|||
+|AC|Achats|AC-0003|20250128|401|Fournisseurs|4010003|Cabinet Aubepine et Associes|HON-2025-01|20250128|Honoraires Cabinet Aubepine et Associes 01/2025||480,00|AC|20250227|20250128|||
+|AC|Achats|AC-0004|20250205|607|Achats de marchandises|||FA-2025-0443|20250205|Facture Minoterie du Blavet FA-2025-0443|7971,43||||20250205|||
+|AC|Achats|AC-0004|20250205|44566|TVA deductible sur biens et services|||FA-2025-0443|20250205|Facture Minoterie du Blavet FA-2025-0443|438,43||||20250205|||
+|AC|Achats|AC-0004|20250205|401|Fournisseurs|4010001|Minoterie du Blavet|FA-2025-0443|20250205|Facture Minoterie du Blavet FA-2025-0443||8409,86|AD|20250307|20250205|||
+|AC|Achats|AC-0005|20250212|607|Achats de marchandises|||FA-2025-0444|20250212|Facture Laiterie du Scorff FA-2025-0444|5314,28||||20250212|||
+|AC|Achats|AC-0005|20250212|44566|TVA deductible sur biens et services|||FA-2025-0444|20250212|Facture Laiterie du Scorff FA-2025-0444|292,29||||20250212|||
+|AC|Achats|AC-0005|20250212|401|Fournisseurs|4010002|Laiterie du Scorff|FA-2025-0444|20250212|Facture Laiterie du Scorff FA-2025-0444||5606,57|AE|20250314|20250212|||
+|AC|Achats|AC-0006|20250228|622|Remunerations d'intermediaires et honoraires|||HON-2025-02|20250228|Honoraires Cabinet Aubepine et Associes 02/2025|400,00||||20250228|||
+|AC|Achats|AC-0006|20250228|44566|TVA deductible sur biens et services|||HON-2025-02|20250228|Honoraires Cabinet Aubepine et Associes 02/2025|80,00||||20250228|||
+|AC|Achats|AC-0006|20250228|401|Fournisseurs|4010003|Cabinet Aubepine et Associes|HON-2025-02|20250228|Honoraires Cabinet Aubepine et Associes 02/2025||480,00|AF|20250330|20250228|||
+|AC|Achats|AC-0007|20250305|607|Achats de marchandises|||FA-2025-0445|20250305|Facture Minoterie du Blavet FA-2025-0445|8857,15||||20250305|||
+|AC|Achats|AC-0007|20250305|44566|TVA deductible sur biens et services|||FA-2025-0445|20250305|Facture Minoterie du Blavet FA-2025-0445|487,14||||20250305|||
+|AC|Achats|AC-0007|20250305|401|Fournisseurs|4010001|Minoterie du Blavet|FA-2025-0445|20250305|Facture Minoterie du Blavet FA-2025-0445||9344,29|AG|20250404|20250305|||
+|AC|Achats|AC-0008|20250312|607|Achats de marchandises|||FA-2025-0446|20250312|Facture Laiterie du Scorff FA-2025-0446|5904,76||||20250312|||
+|AC|Achats|AC-0008|20250312|44566|TVA deductible sur biens et services|||FA-2025-0446|20250312|Facture Laiterie du Scorff FA-2025-0446|324,76||||20250312|||
+|AC|Achats|AC-0008|20250312|401|Fournisseurs|4010002|Laiterie du Scorff|FA-2025-0446|20250312|Facture Laiterie du Scorff FA-2025-0446||6229,52|AH|20250411|20250312|||
+|AC|Achats|AC-0009|20250328|622|Remunerations d'intermediaires et honoraires|||HON-2025-03|20250328|Honoraires Cabinet Aubepine et Associes 03/2025|400,00||||20250328|||
+|AC|Achats|AC-0009|20250328|44566|TVA deductible sur biens et services|||HON-2025-03|20250328|Honoraires Cabinet Aubepine et Associes 03/2025|80,00||||20250328|||
+|AC|Achats|AC-0009|20250328|401|Fournisseurs|4010003|Cabinet Aubepine et Associes|HON-2025-03|20250328|Honoraires Cabinet Aubepine et Associes 03/2025||480,00|AI|20250427|20250328|||
+|AC|Achats|AC-0010|20250405|607|Achats de marchandises|||FA-2025-0447|20250405|Facture Minoterie du Blavet FA-2025-0447|8857,15||||20250405|||
+|AC|Achats|AC-0010|20250405|44566|TVA deductible sur biens et services|||FA-2025-0447|20250405|Facture Minoterie du Blavet FA-2025-0447|487,14||||20250405|||
+|AC|Achats|AC-0010|20250405|401|Fournisseurs|4010001|Minoterie du Blavet|FA-2025-0447|20250405|Facture Minoterie du Blavet FA-2025-0447||9344,29|AK|20250505|20250405|||
+|AC|Achats|AC-0011|20250412|607|Achats de marchandises|||FA-2025-0448|20250412|Facture Laiterie du Scorff FA-2025-0448|5904,76||||20250412|||
+|AC|Achats|AC-0011|20250412|44566|TVA deductible sur biens et services|||FA-2025-0448|20250412|Facture Laiterie du Scorff FA-2025-0448|324,76||||20250412|||
+|AC|Achats|AC-0011|20250412|401|Fournisseurs|4010002|Laiterie du Scorff|FA-2025-0448|20250412|Facture Laiterie du Scorff FA-2025-0448||6229,52|AL|20250512|20250412|||
+|AC|Achats|AC-0012|20250428|622|Remunerations d'intermediaires et honoraires|||HON-2025-04|20250428|Honoraires Cabinet Aubepine et Associes 04/2025|400,00||||20250428|||
+|AC|Achats|AC-0012|20250428|44566|TVA deductible sur biens et services|||HON-2025-04|20250428|Honoraires Cabinet Aubepine et Associes 04/2025|80,00||||20250428|||
+|AC|Achats|AC-0012|20250428|401|Fournisseurs|4010003|Cabinet Aubepine et Associes|HON-2025-04|20250428|Honoraires Cabinet Aubepine et Associes 04/2025||480,00|AM|20250528|20250428|||
+|AC|Achats|AC-0013|20250505|607|Achats de marchandises|||FA-2025-0449|20250505|Facture Minoterie du Blavet FA-2025-0449|9300,00||||20250505|||
+|AC|Achats|AC-0013|20250505|44566|TVA deductible sur biens et services|||FA-2025-0449|20250505|Facture Minoterie du Blavet FA-2025-0449|511,50||||20250505|||
+|AC|Achats|AC-0013|20250505|401|Fournisseurs|4010001|Minoterie du Blavet|FA-2025-0449|20250505|Facture Minoterie du Blavet FA-2025-0449||9811,50|AN|20250604|20250505|||
+|AC|Achats|AC-0014|20250512|607|Achats de marchandises|||FA-2025-0450|20250512|Facture Laiterie du Scorff FA-2025-0450|6200,00||||20250512|||
+|AC|Achats|AC-0014|20250512|44566|TVA deductible sur biens et services|||FA-2025-0450|20250512|Facture Laiterie du Scorff FA-2025-0450|341,00||||20250512|||
+|AC|Achats|AC-0014|20250512|401|Fournisseurs|4010002|Laiterie du Scorff|FA-2025-0450|20250512|Facture Laiterie du Scorff FA-2025-0450||6541,00|AO|20250611|20250512|||
+|AC|Achats|AC-0015|20250528|622|Remunerations d'intermediaires et honoraires|||HON-2025-05|20250528|Honoraires Cabinet Aubepine et Associes 05/2025|400,00||||20250528|||
+|AC|Achats|AC-0015|20250528|44566|TVA deductible sur biens et services|||HON-2025-05|20250528|Honoraires Cabinet Aubepine et Associes 05/2025|80,00||||20250528|||
+|AC|Achats|AC-0015|20250528|401|Fournisseurs|4010003|Cabinet Aubepine et Associes|HON-2025-05|20250528|Honoraires Cabinet Aubepine et Associes 05/2025||480,00|AP|20250627|20250528|||
+|AC|Achats|AC-0016|20250605|607|Achats de marchandises|||FA-2025-0451|20250605|Facture Minoterie du Blavet FA-2025-0451|10185,71||||20250605|||
+|AC|Achats|AC-0016|20250605|44566|TVA deductible sur biens et services|||FA-2025-0451|20250605|Facture Minoterie du Blavet FA-2025-0451|560,21||||20250605|||
+|AC|Achats|AC-0016|20250605|401|Fournisseurs|4010001|Minoterie du Blavet|FA-2025-0451|20250605|Facture Minoterie du Blavet FA-2025-0451||10745,92|AQ|20250705|20250605|||
+|AC|Achats|AC-0017|20250605|607|Achats de marchandises|||FA-2025-0451|20250605|Facture Minoterie du Blavet FA-2025-0451|10185,71||||20250605|||
+|AC|Achats|AC-0017|20250605|44566|TVA deductible sur biens et services|||FA-2025-0451|20250605|Facture Minoterie du Blavet FA-2025-0451|560,21||||20250605|||
+|AC|Achats|AC-0017|20250605|401|Fournisseurs|4010001|Minoterie du Blavet|FA-2025-0451|20250605|Facture Minoterie du Blavet FA-2025-0451||10745,92|||20250605|||
+|AC|Achats|AC-0018|20250612|607|Achats de marchandises|||FA-2025-0452|20250612|Facture Laiterie du Scorff FA-2025-0452|6790,48||||20250612|||
+|AC|Achats|AC-0018|20250612|44566|TVA deductible sur biens et services|||FA-2025-0452|20250612|Facture Laiterie du Scorff FA-2025-0452|373,48||||20250612|||
+|AC|Achats|AC-0018|20250612|401|Fournisseurs|4010002|Laiterie du Scorff|FA-2025-0452|20250612|Facture Laiterie du Scorff FA-2025-0452||7163,96|AR|20250712|20250612|||
+|AC|Achats|AC-0019|20250628|622|Remunerations d'intermediaires et honoraires|||HON-2025-06|20250628|Honoraires Cabinet Aubepine et Associes 06/2025|400,00||||20250628|||
+|AC|Achats|AC-0019|20250628|44566|TVA deductible sur biens et services|||HON-2025-06|20250628|Honoraires Cabinet Aubepine et Associes 06/2025|80,00||||20250628|||
+|AC|Achats|AC-0019|20250628|401|Fournisseurs|4010003|Cabinet Aubepine et Associes|HON-2025-06|20250628|Honoraires Cabinet Aubepine et Associes 06/2025||480,00|AS|20250728|20250628|||
+|AC|Achats|AC-0020|20250705|607|Achats de marchandises|||FA-2025-0453|20250705|Facture Minoterie du Blavet FA-2025-0453|11514,29||||20250705|||
+|AC|Achats|AC-0020|20250705|44566|TVA deductible sur biens et services|||FA-2025-0453|20250705|Facture Minoterie du Blavet FA-2025-0453|633,29||||20250705|||
+|AC|Achats|AC-0020|20250705|401|Fournisseurs|4010001|Minoterie du Blavet|FA-2025-0453|20250705|Facture Minoterie du Blavet FA-2025-0453||12147,58|AU|20250804|20250705|||
+|AC|Achats|AC-0021|20250712|607|Achats de marchandises|||FA-2025-0454|20250712|Facture Laiterie du Scorff FA-2025-0454|7676,19||||20250712|||
+|AC|Achats|AC-0021|20250712|44566|TVA deductible sur biens et services|||FA-2025-0454|20250712|Facture Laiterie du Scorff FA-2025-0454|422,19||||20250712|||
+|AC|Achats|AC-0021|20250712|401|Fournisseurs|4010002|Laiterie du Scorff|FA-2025-0454|20250712|Facture Laiterie du Scorff FA-2025-0454||8098,38|AV|20250811|20250712|||
+|AC|Achats|AC-0022|20250728|622|Remunerations d'intermediaires et honoraires|||HON-2025-07|20250728|Honoraires Cabinet Aubepine et Associes 07/2025|400,00||||20250728|||
+|AC|Achats|AC-0022|20250728|44566|TVA deductible sur biens et services|||HON-2025-07|20250728|Honoraires Cabinet Aubepine et Associes 07/2025|80,00||||20250728|||
+|AC|Achats|AC-0022|20250728|401|Fournisseurs|4010003|Cabinet Aubepine et Associes|HON-2025-07|20250728|Honoraires Cabinet Aubepine et Associes 07/2025||480,00|AW|20250827|20250728|||
+|AC|Achats|AC-0023|20250805|607|Achats de marchandises|||FA-2025-0455|20250805|Facture Minoterie du Blavet FA-2025-0455|11957,14||||20250805|||
+|AC|Achats|AC-0023|20250805|44566|TVA deductible sur biens et services|||FA-2025-0455|20250805|Facture Minoterie du Blavet FA-2025-0455|657,64||||20250805|||
+|AC|Achats|AC-0023|20250805|401|Fournisseurs|4010001|Minoterie du Blavet|FA-2025-0455|20250805|Facture Minoterie du Blavet FA-2025-0455||12614,78|AX|20250904|20250805|||
+|AC|Achats|AC-0024|20250812|607|Achats de marchandises|||FA-2025-0456|20250812|Facture Laiterie du Scorff FA-2025-0456|7971,43||||20250812|||
+|AC|Achats|AC-0024|20250812|44566|TVA deductible sur biens et services|||FA-2025-0456|20250812|Facture Laiterie du Scorff FA-2025-0456|438,43||||20250812|||
+|AC|Achats|AC-0024|20250812|401|Fournisseurs|4010002|Laiterie du Scorff|FA-2025-0456|20250812|Facture Laiterie du Scorff FA-2025-0456||8409,86|AY|20250911|20250812|||
+|AC|Achats|AC-0025|20250828|622|Remunerations d'intermediaires et honoraires|||HON-2025-08|20250828|Honoraires Cabinet Aubepine et Associes 08/2025|400,00||||20250828|||
+|AC|Achats|AC-0025|20250828|44566|TVA deductible sur biens et services|||HON-2025-08|20250828|Honoraires Cabinet Aubepine et Associes 08/2025|80,00||||20250828|||
+|AC|Achats|AC-0025|20250828|401|Fournisseurs|4010003|Cabinet Aubepine et Associes|HON-2025-08|20250828|Honoraires Cabinet Aubepine et Associes 08/2025||480,00|AZ|20250927|20250828|||
+|AC|Achats|AC-0026|20250905|607|Achats de marchandises|||FA-2025-0457|20250905|Facture Minoterie du Blavet FA-2025-0457|9300,00||||20250905|||
+|AC|Achats|AC-0026|20250905|44566|TVA deductible sur biens et services|||FA-2025-0457|20250905|Facture Minoterie du Blavet FA-2025-0457|511,50||||20250905|||
+|AC|Achats|AC-0026|20250905|401|Fournisseurs|4010001|Minoterie du Blavet|FA-2025-0457|20250905|Facture Minoterie du Blavet FA-2025-0457||9811,50|BA|20251005|20250905|||
+|AC|Achats|AC-0027|20250912|607|Achats de marchandises|||FA-2025-0458|20250912|Facture Laiterie du Scorff FA-2025-0458|6200,00||||20250912|||
+|AC|Achats|AC-0027|20250912|44566|TVA deductible sur biens et services|||FA-2025-0458|20250912|Facture Laiterie du Scorff FA-2025-0458|1240,00||||20250912|||
+|AC|Achats|AC-0027|20250912|401|Fournisseurs|4010002|Laiterie du Scorff|FA-2025-0458|20250912|Facture Laiterie du Scorff FA-2025-0458||7440,00|BB|20251012|20250912|||
+|AC|Achats|AC-0028|20250928|622|Remunerations d'intermediaires et honoraires|||HON-2025-09|20250928|Honoraires Cabinet Aubepine et Associes 09/2025|400,00||||20250928|||
+|AC|Achats|AC-0028|20250928|44566|TVA deductible sur biens et services|||HON-2025-09|20250928|Honoraires Cabinet Aubepine et Associes 09/2025|80,00||||20250928|||
+|AC|Achats|AC-0028|20250928|401|Fournisseurs|4010003|Cabinet Aubepine et Associes|HON-2025-09|20250928|Honoraires Cabinet Aubepine et Associes 09/2025||480,00|BC|20251028|20250928|||
+|AC|Achats|AC-0029|20251005|607|Achats de marchandises|||FA-2025-0459|20251005|Facture Minoterie du Blavet FA-2025-0459|8857,15||||20251005|||
+|AC|Achats|AC-0029|20251005|44566|TVA deductible sur biens et services|||FA-2025-0459|20251005|Facture Minoterie du Blavet FA-2025-0459|487,14||||20251005|||
+|AC|Achats|AC-0029|20251005|401|Fournisseurs|4010001|Minoterie du Blavet|FA-2025-0459|20251005|Facture Minoterie du Blavet FA-2025-0459||9344,29|BE|20251104|20251005|||
+|AC|Achats|AC-0030|20251012|607|Achats de marchandises|||FA-2025-0460|20251012|Facture Laiterie du Scorff FA-2025-0460|5904,76||||20251012|||
+|AC|Achats|AC-0030|20251012|44566|TVA deductible sur biens et services|||FA-2025-0460|20251012|Facture Laiterie du Scorff FA-2025-0460|324,76||||20251012|||
+|AC|Achats|AC-0030|20251012|401|Fournisseurs|4010002|Laiterie du Scorff|FA-2025-0460|20251012|Facture Laiterie du Scorff FA-2025-0460||6229,52|BF|20251111|20251012|||
+|AC|Achats|AC-0031|20251028|622|Remunerations d'intermediaires et honoraires|||HON-2025-10|20251028|Honoraires Cabinet Aubepine et Associes 10/2025|400,00||||20251028|||
+|AC|Achats|AC-0031|20251028|44566|TVA deductible sur biens et services|||HON-2025-10|20251028|Honoraires Cabinet Aubepine et Associes 10/2025|80,00||||20251028|||
+|AC|Achats|AC-0031|20251028|401|Fournisseurs|4010003|Cabinet Aubepine et Associes|HON-2025-10|20251028|Honoraires Cabinet Aubepine et Associes 10/2025||480,00|BG|20251127|20251028|||
+|AC|Achats|AC-0032|20251105|607|Achats de marchandises|||FA-2025-0461|20251105|Facture Minoterie du Blavet FA-2025-0461|8414,29||||20251105|||
+|AC|Achats|AC-0032|20251105|44566|TVA deductible sur biens et services|||FA-2025-0461|20251105|Facture Minoterie du Blavet FA-2025-0461|462,79||||20251105|||
+|AC|Achats|AC-0032|20251105|401|Fournisseurs|4010001|Minoterie du Blavet|FA-2025-0461|20251105|Facture Minoterie du Blavet FA-2025-0461||8877,08|BH|20251205|20251105|||
+|AC|Achats|AC-0033|20251112|607|Achats de marchandises|||FA-2025-0462|20251112|Facture Laiterie du Scorff FA-2025-0462|5609,52||||20251112|||
+|AC|Achats|AC-0033|20251112|44566|TVA deductible sur biens et services|||FA-2025-0462|20251112|Facture Laiterie du Scorff FA-2025-0462|308,52||||20251112|||
+|AC|Achats|AC-0033|20251112|401|Fournisseurs|4010002|Laiterie du Scorff|FA-2025-0462|20251112|Facture Laiterie du Scorff FA-2025-0462||5918,04|BI|20251212|20251112|||
+|AC|Achats|AC-0034|20251128|622|Remunerations d'intermediaires et honoraires|||HON-2025-11|20251128|Honoraires Cabinet Aubepine et Associes 11/2025|400,00||||20251128|||
+|AC|Achats|AC-0034|20251128|44566|TVA deductible sur biens et services|||HON-2025-11|20251128|Honoraires Cabinet Aubepine et Associes 11/2025|80,00||||20251128|||
+|AC|Achats|AC-0034|20251128|401|Fournisseurs|4010003|Cabinet Aubepine et Associes|HON-2025-11|20251128|Honoraires Cabinet Aubepine et Associes 11/2025||480,00|BJ|20251228|20251128|||
+|AC|Achats|AC-0035|20251205|607|Achats de marchandises|||FA-2025-0463|20251205|Facture Minoterie du Blavet FA-2025-0463|9742,85||||20251205|||
+|AC|Achats|AC-0035|20251205|44566|TVA deductible sur biens et services|||FA-2025-0463|20251205|Facture Minoterie du Blavet FA-2025-0463|535,86||||20251205|||
+|AC|Achats|AC-0035|20251205|401|Fournisseurs|4010001|Minoterie du Blavet|FA-2025-0463|20251205|Facture Minoterie du Blavet FA-2025-0463||10278,71|||20251205|||
+|AC|Achats|AC-0036|20251212|607|Achats de marchandises|||FA-2025-0464|20251212|Facture Laiterie du Scorff FA-2025-0464|6495,24||||20251212|||
+|AC|Achats|AC-0036|20251212|44566|TVA deductible sur biens et services|||FA-2025-0464|20251212|Facture Laiterie du Scorff FA-2025-0464|357,24||||20251212|||
+|AC|Achats|AC-0036|20251212|401|Fournisseurs|4010002|Laiterie du Scorff|FA-2025-0464|20251212|Facture Laiterie du Scorff FA-2025-0464||6852,48|||20251212|||
+|AC|Achats|AC-0037|20251228|622|Remunerations d'intermediaires et honoraires|||HON-2025-12|20251228|Honoraires Cabinet Aubepine et Associes 12/2025|400,00||||20251228|||
+|AC|Achats|AC-0037|20251228|44566|TVA deductible sur biens et services|||HON-2025-12|20251228|Honoraires Cabinet Aubepine et Associes 12/2025|80,00||||20251228|||
+|AC|Achats|AC-0037|20251228|401|Fournisseurs|4010003|Cabinet Aubepine et Associes|HON-2025-12|20251228|Honoraires Cabinet Aubepine et Associes 12/2025||480,00|||20251228|||
+|VT|Ventes|VT-0001|20250131|530|Caisse|||VT-2025-01|20250131|Ventes comptoir 01/2025|28976,50||||20250131|||
+|VT|Ventes|VT-0001|20250131|707|Ventes de marchandises|||VT-2025-01|20250131|Ventes comptoir 01/2025||27465,88|||20250131|||
+|VT|Ventes|VT-0001|20250131|44571|TVA collectee|||VT-2025-01|20250131|Ventes comptoir 01/2025||1510,62|||20250131|||
+|VT|Ventes|VT-0002|20250228|530|Caisse|||VT-2025-02|20250228|Ventes comptoir 02/2025|28976,50||||20250228|||
+|VT|Ventes|VT-0002|20250228|707|Ventes de marchandises|||VT-2025-02|20250228|Ventes comptoir 02/2025||27465,88|||20250228|||
+|VT|Ventes|VT-0002|20250228|44571|TVA collectee|||VT-2025-02|20250228|Ventes comptoir 02/2025||1510,62|||20250228|||
+|VT|Ventes|VT-0003|20250331|530|Caisse|||VT-2025-03|20250331|Ventes comptoir 03/2025|32196,12||||20250331|||
+|VT|Ventes|VT-0003|20250331|707|Ventes de marchandises|||VT-2025-03|20250331|Ventes comptoir 03/2025||30517,65|||20250331|||
+|VT|Ventes|VT-0003|20250331|44571|TVA collectee|||VT-2025-03|20250331|Ventes comptoir 03/2025||1678,47|||20250331|||
+|VT|Ventes|VT-0004|20250325|411|Clients|4110001|Mairie de Lorient|FV-2025-03|20250325|Facture traiteur Mairie de Lorient FV-2025-03|6600,00||AJ|20250509|20250325|||
+|VT|Ventes|VT-0004|20250325|707|Ventes de marchandises|||FV-2025-03|20250325|Facture traiteur Mairie de Lorient FV-2025-03||6000,00|||20250325|||
+|VT|Ventes|VT-0004|20250325|44571|TVA collectee|||FV-2025-03|20250325|Facture traiteur Mairie de Lorient FV-2025-03||600,00|||20250325|||
+|VT|Ventes|VT-0005|20250430|530|Caisse|||VT-2025-04|20250430|Ventes comptoir 04/2025|32196,12||||20250430|||
+|VT|Ventes|VT-0005|20250430|707|Ventes de marchandises|||VT-2025-04|20250430|Ventes comptoir 04/2025||30517,65|||20250430|||
+|VT|Ventes|VT-0005|20250430|44571|TVA collectee|||VT-2025-04|20250430|Ventes comptoir 04/2025||1678,47|||20250430|||
+|VT|Ventes|VT-0006|20250531|530|Caisse|||VT-2025-05|20250531|Ventes comptoir 05/2025|33805,92||||20250531|||
+|VT|Ventes|VT-0006|20250531|707|Ventes de marchandises|||VT-2025-05|20250531|Ventes comptoir 05/2025||32043,53|||20250531|||
+|VT|Ventes|VT-0006|20250531|44571|TVA collectee|||VT-2025-05|20250531|Ventes comptoir 05/2025||1762,39|||20250531|||
+|VT|Ventes|VT-0007|20250630|530|Caisse|||VT-2025-06|20250630|Ventes comptoir 06/2025|37025,53||||20250630|||
+|VT|Ventes|VT-0007|20250630|707|Ventes de marchandises|||VT-2025-06|20250630|Ventes comptoir 06/2025||35095,29|||20250630|||
+|VT|Ventes|VT-0007|20250630|44571|TVA collectee|||VT-2025-06|20250630|Ventes comptoir 06/2025||1930,24|||20250630|||
+|VT|Ventes|VT-0008|20250625|411|Clients|4110001|Mairie de Lorient|FV-2025-06|20250625|Facture traiteur Mairie de Lorient FV-2025-06|6600,00||AT|20250809|20250625|||
+|VT|Ventes|VT-0008|20250625|707|Ventes de marchandises|||FV-2025-06|20250625|Facture traiteur Mairie de Lorient FV-2025-06||6000,00|||20250625|||
+|VT|Ventes|VT-0008|20250625|44571|TVA collectee|||FV-2025-06|20250625|Facture traiteur Mairie de Lorient FV-2025-06||600,00|||20250625|||
+|VT|Ventes|VT-0009|20250731|530|Caisse|||VT-2025-07|20250731|Ventes comptoir 07/2025|41854,95||||20250731|||
+|VT|Ventes|VT-0009|20250731|707|Ventes de marchandises|||VT-2025-07|20250731|Ventes comptoir 07/2025||39672,94|||20250731|||
+|VT|Ventes|VT-0009|20250731|44571|TVA collectee|||VT-2025-07|20250731|Ventes comptoir 07/2025||2182,01|||20250731|||
+|VT|Ventes|VT-0010|20250831|530|Caisse|||VT-2025-08|20250831|Ventes comptoir 08/2025|43464,76||||20250831|||
+|VT|Ventes|VT-0010|20250831|707|Ventes de marchandises|||VT-2025-08|20250831|Ventes comptoir 08/2025||41198,82|||20250831|||
+|VT|Ventes|VT-0010|20250831|44571|TVA collectee|||VT-2025-08|20250831|Ventes comptoir 08/2025||2265,94|||20250831|||
+|VT|Ventes|VT-0011|20250930|530|Caisse|||VT-2025-09|20250930|Ventes comptoir 09/2025|33805,92||||20250930|||
+|VT|Ventes|VT-0011|20250930|707|Ventes de marchandises|||VT-2025-09|20250930|Ventes comptoir 09/2025||32043,53|||20250930|||
+|VT|Ventes|VT-0011|20250930|44571|TVA collectee|||VT-2025-09|20250930|Ventes comptoir 09/2025||1762,39|||20250930|||
+|VT|Ventes|VT-0012|20250925|411|Clients|4110001|Mairie de Lorient|FV-2025-09|20250925|Facture traiteur Mairie de Lorient FV-2025-09|6600,00||BD|20251109|20250925|||
+|VT|Ventes|VT-0012|20250925|707|Ventes de marchandises|||FV-2025-09|20250925|Facture traiteur Mairie de Lorient FV-2025-09||6000,00|||20250925|||
+|VT|Ventes|VT-0012|20250925|44571|TVA collectee|||FV-2025-09|20250925|Facture traiteur Mairie de Lorient FV-2025-09||600,00|||20250925|||
+|VT|Ventes|VT-0013|20251031|530|Caisse|||VT-2025-10|20251031|Ventes comptoir 10/2025|32196,12||||20251031|||
+|VT|Ventes|VT-0013|20251031|707|Ventes de marchandises|||VT-2025-10|20251031|Ventes comptoir 10/2025||30517,65|||20251031|||
+|VT|Ventes|VT-0013|20251031|44571|TVA collectee|||VT-2025-10|20251031|Ventes comptoir 10/2025||1678,47|||20251031|||
+|VT|Ventes|VT-0014|20251130|530|Caisse|||VT-2025-11|20251130|Ventes comptoir 11/2025|30586,31||||20251130|||
+|VT|Ventes|VT-0014|20251130|707|Ventes de marchandises|||VT-2025-11|20251130|Ventes comptoir 11/2025||28991,76|||20251130|||
+|VT|Ventes|VT-0014|20251130|44571|TVA collectee|||VT-2025-11|20251130|Ventes comptoir 11/2025||1594,55|||20251130|||
+|VT|Ventes|VT-0015|20251231|530|Caisse|||VT-2025-12|20251231|Ventes comptoir 12/2025|35415,74||||20251231|||
+|VT|Ventes|VT-0015|20251231|707|Ventes de marchandises|||VT-2025-12|20251231|Ventes comptoir 12/2025||33569,42|||20251231|||
+|VT|Ventes|VT-0015|20251231|44571|TVA collectee|||VT-2025-12|20251231|Ventes comptoir 12/2025||1846,32|||20251231|||
+|VT|Ventes|VT-0016|20251225|411|Clients|4110001|Mairie de Lorient|FV-2025-12|20251225|Facture traiteur Mairie de Lorient FV-2025-12|6600,00||||20251225|||
+|VT|Ventes|VT-0016|20251225|707|Ventes de marchandises|||FV-2025-12|20251225|Facture traiteur Mairie de Lorient FV-2025-12||6000,00|||20251225|||
+|VT|Ventes|VT-0016|20251225|44571|TVA collectee|||FV-2025-12|20251225|Facture traiteur Mairie de Lorient FV-2025-12||600,00|||20251225|||
+|BQ|Banque|BQ-0001|20250131|512|Banque|||REM-2025-01|20250131|Remise especes et CB 01/2025|28976,50||||20250131|||
+|BQ|Banque|BQ-0001|20250131|530|Caisse|||REM-2025-01|20250131|Remise especes et CB 01/2025||28976,50|||20250131|||
+|BQ|Banque|BQ-0002|20250102|616|Primes d'assurances|||PRLV-ASS-01|20250102|Prelevement assurance 01/2025|300,00||||20250102|||
+|BQ|Banque|BQ-0002|20250102|512|Banque|||PRLV-ASS-01|20250102|Prelevement assurance 01/2025||300,00|||20250102|||
+|BQ|Banque|BQ-0003|20250120|613|Locations|||PRLV-LOY-01|20250120|Loyer local commercial 01/2025|2000,00||||20250120|||
+|BQ|Banque|BQ-0003|20250120|512|Banque|||PRLV-LOY-01|20250120|Loyer local commercial 01/2025||2000,00|||20250120|||
+|BQ|Banque|BQ-0004|20250228|512|Banque|||REM-2025-02|20250228|Remise especes et CB 02/2025|28976,50||||20250228|||
+|BQ|Banque|BQ-0004|20250228|530|Caisse|||REM-2025-02|20250228|Remise especes et CB 02/2025||28976,50|||20250228|||
+|BQ|Banque|BQ-0005|20250202|616|Primes d'assurances|||PRLV-ASS-02|20250202|Prelevement assurance 02/2025|300,00||||20250202|||
+|BQ|Banque|BQ-0005|20250202|512|Banque|||PRLV-ASS-02|20250202|Prelevement assurance 02/2025||300,00|||20250202|||
+|BQ|Banque|BQ-0006|20250220|613|Locations|||PRLV-LOY-02|20250220|Loyer local commercial 02/2025|2000,00||||20250220|||
+|BQ|Banque|BQ-0006|20250220|512|Banque|||PRLV-LOY-02|20250220|Loyer local commercial 02/2025||2000,00|||20250220|||
+|BQ|Banque|BQ-0007|20250331|512|Banque|||REM-2025-03|20250331|Remise especes et CB 03/2025|32196,12||||20250331|||
+|BQ|Banque|BQ-0007|20250331|530|Caisse|||REM-2025-03|20250331|Remise especes et CB 03/2025||32196,12|||20250331|||
+|BQ|Banque|BQ-0008|20250302|616|Primes d'assurances|||PRLV-ASS-03|20250302|Prelevement assurance 03/2025|300,00||||20250302|||
+|BQ|Banque|BQ-0008|20250302|512|Banque|||PRLV-ASS-03|20250302|Prelevement assurance 03/2025||300,00|||20250302|||
+|BQ|Banque|BQ-0009|20250320|613|Locations|||PRLV-LOY-03|20250320|Loyer local commercial 03/2025|2000,00||||20250320|||
+|BQ|Banque|BQ-0009|20250320|512|Banque|||PRLV-LOY-03|20250320|Loyer local commercial 03/2025||2000,00|||20250320|||
+|BQ|Banque|BQ-0010|20250430|512|Banque|||REM-2025-04|20250430|Remise especes et CB 04/2025|32196,12||||20250430|||
+|BQ|Banque|BQ-0010|20250430|530|Caisse|||REM-2025-04|20250430|Remise especes et CB 04/2025||32196,12|||20250430|||
+|BQ|Banque|BQ-0011|20250402|616|Primes d'assurances|||PRLV-ASS-04|20250402|Prelevement assurance 04/2025|300,00||||20250402|||
+|BQ|Banque|BQ-0011|20250402|512|Banque|||PRLV-ASS-04|20250402|Prelevement assurance 04/2025||300,00|||20250402|||
+|BQ|Banque|BQ-0012|20250420|613|Locations|||PRLV-LOY-04|20250420|Loyer local commercial 04/2025|2000,00||||20250420|||
+|BQ|Banque|BQ-0012|20250420|512|Banque|||PRLV-LOY-04|20250420|Loyer local commercial 04/2025||2000,00|||20250420|||
+|BQ|Banque|BQ-0013|20250531|512|Banque|||REM-2025-05|20250531|Remise especes et CB 05/2025|33805,92||||20250531|||
+|BQ|Banque|BQ-0013|20250531|530|Caisse|||REM-2025-05|20250531|Remise especes et CB 05/2025||33805,92|||20250531|||
+|BQ|Banque|BQ-0014|20250502|616|Primes d'assurances|||PRLV-ASS-05|20250502|Prelevement assurance 05/2025|300,00||||20250502|||
+|BQ|Banque|BQ-0014|20250502|512|Banque|||PRLV-ASS-05|20250502|Prelevement assurance 05/2025||300,00|||20250502|||
+|BQ|Banque|BQ-0015|20250520|613|Locations|||PRLV-LOY-05|20250520|Loyer local commercial 05/2025|2000,00||||20250520|||
+|BQ|Banque|BQ-0015|20250520|512|Banque|||PRLV-LOY-05|20250520|Loyer local commercial 05/2025||2000,00|||20250520|||
+|BQ|Banque|BQ-0016|20250630|512|Banque|||REM-2025-06|20250630|Remise especes et CB 06/2025|37025,53||||20250630|||
+|BQ|Banque|BQ-0016|20250630|530|Caisse|||REM-2025-06|20250630|Remise especes et CB 06/2025||37025,53|||20250630|||
+|BQ|Banque|BQ-0017|20250602|616|Primes d'assurances|||PRLV-ASS-06|20250602|Prelevement assurance 06/2025|300,00||||20250602|||
+|BQ|Banque|BQ-0017|20250602|512|Banque|||PRLV-ASS-06|20250602|Prelevement assurance 06/2025||300,00|||20250602|||
+|BQ|Banque|BQ-0018|20250620|613|Locations|||PRLV-LOY-06|20250620|Loyer local commercial 06/2025|2000,00||||20250620|||
+|BQ|Banque|BQ-0018|20250620|512|Banque|||PRLV-LOY-06|20250620|Loyer local commercial 06/2025||2000,00|||20250620|||
+|BQ|Banque|BQ-0019|20250731|512|Banque|||REM-2025-07|20250731|Remise especes et CB 07/2025|41854,95||||20250731|||
+|BQ|Banque|BQ-0019|20250731|530|Caisse|||REM-2025-07|20250731|Remise especes et CB 07/2025||41854,95|||20250731|||
+|BQ|Banque|BQ-0020|20250702|616|Primes d'assurances|||PRLV-ASS-07|20250702|Prelevement assurance 07/2025|300,00||||20250702|||
+|BQ|Banque|BQ-0020|20250702|512|Banque|||PRLV-ASS-07|20250702|Prelevement assurance 07/2025||300,00|||20250702|||
+|BQ|Banque|BQ-0021|20250720|613|Locations|||PRLV-LOY-07|20250720|Loyer local commercial 07/2025|2000,00||||20250720|||
+|BQ|Banque|BQ-0021|20250720|512|Banque|||PRLV-LOY-07|20250720|Loyer local commercial 07/2025||2000,00|||20250720|||
+|BQ|Banque|BQ-0022|20250831|512|Banque|||REM-2025-08|20250831|Remise especes et CB 08/2025|43464,76||||20250831|||
+|BQ|Banque|BQ-0022|20250831|530|Caisse|||REM-2025-08|20250831|Remise especes et CB 08/2025||43464,76|||20250831|||
+|BQ|Banque|BQ-0023|20250802|616|Primes d'assurances|||PRLV-ASS-08|20250802|Prelevement assurance 08/2025|300,00||||20250802|||
+|BQ|Banque|BQ-0023|20250802|512|Banque|||PRLV-ASS-08|20250802|Prelevement assurance 08/2025||300,00|||20250802|||
+|BQ|Banque|BQ-0024|20250820|613|Locations|||PRLV-LOY-08|20250820|Loyer local commercial 08/2025|2000,00||||20250820|||
+|BQ|Banque|BQ-0024|20250820|512|Banque|||PRLV-LOY-08|20250820|Loyer local commercial 08/2025||2000,00|||20250820|||
+|BQ|Banque|BQ-0025|20250930|512|Banque|||REM-2025-09|20250930|Remise especes et CB 09/2025|33805,92||||20250930|||
+|BQ|Banque|BQ-0025|20250930|530|Caisse|||REM-2025-09|20250930|Remise especes et CB 09/2025||33805,92|||20250930|||
+|BQ|Banque|BQ-0026|20250902|616|Primes d'assurances|||PRLV-ASS-09|20250902|Prelevement assurance 09/2025|300,00||||20250902|||
+|BQ|Banque|BQ-0026|20250902|512|Banque|||PRLV-ASS-09|20250902|Prelevement assurance 09/2025||300,00|||20250902|||
+|BQ|Banque|BQ-0027|20250920|613|Locations|||PRLV-LOY-09|20250920|Loyer local commercial 09/2025|2000,00||||20250920|||
+|BQ|Banque|BQ-0027|20250920|512|Banque|||PRLV-LOY-09|20250920|Loyer local commercial 09/2025||2000,00|||20250920|||
+|BQ|Banque|BQ-0028|20251031|512|Banque|||REM-2025-10|20251031|Remise especes et CB 10/2025|32196,12||||20251031|||
+|BQ|Banque|BQ-0028|20251031|530|Caisse|||REM-2025-10|20251031|Remise especes et CB 10/2025||32196,12|||20251031|||
+|BQ|Banque|BQ-0029|20251002|616|Primes d'assurances|||PRLV-ASS-10|20251002|Prelevement assurance 10/2025|300,00||||20251002|||
+|BQ|Banque|BQ-0029|20251002|512|Banque|||PRLV-ASS-10|20251002|Prelevement assurance 10/2025||300,00|||20251002|||
+|BQ|Banque|BQ-0030|20251020|613|Locations|||PRLV-LOY-10|20251020|Loyer local commercial 10/2025|2000,00||||20251020|||
+|BQ|Banque|BQ-0030|20251020|512|Banque|||PRLV-LOY-10|20251020|Loyer local commercial 10/2025||2000,00|||20251020|||
+|BQ|Banque|BQ-0031|20251130|512|Banque|||REM-2025-11|20251130|Remise especes et CB 11/2025|30586,31||||20251130|||
+|BQ|Banque|BQ-0031|20251130|530|Caisse|||REM-2025-11|20251130|Remise especes et CB 11/2025||30586,31|||20251130|||
+|BQ|Banque|BQ-0032|20251102|616|Primes d'assurances|||PRLV-ASS-11|20251102|Prelevement assurance 11/2025|300,00||||20251102|||
+|BQ|Banque|BQ-0032|20251102|512|Banque|||PRLV-ASS-11|20251102|Prelevement assurance 11/2025||300,00|||20251102|||
+|BQ|Banque|BQ-0033|20251120|613|Locations|||PRLV-LOY-11|20251120|Loyer local commercial 11/2025|2000,00||||20251120|||
+|BQ|Banque|BQ-0033|20251120|512|Banque|||PRLV-LOY-11|20251120|Loyer local commercial 11/2025||2000,00|||20251120|||
+|BQ|Banque|BQ-0034|20251231|512|Banque|||REM-2025-12|20251231|Remise especes et CB 12/2025|35415,74||||20251231|||
+|BQ|Banque|BQ-0034|20251231|530|Caisse|||REM-2025-12|20251231|Remise especes et CB 12/2025||35415,74|||20251231|||
+|BQ|Banque|BQ-0035|20251202|616|Primes d'assurances|||PRLV-ASS-12|20251202|Prelevement assurance 12/2025|300,00||||20251202|||
+|BQ|Banque|BQ-0035|20251202|512|Banque|||PRLV-ASS-12|20251202|Prelevement assurance 12/2025||300,00|||20251202|||
+|BQ|Banque|BQ-0036|20251220|613|Locations|||PRLV-LOY-12|20251220|Loyer local commercial 12/2025|2000,00||||20251220|||
+|BQ|Banque|BQ-0036|20251220|512|Banque|||PRLV-LOY-12|20251220|Loyer local commercial 12/2025||2000,00|||20251220|||
+|BQ|Banque|BQ-0037|20250131|421|Personnel remunerations dues|||VIR-PAIE-01|20250131|Virement salaires 01/2025|8378,82||||20250131|||
+|BQ|Banque|BQ-0037|20250131|512|Banque|||VIR-PAIE-01|20250131|Virement salaires 01/2025||8378,82|||20250131|||
+|BQ|Banque|BQ-0038|20250215|431|Securite sociale|||URSSAF-01|20250215|Cotisations sociales 01/2025|2929,41||||20250215|||
+|BQ|Banque|BQ-0038|20250215|512|Banque|||URSSAF-01|20250215|Cotisations sociales 01/2025||2929,41|||20250215|||
+|BQ|Banque|BQ-0039|20250228|421|Personnel remunerations dues|||VIR-PAIE-02|20250228|Virement salaires 02/2025|8378,82||||20250228|||
+|BQ|Banque|BQ-0039|20250228|512|Banque|||VIR-PAIE-02|20250228|Virement salaires 02/2025||8378,82|||20250228|||
+|BQ|Banque|BQ-0040|20250315|431|Securite sociale|||URSSAF-02|20250315|Cotisations sociales 02/2025|2929,41||||20250315|||
+|BQ|Banque|BQ-0040|20250315|512|Banque|||URSSAF-02|20250315|Cotisations sociales 02/2025||2929,41|||20250315|||
+|BQ|Banque|BQ-0041|20250331|421|Personnel remunerations dues|||VIR-PAIE-03|20250331|Virement salaires 03/2025|9309,80||||20250331|||
+|BQ|Banque|BQ-0041|20250331|512|Banque|||VIR-PAIE-03|20250331|Virement salaires 03/2025||9309,80|||20250331|||
+|BQ|Banque|BQ-0042|20250415|431|Securite sociale|||URSSAF-03|20250415|Cotisations sociales 03/2025|3254,90||||20250415|||
+|BQ|Banque|BQ-0042|20250415|512|Banque|||URSSAF-03|20250415|Cotisations sociales 03/2025||3254,90|||20250415|||
+|BQ|Banque|BQ-0043|20250430|421|Personnel remunerations dues|||VIR-PAIE-04|20250430|Virement salaires 04/2025|9309,80||||20250430|||
+|BQ|Banque|BQ-0043|20250430|512|Banque|||VIR-PAIE-04|20250430|Virement salaires 04/2025||9309,80|||20250430|||
+|BQ|Banque|BQ-0044|20250515|431|Securite sociale|||URSSAF-04|20250515|Cotisations sociales 04/2025|3254,90||||20250515|||
+|BQ|Banque|BQ-0044|20250515|512|Banque|||URSSAF-04|20250515|Cotisations sociales 04/2025||3254,90|||20250515|||
+|BQ|Banque|BQ-0045|20250531|421|Personnel remunerations dues|||VIR-PAIE-05|20250531|Virement salaires 05/2025|9775,29||||20250531|||
+|BQ|Banque|BQ-0045|20250531|512|Banque|||VIR-PAIE-05|20250531|Virement salaires 05/2025||9775,29|||20250531|||
+|BQ|Banque|BQ-0046|20250615|431|Securite sociale|||URSSAF-05|20250615|Cotisations sociales 05/2025|3417,65||||20250615|||
+|BQ|Banque|BQ-0046|20250615|512|Banque|||URSSAF-05|20250615|Cotisations sociales 05/2025||3417,65|||20250615|||
+|BQ|Banque|BQ-0047|20250630|421|Personnel remunerations dues|||VIR-PAIE-06|20250630|Virement salaires 06/2025|10706,27||||20250630|||
+|BQ|Banque|BQ-0047|20250630|512|Banque|||VIR-PAIE-06|20250630|Virement salaires 06/2025||10706,27|||20250630|||
+|BQ|Banque|BQ-0048|20250715|431|Securite sociale|||URSSAF-06|20250715|Cotisations sociales 06/2025|3743,14||||20250715|||
+|BQ|Banque|BQ-0048|20250715|512|Banque|||URSSAF-06|20250715|Cotisations sociales 06/2025||3743,14|||20250715|||
+|BQ|Banque|BQ-0049|20250731|421|Personnel remunerations dues|||VIR-PAIE-07|20250731|Virement salaires 07/2025|12102,75||||20250731|||
+|BQ|Banque|BQ-0049|20250731|512|Banque|||VIR-PAIE-07|20250731|Virement salaires 07/2025||12102,75|||20250731|||
+|BQ|Banque|BQ-0050|20250815|431|Securite sociale|||URSSAF-07|20250815|Cotisations sociales 07/2025|4231,37||||20250815|||
+|BQ|Banque|BQ-0050|20250815|512|Banque|||URSSAF-07|20250815|Cotisations sociales 07/2025||4231,37|||20250815|||
+|BQ|Banque|BQ-0051|20250831|421|Personnel remunerations dues|||VIR-PAIE-08|20250831|Virement salaires 08/2025|12568,24||||20250831|||
+|BQ|Banque|BQ-0051|20250831|512|Banque|||VIR-PAIE-08|20250831|Virement salaires 08/2025||12568,24|||20250831|||
+|BQ|Banque|BQ-0052|20250915|431|Securite sociale|||URSSAF-08|20250915|Cotisations sociales 08/2025|4394,12||||20250915|||
+|BQ|Banque|BQ-0052|20250915|512|Banque|||URSSAF-08|20250915|Cotisations sociales 08/2025||4394,12|||20250915|||
+|BQ|Banque|BQ-0053|20250930|421|Personnel remunerations dues|||VIR-PAIE-09|20250930|Virement salaires 09/2025|9775,29||||20250930|||
+|BQ|Banque|BQ-0053|20250930|512|Banque|||VIR-PAIE-09|20250930|Virement salaires 09/2025||9775,29|||20250930|||
+|BQ|Banque|BQ-0054|20251015|431|Securite sociale|||URSSAF-09|20251015|Cotisations sociales 09/2025|3417,65||||20251015|||
+|BQ|Banque|BQ-0054|20251015|512|Banque|||URSSAF-09|20251015|Cotisations sociales 09/2025||3417,65|||20251015|||
+|BQ|Banque|BQ-0055|20251031|421|Personnel remunerations dues|||VIR-PAIE-10|20251031|Virement salaires 10/2025|9309,80||||20251031|||
+|BQ|Banque|BQ-0055|20251031|512|Banque|||VIR-PAIE-10|20251031|Virement salaires 10/2025||9309,80|||20251031|||
+|BQ|Banque|BQ-0056|20251115|431|Securite sociale|||URSSAF-10|20251115|Cotisations sociales 10/2025|3254,90||||20251115|||
+|BQ|Banque|BQ-0056|20251115|512|Banque|||URSSAF-10|20251115|Cotisations sociales 10/2025||3254,90|||20251115|||
+|BQ|Banque|BQ-0057|20251130|421|Personnel remunerations dues|||VIR-PAIE-11|20251130|Virement salaires 11/2025|8844,31||||20251130|||
+|BQ|Banque|BQ-0057|20251130|512|Banque|||VIR-PAIE-11|20251130|Virement salaires 11/2025||8844,31|||20251130|||
+|BQ|Banque|BQ-0058|20251215|431|Securite sociale|||URSSAF-11|20251215|Cotisations sociales 11/2025|3092,16||||20251215|||
+|BQ|Banque|BQ-0058|20251215|512|Banque|||URSSAF-11|20251215|Cotisations sociales 11/2025||3092,16|||20251215|||
+|BQ|Banque|BQ-0059|20251231|421|Personnel remunerations dues|||VIR-PAIE-12|20251231|Virement salaires 12/2025|10240,81||||20251231|||
+|BQ|Banque|BQ-0059|20251231|512|Banque|||VIR-PAIE-12|20251231|Virement salaires 12/2025||10240,81|||20251231|||
+|BQ|Banque|BQ-0060|20250331|661|Charges d'interets|||ECH-PRET-T1|20250331|Echeance pret T1|725,00||||20250331|||
+|BQ|Banque|BQ-0060|20250331|164|Emprunts aupres des etablissements de credit|||ECH-PRET-T1|20250331|Echeance pret T1|2500,00||||20250331|||
+|BQ|Banque|BQ-0060|20250331|512|Banque|||ECH-PRET-T1|20250331|Echeance pret T1||3225,00|||20250331|||
+|BQ|Banque|BQ-0061|20250630|661|Charges d'interets|||ECH-PRET-T2|20250630|Echeance pret T2|725,00||||20250630|||
+|BQ|Banque|BQ-0061|20250630|164|Emprunts aupres des etablissements de credit|||ECH-PRET-T2|20250630|Echeance pret T2|2500,00||||20250630|||
+|BQ|Banque|BQ-0061|20250630|512|Banque|||ECH-PRET-T2|20250630|Echeance pret T2||3225,00|||20250630|||
+|BQ|Banque|BQ-0062|20250930|661|Charges d'interets|||ECH-PRET-T3|20250930|Echeance pret T3|725,00||||20250930|||
+|BQ|Banque|BQ-0062|20250930|164|Emprunts aupres des etablissements de credit|||ECH-PRET-T3|20250930|Echeance pret T3|2500,00||||20250930|||
+|BQ|Banque|BQ-0062|20250930|512|Banque|||ECH-PRET-T3|20250930|Echeance pret T3||3225,00|||20250930|||
+|BQ|Banque|BQ-0063|20251231|661|Charges d'interets|||ECH-PRET-T4|20251231|Echeance pret T4|725,00||||20251231|||
+|BQ|Banque|BQ-0063|20251231|164|Emprunts aupres des etablissements de credit|||ECH-PRET-T4|20251231|Echeance pret T4|2500,00||||20251231|||
+|BQ|Banque|BQ-0063|20251231|512|Banque|||ECH-PRET-T4|20251231|Echeance pret T4||3225,00|||20251231|||
+|BQ|Banque|BQ-0064|20250220|44551|TVA a decaisser|||TVA-PAIEMENT-01|20250220|Paiement TVA 01/2025|699,90||||20250220|||
+|BQ|Banque|BQ-0064|20250220|512|Banque|||TVA-PAIEMENT-01|20250220|Paiement TVA 01/2025||699,90|||20250220|||
+|BQ|Banque|BQ-0065|20250320|44551|TVA a decaisser|||TVA-PAIEMENT-02|20250320|Paiement TVA 02/2025|699,90||||20250320|||
+|BQ|Banque|BQ-0065|20250320|512|Banque|||TVA-PAIEMENT-02|20250320|Paiement TVA 02/2025||699,90|||20250320|||
+|BQ|Banque|BQ-0066|20250420|44551|TVA a decaisser|||TVA-PAIEMENT-03|20250420|Paiement TVA 03/2025|1386,57||||20250420|||
+|BQ|Banque|BQ-0066|20250420|512|Banque|||TVA-PAIEMENT-03|20250420|Paiement TVA 03/2025||1386,57|||20250420|||
+|BQ|Banque|BQ-0067|20250520|44551|TVA a decaisser|||TVA-PAIEMENT-04|20250520|Paiement TVA 04/2025|786,57||||20250520|||
+|BQ|Banque|BQ-0067|20250520|512|Banque|||TVA-PAIEMENT-04|20250520|Paiement TVA 04/2025||786,57|||20250520|||
+|BQ|Banque|BQ-0068|20250620|44551|TVA a decaisser|||TVA-PAIEMENT-05|20250620|Paiement TVA 05/2025|829,89||||20250620|||
+|BQ|Banque|BQ-0068|20250620|512|Banque|||TVA-PAIEMENT-05|20250620|Paiement TVA 05/2025||829,89|||20250620|||
+|BQ|Banque|BQ-0069|20250720|44551|TVA a decaisser|||TVA-PAIEMENT-06|20250720|Paiement TVA 06/2025|956,34||||20250720|||
+|BQ|Banque|BQ-0069|20250720|512|Banque|||TVA-PAIEMENT-06|20250720|Paiement TVA 06/2025||956,34|||20250720|||
+|BQ|Banque|BQ-0070|20250820|44551|TVA a decaisser|||TVA-PAIEMENT-07|20250820|Paiement TVA 07/2025|1046,53||||20250820|||
+|BQ|Banque|BQ-0070|20250820|512|Banque|||TVA-PAIEMENT-07|20250820|Paiement TVA 07/2025||1046,53|||20250820|||
+|BQ|Banque|BQ-0071|20250920|44551|TVA a decaisser|||TVA-PAIEMENT-08|20250920|Paiement TVA 08/2025|1089,87||||20250920|||
+|BQ|Banque|BQ-0071|20250920|512|Banque|||TVA-PAIEMENT-08|20250920|Paiement TVA 08/2025||1089,87|||20250920|||
+|BQ|Banque|BQ-0072|20251020|44551|TVA a decaisser|||TVA-PAIEMENT-09|20251020|Paiement TVA 09/2025|530,89||||20251020|||
+|BQ|Banque|BQ-0072|20251020|512|Banque|||TVA-PAIEMENT-09|20251020|Paiement TVA 09/2025||530,89|||20251020|||
+|BQ|Banque|BQ-0073|20251120|44551|TVA a decaisser|||TVA-PAIEMENT-10|20251120|Paiement TVA 10/2025|786,57||||20251120|||
+|BQ|Banque|BQ-0073|20251120|512|Banque|||TVA-PAIEMENT-10|20251120|Paiement TVA 10/2025||786,57|||20251120|||
+|BQ|Banque|BQ-0074|20251220|44551|TVA a decaisser|||TVA-PAIEMENT-11|20251220|Paiement TVA 11/2025|743,24||||20251220|||
+|BQ|Banque|BQ-0074|20251220|512|Banque|||TVA-PAIEMENT-11|20251220|Paiement TVA 11/2025||743,24|||20251220|||
+|BQ|Banque|BQ-0075|20250204|401|Fournisseurs|4010001|Minoterie du Blavet|REG-FA-2025-0441|20250204|Reglement Minoterie du Blavet FA-2025-0441|8409,86||AA|20250204|20250204|||
+|BQ|Banque|BQ-0075|20250204|512|Banque|||REG-FA-2025-0441|20250204|Reglement Minoterie du Blavet FA-2025-0441||8409,86|||20250204|||
+|BQ|Banque|BQ-0076|20250211|401|Fournisseurs|4010002|Laiterie du Scorff|REG-FA-2025-0442|20250211|Reglement Laiterie du Scorff FA-2025-0442|5606,57||AB|20250211|20250211|||
+|BQ|Banque|BQ-0076|20250211|512|Banque|||REG-FA-2025-0442|20250211|Reglement Laiterie du Scorff FA-2025-0442||5606,57|||20250211|||
+|BQ|Banque|BQ-0077|20250227|401|Fournisseurs|4010003|Cabinet Aubepine et Associes|REG-HON-2025-01|20250227|Reglement Cabinet Aubepine et Associes HON-2025-01|480,00||AC|20250227|20250227|||
+|BQ|Banque|BQ-0077|20250227|512|Banque|||REG-HON-2025-01|20250227|Reglement Cabinet Aubepine et Associes HON-2025-01||480,00|||20250227|||
+|BQ|Banque|BQ-0078|20250307|401|Fournisseurs|4010001|Minoterie du Blavet|REG-FA-2025-0443|20250307|Reglement Minoterie du Blavet FA-2025-0443|8409,86||AD|20250307|20250307|||
+|BQ|Banque|BQ-0078|20250307|512|Banque|||REG-FA-2025-0443|20250307|Reglement Minoterie du Blavet FA-2025-0443||8409,86|||20250307|||
+|BQ|Banque|BQ-0079|20250314|401|Fournisseurs|4010002|Laiterie du Scorff|REG-FA-2025-0444|20250314|Reglement Laiterie du Scorff FA-2025-0444|5606,57||AE|20250314|20250314|||
+|BQ|Banque|BQ-0079|20250314|512|Banque|||REG-FA-2025-0444|20250314|Reglement Laiterie du Scorff FA-2025-0444||5606,57|||20250314|||
+|BQ|Banque|BQ-0080|20250330|401|Fournisseurs|4010003|Cabinet Aubepine et Associes|REG-HON-2025-02|20250330|Reglement Cabinet Aubepine et Associes HON-2025-02|480,00||AF|20250330|20250330|||
+|BQ|Banque|BQ-0080|20250330|512|Banque|||REG-HON-2025-02|20250330|Reglement Cabinet Aubepine et Associes HON-2025-02||480,00|||20250330|||
+|BQ|Banque|BQ-0081|20250404|401|Fournisseurs|4010001|Minoterie du Blavet|REG-FA-2025-0445|20250404|Reglement Minoterie du Blavet FA-2025-0445|9344,29||AG|20250404|20250404|||
+|BQ|Banque|BQ-0081|20250404|512|Banque|||REG-FA-2025-0445|20250404|Reglement Minoterie du Blavet FA-2025-0445||9344,29|||20250404|||
+|BQ|Banque|BQ-0082|20250411|401|Fournisseurs|4010002|Laiterie du Scorff|REG-FA-2025-0446|20250411|Reglement Laiterie du Scorff FA-2025-0446|6229,52||AH|20250411|20250411|||
+|BQ|Banque|BQ-0082|20250411|512|Banque|||REG-FA-2025-0446|20250411|Reglement Laiterie du Scorff FA-2025-0446||6229,52|||20250411|||
+|BQ|Banque|BQ-0083|20250427|401|Fournisseurs|4010003|Cabinet Aubepine et Associes|REG-HON-2025-03|20250427|Reglement Cabinet Aubepine et Associes HON-2025-03|480,00||AI|20250427|20250427|||
+|BQ|Banque|BQ-0083|20250427|512|Banque|||REG-HON-2025-03|20250427|Reglement Cabinet Aubepine et Associes HON-2025-03||480,00|||20250427|||
+|BQ|Banque|BQ-0084|20250509|411|Clients|4110001|Mairie de Lorient|REG-FV-2025-03|20250509|Reglement Mairie de Lorient FV-2025-03||6600,00|AJ|20250509|20250509|||
+|BQ|Banque|BQ-0084|20250509|512|Banque|||REG-FV-2025-03|20250509|Reglement Mairie de Lorient FV-2025-03|6600,00||||20250509|||
+|BQ|Banque|BQ-0085|20250505|401|Fournisseurs|4010001|Minoterie du Blavet|REG-FA-2025-0447|20250505|Reglement Minoterie du Blavet FA-2025-0447|9344,29||AK|20250505|20250505|||
+|BQ|Banque|BQ-0085|20250505|512|Banque|||REG-FA-2025-0447|20250505|Reglement Minoterie du Blavet FA-2025-0447||9344,29|||20250505|||
+|BQ|Banque|BQ-0086|20250512|401|Fournisseurs|4010002|Laiterie du Scorff|REG-FA-2025-0448|20250512|Reglement Laiterie du Scorff FA-2025-0448|6229,52||AL|20250512|20250512|||
+|BQ|Banque|BQ-0086|20250512|512|Banque|||REG-FA-2025-0448|20250512|Reglement Laiterie du Scorff FA-2025-0448||6229,52|||20250512|||
+|BQ|Banque|BQ-0087|20250528|401|Fournisseurs|4010003|Cabinet Aubepine et Associes|REG-HON-2025-04|20250528|Reglement Cabinet Aubepine et Associes HON-2025-04|480,00||AM|20250528|20250528|||
+|BQ|Banque|BQ-0087|20250528|512|Banque|||REG-HON-2025-04|20250528|Reglement Cabinet Aubepine et Associes HON-2025-04||480,00|||20250528|||
+|BQ|Banque|BQ-0088|20250604|401|Fournisseurs|4010001|Minoterie du Blavet|REG-FA-2025-0449|20250604|Reglement Minoterie du Blavet FA-2025-0449|9811,50||AN|20250604|20250604|||
+|BQ|Banque|BQ-0088|20250604|512|Banque|||REG-FA-2025-0449|20250604|Reglement Minoterie du Blavet FA-2025-0449||9811,50|||20250604|||
+|BQ|Banque|BQ-0089|20250611|401|Fournisseurs|4010002|Laiterie du Scorff|REG-FA-2025-0450|20250611|Reglement Laiterie du Scorff FA-2025-0450|6541,00||AO|20250611|20250611|||
+|BQ|Banque|BQ-0089|20250611|512|Banque|||REG-FA-2025-0450|20250611|Reglement Laiterie du Scorff FA-2025-0450||6541,00|||20250611|||
+|BQ|Banque|BQ-0090|20250627|401|Fournisseurs|4010003|Cabinet Aubepine et Associes|REG-HON-2025-05|20250627|Reglement Cabinet Aubepine et Associes HON-2025-05|480,00||AP|20250627|20250627|||
+|BQ|Banque|BQ-0090|20250627|512|Banque|||REG-HON-2025-05|20250627|Reglement Cabinet Aubepine et Associes HON-2025-05||480,00|||20250627|||
+|BQ|Banque|BQ-0091|20250705|401|Fournisseurs|4010001|Minoterie du Blavet|REG-FA-2025-0451|20250705|Reglement Minoterie du Blavet FA-2025-0451|10745,92||AQ|20250705|20250705|||
+|BQ|Banque|BQ-0091|20250705|512|Banque|||REG-FA-2025-0451|20250705|Reglement Minoterie du Blavet FA-2025-0451||10745,92|||20250705|||
+|BQ|Banque|BQ-0092|20250712|401|Fournisseurs|4010002|Laiterie du Scorff|REG-FA-2025-0452|20250712|Reglement Laiterie du Scorff FA-2025-0452|7163,96||AR|20250712|20250712|||
+|BQ|Banque|BQ-0092|20250712|512|Banque|||REG-FA-2025-0452|20250712|Reglement Laiterie du Scorff FA-2025-0452||7163,96|||20250712|||
+|BQ|Banque|BQ-0093|20250728|401|Fournisseurs|4010003|Cabinet Aubepine et Associes|REG-HON-2025-06|20250728|Reglement Cabinet Aubepine et Associes HON-2025-06|480,00||AS|20250728|20250728|||
+|BQ|Banque|BQ-0093|20250728|512|Banque|||REG-HON-2025-06|20250728|Reglement Cabinet Aubepine et Associes HON-2025-06||480,00|||20250728|||
+|BQ|Banque|BQ-0094|20250809|411|Clients|4110001|Mairie de Lorient|REG-FV-2025-06|20250809|Reglement Mairie de Lorient FV-2025-06||6600,00|AT|20250809|20250809|||
+|BQ|Banque|BQ-0094|20250809|512|Banque|||REG-FV-2025-06|20250809|Reglement Mairie de Lorient FV-2025-06|6600,00||||20250809|||
+|BQ|Banque|BQ-0095|20250804|401|Fournisseurs|4010001|Minoterie du Blavet|REG-FA-2025-0453|20250804|Reglement Minoterie du Blavet FA-2025-0453|12147,58||AU|20250804|20250804|||
+|BQ|Banque|BQ-0095|20250804|512|Banque|||REG-FA-2025-0453|20250804|Reglement Minoterie du Blavet FA-2025-0453||12147,58|||20250804|||
+|BQ|Banque|BQ-0096|20250811|401|Fournisseurs|4010002|Laiterie du Scorff|REG-FA-2025-0454|20250811|Reglement Laiterie du Scorff FA-2025-0454|8098,38||AV|20250811|20250811|||
+|BQ|Banque|BQ-0096|20250811|512|Banque|||REG-FA-2025-0454|20250811|Reglement Laiterie du Scorff FA-2025-0454||8098,38|||20250811|||
+|BQ|Banque|BQ-0097|20250827|401|Fournisseurs|4010003|Cabinet Aubepine et Associes|REG-HON-2025-07|20250827|Reglement Cabinet Aubepine et Associes HON-2025-07|480,00||AW|20250827|20250827|||
+|BQ|Banque|BQ-0097|20250827|512|Banque|||REG-HON-2025-07|20250827|Reglement Cabinet Aubepine et Associes HON-2025-07||480,00|||20250827|||
+|BQ|Banque|BQ-0098|20250904|401|Fournisseurs|4010001|Minoterie du Blavet|REG-FA-2025-0455|20250904|Reglement Minoterie du Blavet FA-2025-0455|12614,78||AX|20250904|20250904|||
+|BQ|Banque|BQ-0098|20250904|512|Banque|||REG-FA-2025-0455|20250904|Reglement Minoterie du Blavet FA-2025-0455||12614,78|||20250904|||
+|BQ|Banque|BQ-0099|20250911|401|Fournisseurs|4010002|Laiterie du Scorff|REG-FA-2025-0456|20250911|Reglement Laiterie du Scorff FA-2025-0456|8409,86||AY|20250911|20250911|||
+|BQ|Banque|BQ-0099|20250911|512|Banque|||REG-FA-2025-0456|20250911|Reglement Laiterie du Scorff FA-2025-0456||8409,86|||20250911|||
+|BQ|Banque|BQ-0100|20250927|401|Fournisseurs|4010003|Cabinet Aubepine et Associes|REG-HON-2025-08|20250927|Reglement Cabinet Aubepine et Associes HON-2025-08|480,00||AZ|20250927|20250927|||
+|BQ|Banque|BQ-0100|20250927|512|Banque|||REG-HON-2025-08|20250927|Reglement Cabinet Aubepine et Associes HON-2025-08||480,00|||20250927|||
+|BQ|Banque|BQ-0101|20251005|401|Fournisseurs|4010001|Minoterie du Blavet|REG-FA-2025-0457|20251005|Reglement Minoterie du Blavet FA-2025-0457|9811,50||BA|20251005|20251005|||
+|BQ|Banque|BQ-0101|20251005|512|Banque|||REG-FA-2025-0457|20251005|Reglement Minoterie du Blavet FA-2025-0457||9811,50|||20251005|||
+|BQ|Banque|BQ-0102|20251012|401|Fournisseurs|4010002|Laiterie du Scorff|REG-FA-2025-0458|20251012|Reglement Laiterie du Scorff FA-2025-0458|7440,00||BB|20251012|20251012|||
+|BQ|Banque|BQ-0102|20251012|512|Banque|||REG-FA-2025-0458|20251012|Reglement Laiterie du Scorff FA-2025-0458||7440,00|||20251012|||
+|BQ|Banque|BQ-0103|20251028|401|Fournisseurs|4010003|Cabinet Aubepine et Associes|REG-HON-2025-09|20251028|Reglement Cabinet Aubepine et Associes HON-2025-09|480,00||BC|20251028|20251028|||
+|BQ|Banque|BQ-0103|20251028|512|Banque|||REG-HON-2025-09|20251028|Reglement Cabinet Aubepine et Associes HON-2025-09||480,00|||20251028|||
+|BQ|Banque|BQ-0104|20251109|411|Clients|4110001|Mairie de Lorient|REG-FV-2025-09|20251109|Reglement Mairie de Lorient FV-2025-09||6600,00|BD|20251109|20251109|||
+|BQ|Banque|BQ-0104|20251109|512|Banque|||REG-FV-2025-09|20251109|Reglement Mairie de Lorient FV-2025-09|6600,00||||20251109|||
+|BQ|Banque|BQ-0105|20251104|401|Fournisseurs|4010001|Minoterie du Blavet|REG-FA-2025-0459|20251104|Reglement Minoterie du Blavet FA-2025-0459|9344,29||BE|20251104|20251104|||
+|BQ|Banque|BQ-0105|20251104|512|Banque|||REG-FA-2025-0459|20251104|Reglement Minoterie du Blavet FA-2025-0459||9344,29|||20251104|||
+|BQ|Banque|BQ-0106|20251111|401|Fournisseurs|4010002|Laiterie du Scorff|REG-FA-2025-0460|20251111|Reglement Laiterie du Scorff FA-2025-0460|6229,52||BF|20251111|20251111|||
+|BQ|Banque|BQ-0106|20251111|512|Banque|||REG-FA-2025-0460|20251111|Reglement Laiterie du Scorff FA-2025-0460||6229,52|||20251111|||
+|BQ|Banque|BQ-0107|20251127|401|Fournisseurs|4010003|Cabinet Aubepine et Associes|REG-HON-2025-10|20251127|Reglement Cabinet Aubepine et Associes HON-2025-10|480,00||BG|20251127|20251127|||
+|BQ|Banque|BQ-0107|20251127|512|Banque|||REG-HON-2025-10|20251127|Reglement Cabinet Aubepine et Associes HON-2025-10||480,00|||20251127|||
+|BQ|Banque|BQ-0108|20251205|401|Fournisseurs|4010001|Minoterie du Blavet|REG-FA-2025-0461|20251205|Reglement Minoterie du Blavet FA-2025-0461|8877,08||BH|20251205|20251205|||
+|BQ|Banque|BQ-0108|20251205|512|Banque|||REG-FA-2025-0461|20251205|Reglement Minoterie du Blavet FA-2025-0461||8877,08|||20251205|||
+|BQ|Banque|BQ-0109|20251212|401|Fournisseurs|4010002|Laiterie du Scorff|REG-FA-2025-0462|20251212|Reglement Laiterie du Scorff FA-2025-0462|5918,04||BI|20251212|20251212|||
+|BQ|Banque|BQ-0109|20251212|512|Banque|||REG-FA-2025-0462|20251212|Reglement Laiterie du Scorff FA-2025-0462||5918,04|||20251212|||
+|BQ|Banque|BQ-0110|20251228|401|Fournisseurs|4010003|Cabinet Aubepine et Associes|REG-HON-2025-11|20251228|Reglement Cabinet Aubepine et Associes HON-2025-11|480,00||BJ|20251228|20251228|||
+|BQ|Banque|BQ-0110|20251228|512|Banque|||REG-HON-2025-11|20251228|Reglement Cabinet Aubepine et Associes HON-2025-11||480,00|||20251228|||
+|BQ|Banque|BQ-0111|20251112|471|Compte d'attente|||||Virement SEPA non identifie|1500,00||||20251112|||
+|BQ|Banque|BQ-0111|20251112|512|Banque|||||Virement SEPA non identifie||1500,00|||20251112|||
+|PA|Paie|PA-0001|20250131|641|Remunerations du personnel|||PAIE-2025-01|20250131|Paie 01/2025|8378,82||||20250131|||
+|PA|Paie|PA-0001|20250131|645|Charges de securite sociale et de prevoyance|||PAIE-2025-01|20250131|Paie 01/2025|2929,41||||20250131|||
+|PA|Paie|PA-0001|20250131|421|Personnel remunerations dues|||PAIE-2025-01|20250131|Paie 01/2025||8378,82|||20250131|||
+|PA|Paie|PA-0001|20250131|431|Securite sociale|||PAIE-2025-01|20250131|Paie 01/2025||2929,41|||20250131|||
+|PA|Paie|PA-0002|20250228|641|Remunerations du personnel|||PAIE-2025-02|20250228|Paie 02/2025|8378,82||||20250228|||
+|PA|Paie|PA-0002|20250228|645|Charges de securite sociale et de prevoyance|||PAIE-2025-02|20250228|Paie 02/2025|2929,41||||20250228|||
+|PA|Paie|PA-0002|20250228|421|Personnel remunerations dues|||PAIE-2025-02|20250228|Paie 02/2025||8378,82|||20250228|||
+|PA|Paie|PA-0002|20250228|431|Securite sociale|||PAIE-2025-02|20250228|Paie 02/2025||2929,41|||20250228|||
+|PA|Paie|PA-0003|20250331|641|Remunerations du personnel|||PAIE-2025-03|20250331|Paie 03/2025|9309,80||||20250331|||
+|PA|Paie|PA-0003|20250331|645|Charges de securite sociale et de prevoyance|||PAIE-2025-03|20250331|Paie 03/2025|3254,90||||20250331|||
+|PA|Paie|PA-0003|20250331|421|Personnel remunerations dues|||PAIE-2025-03|20250331|Paie 03/2025||9309,80|||20250331|||
+|PA|Paie|PA-0003|20250331|431|Securite sociale|||PAIE-2025-03|20250331|Paie 03/2025||3254,90|||20250331|||
+|PA|Paie|PA-0004|20250430|641|Remunerations du personnel|||PAIE-2025-04|20250430|Paie 04/2025|9309,80||||20250430|||
+|PA|Paie|PA-0004|20250430|645|Charges de securite sociale et de prevoyance|||PAIE-2025-04|20250430|Paie 04/2025|3254,90||||20250430|||
+|PA|Paie|PA-0004|20250430|421|Personnel remunerations dues|||PAIE-2025-04|20250430|Paie 04/2025||9309,80|||20250430|||
+|PA|Paie|PA-0004|20250430|431|Securite sociale|||PAIE-2025-04|20250430|Paie 04/2025||3254,90|||20250430|||
+|PA|Paie|PA-0005|20250531|641|Remunerations du personnel|||PAIE-2025-05|20250531|Paie 05/2025|9775,29||||20250531|||
+|PA|Paie|PA-0005|20250531|645|Charges de securite sociale et de prevoyance|||PAIE-2025-05|20250531|Paie 05/2025|3417,65||||20250531|||
+|PA|Paie|PA-0005|20250531|421|Personnel remunerations dues|||PAIE-2025-05|20250531|Paie 05/2025||9775,29|||20250531|||
+|PA|Paie|PA-0005|20250531|431|Securite sociale|||PAIE-2025-05|20250531|Paie 05/2025||3417,65|||20250531|||
+|PA|Paie|PA-0006|20250630|641|Remunerations du personnel|||PAIE-2025-06|20250630|Paie 06/2025|10706,27||||20250630|||
+|PA|Paie|PA-0006|20250630|645|Charges de securite sociale et de prevoyance|||PAIE-2025-06|20250630|Paie 06/2025|3743,14||||20250630|||
+|PA|Paie|PA-0006|20250630|421|Personnel remunerations dues|||PAIE-2025-06|20250630|Paie 06/2025||10706,27|||20250630|||
+|PA|Paie|PA-0006|20250630|431|Securite sociale|||PAIE-2025-06|20250630|Paie 06/2025||3743,14|||20250630|||
+|PA|Paie|PA-0007|20250731|641|Remunerations du personnel|||PAIE-2025-07|20250731|Paie 07/2025|12102,75||||20250731|||
+|PA|Paie|PA-0007|20250731|645|Charges de securite sociale et de prevoyance|||PAIE-2025-07|20250731|Paie 07/2025|4231,37||||20250731|||
+|PA|Paie|PA-0007|20250731|421|Personnel remunerations dues|||PAIE-2025-07|20250731|Paie 07/2025||12102,75|||20250731|||
+|PA|Paie|PA-0007|20250731|431|Securite sociale|||PAIE-2025-07|20250731|Paie 07/2025||4231,37|||20250731|||
+|PA|Paie|PA-0008|20250831|641|Remunerations du personnel|||PAIE-2025-08|20250831|Paie 08/2025|12568,24||||20250831|||
+|PA|Paie|PA-0008|20250831|645|Charges de securite sociale et de prevoyance|||PAIE-2025-08|20250831|Paie 08/2025|4394,12||||20250831|||
+|PA|Paie|PA-0008|20250831|421|Personnel remunerations dues|||PAIE-2025-08|20250831|Paie 08/2025||12568,24|||20250831|||
+|PA|Paie|PA-0008|20250831|431|Securite sociale|||PAIE-2025-08|20250831|Paie 08/2025||4394,12|||20250831|||
+|PA|Paie|PA-0009|20250930|641|Remunerations du personnel|||PAIE-2025-09|20250930|Paie 09/2025|9775,29||||20250930|||
+|PA|Paie|PA-0009|20250930|645|Charges de securite sociale et de prevoyance|||PAIE-2025-09|20250930|Paie 09/2025|3417,65||||20250930|||
+|PA|Paie|PA-0009|20250930|421|Personnel remunerations dues|||PAIE-2025-09|20250930|Paie 09/2025||9775,29|||20250930|||
+|PA|Paie|PA-0009|20250930|431|Securite sociale|||PAIE-2025-09|20250930|Paie 09/2025||3417,65|||20250930|||
+|PA|Paie|PA-0010|20251031|641|Remunerations du personnel|||PAIE-2025-10|20251031|Paie 10/2025|9309,80||||20251031|||
+|PA|Paie|PA-0010|20251031|645|Charges de securite sociale et de prevoyance|||PAIE-2025-10|20251031|Paie 10/2025|3254,90||||20251031|||
+|PA|Paie|PA-0010|20251031|421|Personnel remunerations dues|||PAIE-2025-10|20251031|Paie 10/2025||9309,80|||20251031|||
+|PA|Paie|PA-0010|20251031|431|Securite sociale|||PAIE-2025-10|20251031|Paie 10/2025||3254,90|||20251031|||
+|PA|Paie|PA-0011|20251130|641|Remunerations du personnel|||PAIE-2025-11|20251130|Paie 11/2025|8844,31||||20251130|||
+|PA|Paie|PA-0011|20251130|645|Charges de securite sociale et de prevoyance|||PAIE-2025-11|20251130|Paie 11/2025|3092,16||||20251130|||
+|PA|Paie|PA-0011|20251130|421|Personnel remunerations dues|||PAIE-2025-11|20251130|Paie 11/2025||8844,31|||20251130|||
+|PA|Paie|PA-0011|20251130|431|Securite sociale|||PAIE-2025-11|20251130|Paie 11/2025||3092,16|||20251130|||
+|PA|Paie|PA-0012|20251231|641|Remunerations du personnel|||PAIE-2025-12|20251231|Paie 12/2025|10240,81||||20251231|||
+|PA|Paie|PA-0012|20251231|645|Charges de securite sociale et de prevoyance|||PAIE-2025-12|20251231|Paie 12/2025|3580,39||||20251231|||
+|PA|Paie|PA-0012|20251231|421|Personnel remunerations dues|||PAIE-2025-12|20251231|Paie 12/2025||10240,81|||20251231|||
+|PA|Paie|PA-0012|20251231|431|Securite sociale|||PAIE-2025-12|20251231|Paie 12/2025||3580,39|||20251231|||
+|OD|Operations diverses|OD-0001|20250131|44571|TVA collectee|||TVA-2025-01|20250131|Declaration de TVA 01/2025|1510,62||||20250131|||
+|OD|Operations diverses|OD-0001|20250131|44566|TVA deductible sur biens et services|||TVA-2025-01|20250131|Declaration de TVA 01/2025||810,72|||20250131|||
+|OD|Operations diverses|OD-0001|20250131|44551|TVA a decaisser|||TVA-2025-01|20250131|Declaration de TVA 01/2025||699,90|||20250131|||
+|OD|Operations diverses|OD-0002|20250228|44571|TVA collectee|||TVA-2025-02|20250228|Declaration de TVA 02/2025|1510,62||||20250228|||
+|OD|Operations diverses|OD-0002|20250228|44566|TVA deductible sur biens et services|||TVA-2025-02|20250228|Declaration de TVA 02/2025||810,72|||20250228|||
+|OD|Operations diverses|OD-0002|20250228|44551|TVA a decaisser|||TVA-2025-02|20250228|Declaration de TVA 02/2025||699,90|||20250228|||
+|OD|Operations diverses|OD-0003|20250331|44571|TVA collectee|||TVA-2025-03|20250331|Declaration de TVA 03/2025|2278,47||||20250331|||
+|OD|Operations diverses|OD-0003|20250331|44566|TVA deductible sur biens et services|||TVA-2025-03|20250331|Declaration de TVA 03/2025||891,90|||20250331|||
+|OD|Operations diverses|OD-0003|20250331|44551|TVA a decaisser|||TVA-2025-03|20250331|Declaration de TVA 03/2025||1386,57|||20250331|||
+|OD|Operations diverses|OD-0004|20250430|44571|TVA collectee|||TVA-2025-04|20250430|Declaration de TVA 04/2025|1678,47||||20250430|||
+|OD|Operations diverses|OD-0004|20250430|44566|TVA deductible sur biens et services|||TVA-2025-04|20250430|Declaration de TVA 04/2025||891,90|||20250430|||
+|OD|Operations diverses|OD-0004|20250430|44551|TVA a decaisser|||TVA-2025-04|20250430|Declaration de TVA 04/2025||786,57|||20250430|||
+|OD|Operations diverses|OD-0005|20250531|44571|TVA collectee|||TVA-2025-05|20250531|Declaration de TVA 05/2025|1762,39||||20250531|||
+|OD|Operations diverses|OD-0005|20250531|44566|TVA deductible sur biens et services|||TVA-2025-05|20250531|Declaration de TVA 05/2025||932,50|||20250531|||
+|OD|Operations diverses|OD-0005|20250531|44551|TVA a decaisser|||TVA-2025-05|20250531|Declaration de TVA 05/2025||829,89|||20250531|||
+|OD|Operations diverses|OD-0006|20250630|44571|TVA collectee|||TVA-2025-06|20250630|Declaration de TVA 06/2025|2530,24||||20250630|||
+|OD|Operations diverses|OD-0006|20250630|44566|TVA deductible sur biens et services|||TVA-2025-06|20250630|Declaration de TVA 06/2025||1573,90|||20250630|||
+|OD|Operations diverses|OD-0006|20250630|44551|TVA a decaisser|||TVA-2025-06|20250630|Declaration de TVA 06/2025||956,34|||20250630|||
+|OD|Operations diverses|OD-0007|20250731|44571|TVA collectee|||TVA-2025-07|20250731|Declaration de TVA 07/2025|2182,01||||20250731|||
+|OD|Operations diverses|OD-0007|20250731|44566|TVA deductible sur biens et services|||TVA-2025-07|20250731|Declaration de TVA 07/2025||1135,48|||20250731|||
+|OD|Operations diverses|OD-0007|20250731|44551|TVA a decaisser|||TVA-2025-07|20250731|Declaration de TVA 07/2025||1046,53|||20250731|||
+|OD|Operations diverses|OD-0008|20250831|44571|TVA collectee|||TVA-2025-08|20250831|Declaration de TVA 08/2025|2265,94||||20250831|||
+|OD|Operations diverses|OD-0008|20250831|44566|TVA deductible sur biens et services|||TVA-2025-08|20250831|Declaration de TVA 08/2025||1176,07|||20250831|||
+|OD|Operations diverses|OD-0008|20250831|44551|TVA a decaisser|||TVA-2025-08|20250831|Declaration de TVA 08/2025||1089,87|||20250831|||
+|OD|Operations diverses|OD-0009|20250930|44571|TVA collectee|||TVA-2025-09|20250930|Declaration de TVA 09/2025|2362,39||||20250930|||
+|OD|Operations diverses|OD-0009|20250930|44566|TVA deductible sur biens et services|||TVA-2025-09|20250930|Declaration de TVA 09/2025||1831,50|||20250930|||
+|OD|Operations diverses|OD-0009|20250930|44551|TVA a decaisser|||TVA-2025-09|20250930|Declaration de TVA 09/2025||530,89|||20250930|||
+|OD|Operations diverses|OD-0010|20251031|44571|TVA collectee|||TVA-2025-10|20251031|Declaration de TVA 10/2025|1678,47||||20251031|||
+|OD|Operations diverses|OD-0010|20251031|44566|TVA deductible sur biens et services|||TVA-2025-10|20251031|Declaration de TVA 10/2025||891,90|||20251031|||
+|OD|Operations diverses|OD-0010|20251031|44551|TVA a decaisser|||TVA-2025-10|20251031|Declaration de TVA 10/2025||786,57|||20251031|||
+|OD|Operations diverses|OD-0011|20251130|44571|TVA collectee|||TVA-2025-11|20251130|Declaration de TVA 11/2025|1594,55||||20251130|||
+|OD|Operations diverses|OD-0011|20251130|44566|TVA deductible sur biens et services|||TVA-2025-11|20251130|Declaration de TVA 11/2025||851,31|||20251130|||
+|OD|Operations diverses|OD-0011|20251130|44551|TVA a decaisser|||TVA-2025-11|20251130|Declaration de TVA 11/2025||743,24|||20251130|||
+|OD|Operations diverses|OD-0012|20251231|44571|TVA collectee|||TVA-2025-12|20251231|Declaration de TVA 12/2025|2446,32||||20251231|||
+|OD|Operations diverses|OD-0012|20251231|44566|TVA deductible sur biens et services|||TVA-2025-12|20251231|Declaration de TVA 12/2025||973,10|||20251231|||
+|OD|Operations diverses|OD-0012|20251231|44551|TVA a decaisser|||TVA-2025-12|20251231|Declaration de TVA 12/2025||1473,22|||20251231|||
+|OD|Operations diverses|OD-0013|20250915|467|Autres comptes debiteurs ou crediteurs|||OD-REG-0915|20250915|Regularisation divers|250,00||||20250915|||
+|OD|Operations diverses|OD-0013|20250915|512|Banque|||OD-REG-0915|20250915|Regularisation divers||240,00|||20250915|||
+|OD|Operations diverses|OD-0014|20251231|681|Dotations aux amortissements|||OD-AMORT-2025|20251231|Dotations aux amortissements 2025|9200,00||||20251231|||
+|OD|Operations diverses|OD-0014|20251231|2815|Amortissements materiel et outillage|||OD-AMORT-2025|20251231|Dotations aux amortissements 2025||6200,00|||20251231|||
+|OD|Operations diverses|OD-0014|20251231|28182|Amortissements materiel de transport|||OD-AMORT-2025|20251231|Dotations aux amortissements 2025||3000,00|||20251231|||

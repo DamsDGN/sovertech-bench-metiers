@@ -1,0 +1,13 @@
+# Taux horaires du cabinet, an
+
+|DOCUMENT FICTIF (Cabinet Aubépine \& Associés, cabinet inventé)|
+|---|
+|Taux horaires 2026 (hors forfait)|
+|Applicables à partir du 2 janvier 2026.|
+|
+|Intervenant|Taux horaire|
+|Associée|140 € HT|
+|Collaborateur|85 € HT|
+|Assistante|55 € HT|
+|
+|Les frais de déplacement sont facturés au coût réel.|
