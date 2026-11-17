@@ -166,6 +166,28 @@ def _bornes(taches, bornes, prefixe, erreurs):
         erreurs.append(f"{prefixe} : nombre de taches {len(taches)} hors des bornes {bornes}")
 
 
+def _verifier_verifications(t, nom, erreurs):
+    verifs = t.get("verifications", [])
+    valides = True
+    for v in verifs:
+        type_v = v.get("type")
+        if type_v not in vf.TYPES:
+            erreurs.append(f"{nom} : verification {type_v!r} inconnue")
+            valides = False
+            continue
+        manquants = vf.champs_obligatoires(type_v) - set(v)
+        if manquants:
+            erreurs.append(f"{nom} : verification {type_v} sans {sorted(manquants)[0]}")
+            valides = False
+    if valides and t.get("reponse_modele"):
+        for v, ok in vf.evaluer_toutes(verifs, t["reponse_modele"]):
+            if not ok:
+                erreurs.append(f"{nom} : la reponse_modele echoue a la verification {v['type']}")
+    if valides and t.get("reponse_fautive") is not None:
+        if all(ok for _, ok in vf.evaluer_toutes(verifs, t["reponse_fautive"])):
+            erreurs.append(f"{nom} : la reponse_fautive passe toutes les verifications")
+
+
 def verifier_taches_chat(taches, docs, bornes=BORNES_V0) -> list:
     erreurs, vus = [], set()
     _bornes(taches, bornes, "chat", erreurs)
@@ -180,27 +202,10 @@ def verifier_taches_chat(taches, docs, bornes=BORNES_V0) -> list:
         verifs = t.get("verifications", [])
         if not verifs and not t.get("criteres_juge"):
             erreurs.append(f"{nom} : ni verifications ni criteres_juge")
-        valides = True
-        for v in verifs:
-            type_v = v.get("type")
-            if type_v not in vf.TYPES:
-                erreurs.append(f"{nom} : verification {type_v!r} inconnue")
-                valides = False
-                continue
-            manquants = vf.champs_obligatoires(type_v) - set(v)
-            if manquants:
-                erreurs.append(f"{nom} : verification {type_v} sans {sorted(manquants)[0]}")
-                valides = False
+        _verifier_verifications(t, nom, erreurs)
         if t.get("abstention_attendue") is True and not any(
                 v.get("type") == "abstention" and v.get("attendue") is True for v in verifs):
             erreurs.append(f"{nom} : abstention_attendue exige la verification abstention")
-        if valides and t.get("reponse_modele"):
-            for v, ok in vf.evaluer_toutes(verifs, t["reponse_modele"]):
-                if not ok:
-                    erreurs.append(f"{nom} : la reponse_modele echoue a la verification {v['type']}")
-        if valides and t.get("reponse_fautive") is not None:
-            if all(ok for _, ok in vf.evaluer_toutes(verifs, t["reponse_fautive"])):
-                erreurs.append(f"{nom} : la reponse_fautive passe toutes les verifications")
     return erreurs
 
 
@@ -212,9 +217,13 @@ def verifier_questions_rag(questions, docs, bornes=BORNES_V0) -> list:
         type_q = q.get("type_question")
         if type_q not in TYPES_RAG:
             erreurs.append(f"{nom} : type_question {type_q!r} inconnu")
-        for champ in ("question", "reference"):
+        for champ in ("question", "reference", "reponse_modele"):
             if not q.get(champ):
                 erreurs.append(f"{nom} : {champ} manquant")
+        _verifier_verifications(q, nom, erreurs)
+        if q.get("abstention_attendue") is True and not any(
+                v.get("type") == "abstention" and v.get("attendue") is True for v in q.get("verifications", [])):
+            erreurs.append(f"{nom} : sans_reponse exige la verification abstention")
         attendus = q.get("documents_attendus", [])
         for doc_id in attendus + q.get("documents_pieges", []):
             if doc_id not in docs:
@@ -230,8 +239,8 @@ def verifier_questions_rag(questions, docs, bornes=BORNES_V0) -> list:
         else:
             if not attendus:
                 erreurs.append(f"{nom} : aucun document attendu")
-            if not q.get("reponse_attendue_valeurs"):
-                erreurs.append(f"{nom} : reponse_attendue_valeurs vide")
+            if not q.get("verifications"):
+                erreurs.append(f"{nom} : verifications vides")
         if type_q in ("contradiction", "plusieurs_documents") and len(attendus) < 2:
             erreurs.append(f"{nom} : {type_q} demande au moins deux documents attendus")
         if type_q == "version_obsolete":

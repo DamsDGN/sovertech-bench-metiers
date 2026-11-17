@@ -202,11 +202,16 @@ def question_rag(id_="RG-01", **extra):
     base = tache_commune(
         id_, bloc="rag", question="Quel délai ?", type_question="reponse_directe",
         documents_attendus=["a"], documents_pieges=[], reference="45 jours.",
-        reponse_attendue_valeurs=["45"], elements_documents=["45 jours"], valeurs_obsoletes=[],
+        verifications=[{"type": "contient_un_de", "valeurs": ["45"]}], reponse_modele="45 jours.",
+        elements_documents=["45 jours"], valeurs_obsoletes=[], criteres_juge=[],
         abstention_attendue=False,
     )
     base.update(extra)
     return base
+
+
+ABST = [{"type": "abstention", "attendue": True}]
+REP_ABST = "Je ne sais pas, cela ne figure pas dans les documents."
 
 
 class VerifierRag(unittest.TestCase):
@@ -223,14 +228,14 @@ class VerifierRag(unittest.TestCase):
 
     def test_sans_reponse_ne_cite_aucun_document(self):
         q = question_rag(type_question="sans_reponse", documents_attendus=["a"], abstention_attendue=True,
-                         reponse_attendue_valeurs=[], elements_documents=[])
+                         verifications=ABST, reponse_modele=REP_ABST, elements_documents=[])
         self.assertTrue(erreurs_contiennent(d.verifier_questions_rag([q], self.docs, bornes=(1, 5)), "sans_reponse"))
         q["documents_attendus"] = []
         self.assertEqual(d.verifier_questions_rag([q], self.docs, bornes=(1, 5)), [])
 
     def test_sans_reponse_exige_l_abstention(self):
         q = question_rag(type_question="sans_reponse", documents_attendus=[], abstention_attendue=False,
-                         reponse_attendue_valeurs=[], elements_documents=[])
+                         verifications=ABST, reponse_modele=REP_ABST, elements_documents=[])
         self.assertTrue(erreurs_contiennent(d.verifier_questions_rag([q], self.docs, bornes=(1, 5)), "abstention"))
 
     def test_version_obsolete_exige_un_piege_obsolete(self):
@@ -251,6 +256,10 @@ class VerifierRag(unittest.TestCase):
         for type_q in ("contradiction", "plusieurs_documents"):
             q = question_rag(type_question=type_q)
             self.assertTrue(erreurs_contiennent(d.verifier_questions_rag([q], self.docs, bornes=(1, 5)), type_q))
+
+    def test_la_reponse_modele_doit_passer_les_verifications(self):
+        q = question_rag(reponse_modele="Trente jours.")
+        self.assertTrue(erreurs_contiennent(d.verifier_questions_rag([q], self.docs, bornes=(1, 5)), "reponse_modele"))
 
     def test_document_inexistant(self):
         q = question_rag(documents_attendus=["zzz"])
