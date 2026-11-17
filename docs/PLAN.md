@@ -30,8 +30,8 @@ Tout ce qui est poussé est lisible par tous, y compris les brouillons. Donc, av
 2. **Aucun résultat de mesure n'est versionné avant `comptable-v1`.** `results/` est ignoré par Git
    jusqu'à la première version publiée : un chiffre public sur des références non validées nuirait
    à la crédibilité du projet.
-3. **Aucune donnée réelle, aucun nom de client ou de prospect**, ni dans les documents ni dans les
-   messages de commit. Un test automatique contrôle le corpus (§7) ; ce plan est relu dans ce sens.
+3. **Aucune donnée réelle**, ni dans les documents ni dans les messages de commit. Un test automatique
+   contrôle le corpus (§7) ; ce plan est relu dans ce sens.
 4. Chaque tâche non relue porte `a_valider_par_pro: true` **dans le fichier lui-même**, visible de
    tous, pas seulement dans le rapport.
 5. Aucun secret versionné (clé Runpod, jeton Hugging Face). Seul un `.env.example` est poussé.
@@ -145,7 +145,7 @@ résultat.
 
 ## 4 bis. Étalons cloud (valeurs de référence)
 
-Les prospects demandent si une IA locale tiendra la comparaison avec les IA cloud. Le benchmark mesure donc
+Les professionnels demandent si une IA locale tiendra la comparaison avec les IA cloud. Le benchmark mesure donc
 aussi, **sur exactement les mêmes tâches et les mêmes prompts**, quelques modèles cloud « étalons » :
 **Claude Sonnet 5.5** et **Claude Opus 5.5** (Anthropic), et un modèle d'OpenAI à choisir.
 
