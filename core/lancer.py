@@ -42,6 +42,9 @@ def construire_releve(config, entree, infos_serveur, jeux) -> dict:
     servi = infos_serveur.get("modele_servi")
     raisons = []
     etalon = catalogue.est_etalon(entree)
+    if entree.get("fournisseur") == "claude_cli":
+        raisons.append("obtenu via le CLI claude -p (abonnement) : prompt systeme du CLI en plus, appels d'outils emules en texte, "
+                       "conversations rejouees en transcription ; pas un appel d'API direct")
     if not etalon:
         if not config.get("materiel"):
             raisons.append("materiel non declare (--materiel)")
@@ -154,6 +157,8 @@ def _deja_faits(chemin: Path) -> set:
 
 def executer(config: dict, client, jeux: dict, sortie: Path, journal=print) -> Path:
     entree = catalogue.charger(config["modele_catalogue"])
+    if config.get("via_cli"):
+        entree = {**entree, "fournisseur": "claude_cli"}
     config = {**config, "echantillonnage": entree["echantillonnage"]}
     sortie.mkdir(parents=True, exist_ok=True)
     releve = construire_releve(config, entree, client.infos_serveur() if hasattr(client, "infos_serveur") else {}, jeux)
@@ -237,6 +242,9 @@ def analyser(argv=None):
                    help="moteur d'extraction du texte des documents (tika : reference, docling : variante de comparaison)")
     p.add_argument("--budget-usd", type=float, default=None,
                    help="plafond de depense en dollars, OBLIGATOIRE pour un modele facture a l'usage (la passe s'arrete a une tache pres)")
+    p.add_argument("--via-cli", action="store_true",
+                   help="etalon Anthropic uniquement : interroger Claude par le CLI `claude -p` (abonnement, session isolee sans outils) "
+                        "au lieu de l'API. Resultat marque non comparable")
     p.add_argument("--pause", type=float, default=0, help="secondes entre deux taches")
     p.add_argument("--reprise", action="store_true")
     p.add_argument("--sortie", default=None)
@@ -252,6 +260,11 @@ def plafond(demande, entree: dict) -> int:
 def main(argv=None):
     a = analyser(argv)
     entree = catalogue.charger(a.modele_catalogue)
+    if a.via_cli:
+        if entree.get("fournisseur") != "anthropic":
+            sys.exit("--via-cli ne vaut que pour un etalon Anthropic du catalogue")
+        entree = {**entree, "fournisseur": "claude_cli"}
+        a.etiquette = a.etiquette or "via-cli"
     if catalogue.est_etalon(entree) and not a.budget_usd:
         sys.exit(f"{entree['nom']} est facture a l'usage ({entree['prix_mtok']['entree']} / {entree['prix_mtok']['sortie']} USD par million de tokens). "
                  "Relancer avec --budget-usd N : la passe s'arrete a une tache pres quand N dollars sont depenses.")
@@ -262,7 +275,7 @@ def main(argv=None):
     config = {"budget_usd": a.budget_usd, "metier": a.metier, "modele_catalogue": a.modele_catalogue, "blocs": [b for b in a.blocs.split(",") if b],
               "passes": a.passes, "taches": [t for t in a.taches.split(",") if t], "limite": a.limite,
               "max_tokens": plafond(a.max_tokens, entree), "prix_horaire": a.prix_horaire, "materiel": a.materiel,
-              "etiquette": a.etiquette, "pause": a.pause, "reprise": a.reprise}
+              "etiquette": a.etiquette, "via_cli": a.via_cli, "pause": a.pause, "reprise": a.reprise}
     jour = datetime.date.today().isoformat()
     nom = a.modele_catalogue + (f"-{a.etiquette}" if a.etiquette else "") + ("" if a.extraction == "tika" else f"-extraction-{a.extraction}")
     sortie = Path(a.sortie) if a.sortie else d.RACINE / "results" / a.metier / jour / nom
