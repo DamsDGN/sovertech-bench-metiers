@@ -44,7 +44,7 @@ tableaux). Le benchmark en fait partie, et elle est **la même pour tous les mod
 exemples constatés : la mention « DOCUMENT FICTIF » d'une photo est abîmée par l'OCR, un « É » devient « E »,
 les phrases d'un scan sont mises bout à bout sur une seule ligne, et **un fichier CSV est aplati en une seule
 ligne** par Tika. Une tâche qui s'appuie sur un document dégradé mesure donc aussi la robustesse du modèle à un
-texte imparfait. Ces limites sont propres à l'outil d'extraction : un autre outil donnerait d'autres défauts.
+texte imparfait. Ces limites sont propres à l'outil d'extraction : un autre outil donnerait d'autres défauts. La comparaison mesurée de Tika et de Docling, et les contournements du CSV aplati, sont dans [`docs/EXTRACTION.md`](../../docs/EXTRACTION.md).
 
 ## Les documents
 
