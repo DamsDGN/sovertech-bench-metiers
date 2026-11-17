@@ -3,7 +3,12 @@ import json
 import statistics
 from pathlib import Path
 
+from . import statistiques
+
 NIVEAUX = ("simple", "moyen", "complexe")
+GRAVITES = ("faible", "moyenne", "elevee", "critique")
+LIBELLES_GRAVITE = {"faible": "faible", "moyenne": "moyenne", "elevee": "élevée", "critique": "critique"}
+GRAVES = ("elevee", "critique")
 BLOCS = {"chat": "Discuter", "rag": "Chercher dans les dossiers", "agentique": "Agir"}
 
 
@@ -47,6 +52,21 @@ def taux_par_passe(enrs, filtre=lambda e: True, valeur=reussite):
     return [moyenne(v) for _, v in sorted(par.items())]
 
 
+def taux_par_tache(enrs, valeur=reussite):
+    par = {}
+    for e in enrs:
+        par.setdefault(e["tache"], []).append(1.0 if valeur(e) else 0.0)
+    return {t: moyenne(v) for t, v in par.items()}
+
+
+def ic_taches(enrs) -> str:
+    """Intervalle a 95 % qui tient compte du tirage des taches (et non de la seule variabilite entre passes)."""
+    m, bas, haut = statistiques.ic_moyenne(list(taux_par_tache(enrs).values()))
+    if bas is None:
+        return "intervalle de confiance non calculable (une seule tâche)"
+    return f"intervalle de confiance à 95 % sur les tâches : de {100 * bas:.0f} % à {100 * haut:.0f} %"
+
+
 def charger(dossier: Path):
     releve = json.loads((dossier / "releve.json").read_text(encoding="utf-8"))
     derniers = {}
@@ -58,7 +78,7 @@ def charger(dossier: Path):
 
 
 def _bloc_chat(enrs):
-    return [f"- Réussite aux contrôles automatiques : **{pct_ecart(taux_par_passe(enrs))}**",
+    return [f"- Réussite aux contrôles automatiques : **{pct_ecart(taux_par_passe(enrs))}** ; {ic_taches(enrs)}",
             "- Les critères du juge (qualité du français, clarté, prudence) ne sont **pas notés** dans ce rapport"]
 
 
@@ -72,7 +92,7 @@ def _bloc_rag(enrs):
     obs = [e for e in ok if "piege_obsolete_tombe" in e["note"]]
     return [f"- **Récupération** : rappel moyen {pct(moyenne(rappels))}, rang réciproque moyen {nombre(moyenne(mrr), 2)} "
             "(le bon document est-il parmi les premiers retrouvés ?)",
-            f"- **Génération** (réussite aux contrôles automatiques) : **{pct_ecart(taux_par_passe(enrs))}**",
+            f"- **Génération** (réussite aux contrôles automatiques) : **{pct_ecart(taux_par_passe(enrs))}** ; {ic_taches(enrs)}",
             f"- Génération quand tous les documents attendus ont été retrouvés : {pct(moyenne([1.0 if e['note']['reussite_generation'] else 0.0 for e in cond]))} ({len(cond)} passages)",
             f"- Citation d'un document attendu : {pct(moyenne([1.0 if c else 0.0 for c in cit]))}",
             f"- Questions où il fallait s'abstenir (sans réponse ou réponse partielle) : {pct(moyenne([1.0 if e['note']['reussite_generation'] else 0.0 for e in abst]))} ({len(abst)} passages)",
@@ -88,7 +108,7 @@ def _bloc_agentique(enrs):
     anom = [e for e in ok if e.get("anomalies_serveur")]
     ratees = [e for e in ok if not reussite(e)]
     attribuables = [e for e in ratees if e.get("anomalies_serveur")]
-    return [f"- **Réussite** (état final exact, aucune action interdite) : **{pct_ecart(taux_par_passe(enrs))}**",
+    return [f"- **Réussite** (état final exact, aucune action interdite) : **{pct_ecart(taux_par_passe(enrs))}** ; {ic_taches(enrs)}",
             f"- **Anomalies côté serveur** : {len(anom)} passage(s) sur {len(ok)} où le serveur n'a pas converti un appel d'outil du modèle (texte brut d'appel dans la réponse) ou a rendu une réponse vide ; "
             f"{len(attribuables)} des {len(ratees)} échecs en comportent. Ces échecs relèvent de l'ensemble modèle + serveur (analyseur d'outils), pas du seul modèle.",
             f"- Passages avec une action interdite : {pct(moyenne(interdit))}",
@@ -105,6 +125,29 @@ def _par_niveau(enrs):
     return lignes
 
 
+def _par_gravite(enrs):
+    lignes = ["| Gravité de la tâche | Tâches | Exécutions | Réussite | Échecs |", "|---|---|---|---|---|"]
+    vu = False
+    for g in GRAVITES:
+        sel = [e for e in enrs if e.get("gravite") == g and not e["erreur"]]
+        if sel:
+            vu = True
+            ok = sum(1 for e in sel if reussite(e))
+            lignes.append(f"| {LIBELLES_GRAVITE[g]} | {len({e['tache'] for e in sel})} | {len(sel)} | {pct(ok / len(sel))} | {len(sel) - ok} |")
+    return lignes if vu else []
+
+
+def erreurs_graves(enrs):
+    graves = [e for e in enrs if e.get("gravite") in GRAVES and not e["erreur"]]
+    if not graves:
+        return None
+    echecs = [e for e in graves if not reussite(e)]
+    critiques = [e for e in graves if e["gravite"] == "critique"]
+    return {"executions": len(graves), "echecs": len(echecs), "taux": len(echecs) / len(graves),
+            "critiques": len(critiques), "critiques_echecs": sum(1 for e in critiques if not reussite(e)),
+            "taches_en_echec": sorted({e["tache"] for e in echecs})}
+
+
 def performance(enrs):
     ok = [e for e in enrs if not e["erreur"] and e.get("mesures")]
     ttft = [e["mesures"]["ttft"] for e in ok if e["mesures"]["ttft"] is not None]
@@ -113,7 +156,9 @@ def performance(enrs):
     tc = [e["mesures"]["tokens_completion"] for e in ok if e["mesures"]["tokens_completion"] is not None]
     couts = [e["cout"] for e in ok if "cout" in e]
     couts_usd = [e["cout_usd"] for e in ok if "cout_usd" in e]
-    return {"ttft_median": statistics.median(ttft) if ttft else None, "debit_moyen": moyenne(debit),
+    reussies = sum(1 for e in ok if reussite(e))
+    cout_par_reussite = (sum(couts_usd) / reussies if reussies else None) if couts_usd else None
+    return {"cout_usd_par_reussite": cout_par_reussite, "ttft_median": statistics.median(ttft) if ttft else None, "debit_moyen": moyenne(debit),
             "duree_moyenne": moyenne(duree), "tokens_moyens": moyenne(tc), "cout_moyen": moyenne(couts) if couts else None,
             "cout_usd_moyen": moyenne(couts_usd) if couts_usd else None, "cout_usd_total": sum(couts_usd) if couts_usd else None,
             "tronquees": sum(1 for e in ok if e.get("fin") == "length")}
@@ -147,6 +192,14 @@ def generer(dossier: Path) -> Path:
             f"- Moteur : commit `{(releve['moteur']['commit'] or 'inconnu')[:10]}`, plafond de génération {releve['max_tokens']} tokens",
             f"- Matériel déclaré : {releve['materiel_declare'] or 'non déclaré'} ; mémoire GPU : "
             + (f"{releve['memoire_gpu']['valeur_mib']} Mio" if releve['memoire_gpu']['valeur_mib'] else f"non relevée ({releve['memoire_gpu']['raison']})"), ""]
+    graves = erreurs_graves([e for e in enrs if not e["erreur"]])
+    if graves:
+        out += ["## Erreurs graves (à lire avant le score global)", "",
+                f"- Sur les tâches de gravité **élevée ou critique** ({graves['executions']} exécutions) : **{graves['echecs']} échec(s), soit {pct(graves['taux'])}**.",
+                f"- Dont tâches **critiques** : {graves['critiques_echecs']} échec(s) sur {graves['critiques']} exécutions.",
+                (f"- Tâches graves en échec au moins une fois : {', '.join(graves['taches_en_echec'])}." if graves["taches_en_echec"] else "- Aucune tâche grave en échec."),
+                "- Un score global élevé ne dit rien de ces échecs : un modèle qui échoue sur des tâches graves n'est pas présenté comme fiable (voir `docs/GRAVITE.md`).",
+                "- Les gravités sont **proposées par l'équipe et à valider par un professionnel**.", ""]
     lignes_csv = []
     for bloc, titre in BLOCS.items():
         tous = [e for e in enrs if e["bloc"] == bloc]
@@ -160,6 +213,9 @@ def generer(dossier: Path) -> Path:
             out += ["Aucune exécution valide : voir les erreurs d'infrastructure en fin de rapport.", ""]
             continue
         out += {"chat": _bloc_chat, "rag": _bloc_rag, "agentique": _bloc_agentique}[bloc](sel) + [""] + _par_niveau(sel) + [""]
+        par_gravite = _par_gravite(sel)
+        if par_gravite:
+            out += par_gravite + [""]
         faibles = {}
         for e in ok:
             faibles.setdefault(e["tache"], []).append(1.0 if reussite(e) else 0.0)
@@ -170,7 +226,8 @@ def generer(dossier: Path) -> Path:
         out += [f"Performance : temps avant la première réponse (médiane) {nombre(p['ttft_median'], 2, ' s')} ; débit moyen {nombre(p['debit_moyen'], 1, ' tokens/s')} ; "
                 f"durée moyenne par tâche {nombre(p['duree_moyenne'], 1, ' s')} ; tokens générés par tâche {nombre(p['tokens_moyens'], 0)} ; "
                 f"réponses coupées au plafond : {p['tronquees']}"
-                + (f" ; coût réel moyen par tâche {nombre(p['cout_usd_moyen'], 4, ' $')} (total de l'épreuve {nombre(p['cout_usd_total'], 2, ' $')})" if p["cout_usd_moyen"] is not None
+                + (f" ; coût réel moyen par tâche {nombre(p['cout_usd_moyen'], 4, ' $')} (total de l'épreuve {nombre(p['cout_usd_total'], 2, ' $')}), "
+                   f"**coût par tâche réussie {nombre(p['cout_usd_par_reussite'], 4, ' $')}** (toutes les tentatives, échecs compris, rapportées aux seules réussites)" if p["cout_usd_moyen"] is not None
                    else f" ; coût moyen par tâche {nombre(p['cout_moyen'], 4, ' €')}" if p["cout_moyen"] is not None
                    else " ; coût par tâche non calculé (aucun tarif horaire fourni)"), ""]
         lignes_csv.append([bloc, len({e['tache'] for e in sel}), len({e['passe'] for e in sel}), moyenne(taux_par_passe(sel)),
@@ -180,7 +237,8 @@ def generer(dossier: Path) -> Path:
             "- Les notes sont **automatiques**. La notation par un juge (qualité du français, clarté, prudence) n'est pas incluse : les critères du juge restent à noter.",
             "- **Toutes les réponses de référence sont « à valider par un professionnel »** : un score de justesse métier n'est pas établi.",
             "- Les contrôles automatiques sont stricts et lexicaux : une bonne réponse très inhabituelle peut échouer, et une réponse d'abstention est repérée par une liste de formulations.",
-            "- Avec une vingtaine de tâches par épreuve, un petit écart entre deux modèles n'est pas significatif : un écart n'est annoncé que s'il dépasse la dispersion observée.", ""]
+            "- **Deux incertitudes différentes** : l'écart-type entre passes mesure la variabilité du **modèle** quand on rejoue les mêmes tâches ; l'intervalle de confiance sur les tâches mesure ce que l'on ignore parce que l'on n'a testé qu'un **échantillon** de situations. Le second est presque toujours le plus large : répéter cinq fois les mêmes tâches ne remplace pas plus de tâches.",
+            "- Avec une vingtaine de tâches par épreuve, un petit écart entre deux modèles n'est pas significatif : deux modèles ne sont départagés que si l'intervalle de confiance de leur différence, calculé tâche par tâche, exclut zéro (voir `python3 -m core.comparer`).", ""]
     if erreurs:
         out += [f"- **{len(erreurs)} exécution(s) en erreur d'infrastructure** (serveur injoignable, délai dépassé), non comptées dans les taux.", ""]
     (dossier / "rapport.md").write_text("\n".join(out), encoding="utf-8")

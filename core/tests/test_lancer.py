@@ -73,6 +73,10 @@ class Lanceur(unittest.TestCase):
         self.assertTrue(all(lancer._reussi(e) for e in enrs), [e["tache"] for e in enrs if not lancer._reussi(e)])
         self.assertEqual({e["passe"] for e in enrs}, {1, 2})
 
+    def test_la_gravite_de_la_tache_est_enregistree(self):
+        enrs = lire(self.lancer(blocs=["chat"], taches=["CH-01", "CH-15"], limite=0, passes=1))
+        self.assertEqual({e["tache"]: e["gravite"] for e in enrs}, {"CH-01": "faible", "CH-15": "critique"})
+
     def test_les_passes_sont_enchainees(self):
         enrs = lire(self.lancer())
         self.assertEqual([e["passe"] for e in enrs], [1] * 9 + [2] * 9)
@@ -180,6 +184,15 @@ class Rapport(unittest.TestCase):
         self.assertIn("100 %", self.texte)
         self.assertIn("débit moyen", self.texte)
         self.assertIn("coût par tâche non calculé", self.texte)
+
+    def test_intervalle_sur_les_taches_et_deux_incertitudes_expliquees(self):
+        self.assertIn("intervalle de confiance à 95 % sur les tâches", self.texte)
+        self.assertIn("Deux incertitudes différentes", self.texte)
+
+    def test_gravite_dans_le_rapport(self):
+        self.assertIn("## Erreurs graves", self.texte)
+        self.assertIn("| Gravité de la tâche | Tâches | Exécutions | Réussite | Échecs |", self.texte)
+        self.assertIn("à valider par un professionnel", self.texte)
 
     def test_csv(self):
         lignes = (self.sortie / "resume.csv").read_text(encoding="utf-8").splitlines()
