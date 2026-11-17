@@ -36,6 +36,13 @@ _MARQUES_ABSTENTION = (
     "ne permet pas",
     "impossible de",
     "je ne peux pas",
+    "aucun numéro",
+    "n'a pas été communiqué",
+    "n'a été communiqué",
+    "pas communiqué",
+    "non communiqué",
+    "non renseigné",
+    "pas renseigné",
 )
 
 

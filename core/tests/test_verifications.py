@@ -92,6 +92,8 @@ class Abstention(unittest.TestCase):
             "Je ne sais pas, cette information ne figure pas dans le dossier.",
             "Le numéro de téléphone n'est pas indiqué dans les documents fournis.",
             "Je ne dispose pas de cette information.",
+            "Aucun numéro de téléphone n'a été communiqué au cabinet.",
+            "Le SIREN n'est pas renseigné dans la fiche.",
         ]:
             self.assertTrue(ok({"type": "abstention", "attendue": True}, phrase), phrase)
 
