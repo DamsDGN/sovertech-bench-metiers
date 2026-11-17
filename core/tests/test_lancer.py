@@ -119,6 +119,30 @@ class Lanceur(unittest.TestCase):
         self.assertIn("d'infrastructure", (sortie / "rapport.md").read_text(encoding="utf-8"))
 
 
+class VarianteExtraction(unittest.TestCase):
+    def test_le_releve_et_le_rapport_nomment_le_moteur(self):
+        jeux = lancer.charger_jeux("expert-comptable", "docling")
+        with tempfile.TemporaryDirectory() as tmp:
+            sortie = Path(tmp) / "s"
+            lancer.executer(config(blocs=["rag"], limite=2, passes=1), FauxModele(), jeux, sortie, journal=lambda *_: None)
+            releve = json.loads((sortie / "releve.json").read_text(encoding="utf-8"))
+            self.assertEqual(releve["extraction"]["moteur"], "docling")
+            self.assertIn("docling-serve", releve["extraction"]["outil"])
+            rapport = (sortie / "rapport.md").read_text(encoding="utf-8")
+            self.assertIn("variante de comparaison", rapport)
+
+    def test_la_reference_reste_tika(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            sortie = Path(tmp) / "s"
+            lancer.executer(config(blocs=["chat"], limite=1, passes=1), FauxModele(), JEUX, sortie, journal=lambda *_: None)
+            self.assertEqual(json.loads((sortie / "releve.json").read_text(encoding="utf-8"))["extraction"]["moteur"], "tika")
+            self.assertIn("(référence)", (sortie / "rapport.md").read_text(encoding="utf-8"))
+
+    def test_les_passages_proviennent_du_moteur_choisi(self):
+        a, b = JEUX["documents"]["releve-banque-epis-2026-01"]["corps"], lancer.charger_jeux("expert-comptable", "docling")["documents"]["releve-banque-epis-2026-01"]["corps"]
+        self.assertNotEqual(a, b)
+
+
 class ReprisePuisRapport(unittest.TestCase):
     def test_une_execution_en_erreur_puis_reprise_ne_compte_qu_une_fois(self):
         from core import rapport

@@ -9,6 +9,33 @@ from core import donnees as d
 SOURCE = d.RACINE / "expert-comptable" / "corpus"
 
 
+class VarianteDocling(unittest.TestCase):
+    def test_la_variante_est_complete_et_coherente(self):
+        self.assertEqual(d.verifier_variante_extraction("expert-comptable", "docling"), [])
+        manifeste = json.loads((SOURCE / "MANIFESTE-docling.json").read_text(encoding="utf-8"))["documents"]
+        self.assertEqual(len(manifeste), 26)
+
+    def test_les_formats_herites_sont_convertis_avant_docling(self):
+        manifeste = json.loads((SOURCE / "MANIFESTE-docling.json").read_text(encoding="utf-8"))["documents"]
+        for id_, e in manifeste.items():
+            if e["format"] in ("doc", "xls"):
+                self.assertTrue(e["conversion_prealable"], id_)
+            else:
+                self.assertIsNone(e["conversion_prealable"], id_)
+
+    def test_les_deux_moteurs_donnent_des_textes_distincts_pour_les_memes_documents(self):
+        a = d.charger_documents("expert-comptable")
+        b = d.charger_documents("expert-comptable", extraction="docling")
+        self.assertEqual(set(a), set(b))
+        self.assertTrue(all(a[i]["corps"] != b[i]["corps"] for i in a))
+        self.assertTrue(a["releve-banque-epis-2026-01"]["corps"].count("\n") < 3)
+        self.assertGreater(b["releve-banque-epis-2026-01"]["corps"].count("\n"), 8)
+
+    def test_moteur_inconnu(self):
+        with self.assertRaises(ValueError):
+            d.charger_documents("expert-comptable", extraction="inconnu")
+
+
 class CorpusReel(unittest.TestCase):
     def test_formats_representatifs(self):
         formats = json.loads((SOURCE / "formats.json").read_text(encoding="utf-8"))
@@ -85,6 +112,27 @@ class Alterations(unittest.TestCase):
             f.write("MotSecret".encode("utf-16-le"))
         erreurs = d.verifier_fichiers("expert-comptable", docs, self.racine, mots_interdits=["motsecret"])
         self.assertTrue(any("mot interdit" in e for e in erreurs))
+
+    def test_variante_docling_alteree(self):
+        with (self.corpus / "extractions-docling" / "fiche-epis-dor.txt").open("a", encoding="utf-8") as f:
+            f.write("texte ajoute")
+        self.assertTrue(any("extraction docling" in e and "a change depuis le manifeste" in e for e in self.erreurs_variante()))
+
+    def test_variante_docling_vide(self):
+        (self.corpus / "extractions-docling" / "fiche-phare.txt").write_text("", encoding="utf-8")
+        self.assertTrue(any("vide" in e for e in self.erreurs_variante()))
+
+    def test_variante_docling_sans_manifeste(self):
+        (self.corpus / "MANIFESTE-docling.json").unlink()
+        self.assertTrue(any("ensemble" in e for e in self.erreurs_variante()))
+
+    def test_variante_docling_fichier_modifie(self):
+        with (self.corpus / "fichiers" / "honoraires-2026.xlsx").open("ab") as f:
+            f.write(b"\0")
+        self.assertTrue(any("extraction docling" in e and "a change depuis l'extraction" in e for e in self.erreurs_variante()))
+
+    def erreurs_variante(self):
+        return d.verifier_variante_extraction("expert-comptable", "docling", self.racine)
 
     def test_document_sans_format(self):
         formats = json.loads((self.corpus / "formats.json").read_text(encoding="utf-8"))

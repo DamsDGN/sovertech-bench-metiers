@@ -141,6 +141,8 @@ def generer(dossier: Path) -> Path:
             if etalon else f"- Dépôt du modèle : `{m['depot_hf']}` (révision `{m.get('revision_hf')}`)",
             f"- Modèle réellement servi : `{releve['serveur'].get('modele_servi')}`, contexte maximal {releve['serveur'].get('contexte_max')}",
             f"- Réglages d'échantillonnage : {releve['echantillonnage'] or 'aucun envoyé (valeurs par défaut de l\'éditeur)'}",
+            f"- Extraction du texte des documents : {releve.get('extraction', {}).get('moteur', 'tika')}"
+            + (" (**variante de comparaison**, la référence est Tika)" if releve.get("extraction", {}).get("moteur", "tika") != "tika" else " (référence)"),
             f"- Récupérateur du RAG : {releve['recuperateur']}", f"- Prompts : version {releve['moteur']['prompts']} (empreinte {releve['moteur']['empreinte_prompts']})",
             f"- Moteur : commit `{(releve['moteur']['commit'] or 'inconnu')[:10]}`, plafond de génération {releve['max_tokens']} tokens",
             f"- Matériel déclaré : {releve['materiel_declare'] or 'non déclaré'} ; mémoire GPU : "

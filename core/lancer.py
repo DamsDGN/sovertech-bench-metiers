@@ -49,6 +49,7 @@ def construire_releve(config, entree, infos_serveur, jeux) -> dict:
             raisons.append(f"modele servi ({servi}) different du catalogue ({entree['depot_hf']})")
     return {
         "etalon_cloud": etalon, "budget_usd": config.get("budget_usd"),
+        "extraction": informations_extraction(jeux.get("extraction", "tika")),
         "date": datetime.datetime.now().astimezone().isoformat(timespec="seconds"),
         "metier": config["metier"], "modele_catalogue": entree, "serveur": infos_serveur,
         "materiel_declare": config.get("materiel"), "memoire_gpu": memoire_gpu_locale(),
@@ -62,8 +63,17 @@ def construire_releve(config, entree, infos_serveur, jeux) -> dict:
     }
 
 
-def charger_jeux(metier: str) -> dict:
-    jeux = d.charger_metier(metier)
+def informations_extraction(moteur: str) -> dict:
+    fichier = d.RACINE / "expert-comptable" / "corpus" / ("MANIFESTE.json" if moteur == "tika" else f"MANIFESTE-{moteur}.json")
+    if not fichier.exists():
+        return {"moteur": moteur}
+    e = json.loads(fichier.read_text(encoding="utf-8"))["extraction"]
+    return {"moteur": moteur, "outil": e.get("outil"), "date": e.get("date"), "note": e.get("note")}
+
+
+def charger_jeux(metier: str, extraction: str = "tika") -> dict:
+    jeux = d.charger_metier(metier, extraction=extraction)
+    jeux["extraction"] = extraction
     base = d.RACINE / metier / "agentique" / "environnement"
     jeux["outils"] = json.loads((base / "outils.json").read_text(encoding="utf-8"))
     jeux["systeme_agent"] = (base / "consigne_systeme.md").read_text(encoding="utf-8").strip()
@@ -210,6 +220,8 @@ def analyser(argv=None):
     p.add_argument("--prix-horaire", type=float, default=None, help="tarif horaire de la machine, pour le cout par tache")
     p.add_argument("--materiel", default=None, help="description du materiel (ex. carte Blackwell 48 Go)")
     p.add_argument("--etiquette", default=None)
+    p.add_argument("--extraction", choices=sorted(d.MOTEURS_EXTRACTION), default="tika",
+                   help="moteur d'extraction du texte des documents (tika : reference, docling : variante de comparaison)")
     p.add_argument("--budget-usd", type=float, default=None,
                    help="plafond de depense en dollars, OBLIGATOIRE pour un modele facture a l'usage (la passe s'arrete a une tache pres)")
     p.add_argument("--pause", type=float, default=0, help="secondes entre deux taches")
@@ -233,9 +245,9 @@ def main(argv=None):
               "max_tokens": a.max_tokens, "prix_horaire": a.prix_horaire, "materiel": a.materiel,
               "etiquette": a.etiquette, "pause": a.pause, "reprise": a.reprise}
     jour = datetime.date.today().isoformat()
-    nom = a.modele_catalogue + (f"-{a.etiquette}" if a.etiquette else "")
+    nom = a.modele_catalogue + (f"-{a.etiquette}" if a.etiquette else "") + ("" if a.extraction == "tika" else f"-extraction-{a.extraction}")
     sortie = Path(a.sortie) if a.sortie else d.RACINE / "results" / a.metier / jour / nom
-    executer(config, client, charger_jeux(a.metier), sortie)
+    executer(config, client, charger_jeux(a.metier, a.extraction), sortie)
     print(f"Resultats : {sortie}")
 
 

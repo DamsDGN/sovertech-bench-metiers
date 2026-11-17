@@ -72,7 +72,12 @@ def lire_fec(chemin: Path) -> list:
     return [dict(zip(en_tete, l.split("\t"))) for l in lignes[1:] if l.strip()]
 
 
-def charger_documents(metier: str, racine: Path = RACINE) -> dict:
+MOTEURS_EXTRACTION = {"tika": "extractions", "docling": "extractions-docling"}
+
+
+def charger_documents(metier: str, racine: Path = RACINE, extraction: str = "tika") -> dict:
+    if extraction not in MOTEURS_EXTRACTION:
+        raise ValueError(f"moteur d'extraction inconnu : {extraction!r} (attendus : {sorted(MOTEURS_EXTRACTION)})")
     base = racine / metier
     corpus = base / "corpus"
     formats = json.loads((corpus / "formats.json").read_text(encoding="utf-8")) if (corpus / "formats.json").exists() else {}
@@ -81,19 +86,19 @@ def charger_documents(metier: str, racine: Path = RACINE) -> dict:
         meta, corps_source = parser_document(f.read_text(encoding="utf-8"))
         id_ = meta.get("id", f.stem)
         spec = formats.get(id_, {})
-        extraction = corpus / "extractions" / f"{id_}.txt"
+        texte_extrait = corpus / MOTEURS_EXTRACTION[extraction] / f"{id_}.txt"
         doc = {"meta": meta, "corps_source": corps_source, "fichier": f.name, "format": spec.get("format"),
                "degradation": spec.get("degradation"), "usage": spec.get("usage", USAGES_PAR_DEFAUT),
-               "corps": extraction.read_text(encoding="utf-8") if extraction.exists() else corps_source}
+               "corps": texte_extrait.read_text(encoding="utf-8") if texte_extrait.exists() else corps_source}
         if meta.get("type") == "fec":
             doc["donnees"] = lire_fec(corpus / "fichiers" / f"{id_}.{spec['format']}")
         documents[id_] = doc
     return documents
 
 
-def charger_metier(metier: str, racine: Path = RACINE) -> dict:
+def charger_metier(metier: str, racine: Path = RACINE, extraction: str = "tika") -> dict:
     base = racine / metier
-    documents = charger_documents(metier, racine)
+    documents = charger_documents(metier, racine, extraction)
     env = base / "agentique" / "environnement" / "etat_initial.json"
     return {
         "documents": documents,
@@ -441,6 +446,34 @@ def verifier_fec(metier: str, id_: str, docs: dict, racine: Path = RACINE) -> li
     return erreurs
 
 
+def verifier_variante_extraction(metier: str, moteur: str, racine: Path = RACINE) -> list:
+    corpus = racine / metier / "corpus"
+    manifeste_chemin = corpus / f"MANIFESTE-{moteur}.json"
+    dossier = corpus / MOTEURS_EXTRACTION[moteur]
+    if not manifeste_chemin.exists() and not dossier.exists():
+        return []
+    if not manifeste_chemin.exists() or not dossier.exists():
+        return [f"extraction {moteur} : dossier et manifeste doivent exister ensemble"]
+    erreurs = []
+    manifeste = json.loads(manifeste_chemin.read_text(encoding="utf-8"))["documents"]
+    formats = {k for k in json.loads((corpus / "formats.json").read_text(encoding="utf-8")) if not k.startswith("_")}
+    for id_ in sorted(formats - set(manifeste)):
+        erreurs.append(f"extraction {moteur} : {id_} absent du manifeste")
+    for id_, entree in sorted(manifeste.items()):
+        chemin = dossier / f"{id_}.txt"
+        fichier = corpus / "fichiers" / entree["fichier"]
+        if not chemin.exists():
+            erreurs.append(f"extraction {moteur} : texte de {id_} manquant")
+            continue
+        if chemin.stat().st_size == 0:
+            erreurs.append(f"extraction {moteur} : texte de {id_} vide")
+        if entree["sha256_extraction"] != _sha256(chemin.read_bytes()):
+            erreurs.append(f"extraction {moteur} : le texte de {id_} a change depuis le manifeste")
+        if fichier.exists() and entree["sha256_fichier"] != _sha256(fichier.read_bytes()):
+            erreurs.append(f"extraction {moteur} : le fichier {id_} a change depuis l'extraction (relancer outils/extraire_corpus.py {moteur})")
+    return erreurs
+
+
 TRACES_DE_MACHINE = (b"/home/", b"C:\\Users\\", b"/Users/", b"\\Users\\")
 
 
@@ -501,6 +534,7 @@ def verifier_metier(metier: str, racine: Path = RACINE) -> list:
     docs = jeux["documents"]
     return (
         verifier_fichiers(metier, docs, racine, mots)
+        + verifier_variante_extraction(metier, "docling", racine)
         + verifier_documents(docs, mots)
         + verifier_taches_chat(jeux["chat"], docs)
         + verifier_questions_rag(jeux["rag"], docs)
