@@ -1,0 +1,14 @@
+{
+  "id": "claude-opus-5-5-etalon",
+  "nom": "Claude Opus 5.5",
+  "categorie": "etalon_cloud",
+  "fournisseur": "anthropic",
+  "editeur_modele": "Anthropic",
+  "modele_api": "claude-opus-5-5",
+  "echantillonnage": {},
+  "reglages_api": {"effort": "medium"},
+  "source_echantillonnage": "Valeurs par defaut de l'editeur : ce modele n'accepte aucun reglage d'echantillonnage et son niveau d'effort par defaut est medium (documentation Anthropic, releve le 2026-11-17)",
+  "prix_mtok": {"entree": 4.0, "sortie": 20.0, "devise": "USD", "source": "https://platform.claude.com/docs/en/about-claude/pricing", "releve": "2026-11-17"},
+  "statut_catalogue": "etalon cloud : valeur de reference payante, hors regle NVFP4",
+  "notes": "Mesure facturee a l'usage. Le modele est servi par l'API de l'editeur : version et materiel non maitrises, resultat date."
+}

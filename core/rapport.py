@@ -112,8 +112,10 @@ def performance(enrs):
     duree = [e["mesures"]["duree"] for e in ok]
     tc = [e["mesures"]["tokens_completion"] for e in ok if e["mesures"]["tokens_completion"] is not None]
     couts = [e["cout"] for e in ok if "cout" in e]
+    couts_usd = [e["cout_usd"] for e in ok if "cout_usd" in e]
     return {"ttft_median": statistics.median(ttft) if ttft else None, "debit_moyen": moyenne(debit),
             "duree_moyenne": moyenne(duree), "tokens_moyens": moyenne(tc), "cout_moyen": moyenne(couts) if couts else None,
+            "cout_usd_moyen": moyenne(couts_usd) if couts_usd else None, "cout_usd_total": sum(couts_usd) if couts_usd else None,
             "tronquees": sum(1 for e in ok if e.get("fin") == "length")}
 
 
@@ -121,15 +123,24 @@ def generer(dossier: Path) -> Path:
     releve, enrs = charger(dossier)
     m = releve["modele_catalogue"]
     erreurs = [e for e in enrs if e["erreur"]]
-    out = [f"# Rapport : {m['nom']} ({m['quantification']})", "",
+    etalon = releve.get("etalon_cloud")
+    out = [f"# Rapport : {m['nom']} ({'étalon cloud' if etalon else m['quantification']})", "",
            f"Généré le {releve['date']}. Métier : {releve['metier']}.", ""]
+    if etalon:
+        out += ["> **Étalon cloud.** Modèle servi par l'API de son éditeur, mesuré comme valeur de référence pour situer les modèles locaux. "
+                "Version, matériel et réglages internes ne sont pas maîtrisés : le résultat est daté et peut changer sans préavis.", ""]
+        if releve.get("arret_budget"):
+            a = releve["arret_budget"]
+            out += [f"> **Mesure incomplète : plafond de dépense atteint** ({a['depense_usd']} $ sur {a['budget_usd']} $), arrêt avant la tâche {a['derniere_tache']} (passe {a['passe']}).", ""]
     if not releve["comparable_aux_resultats_publies"]:
         out += ["> **Résultat NON comparable aux résultats publiés.** " + " ; ".join(releve["raisons_non_comparable"]) + ".",
                 "> Il valide le fonctionnement du benchmark et donne une indication de comportement : il ne doit pas être classé avec les autres modèles.", ""]
     out += ["## Configuration", "",
-            f"- Dépôt du modèle : `{m['depot_hf']}` (révision `{m.get('revision_hf')}`)",
+            (f"- Modèle de l'API : `{m['modele_api']}` ({m['fournisseur']}), réglages de l'éditeur : {m['reglages_api']} ; "
+             f"prix {m['prix_mtok']['entree']} $ en entrée et {m['prix_mtok']['sortie']} $ en sortie par million de tokens (relevé du {m['prix_mtok']['releve']})")
+            if etalon else f"- Dépôt du modèle : `{m['depot_hf']}` (révision `{m.get('revision_hf')}`)",
             f"- Modèle réellement servi : `{releve['serveur'].get('modele_servi')}`, contexte maximal {releve['serveur'].get('contexte_max')}",
-            f"- Réglages d'échantillonnage (ceux de l'éditeur) : {releve['echantillonnage']}",
+            f"- Réglages d'échantillonnage : {releve['echantillonnage'] or 'aucun envoyé (valeurs par défaut de l\'éditeur)'}",
             f"- Récupérateur du RAG : {releve['recuperateur']}", f"- Prompts : version {releve['moteur']['prompts']} (empreinte {releve['moteur']['empreinte_prompts']})",
             f"- Moteur : commit `{(releve['moteur']['commit'] or 'inconnu')[:10]}`, plafond de génération {releve['max_tokens']} tokens",
             f"- Matériel déclaré : {releve['materiel_declare'] or 'non déclaré'} ; mémoire GPU : "
@@ -157,7 +168,9 @@ def generer(dossier: Path) -> Path:
         out += [f"Performance : temps avant la première réponse (médiane) {nombre(p['ttft_median'], 2, ' s')} ; débit moyen {nombre(p['debit_moyen'], 1, ' tokens/s')} ; "
                 f"durée moyenne par tâche {nombre(p['duree_moyenne'], 1, ' s')} ; tokens générés par tâche {nombre(p['tokens_moyens'], 0)} ; "
                 f"réponses coupées au plafond : {p['tronquees']}"
-                + (f" ; coût moyen par tâche {nombre(p['cout_moyen'], 4, ' €')}" if p["cout_moyen"] is not None else " ; coût par tâche non calculé (aucun tarif horaire fourni)"), ""]
+                + (f" ; coût réel moyen par tâche {nombre(p['cout_usd_moyen'], 4, ' $')} (total de l'épreuve {nombre(p['cout_usd_total'], 2, ' $')})" if p["cout_usd_moyen"] is not None
+                   else f" ; coût moyen par tâche {nombre(p['cout_moyen'], 4, ' €')}" if p["cout_moyen"] is not None
+                   else " ; coût par tâche non calculé (aucun tarif horaire fourni)"), ""]
         lignes_csv.append([bloc, len({e['tache'] for e in sel}), len({e['passe'] for e in sel}), moyenne(taux_par_passe(sel)),
                            ecart_type(taux_par_passe(sel)), p["ttft_median"], p["debit_moyen"], p["duree_moyenne"], p["cout_moyen"]])
     out += ["## Limites de ce rapport", "",

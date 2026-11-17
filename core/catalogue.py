@@ -2,8 +2,19 @@ import json
 from pathlib import Path
 
 DOSSIER = Path(__file__).resolve().parent / "catalogue"
-CHAMPS = {"id", "nom", "depot_hf", "quantification", "echantillonnage", "source_echantillonnage"}
 CLES_ECHANTILLONNAGE = {"temperature", "top_p", "top_k", "min_p", "presence_penalty", "repetition_penalty"}
+FOURNISSEURS_CLOUD = {"anthropic", "openai"}
+CHAMPS_LOCAL = {"id", "nom", "depot_hf", "quantification", "echantillonnage", "source_echantillonnage"}
+CHAMPS_ETALON = {"id", "nom", "fournisseur", "modele_api", "echantillonnage", "reglages_api",
+                 "source_echantillonnage", "prix_mtok"}
+
+
+def categorie(entree: dict) -> str:
+    return entree.get("categorie", "local")
+
+
+def est_etalon(entree: dict) -> bool:
+    return categorie(entree) == "etalon_cloud"
 
 
 def lister(dossier: Path = DOSSIER) -> list:
@@ -17,11 +28,19 @@ def charger(id_: str, dossier: Path = DOSSIER) -> dict:
     raise KeyError(f"modele {id_!r} absent du catalogue")
 
 
+def cout_usd(entree: dict, tokens_entree, tokens_sortie):
+    prix = entree.get("prix_mtok")
+    if not prix or tokens_entree is None or tokens_sortie is None:
+        return None
+    return (tokens_entree * prix["entree"] + tokens_sortie * prix["sortie"]) / 1e6
+
+
 def verifier(dossier: Path = DOSSIER) -> list:
     erreurs, vus = [], set()
     for f in sorted(dossier.glob("*.json")):
         e = json.loads(f.read_text(encoding="utf-8"))
-        manquants = CHAMPS - set(e)
+        etalon = est_etalon(e)
+        manquants = (CHAMPS_ETALON if etalon else CHAMPS_LOCAL) - set(e)
         if manquants:
             erreurs.append(f"{f.name} : champs manquants {sorted(manquants)}")
             continue
@@ -33,6 +52,12 @@ def verifier(dossier: Path = DOSSIER) -> list:
         inconnues = set(e["echantillonnage"]) - CLES_ECHANTILLONNAGE
         if inconnues:
             erreurs.append(f"{f.name} : reglages inconnus {sorted(inconnues)}")
-        if e["quantification"] != "NVFP4":
-            erreurs.append(f"{f.name} : le catalogue publie est en NVFP4 uniquement")
+        if etalon:
+            if e["fournisseur"] not in FOURNISSEURS_CLOUD:
+                erreurs.append(f"{f.name} : fournisseur {e['fournisseur']!r} inconnu")
+            p = e["prix_mtok"]
+            if not {"entree", "sortie", "source", "releve"} <= set(p) or p["entree"] <= 0 or p["sortie"] <= 0:
+                erreurs.append(f"{f.name} : prix_mtok doit donner entree, sortie, source et date de releve")
+        elif e["quantification"] != "NVFP4":
+            erreurs.append(f"{f.name} : un modele local du catalogue publie est en NVFP4 uniquement")
     return erreurs

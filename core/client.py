@@ -17,6 +17,7 @@ class Reponse:
     raisonnement: str = ""
     appels_outils: list = field(default_factory=list)
     fin: str | None = None
+    brut: list | None = None
     tokens_prompt: int | None = None
     tokens_completion: int | None = None
     ttft: float | None = None
@@ -86,7 +87,8 @@ def lire_flux(lignes, t0: float, horloge=time.monotonic) -> Reponse:
 
 class Client:
     def __init__(self, base_url: str, modele: str, cle: str | None = None, ca_cert: str | None = None,
-                 delai: float = 900, tentatives: int = 3):
+                 delai: float = 900, tentatives: int = 3, nom_max_tokens: str = "max_tokens"):
+        self.nom_max_tokens = nom_max_tokens
         u = urllib.parse.urlparse(base_url)
         self.https = u.scheme == "https"
         self.hote, self.port = u.hostname, u.port or (443 if self.https else 80)
@@ -106,11 +108,12 @@ class Client:
         return e
 
     def charge_utile(self, messages, outils=None, echantillonnage=None, max_tokens=None) -> dict:
+        messages = [{k: v for k, v in m.items() if not k.startswith("_")} for m in messages]
         charge = {"model": self.modele, "messages": messages, "stream": True,
                   "stream_options": {"include_usage": True}}
         charge.update(echantillonnage or {})
         if max_tokens:
-            charge["max_tokens"] = max_tokens
+            charge[self.nom_max_tokens] = max_tokens
         if outils:
             charge["tools"] = outils
             charge["tool_choice"] = "auto"
