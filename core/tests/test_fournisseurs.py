@@ -137,6 +137,45 @@ class CatalogueEtalons(unittest.TestCase):
         self.assertTrue(catalogue.est_etalon(catalogue.charger("claude-opus-5-5-etalon")))
         self.assertFalse(catalogue.est_etalon(catalogue.charger("gemma-4-12b-nvfp4-redhatai")))
 
+    def test_les_sept_modeles_de_la_v0_et_le_modele_d_essai_sont_dans_le_catalogue(self):
+        ids = {e["id"] for e in catalogue.lister()}
+        attendus = {"qwen-3-8-27b-nvfp4-redhatai", "qwen-3-6-35b-a3b-nvfp4-nvidia", "gemma-4-26b-a4b-nvfp4-redhatai",
+                    "gemma-4-31b-nvfp4-redhatai", "nemotron-3-5-lightning-30b-a3b-nvfp4-nvidia", "muse-glimmer-30b-nvfp4-redhatai",
+                    "ministral-3-14b-nvfp4-redhatai", "gemma-4-12b-nvfp4-redhatai", "claude-sonnet-5-5-etalon", "claude-opus-5-5-etalon"}
+        self.assertEqual(attendus - ids, set())
+
+    def test_chaque_modele_local_est_epingle(self):
+        for e in catalogue.lister():
+            if not catalogue.est_etalon(e):
+                self.assertRegex(e["revision_hf"], r"^[0-9a-f]{40}$", e["id"])
+                self.assertTrue(e["licence"], e["id"])
+                self.assertEqual(e["quantification"], "NVFP4", e["id"])
+
+    def test_les_reglages_sont_ceux_de_l_editeur_avec_leur_source(self):
+        for e in catalogue.lister():
+            self.assertTrue(e["source_echantillonnage"], e["id"])
+        q = catalogue.charger("qwen-3-8-27b-nvfp4-redhatai")
+        self.assertEqual(q["echantillonnage"], {"temperature": 1.0, "top_p": 0.95, "top_k": 20})
+        self.assertIn("0,05", catalogue.charger("ministral-3-14b-nvfp4-redhatai")["source_echantillonnage"])
+
+    def test_les_inconnues_sont_declarees_et_non_devinees(self):
+        for id_ in ("nemotron-3-5-lightning-30b-a3b-nvfp4-nvidia", "muse-glimmer-30b-nvfp4-redhatai"):
+            e = catalogue.charger(id_)
+            self.assertIsNone(e["parseur_outils_vllm"])
+            self.assertIn("parseur_outils_vllm", e["a_determiner_au_premier_chargement"])
+
+    def test_revision_incomplete_refusee(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            e = dict(catalogue.charger("gemma-4-12b-nvfp4-redhatai"), id="x", revision_hf="abc123")
+            (Path(tmp) / "x.json").write_text(json.dumps(e), encoding="utf-8")
+            self.assertTrue(any("revision_hf" in m for m in catalogue.verifier(Path(tmp))))
+
+    def test_hors_perimetre_refuse(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            e = dict(catalogue.charger("gemma-4-12b-nvfp4-redhatai"), id="x", parametres_milliards=70)
+            (Path(tmp) / "x.json").write_text(json.dumps(e), encoding="utf-8")
+            self.assertTrue(any("12 a 35" in m for m in catalogue.verifier(Path(tmp))))
+
     def test_cout(self):
         e = catalogue.charger("claude-sonnet-5-5-etalon")
         self.assertAlmostEqual(catalogue.cout_usd(e, 1_000_000, 100_000), 2.0 + 1.0)

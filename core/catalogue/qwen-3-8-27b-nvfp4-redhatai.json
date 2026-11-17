@@ -1,0 +1,22 @@
+{
+  "id": "qwen-3-8-27b-nvfp4-redhatai",
+  "nom": "Qwen 3.8 27B",
+  "categorie": "local",
+  "editeur_modele": "Alibaba (Qwen)",
+  "depot_hf": "RedHatAI/Qwen3.8-27B-NVFP4",
+  "revision_hf": "7b0859658aee60bd7f7004a9d7da4607bcd8c20c",
+  "quantification": "NVFP4",
+  "quantifie_par": "RedHatAI",
+  "licence": "Apache 2.0",
+  "parametres_milliards": 27,
+  "architecture": "dense",
+  "parseur_outils_vllm": "qwen3_xml",
+  "echantillonnage": {
+    "temperature": 1.0,
+    "top_p": 0.95,
+    "top_k": 20
+  },
+  "source_echantillonnage": "generation_config.json du depot Qwen/Qwen3.8-27B, releve le 2026-11-17",
+  "statut_catalogue": "retenu en v0 (voir docs/PLAN.md, section 4)",
+  "notes": "Modele deja retenu par Sover.tech pour son catalogue client."
+}

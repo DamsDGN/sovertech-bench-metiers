@@ -1,0 +1,25 @@
+{
+  "id": "nemotron-3-5-lightning-30b-a3b-nvfp4-nvidia",
+  "nom": "Nemotron 3.5 Lightning 30B A3B",
+  "categorie": "local",
+  "editeur_modele": "NVIDIA",
+  "depot_hf": "nvidia/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4",
+  "revision_hf": "bee7596271d1495f6992ae224aefde4410e816b8",
+  "quantification": "NVFP4",
+  "quantifie_par": "NVIDIA",
+  "licence": "OpenMDW 1.1 (https://openmdw.ai/license/1-1/)",
+  "parametres_milliards": 30,
+  "architecture": "moe, environ 3 milliards de parametres actifs",
+  "parseur_outils_vllm": null,
+  "echantillonnage": {
+    "temperature": 1.0,
+    "top_p": 0.95
+  },
+  "source_echantillonnage": "generation_config.json du depot nvidia/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-BF16, releve le 2026-11-17",
+  "statut_catalogue": "retenu en v0 (voir docs/PLAN.md, section 4)",
+  "notes": "Licence OpenMDW 1.1 : a lire avant publication de resultats. Parseur d'outils vLLM et support a confirmer au premier chargement.",
+  "a_determiner_au_premier_chargement": [
+    "parseur_outils_vllm",
+    "support vLLM"
+  ]
+}
