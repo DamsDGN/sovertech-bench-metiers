@@ -1,0 +1,26 @@
+{
+  "id": "muse-glimmer-30b-nvfp4-redhatai",
+  "nom": "Muse-Glimmer 30B",
+  "categorie": "local",
+  "editeur_modele": "Meta",
+  "depot_hf": "RedHatAI/Muse-Glimmer-30B-NVFP4",
+  "revision_hf": "af44350b63a88c29db7b1e93f488459e29e02dd7",
+  "quantification": "NVFP4",
+  "quantifie_par": "RedHatAI",
+  "licence": "Apache 2.0",
+  "parametres_milliards": 30,
+  "architecture": "non verifiee",
+  "parseur_outils_vllm": null,
+  "echantillonnage": {
+    "temperature": 1.0,
+    "top_p": 0.95,
+    "top_k": 64
+  },
+  "source_echantillonnage": "generation_config.json du depot meta-models/Muse-Glimmer-30B, releve le 2026-11-17",
+  "statut_catalogue": "retenu en v0 (voir docs/PLAN.md, section 4)",
+  "notes": "Support vLLM et parseur d'outils a confirmer au premier chargement : sinon le modele est consigne non evalue avec la raison.",
+  "a_determiner_au_premier_chargement": [
+    "parseur_outils_vllm",
+    "support vLLM"
+  ]
+}

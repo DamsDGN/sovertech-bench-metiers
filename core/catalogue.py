@@ -1,4 +1,5 @@
 import json
+import re
 from pathlib import Path
 
 DOSSIER = Path(__file__).resolve().parent / "catalogue"
@@ -58,6 +59,15 @@ def verifier(dossier: Path = DOSSIER) -> list:
             p = e["prix_mtok"]
             if not {"entree", "sortie", "source", "releve"} <= set(p) or p["entree"] <= 0 or p["sortie"] <= 0:
                 erreurs.append(f"{f.name} : prix_mtok doit donner entree, sortie, source et date de releve")
-        elif e["quantification"] != "NVFP4":
-            erreurs.append(f"{f.name} : un modele local du catalogue publie est en NVFP4 uniquement")
+        else:
+            if e["quantification"] != "NVFP4":
+                erreurs.append(f"{f.name} : un modele local du catalogue publie est en NVFP4 uniquement")
+            if not re.fullmatch(r"[0-9a-f]{40}", str(e.get("revision_hf", ""))):
+                erreurs.append(f"{f.name} : revision_hf doit etre le SHA complet (40 caracteres) du depot servi")
+            if not e.get("licence"):
+                erreurs.append(f"{f.name} : licence manquante")
+            if not 12 <= e.get("parametres_milliards", 0) <= 35:
+                erreurs.append(f"{f.name} : le perimetre du projet est de 12 a 35 milliards de parametres")
+            if e.get("parseur_outils_vllm") is None and "a_determiner_au_premier_chargement" not in e:
+                erreurs.append(f"{f.name} : un parseur d'outils inconnu doit etre declare dans a_determiner_au_premier_chargement")
     return erreurs

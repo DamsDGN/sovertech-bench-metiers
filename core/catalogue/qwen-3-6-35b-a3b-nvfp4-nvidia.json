@@ -1,0 +1,22 @@
+{
+  "id": "qwen-3-6-35b-a3b-nvfp4-nvidia",
+  "nom": "Qwen 3.6 35B A3B",
+  "categorie": "local",
+  "editeur_modele": "Alibaba (Qwen)",
+  "depot_hf": "nvidia/Qwen3.6-35B-A3B-NVFP4",
+  "revision_hf": "1355db6a052410cfd62085d94b58866fd0f2c3c5",
+  "quantification": "NVFP4",
+  "quantifie_par": "NVIDIA",
+  "licence": "Apache 2.0",
+  "parametres_milliards": 35,
+  "architecture": "moe, environ 3 milliards de parametres actifs",
+  "parseur_outils_vllm": "qwen3_xml",
+  "echantillonnage": {
+    "temperature": 1.0,
+    "top_p": 0.95,
+    "top_k": 20
+  },
+  "source_echantillonnage": "generation_config.json du depot Qwen/Qwen3.6-35B-A3B, releve le 2026-11-17",
+  "statut_catalogue": "retenu en v0 (voir docs/PLAN.md, section 4)",
+  "notes": "Mixture d'experts : peu de poids lus par token."
+}

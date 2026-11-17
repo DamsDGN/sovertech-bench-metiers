@@ -1,0 +1,32 @@
+{
+  "id": "ministral-3-14b-nvfp4-redhatai",
+  "nom": "Ministral 3 14B Instruct",
+  "categorie": "local",
+  "editeur_modele": "Mistral AI",
+  "depot_hf": "RedHatAI/Ministral-3-14B-Instruct-2512-NVFP4",
+  "revision_hf": "ae31e2b3d5aca78b8721e071291d7feed5a87dad",
+  "quantification": "NVFP4",
+  "quantifie_par": "RedHatAI",
+  "licence": "Apache 2.0",
+  "parametres_milliards": 14,
+  "architecture": "dense",
+  "parseur_outils_vllm": "mistral",
+  "echantillonnage": {
+    "temperature": 0.05
+  },
+  "source_echantillonnage": "fiche du modele mistralai/Ministral-3-14B-Instruct-2512, releve le 2026-11-17 : « temperature inferieure a 0,1 » sans valeur precise ; 0,05 retenu par l'equipe (interpretation a valider) ; aucun reglage dans generation_config.json",
+  "statut_catalogue": "retenu en v0 (voir docs/PLAN.md, section 4)",
+  "notes": "La fiche du modele recommande un mode tokenizer, un format de config et un format de chargement propres a Mistral, et le parseur d'outils mistral.",
+  "arguments_vllm_recommandes_par_l_editeur": [
+    "--tokenizer_mode",
+    "mistral",
+    "--config_format",
+    "mistral",
+    "--load_format",
+    "mistral",
+    "--enable-auto-tool-choice",
+    "--tool-call-parser",
+    "mistral"
+  ],
+  "source_arguments_vllm": "fiche du modele mistralai/Ministral-3-14B-Instruct-2512, releve le 2026-11-17 (publies pour le depot de l'editeur : a confirmer pour le depot NVFP4 de RedHatAI)"
+}

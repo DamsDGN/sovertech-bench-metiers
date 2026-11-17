@@ -1,0 +1,22 @@
+{
+  "id": "gemma-4-26b-a4b-nvfp4-redhatai",
+  "nom": "Gemma 4 26B A4B",
+  "categorie": "local",
+  "editeur_modele": "Google",
+  "depot_hf": "RedHatAI/gemma-4-26B-A4B-it-NVFP4",
+  "revision_hf": "5557756b8dce33ac72f2bd702b11729fdba3b839",
+  "quantification": "NVFP4",
+  "quantifie_par": "RedHatAI",
+  "licence": "Apache 2.0",
+  "parametres_milliards": 26,
+  "architecture": "moe, environ 4 milliards de parametres actifs",
+  "parseur_outils_vllm": "gemma4",
+  "echantillonnage": {
+    "temperature": 1.0,
+    "top_p": 0.95,
+    "top_k": 64
+  },
+  "source_echantillonnage": "generation_config.json du depot google/gemma-4-26B-A4B-it, releve le 2026-11-17",
+  "statut_catalogue": "retenu en v0 (voir docs/PLAN.md, section 4)",
+  "notes": "Le parseur d'outils gemma4 de vLLM peut laisser passer des appels d'outils non convertis : le rapport compte ces anomalies a part."
+}
