@@ -218,7 +218,8 @@ def analyser(argv=None):
     p.add_argument("--passes", type=int, default=5)
     p.add_argument("--taches", default="", help="identifiants separes par des virgules")
     p.add_argument("--limite", type=int, default=0, help="nombre de taches par bloc (essais rapides)")
-    p.add_argument("--max-tokens", type=int, default=MAX_TOKENS_DEFAUT)
+    p.add_argument("--max-tokens", type=int, default=None,
+                   help=f"plafond de generation (raisonnement compris) ; par defaut celui du catalogue, sinon {MAX_TOKENS_DEFAUT}")
     p.add_argument("--prix-horaire", type=float, default=None, help="tarif horaire de la machine, pour le cout par tache")
     p.add_argument("--materiel", default=None, help="description du materiel (ex. carte Blackwell 48 Go)")
     p.add_argument("--etiquette", default=None)
@@ -230,6 +231,12 @@ def analyser(argv=None):
     p.add_argument("--reprise", action="store_true")
     p.add_argument("--sortie", default=None)
     return p.parse_args(argv)
+
+
+def plafond(demande, entree: dict) -> int:
+    """Plafond de generation : l'option de la ligne de commande, sinon celui du catalogue, sinon le defaut.
+    Le raisonnement compte dans le plafond : un modele qui raisonne beaucoup a besoin d'une marge plus large."""
+    return demande or entree.get("max_tokens") or MAX_TOKENS_DEFAUT
 
 
 def main(argv=None):
@@ -244,7 +251,7 @@ def main(argv=None):
         sys.exit(str(e))
     config = {"budget_usd": a.budget_usd, "metier": a.metier, "modele_catalogue": a.modele_catalogue, "blocs": [b for b in a.blocs.split(",") if b],
               "passes": a.passes, "taches": [t for t in a.taches.split(",") if t], "limite": a.limite,
-              "max_tokens": a.max_tokens, "prix_horaire": a.prix_horaire, "materiel": a.materiel,
+              "max_tokens": plafond(a.max_tokens, entree), "prix_horaire": a.prix_horaire, "materiel": a.materiel,
               "etiquette": a.etiquette, "pause": a.pause, "reprise": a.reprise}
     jour = datetime.date.today().isoformat()
     nom = a.modele_catalogue + (f"-{a.etiquette}" if a.etiquette else "") + ("" if a.extraction == "tika" else f"-extraction-{a.extraction}")

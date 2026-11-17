@@ -62,6 +62,8 @@ def verifier(dossier: Path = DOSSIER) -> list:
         else:
             if e["quantification"] != "NVFP4":
                 erreurs.append(f"{f.name} : un modele local du catalogue publie est en NVFP4 uniquement")
+            if "max_tokens" in e and not (isinstance(e["max_tokens"], int) and e["max_tokens"] >= 1024):
+                erreurs.append(f"{f.name} : max_tokens doit etre un entier d'au moins 1024")
             if not re.fullmatch(r"[0-9a-f]{40}", str(e.get("revision_hf", ""))):
                 erreurs.append(f"{f.name} : revision_hf doit etre le SHA complet (40 caracteres) du depot servi")
             if not e.get("licence"):
