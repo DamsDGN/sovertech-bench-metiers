@@ -13,6 +13,15 @@ RAG = {t["question"]: t for t in JEUX["rag"]}
 AGENT = {t["consigne"]: t for t in JEUX["agentique"]}
 
 
+class RelevesAgentique(unittest.TestCase):
+    def test_les_brouillons_ecrits_par_l_agent_sont_conserves_pour_l_audit(self):
+        tache = next(t for t in JEUX["agentique"] if t["etat_final_attendu"]["brouillons"])
+        client = FauxModele()
+        sortie = lancer.jouer_agentique(client, tache, JEUX, {"echantillonnage": {}, "max_tokens": 100})
+        self.assertEqual(len(sortie["brouillons"]), len(tache["etat_final_attendu"]["brouillons"]))
+        self.assertIn("destinataire", sortie["brouillons"][0])
+
+
 class PlafondDeGeneration(unittest.TestCase):
     def test_priorite_ligne_de_commande_puis_catalogue_puis_defaut(self):
         self.assertEqual(lancer.plafond(None, {}), 32768)

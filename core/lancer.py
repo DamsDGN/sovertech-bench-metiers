@@ -134,7 +134,7 @@ def jouer_agentique(client, tache, jeux, config):
                                config["echantillonnage"], config["max_tokens"])
     anomalies = [m["anomalie"] for m in sortie["mesures"] if m.get("anomalie")]
     return {"reponse": sortie["message_final"], "fin": sortie["arret"], "mesures": _mesures(sortie["mesures"]),
-            "anomalies_serveur": anomalies, "tours": [{k: m[k] for k in ("fin", "anomalie", "texte")} for m in sortie["mesures"]],
+            "anomalies_serveur": anomalies, "brouillons": [dict(b) for b in env.brouillons], "tours": [{k: m[k] for k in ("fin", "anomalie", "texte")} for m in sortie["mesures"]],
             "note": n.noter_agentique(tache, env, sortie["message_final"]),
             "journal": env.journal, "brouillons": env.brouillons,
             "tableaux_finaux": {k: v["lignes"] for k, v in env.tableaux.items()}}
