@@ -106,7 +106,9 @@ def jouer_agentique(client, tache, jeux, config):
     env = ag.Environnement(jeux["documents"], jeux["environnement"], tache["pannes"])
     sortie = ag.executer_agent(client, tache, env, jeux["systeme_agent"], jeux["outils"],
                                config["echantillonnage"], config["max_tokens"])
+    anomalies = [m["anomalie"] for m in sortie["mesures"] if m.get("anomalie")]
     return {"reponse": sortie["message_final"], "fin": sortie["arret"], "mesures": _mesures(sortie["mesures"]),
+            "anomalies_serveur": anomalies, "tours": [{k: m[k] for k in ("fin", "anomalie", "texte")} for m in sortie["mesures"]],
             "note": n.noter_agentique(tache, env, sortie["message_final"]),
             "journal": env.journal, "brouillons": env.brouillons,
             "tableaux_finaux": {k: v["lignes"] for k, v in env.tableaux.items()}}

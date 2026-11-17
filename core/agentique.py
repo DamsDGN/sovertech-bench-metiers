@@ -1,5 +1,6 @@
 import copy
 import json
+import re
 
 from . import prompts
 from .rag import Index, corps_sans_bandeau, jetons
@@ -114,6 +115,19 @@ class Environnement:
         return {"ok": True, "envoye": True}
 
 
+_APPEL_BRUT = re.compile(r"<\|?tool_call|tool_call\|?>|\bcall:\w+\s*\{")
+
+
+def anomalie(rep):
+    if rep.appels_outils:
+        return None
+    if _APPEL_BRUT.search(rep.texte):
+        return "appel_outil_non_analyse"
+    if not rep.texte.strip():
+        return "reponse_vide"
+    return None
+
+
 def executer_agent(client, tache: dict, env: Environnement, systeme: str, outils: list,
                    echantillonnage=None, max_tokens=None) -> dict:
     messages = [{"role": "system", "content": systeme}, {"role": "user", "content": tache["consigne"]}]
@@ -122,7 +136,8 @@ def executer_agent(client, tache: dict, env: Environnement, systeme: str, outils
     for _ in range(tours_max):
         rep = client.completer(messages, outils, echantillonnage, max_tokens)
         mesures.append({"ttft": rep.ttft, "duree": rep.duree, "tokens_prompt": rep.tokens_prompt,
-                        "tokens_completion": rep.tokens_completion, "fin": rep.fin})
+                        "tokens_completion": rep.tokens_completion, "fin": rep.fin,
+                        "anomalie": anomalie(rep), "texte": rep.texte[:300]})
         if not rep.appels_outils:
             message_final, arret = rep.texte, "termine"
             break

@@ -206,6 +206,25 @@ class OracleDeTouteLesTaches(unittest.TestCase):
         self.assertIsNone(jouer(TACHES["AG-01"])[1]["reprise_apres_panne"])
 
 
+class Anomalies(unittest.TestCase):
+    def test_appel_d_outil_non_analyse_et_reponse_vide(self):
+        for texte, attendu in [("thought <channel|><|tool_call>call:ecrire_tableau{x}<tool_call|>", "appel_outil_non_analyse"),
+                               ("call:lire{doc_id:1}", "appel_outil_non_analyse"), ("", "reponse_vide"),
+                               ("La tâche est terminée.", None)]:
+            self.assertEqual(ag.anomalie(Reponse(texte=texte, fin="stop")), attendu, texte)
+        self.assertIsNone(ag.anomalie(Reponse(appels_outils=[{"id": "1", "name": "lire", "arguments": "{}"}])))
+
+    def test_la_boucle_enregistre_l_anomalie(self):
+        class Muet:
+            def completer(self, *a, **k):
+                return Reponse(texte="<|tool_call>call:ecrire_tableau{}<tool_call|>", fin="stop", duree=0.1, ttft=0.05)
+        tache = TACHES["AG-01"]
+        env = ag.Environnement(DOCS, JEUX["environnement"], [])
+        sortie = ag.executer_agent(Muet(), tache, env, SYSTEME, OUTILS)
+        self.assertEqual(sortie["mesures"][0]["anomalie"], "appel_outil_non_analyse")
+        self.assertFalse(n.noter_agentique(tache, env, sortie["message_final"])["reussite"])
+
+
 class Violations(unittest.TestCase):
     def test_envoyer_un_courriel_fait_echouer(self):
         _, note, _ = jouer(TACHES["AG-05"], extra=[("envoyer_mail", {"destinataire": "g.morvan@epis-dor.example", "objet": "o", "corps": "c"})])

@@ -81,7 +81,12 @@ def _bloc_agentique(enrs):
     etapes = [e["note"]["etapes"] for e in ok]
     depasse = [1.0 if e["note"]["depasse_etapes"] else 0.0 for e in ok]
     reprise = [1.0 if e["note"]["reprise_apres_panne"] else 0.0 for e in ok if e["note"]["reprise_apres_panne"] is not None or e["note"]["pannes_subies"]]
+    anom = [e for e in ok if e.get("anomalies_serveur")]
+    ratees = [e for e in ok if not reussite(e)]
+    attribuables = [e for e in ratees if e.get("anomalies_serveur")]
     return [f"- **Réussite** (état final exact, aucune action interdite) : **{pct_ecart(taux_par_passe(enrs))}**",
+            f"- **Anomalies côté serveur** : {len(anom)} passage(s) sur {len(ok)} où le serveur n'a pas converti un appel d'outil du modèle (texte brut d'appel dans la réponse) ou a rendu une réponse vide ; "
+            f"{len(attribuables)} des {len(ratees)} échecs en comportent. Ces échecs relèvent de l'ensemble modèle + serveur (analyseur d'outils), pas du seul modèle.",
             f"- Passages avec une action interdite : {pct(moyenne(interdit))}",
             f"- Nombre moyen d'appels d'outils : {nombre(moyenne(etapes))} ; passages au-dessus du maximum prévu : {pct(moyenne(depasse))}",
             f"- Reprise après une panne d'outil simulée : {pct(moyenne(reprise))} ({len(reprise)} passages concernés)"]
