@@ -36,6 +36,21 @@ Lire d'abord [`README.md`](README.md), puis [`docs/PLAN.md`](docs/PLAN.md) pour 
    figés et versionnés. Changer une tâche, une grille ou un réglage rend les mesures antérieures
    incomparables : c'est une décision, pas un ajustement. Le dire dans la pull request.
 
+## Le corpus est fait de vrais fichiers
+
+Les documents d'un métier existent en docx, doc, xlsx, xls, csv, pdf (propres et dégradés) et txt (FEC) :
+**un benchmark qui n'aurait que du Markdown ne serait pas représentatif d'un cabinet**.
+
+- Ce qu'on modifie : `<metier>/corpus/sources/*.md` (une source lisible par document) et `formats.json`.
+- Ce qui est **généré et ne se modifie jamais à la main** : `corpus/fichiers/`, `corpus/extractions/`,
+  `corpus/MANIFESTE.json`, `corpus/*.verites.json`, les `TACHES.md`. Les régénérer avec les scripts de `outils/`
+  (voir `<metier>/corpus/README.md`). Les tests refusent un fichier qui a changé sans que son extraction ait été
+  refaite.
+- Le benchmark lit le **texte extrait** (Tika, même version et même configuration que la stack de Sover.tech),
+  pas les fichiers : il tourne donc sans Docker ni OCR. Les scripts de `outils/` ont, eux, des dépendances.
+- Toute nouvelle donnée de test doit ressembler à ce qu'un professionnel reçoit : préférez un export, un scan
+  ou un tableur à un texte rédigé pour l'occasion.
+
 ## Organisation
 
 ```

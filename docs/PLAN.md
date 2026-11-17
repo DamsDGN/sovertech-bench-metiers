@@ -307,6 +307,23 @@ la décision d'Inspect AI passe par un essai de une demi-journée avant engageme
 - **Contribution** : ticket « erreur dans une référence » (tâche, source, correction proposée). Un
   professionnel relecteur est crédité dans l'historique de validation.
 
+### Corpus en vrais formats (décision du 17/11/2026)
+
+Un corpus uniquement en Markdown n'est pas représentatif : les documents d'un cabinet sont des tableurs, des
+courriers Word, des PDF propres et des scans abîmés.
+
+- Chaque document existe en **vrai fichier** (docx, doc, xlsx, xls, csv, pdf, pdf dégradé, FEC en txt). Les
+  dégradations reprennent la mesure OCR de Sover.tech (scan 200 dpi gris, photo 150 dpi JPEG réduit incliné).
+- Une **étape d'extraction fixe** (Apache Tika, même image et même configuration OCR `fra+eng` que la stack de
+  Sover.tech) produit le texte lu par les modèles. Elle est la même pour tous.
+- Le **texte extrait est versionné** avec l'empreinte de chaque fichier : le benchmark se rejoue sans Docker ni
+  OCR, et l'extraction reste vérifiable.
+- **Les défauts de l'extraction font partie de l'épreuve** (CSV aplati, bannière abîmée, accents perdus).
+  Tika n'est pas le seul choix possible : Docling, mesuré meilleur sur les scans par Sover.tech, pourra être une
+  variante de comparaison, pour mesurer l'effet du moteur d'extraction.
+- Un **FEC fictif** (18 colonnes, tabulations, dates AAAAMMJJ) est généré de façon déterministe, calé sur la
+  balance du même client, avec des anomalies plantées dont les réponses sont recalculées depuis le fichier.
+
 ## 8. Livrables et commits (un commit par étape)
 
 1. `docs(plan)` : ce plan, une fois validé.
