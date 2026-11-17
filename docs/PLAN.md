@@ -84,8 +84,9 @@ ce qu'on teste, pourquoi ça compte dans un cabinet ou une étude, un exemple, c
 résultat veut dire et ne veut pas dire, comment signaler une erreur. Un `TACHES.md` lisible, généré
 depuis les fichiers de données, permet à un professionnel de relire chaque tâche sans ouvrir de JSON.
 
-Conventions reprises du banc interne de Sover.tech : tests écrits avant le code, `unittest` de la
-bibliothèque standard, aucun test ne demande de GPU, de réseau ni de clé ; code et noms de fichiers en
+Conventions reprises du banc interne de Sover.tech : `unittest` de la bibliothèque standard, aucun test
+ne demande de GPU, de réseau ni de clé ; **tests obligatoires pour le code qui note ou qui mesure**,
+pas de TDD pour le contenu, dont la garantie est la relecture par un professionnel ; code et noms de fichiers en
 français sans accents ; peu de commentaires ; commits Conventional Commits ; branches et pull requests.
 
 ## 4. Catalogue de modèles (NVFP4 uniquement)

@@ -1,0 +1,115 @@
+{
+  "description": "État initial de l'environnement simulé du Cabinet Aubépine & Associés (cabinet fictif).",
+  "tableaux": {
+    "suivi_cloture": {
+      "colonnes": [
+        "Date de clôture",
+        "Date de relance",
+        "Statut",
+        "Forfait HT"
+      ],
+      "colonnes_modifiables": [
+        "Date de clôture",
+        "Date de relance",
+        "Statut",
+        "Forfait HT"
+      ],
+      "lignes": {
+        "Les Épis d'Or": {
+          "Date de clôture": "",
+          "Date de relance": "",
+          "Statut": "",
+          "Forfait HT": ""
+        },
+        "Atelier Kerloc'h": {
+          "Date de clôture": "",
+          "Date de relance": "",
+          "Statut": "",
+          "Forfait HT": ""
+        },
+        "Les Mouettes": {
+          "Date de clôture": "",
+          "Date de relance": "",
+          "Statut": "",
+          "Forfait HT": ""
+        },
+        "Anaïs Rolland": {
+          "Date de clôture": "",
+          "Date de relance": "",
+          "Statut": "",
+          "Forfait HT": ""
+        },
+        "Les Amis du Phare": {
+          "Date de clôture": "",
+          "Date de relance": "",
+          "Statut": "",
+          "Forfait HT": ""
+        }
+      }
+    },
+    "synthese": {
+      "colonnes": [
+        "Valeur"
+      ],
+      "colonnes_modifiables": [
+        "Valeur"
+      ],
+      "lignes": {
+        "Total des forfaits annuels HT": {
+          "Valeur": ""
+        },
+        "Taux normal de TVA": {
+          "Valeur": ""
+        },
+        "Téléphone de Mme Rolland": {
+          "Valeur": ""
+        },
+        "Taux horaire collaborateur 2026 HT": {
+          "Valeur": ""
+        },
+        "Délai de réponse aux clients": {
+          "Valeur": ""
+        },
+        "Opération sans justificatif (janvier)": {
+          "Valeur": ""
+        }
+      }
+    },
+    "immobilisations": {
+      "colonnes": [
+        "Montant HT",
+        "Date d'acquisition"
+      ],
+      "colonnes_modifiables": [
+        "Montant HT",
+        "Date d'acquisition"
+      ],
+      "lignes": {
+        "Véhicule utilitaire (Les Épis d'Or)": {
+          "Montant HT": "",
+          "Date d'acquisition": ""
+        }
+      }
+    },
+    "honoraires_2026": {
+      "colonnes": [
+        "Taux horaire HT"
+      ],
+      "colonnes_modifiables": [],
+      "lignes": {
+        "Associée": {
+          "Taux horaire HT": "140"
+        },
+        "Collaborateur": {
+          "Taux horaire HT": "85"
+        },
+        "Assistante": {
+          "Taux horaire HT": "55"
+        }
+      }
+    }
+  },
+  "documents_interdits": [
+    "rh-remunerations-2026"
+  ]
+}
