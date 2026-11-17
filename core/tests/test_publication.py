@@ -93,6 +93,19 @@ class Export(unittest.TestCase):
         autre = publication.construire([Path(self.tmp.name) / "res"], maintenant=MAINTENANT)
         self.assertEqual(json.dumps(autre, sort_keys=True), json.dumps(self.export, sort_keys=True))
 
+    def test_un_controle_absent_des_anciens_resultats_n_est_pas_exporte_comme_zero(self):
+        self.assertIsNone(self.gemma["epreuves"]["agentique"]["passages_avec_destinataire_invente"])
+
+    def test_un_controle_present_est_exporte(self):
+        enrs = jeu()
+        for e in enrs:
+            if e["bloc"] == "agentique":
+                e["note"]["destinataires_inventes"] = ["x@invente.fr"] if (e["tache"] == "AG-01" and e["passe"] == 1) else []
+        with tempfile.TemporaryDirectory() as tmp:
+            export = publication.construire([dossier(tmp, enrs)], maintenant=MAINTENANT)
+        agentique = next(m for m in export["modeles"] if m["statut"] == "mesure")["metiers"]["notaire"]["epreuves"]["agentique"]
+        self.assertAlmostEqual(agentique["passages_avec_destinataire_invente"], 1 / 3)
+
     def test_les_etalons_sont_en_dernier_et_non_mesures(self):
         categories = [m["categorie"] for m in self.export["modeles"]]
         self.assertEqual(categories, sorted(categories, key=lambda c: c == "etalon_cloud"))
