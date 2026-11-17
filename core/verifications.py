@@ -124,3 +124,6 @@ def evaluer(verif: dict, reponse: str) -> bool:
 
 def evaluer_toutes(verifs: list, reponse: str) -> list:
     return [(v, evaluer(v, reponse)) for v in verifs]
+
+
+normaliser = _normaliser

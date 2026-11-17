@@ -60,10 +60,21 @@ docs/                PLAN, METHODOLOGIE, LIMITES, REPRODUIRE, GLOSSAIRE
   une mesure chiffrée. Jamais de paraphrase de la ligne suivante.
 - **Pas de tiret long ni de tiret court entouré d'espaces** dans les textes : une virgule, deux points ou
   des parenthèses.
-- **Tests d'abord** : écrire le test qui échoue, puis le code. Aucun test ne demande de GPU, de réseau
-  ni de clé d'API.
+- **Tests obligatoires pour le code qui note ou qui mesure** (vérifications, scoreurs, agrégation,
+  calcul du coût) : une erreur y fausse tous les résultats sans que personne le voie. Écrire le test
+  avant ou avec le code. Pour le reste du code, des tests utiles, sans ordre imposé.
+- **Pas de TDD pour le contenu** (tâches, corpus, références, README) : sa garantie est la relecture
+  par un professionnel. Des contrôles de cohérence automatiques existent (voir plus bas), ils attrapent
+  les erreurs de saisie, ils ne remplacent pas cette relecture.
+- Aucun test ne demande de GPU, de réseau ni de clé d'API.
 - **Les README sont lisibles par un non-technicien** : phrases courtes, un exemple, aucun sigle sans
   explication (voir `docs/GLOSSAIRE.md`).
+
+## Noms à ne jamais laisser passer
+
+Chaque contributeur peut créer un fichier local `.mots-interdits.txt` (ignoré par Git, un mot ou un nom
+par ligne) : les contrôles de données refusent alors tout document qui le contient. Ne versionnez jamais
+cette liste : la nommer en clair dans un dépôt public reviendrait à publier ce qu'on veut protéger.
 
 ## Vérifier avant de proposer
 

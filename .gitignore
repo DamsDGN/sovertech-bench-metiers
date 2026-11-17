@@ -5,3 +5,4 @@ __pycache__/
 .venv/
 .pytest_cache/
 lots-de-notation/
+.mots-interdits.txt
