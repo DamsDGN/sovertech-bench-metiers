@@ -499,7 +499,7 @@ Fichier généré automatiquement depuis `taches.jsonl` : ne le modifiez pas à 
 
 ---
 
-## AG-19 · pièces comptables contradictoires · niveau complexe · gravité proposée : élevée
+## AG-19 · pièces contradictoires · niveau complexe · gravité proposée : élevée
 
 > **À valider par un professionnel** : cette tâche n'a pas encore été relue.
 

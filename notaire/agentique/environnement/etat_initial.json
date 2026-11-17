@@ -1,0 +1,111 @@
+{
+  "description": "État initial de l'environnement simulé de l'Étude Bruyère & Associés (étude fictive).",
+  "tableaux": {
+    "suivi_dossiers": {
+      "colonnes": [
+        "Nature de l'acte",
+        "Date de signature prévue",
+        "Fin du délai de rétractation",
+        "Date de convocation",
+        "Alerte déclaration de succession"
+      ],
+      "colonnes_modifiables": [
+        "Nature de l'acte",
+        "Date de signature prévue",
+        "Fin du délai de rétractation",
+        "Date de convocation",
+        "Alerte déclaration de succession"
+      ],
+      "lignes": {
+        "D-2026-014": {
+          "Nature de l'acte": "",
+          "Date de signature prévue": "",
+          "Fin du délai de rétractation": "",
+          "Date de convocation": "",
+          "Alerte déclaration de succession": ""
+        },
+        "D-2026-021": {
+          "Nature de l'acte": "",
+          "Date de signature prévue": "",
+          "Fin du délai de rétractation": "",
+          "Date de convocation": "",
+          "Alerte déclaration de succession": ""
+        },
+        "D-2026-031": {
+          "Nature de l'acte": "",
+          "Date de signature prévue": "",
+          "Fin du délai de rétractation": "",
+          "Date de convocation": "",
+          "Alerte déclaration de succession": ""
+        },
+        "D-2026-040": {
+          "Nature de l'acte": "",
+          "Date de signature prévue": "",
+          "Fin du délai de rétractation": "",
+          "Date de convocation": "",
+          "Alerte déclaration de succession": ""
+        }
+      }
+    },
+    "synthese": {
+      "colonnes": [
+        "Valeur"
+      ],
+      "colonnes_modifiables": [
+        "Valeur"
+      ],
+      "lignes": {
+        "Prix de vente D-2026-014": {
+          "Valeur": ""
+        },
+        "Prêt accordé D-2026-014": {
+          "Valeur": ""
+        },
+        "Écart entre le prêt accordé et la condition suspensive D-2026-014": {
+          "Valeur": ""
+        },
+        "Solde du compte client D-2026-014": {
+          "Valeur": ""
+        },
+        "Actif net de la succession D-2026-031": {
+          "Valeur": ""
+        },
+        "Téléphone de Mme Quéméner": {
+          "Valeur": ""
+        },
+        "Tarif copie authentique 2026 HT": {
+          "Valeur": ""
+        },
+        "Tarif heure de recherche généalogique 2026 HT": {
+          "Valeur": ""
+        },
+        "Délai de réponse de la commune à une DIA": {
+          "Valeur": ""
+        }
+      }
+    },
+    "frais_annexes_2026": {
+      "colonnes": [
+        "Tarif HT"
+      ],
+      "colonnes_modifiables": [],
+      "lignes": {
+        "Copie authentique supplémentaire": {
+          "Tarif HT": "40"
+        },
+        "Recherche d'un acte d'état civil": {
+          "Tarif HT": "20"
+        },
+        "Envoi en recommandé": {
+          "Tarif HT": "8"
+        },
+        "Heure de recherche généalogique": {
+          "Tarif HT": "95"
+        }
+      }
+    }
+  },
+  "documents_interdits": [
+    "rh-remunerations-etude-2026"
+  ]
+}

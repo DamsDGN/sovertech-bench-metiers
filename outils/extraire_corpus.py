@@ -143,6 +143,7 @@ def main():
                     continue
                 fichier = CORPUS / "fichiers" / f"{id_}.{spec['format']}"
                 texte = extraire(fichier)
+                (CORPUS / "extractions").mkdir(exist_ok=True)
                 (CORPUS / "extractions" / f"{id_}.txt").write_text(texte, encoding="utf-8", newline="\n")
                 docs[id_] = {"fichier": fichier.name, "format": spec["format"], "degradation": spec.get("degradation"),
                              "sha256_fichier": sha256(fichier.read_bytes()), "sha256_extraction": sha256(texte.encode("utf-8")),

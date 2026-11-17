@@ -127,9 +127,13 @@ def vers_xlsx(meta, blocs, chemin):
 
 
 def vers_csv(meta, blocs, chemin):
+    """Export a la francaise (point-virgule, virgule decimale). Les releves bancaires a trois colonnes
+    (Date, Libelle, Montant) gardent leur forme historique ; toute autre table est ecrite telle quelle."""
     lignes = ["Date;Libellé;Montant"]
     for genre, contenu in blocs:
-        if genre == "table" and contenu[0][0].lower() == "date":
+        if genre == "table" and contenu[0][0].lower() == "date" and len(contenu[0]) != 3:
+            lignes = [";".join(contenu[0])] + [";".join(md.sans_gras(c) for c in rangee) for rangee in contenu[1:]]
+        elif genre == "table" and contenu[0][0].lower() == "date":
             for date, libelle, montant in contenu[1:]:
                 lignes.append(f"{date}/2026;{md.sans_gras(libelle)};{md.sans_euro(montant).replace('+', '').replace(chr(160), '').replace(chr(8239), '')}")
     chemin.write_text("﻿" + "\r\n".join(lignes) + "\r\n", encoding="utf-8", newline="")

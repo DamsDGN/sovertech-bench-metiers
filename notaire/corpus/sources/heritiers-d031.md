@@ -1,0 +1,18 @@
+---
+id: heritiers-d031
+titre: Liste des héritiers, dossier D-2026-031
+type: etat_civil
+date: 2026-02-02
+statut: en_vigueur
+---
+DOCUMENT FICTIF (Étude Bruyère & Associés, étude inventée)
+
+# Liste des héritiers (projet)
+
+Défunte : Mme Marie-Annick Trévien, décédée le 15 décembre 2025 à Quimper, veuve.
+
+| Héritier | Lien avec la défunte | Date de naissance |
+|---|---|---|
+| Mme Soizic Trévien | fille | 12 mai 1968 |
+| M. Pierrick Trévien | fils | 3 novembre 1971 |
+| M. Alan Trévien | fils | 21 septembre 1975 |

@@ -1,0 +1,247 @@
+{
+  "extraction": {
+    "outil": "apache/tika:4.2.0-1-full",
+    "identifiant_image": "sha256:4774eaac44f86cdf648ae7b5a367016eaf6f9052adec31e5cff07cff1a0c6e24",
+    "configuration": {
+      "server": {},
+      "pipes": {
+        "numClients": 4
+      },
+      "parse-context": {
+        "tesseract-ocr-parser": {
+          "language": "fra+eng"
+        }
+      }
+    },
+    "configuration_sha256": "b52f56d299459155ad23b24f95e5972e19d32d1454687062b8a07a8f96c74c57",
+    "date": "2026-11-17",
+    "note": "meme image et meme configuration (OCR fra+eng) que la stack Sover.tech ; texte brut (Accept: text/plain)"
+  },
+  "documents": {
+    "fiche-dossier-d031": {
+      "fichier": "fiche-dossier-d031.pdf",
+      "format": "pdf",
+      "degradation": null,
+      "sha256_fichier": "434a25dcfdfe885e6afcc8c3d4dcb5316ac845162621d7cd8a6d6be0f3b21bdc",
+      "sha256_extraction": "ffa0d933fe5d0ca999b7fc13bf8dd2bddcf1d26cac734ea3c6bed6f1c0478e93",
+      "octets_fichier": 44641,
+      "caracteres_extraction": 626
+    },
+    "courriel-banque-d014": {
+      "fichier": "courriel-banque-d014.pdf",
+      "format": "pdf",
+      "degradation": null,
+      "sha256_fichier": "14df9f4f2e4ff08f82dcfe5d7c248f043a13d399714886a9aebfca749ad5d0af",
+      "sha256_extraction": "eacdbebc5d9a758e98b33d1dc55359ff06a89d8c3d853305f1d693217e418f26",
+      "octets_fichier": 24003,
+      "caracteres_extraction": 518
+    },
+    "mail-heritier-d031": {
+      "fichier": "mail-heritier-d031.pdf",
+      "format": "pdf",
+      "degradation": null,
+      "sha256_fichier": "655dd4061f56825aede52c69d4f544a21ae7311162d2923b40e9066197c87b2d",
+      "sha256_extraction": "ca94d2c36d4a6115d3e4889230de532ef9dad47ce5cbafcee0e1f3f3792d970f",
+      "octets_fichier": 23572,
+      "caracteres_extraction": 664
+    },
+    "pub-preemption": {
+      "fichier": "pub-preemption.pdf",
+      "format": "pdf",
+      "degradation": null,
+      "sha256_fichier": "3ad72c021ec31ffd8662446c70ddd9fc6f6e0015bfdd030f1643000b3ecffbe4",
+      "sha256_extraction": "c1b82a4a8a4a74011fc301df655af4f23d5e31b1d0fe64e7f3f2c146826d28b3",
+      "octets_fichier": 44278,
+      "caracteres_extraction": 573
+    },
+    "proc-avant-contrat-v2": {
+      "fichier": "proc-avant-contrat-v2.docx",
+      "format": "docx",
+      "degradation": null,
+      "sha256_fichier": "b0d4d164e1ce43f977232f9b75b514a7ac9093e97e022aaf698278a9a9482119",
+      "sha256_extraction": "7e367f9890718defd6c01cc30470384db9683ac731bb7a38fc93803382141fe2",
+      "octets_fichier": 37472,
+      "caracteres_extraction": 1431
+    },
+    "proc-succession": {
+      "fichier": "proc-succession.docx",
+      "format": "docx",
+      "degradation": null,
+      "sha256_fichier": "e51be569ab5d1344c38a05a416227533362059c913403eccfa7a68984a14f0ac",
+      "sha256_extraction": "0445818b761f2b0d9a530c7fc0fc528274620d3482a4dade08efdfe423ec2acf",
+      "octets_fichier": 37238,
+      "caracteres_extraction": 922
+    },
+    "note-reunion-etude-2026-02": {
+      "fichier": "note-reunion-etude-2026-02.docx",
+      "format": "docx",
+      "degradation": null,
+      "sha256_fichier": "730ed455b4d4575a5551a42f9b5c80fe1ee42b11b1b279a5d98a506ae0d397c2",
+      "sha256_extraction": "59d0c4f823489d4d5ee6077a1945717e80471e7c6c161f439bf7c2dd2f3ee429",
+      "octets_fichier": 37205,
+      "caracteres_extraction": 699
+    },
+    "fiche-dossier-d014": {
+      "fichier": "fiche-dossier-d014.docx",
+      "format": "docx",
+      "degradation": null,
+      "sha256_fichier": "6ca91031c8498673e36bc0f19b850f5afdff4b8d8bc401ef3b559971a44e24dc",
+      "sha256_extraction": "0d214ca79a9e7394e5a8f4308280e69be22af85c1ec50f9eedc0d9096045db46",
+      "octets_fichier": 37446,
+      "caracteres_extraction": 855
+    },
+    "fiche-dossier-d021": {
+      "fichier": "fiche-dossier-d021.docx",
+      "format": "docx",
+      "degradation": null,
+      "sha256_fichier": "de7a87b066af27d4a558c00115a8ebc375fb5b8064bd28752b36be9e815ecd89",
+      "sha256_extraction": "3069bedb20bd26ea77cf27a2b29ae7751465e8ff8d15e389ebdf348958311ec5",
+      "octets_fichier": 37355,
+      "caracteres_extraction": 715
+    },
+    "fiche-dossier-d040": {
+      "fichier": "fiche-dossier-d040.docx",
+      "format": "docx",
+      "degradation": null,
+      "sha256_fichier": "46b76b6a1d69ad2680bf5271435448397a34ef5c03d17fd52b801b0d5919faf7",
+      "sha256_extraction": "47282141328c47c92373844d4b120bd116037c1bef7d3646b3fab5ba3e137833",
+      "octets_fichier": 37176,
+      "caracteres_extraction": 463
+    },
+    "projet-acte-d021": {
+      "fichier": "projet-acte-d021.docx",
+      "format": "docx",
+      "degradation": null,
+      "sha256_fichier": "2c85422689c52170996e3203bd4c1e57dd5e65f12110dae1e5b470dc8c3ddb11",
+      "sha256_extraction": "e2b97b93cce0d84d6344f6625183b8ae8c40ec1ddaa90b1bc68a590967081336",
+      "octets_fichier": 37059,
+      "caracteres_extraction": 515
+    },
+    "heritiers-d031": {
+      "fichier": "heritiers-d031.docx",
+      "format": "docx",
+      "degradation": null,
+      "sha256_fichier": "a36be9c90b064a873a3e8be304891d0f3ab759257f7c8d89440cf490fb8c925d",
+      "sha256_extraction": "97a876347e77db3f745c15f0bbc568fd95537cff8fafe6d84966905527c8b922",
+      "octets_fichier": 37138,
+      "caracteres_extraction": 418
+    },
+    "statuts-sci-d040": {
+      "fichier": "statuts-sci-d040.docx",
+      "format": "docx",
+      "degradation": null,
+      "sha256_fichier": "075534217e5e7a24470301d5c0431f0b7458efe267c66ea206012ca58c205eaf",
+      "sha256_extraction": "7f3eed63c51e8fafa0fdd9d22a3200acd5eb0dd7170061a45ec578cd6d424ea5",
+      "octets_fichier": 37028,
+      "caracteres_extraction": 453
+    },
+    "pub-retractation": {
+      "fichier": "pub-retractation.docx",
+      "format": "docx",
+      "degradation": null,
+      "sha256_fichier": "d2c8ab6fe28b10e6259dfabef1cd9c51cf5c5ddf4427306540159ece0c61eedb",
+      "sha256_extraction": "24423cf8b97a423dd03ef835412a874b6114d25c628ab1b2c45ba4fc9d5c4320",
+      "octets_fichier": 37023,
+      "caracteres_extraction": 574
+    },
+    "pub-succession-delais": {
+      "fichier": "pub-succession-delais.docx",
+      "format": "docx",
+      "degradation": null,
+      "sha256_fichier": "23903fc182dba94242a73b6c7afba76606624ec60910d8fe7be37c94a5e9e19f",
+      "sha256_extraction": "9b86093a60801ae16673c30b82ae9d071318d5c8bac9b4825d7f31440417abba",
+      "octets_fichier": 37078,
+      "caracteres_extraction": 595
+    },
+    "proc-avant-contrat-v1": {
+      "fichier": "proc-avant-contrat-v1.doc",
+      "format": "doc",
+      "degradation": null,
+      "sha256_fichier": "06fc13a09ab040bba2bc036e7315a8be4ed56706455eb8c11a59cc26743e82e2",
+      "sha256_extraction": "e90e1feeca47c50cb750a20706993ce6092a5d8e49fe72910c4620ba18e8fedd",
+      "octets_fichier": 19968,
+      "caracteres_extraction": 647
+    },
+    "tarifs-frais-annexes-2025": {
+      "fichier": "tarifs-frais-annexes-2025.xls",
+      "format": "xls",
+      "degradation": null,
+      "sha256_fichier": "64c6d1d2c695b916d8aa83175bbbbbaa530b4a0dbe1df3c36b546834ce218bb7",
+      "sha256_extraction": "4903a293ef3a285732a44839421bfc01b4f61241b69222b9569991e799cbe2ac",
+      "octets_fichier": 6144,
+      "caracteres_extraction": 387
+    },
+    "tableau-apports-d040": {
+      "fichier": "tableau-apports-d040.xls",
+      "format": "xls",
+      "degradation": null,
+      "sha256_fichier": "72516ee19e5fa3102d0e2b233c2f012fb5635640d3ad7fd17688e4e819e1b10b",
+      "sha256_extraction": "a7751c1605005f882573c0b143c32733a4c6628773ce5cbe97143b25de8d2be3",
+      "octets_fichier": 6144,
+      "caracteres_extraction": 244
+    },
+    "tarifs-frais-annexes-2026": {
+      "fichier": "tarifs-frais-annexes-2026.xlsx",
+      "format": "xlsx",
+      "degradation": null,
+      "sha256_fichier": "1d729551387477e55786d5140f302a74cb2a114a362e2582a76a467294e53291",
+      "sha256_extraction": "e47a595e794daaa99fdb62e56e43f62f7bd115c5a2bbb59ff566d49508ed93e6",
+      "octets_fichier": 5274,
+      "caracteres_extraction": 389
+    },
+    "rh-remunerations-etude-2026": {
+      "fichier": "rh-remunerations-etude-2026.xlsx",
+      "format": "xlsx",
+      "degradation": null,
+      "sha256_fichier": "95c57e3eef50cd51d8721382890359ad7f026014fd047978b00466f356c0218f",
+      "sha256_extraction": "76137da9d36c744a0c582ce845028011eadd2847ca96dcf99c07889c850c9696",
+      "octets_fichier": 5339,
+      "caracteres_extraction": 482
+    },
+    "decompte-succession-d031": {
+      "fichier": "decompte-succession-d031.xlsx",
+      "format": "xlsx",
+      "degradation": null,
+      "sha256_fichier": "85472c600bd88f05514bc36ac9c782e189b5439c8b3f5604de947254db31bd11",
+      "sha256_extraction": "deda3d1171c70d2efe02260f099925d7743dbfdf62311a80089f7292d224029a",
+      "octets_fichier": 5397,
+      "caracteres_extraction": 498
+    },
+    "releve-compte-client-d014": {
+      "fichier": "releve-compte-client-d014.csv",
+      "format": "csv",
+      "degradation": null,
+      "sha256_fichier": "85fed2f8fcdfbca75486329abd73fbb60519ee2edc993b7f3a48f12b6a4aad5d",
+      "sha256_extraction": "6fd83c066ae341a99d674e0811e9d443ed6e741e278969e7ba04877b692ab6cb",
+      "octets_fichier": 253,
+      "caracteres_extraction": 240
+    },
+    "archivage-etude": {
+      "fichier": "archivage-etude.pdf",
+      "format": "pdf",
+      "degradation": "scan",
+      "sha256_fichier": "24f72ffd32ffc335cceff22a354cf052ceb5b56626660b5296ee792f142cb806",
+      "sha256_extraction": "5e5ebefe3310c41444302d1bfbb247349604705cf2d634524352dc0318ad5e6a",
+      "octets_fichier": 101016,
+      "caracteres_extraction": 393
+    },
+    "avant-contrat-d014": {
+      "fichier": "avant-contrat-d014.pdf",
+      "format": "pdf",
+      "degradation": "scan",
+      "sha256_fichier": "10e9ddaa0a2b56aa4e8ae2cd483aeb27de3e7f5b9ef4c59afcd6e8183184443c",
+      "sha256_extraction": "20cc56adc11a510f588caf6dab2f7d8954ab8e5cea0fae80c81cfc09a7bccba3",
+      "octets_fichier": 197564,
+      "caracteres_extraction": 1005
+    },
+    "procuration-d021": {
+      "fichier": "procuration-d021.pdf",
+      "format": "pdf",
+      "degradation": "photo",
+      "sha256_fichier": "5732e76b00e10b403e341708e9f3fa97beffa593761a6c8291790f2c8f1b7a4d",
+      "sha256_extraction": "53fe528b56e0d397f3162f0a0c4b9e816743a77ac4764b1132370855f364689d",
+      "octets_fichier": 70737,
+      "caracteres_extraction": 407
+    }
+  }
+}

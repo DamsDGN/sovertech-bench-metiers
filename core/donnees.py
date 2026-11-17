@@ -10,6 +10,7 @@ BORNES_V0 = (15, 24)
 JOURS_RELANCE = 45
 JOURS_RETRACTATION = 10
 JOURS_CONVOCATION = 15
+JOURS_ALERTE_SUCCESSION = 60
 
 STATUTS_DOC = {"en_vigueur", "obsolete"}
 TYPES_DOC = {"procedure", "fiche_client", "note", "facture", "devis", "tarif", "charte", "texte_public", "interne",
@@ -346,6 +347,11 @@ def _controle_notaire(docs: dict):
             if colonne == "Date de convocation" and m.get("date_signature_prevue"):
                 v = _jours_avant(m["date_signature_prevue"], JOURS_CONVOCATION)
                 return v, f"la fiche donne {v!r} ({JOURS_CONVOCATION} jours avant la signature)"
+            if colonne == "Alerte déclaration de succession" and m.get("date_limite_declaration"):
+                v = _jours_avant(m["date_limite_declaration"], JOURS_ALERTE_SUCCESSION)
+                return v, f"la fiche donne {v!r} ({JOURS_ALERTE_SUCCESSION} jours avant la date limite de declaration)"
+            if colonne == "Nature de l'acte" and m.get("nature_acte"):
+                return m["nature_acte"], f"la fiche donne {m['nature_acte']!r}"
             if colonne == "Date de signature prévue" and m.get("date_signature_prevue"):
                 return m["date_signature_prevue"], f"la fiche donne {m['date_signature_prevue']!r}"
         return None

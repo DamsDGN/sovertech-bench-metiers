@@ -14,9 +14,9 @@ ETIQUETTES = {
     "forfait_annuel_ht": "forfait annuel (€ HT)", "regime_tva": "régime de TVA", "email": "courriel",
     "forme_juridique": "forme juridique", "activite": "activité", "interlocuteur": "interlocuteur", "siren": "SIREN",
     "dossier": "numéro de dossier", "nature_acte": "nature de l'acte", "parties": "parties", "bien": "bien concerné",
-    "prix_euros": "prix (€)", "date_avant_contrat": "date de l'avant-contrat", "date_premiere_presentation": "date de première présentation",
+    "prix_euros": "prix (€)", "date_avant_contrat": "date de l'avant-contrat", "date_premiere_presentation": "date de remise ou de première présentation",
     "date_signature_prevue": "date de signature prévue", "date_deces": "date du décès", "regime_matrimonial": "régime matrimonial",
-    "clerc": "clerc en charge",
+    "clerc": "clerc en charge", "date_limite_declaration": "date limite de dépôt de la déclaration de succession",
 }
 
 

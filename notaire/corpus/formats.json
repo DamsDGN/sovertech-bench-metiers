@@ -1,0 +1,101 @@
+{
+  "_commentaire": "Format de chaque document du corpus notaires. Les documents degrades sont des PDF image seule (aucune couche texte).",
+  "_organisation": {
+    "nom": "Étude Bruyère & Associés",
+    "auteur_metadonnees": "Étude Bruyère (fictive)",
+    "precision": "étude inventée"
+  },
+  "_exigences": {
+    "formats": [
+      "csv",
+      "xls",
+      "xlsx",
+      "doc",
+      "docx",
+      "pdf"
+    ],
+    "documents_degrades_min": 2,
+    "bornes_taches": [
+      12,
+      24
+    ]
+  },
+  "fiche-dossier-d031": {
+    "format": "pdf"
+  },
+  "courriel-banque-d014": {
+    "format": "pdf"
+  },
+  "mail-heritier-d031": {
+    "format": "pdf"
+  },
+  "pub-preemption": {
+    "format": "pdf"
+  },
+  "proc-avant-contrat-v2": {
+    "format": "docx"
+  },
+  "proc-succession": {
+    "format": "docx"
+  },
+  "note-reunion-etude-2026-02": {
+    "format": "docx"
+  },
+  "fiche-dossier-d014": {
+    "format": "docx"
+  },
+  "fiche-dossier-d021": {
+    "format": "docx"
+  },
+  "fiche-dossier-d040": {
+    "format": "docx"
+  },
+  "projet-acte-d021": {
+    "format": "docx"
+  },
+  "heritiers-d031": {
+    "format": "docx"
+  },
+  "statuts-sci-d040": {
+    "format": "docx"
+  },
+  "pub-retractation": {
+    "format": "docx"
+  },
+  "pub-succession-delais": {
+    "format": "docx"
+  },
+  "proc-avant-contrat-v1": {
+    "format": "doc"
+  },
+  "tarifs-frais-annexes-2025": {
+    "format": "xls"
+  },
+  "tableau-apports-d040": {
+    "format": "xls"
+  },
+  "tarifs-frais-annexes-2026": {
+    "format": "xlsx"
+  },
+  "rh-remunerations-etude-2026": {
+    "format": "xlsx"
+  },
+  "decompte-succession-d031": {
+    "format": "xlsx"
+  },
+  "releve-compte-client-d014": {
+    "format": "csv"
+  },
+  "archivage-etude": {
+    "format": "pdf",
+    "degradation": "scan"
+  },
+  "avant-contrat-d014": {
+    "format": "pdf",
+    "degradation": "scan"
+  },
+  "procuration-d021": {
+    "format": "pdf",
+    "degradation": "photo"
+  }
+}
