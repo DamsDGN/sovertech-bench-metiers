@@ -38,24 +38,31 @@ mesurent donc en particulier la capacité de l'assistant à :
 - **dire « je ne sais pas »** quand le dossier ne le dit pas (les droits de succession quand les
   donations antérieures ne sont pas connues).
 
+## Ce que la deuxième série a durci (17/11/2026)
+
+Une première mesure sur un modèle de taille modeste a donné des scores élevés. 19 tâches et 9 documents s'ajoutent, toutes **déduites du corpus** :
+prorata de taxe foncière, **état hypothécaire** (inscriptions, mainlevées, somme nette du vendeur), **origine de propriété** comparée au titre,
+**identité et régime matrimonial** comparés entre pièces, **comparaison de deux versions d'un projet d'acte**, **origine des fonds** d'un apport, et quatre épreuves
+transversales : conversation à plusieurs tours, **cloisonnement entre dossiers**, instruction cachée dans un PDF scanné, demande de précision avant d'agir.
+
 ## Les trois épreuves
 
 ### 1. Discuter : [`chat/`](chat/README.md)
 
-12 situations de conversation : rédiger une convocation ou un courriel, reformuler une règle pour un
+19 situations de conversation : rédiger une convocation ou un courriel, reformuler une règle pour un
 client, repérer une incohérence dans un projet d'acte ou dans un tableau d'apports, résumer un dossier,
 et **répondre prudemment** à un client qui demande s'il peut renoncer à son achat.
 
 ### 2. Chercher dans les dossiers : [`rag/`](rag/README.md)
 
-14 questions sur les documents de l'étude. L'assistant doit retrouver le bon passage, répondre **à partir
+20 questions sur les documents de l'étude. L'assistant doit retrouver le bon passage, répondre **à partir
 de ce passage seulement** et citer le document. Les pièges sont ceux d'une étude : une **procédure
 remplacée** (8 jours ou 15 jours avant la signature ?), une **grille de frais périmée**, deux documents
 qui **se contredisent** (qui envoie les convocations ?), des questions **sans réponse** dans le dossier.
 
 ### 3. Agir : [`agentique/`](agentique/README.md)
 
-12 tâches où l'assistant dispose d'outils factices : chercher, lire un document, extraire des champs,
+18 tâches où l'assistant dispose d'outils factices : chercher, lire un document, extraire des champs,
 écrire dans un tableau de suivi, **préparer un courriel sans l'envoyer**. Par exemple : calculer et
 inscrire les dates de convocation de plusieurs dossiers selon la procédure en vigueur.
 
@@ -85,12 +92,12 @@ configuration.
 - que la **justesse juridique** est établie : tant qu'une référence est « à valider », le score est
   provisoire. Les textes publics du corpus (délai de rétractation, délais en matière de succession, droit
   de préemption) sont **résumés avec leur source et un champ d'incertitude** : à reconfirmer ;
-- qu'un écart de quelques points compte : avec 12 à 14 tâches par épreuve, de petits écarts sont du bruit.
-  **Ce benchmark est plus petit que celui des experts-comptables** (38 tâches contre 70) : c'est une v0.
+- qu'un écart de quelques points compte : avec 18 à 20 tâches par épreuve, de petits écarts sont du bruit.
+  **Ce benchmark est plus petit que celui des experts-comptables** (57 tâches contre 91) : c'est une v0.
 
 ## Limites connues de cette première version
 
-- **Petit jeu de tâches** : 38 au total, quatre dossiers.
+- **Jeu de tâches modeste** : 57 au total, quatre dossiers.
 - **Extraction du texte** : seul le moteur Apache Tika est mesuré, pas la variante Docling.
 - **Pas de relecture professionnelle** à ce jour.
 - Plusieurs règles du corpus sont des **conventions internes de l'étude fictive** (convocation 15 jours avant

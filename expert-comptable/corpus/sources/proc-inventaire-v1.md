@@ -1,0 +1,21 @@
+---
+id: proc-inventaire-v1
+titre: Procédure des écritures d'inventaire, version 1
+type: procedure
+date: 2024-09-01
+statut: obsolete
+remplace_par: proc-inventaire-v2
+---
+DOCUMENT FICTIF (Cabinet Aubépine & Associés, cabinet inventé)
+
+# Écritures d'inventaire (version 1)
+
+1. **Charges constatées d'avance** : une charge payée d'avance dont une partie concerne l'exercice suivant est répartie au prorata des mois entiers. La part de l'exercice suivant est portée au débit du compte 486 et au crédit du compte de charge d'origine.
+2. **Factures non parvenues** : une charge de l'exercice dont la facture n'est pas reçue à la clôture est constatée hors taxes, au débit du compte de charge d'origine et au crédit du compte 408.
+3. **Amortissement linéaire** : la dotation annuelle est la valeur HT divisée par la durée. Elle est calculée au prorata des mois entiers, le mois d'acquisition comptant pour un mois entier. Elle est portée au débit du compte 6811. Le montant est arrondi au centime.
+
+| Catégorie de bien | Durée d'amortissement |
+|---|---|
+| Véhicule utilitaire | 4 ans |
+| Matériel informatique | 3 ans |
+| Équipement de production | 4 ans |

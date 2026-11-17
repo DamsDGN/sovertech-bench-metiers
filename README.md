@@ -33,8 +33,8 @@ Chaque métier passe par les trois mêmes épreuves.
 
 | Métier | Dossier | État |
 |---|---|---|
-| Experts-comptables | [`expert-comptable/`](expert-comptable/README.md) | Première version : 70 tâches, 26 documents en vrais formats |
-| Notaires | [`notaire/`](notaire/README.md) | Première version, plus petite : 38 tâches, 25 documents, **aucun notaire ne l'a relue** |
+| Experts-comptables | [`expert-comptable/`](expert-comptable/README.md) | Première version durcie : 91 tâches, 37 documents en vrais formats |
+| Notaires | [`notaire/`](notaire/README.md) | Première version durcie : 57 tâches, 34 documents, **aucun notaire ne l'a relue** |
 
 Chaque dossier contient un `README.md` qui explique, **sans jargon**, ce que le benchmark de ce métier
 teste, comment il note, et ce que ses résultats veulent dire ou ne veulent pas dire.

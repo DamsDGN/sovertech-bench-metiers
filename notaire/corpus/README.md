@@ -19,9 +19,9 @@ acte réel, même anonymisé, n'a servi de modèle ni ne sera accepté.**
 
 ## Des fichiers comme dans une vraie étude
 
-25 documents, en **vrais fichiers** : Word récents (`.docx`) et ancien (`.doc`), Excel récents (`.xlsx`) et
-anciens (`.xls`), CSV (point-virgule, virgule décimale), PDF propres, et **trois PDF dégradés** sans couche
-texte (deux scans à 200 dpi, une photo inclinée de 1,2 degré) qu'il faut lire par reconnaissance de
+34 documents, en **vrais fichiers** : Word récents (`.docx`) et ancien (`.doc`), Excel récents (`.xlsx`) et
+anciens (`.xls`), CSV (point-virgule, virgule décimale), PDF propres, et **cinq PDF dégradés** sans couche
+texte (trois scans à 200 dpi, deux photos inclinées de 1,2 degré) qu'il faut lire par reconnaissance de
 caractères. Les dégradations reprennent celles du corpus des experts-comptables.
 
 ## Les pièges voulus

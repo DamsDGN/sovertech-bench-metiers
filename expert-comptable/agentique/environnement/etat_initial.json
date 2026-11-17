@@ -81,6 +81,30 @@
         },
         "Solde du compte d'attente 471": {
           "Valeur": ""
+        },
+        "Facture avec TVA sur une prime d'assurance": {
+          "Valeur": ""
+        },
+        "Facture dont le TTC est faux": {
+          "Valeur": ""
+        },
+        "Numéro de facture en double": {
+          "Valeur": ""
+        },
+        "Total des charges constatées d'avance 2025 (Épis d'Or)": {
+          "Valeur": ""
+        },
+        "Total des factures non parvenues 2025 (Épis d'Or)": {
+          "Valeur": ""
+        },
+        "Dotations aux amortissements 2025 (Épis d'Or)": {
+          "Valeur": ""
+        },
+        "Mois de l'écart entre TVA déclarée et FEC": {
+          "Valeur": ""
+        },
+        "Écart de chiffre d'affaires déclaré (€)": {
+          "Valeur": ""
         }
       }
     },
@@ -114,6 +138,43 @@
         },
         "Assistante": {
           "Taux horaire HT": "55"
+        }
+      }
+    },
+    "imputation_factures": {
+      "colonnes": [
+        "Compte"
+      ],
+      "colonnes_modifiables": [
+        "Compte"
+      ],
+      "lignes": {
+        "F-2026-0101": {
+          "Compte": ""
+        },
+        "F-2026-0102": {
+          "Compte": ""
+        },
+        "F-2026-0103": {
+          "Compte": ""
+        },
+        "F-2026-0104": {
+          "Compte": ""
+        },
+        "F-2026-0105": {
+          "Compte": ""
+        },
+        "F-2026-0106": {
+          "Compte": ""
+        },
+        "F-2026-0107": {
+          "Compte": ""
+        },
+        "F-2026-0108": {
+          "Compte": ""
+        },
+        "F-2026-0109": {
+          "Compte": ""
         }
       }
     }

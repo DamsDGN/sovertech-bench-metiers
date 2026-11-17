@@ -251,6 +251,105 @@
       "sha256_extraction": "a90bd62529d9da307b5bfc665349c5dae1d3423b6e3476a0d6b34720875c2ec5",
       "octets_fichier": 65077,
       "caracteres_extraction": 66119
+    },
+    "proc-inventaire-v1": {
+      "fichier": "proc-inventaire-v1.doc",
+      "format": "doc",
+      "degradation": null,
+      "sha256_fichier": "18e557a8f9811beff589404541d8dfcd374b17b56a188ea8f7f5ce82c4c2b14d",
+      "sha256_extraction": "1a46f4fe1282af25a02fd0b3b189cfc3ed78f2742323768b1a71d3ed3d61df3a",
+      "octets_fichier": 21504,
+      "caracteres_extraction": 1038
+    },
+    "proc-inventaire-v2": {
+      "fichier": "proc-inventaire-v2.docx",
+      "format": "docx",
+      "degradation": null,
+      "sha256_fichier": "bb84cbd5c84036ef6d9519042bade2fa62c8e0242bb9b1088ef4e9664e87d506",
+      "sha256_extraction": "2703f101f95f09e240ed0906b7e546dd8e105ab6c71a1187273cf6673b08cdcb",
+      "octets_fichier": 37400,
+      "caracteres_extraction": 1018
+    },
+    "plan-imputation-cabinet": {
+      "fichier": "plan-imputation-cabinet.docx",
+      "format": "docx",
+      "degradation": null,
+      "sha256_fichier": "ba8e7b1a72e3145b006045729f07eb5b835e8594503889763680c8e1d1b26a24",
+      "sha256_extraction": "aebb05b1b49d6d9c57d068d0d59bc9a94a2b7f896616afc21c56cd82148d7ad3",
+      "octets_fichier": 37210,
+      "caracteres_extraction": 528
+    },
+    "elements-inventaire-epis-2025": {
+      "fichier": "elements-inventaire-epis-2025.xlsx",
+      "format": "xlsx",
+      "degradation": null,
+      "sha256_fichier": "0e5433d6fb05a447ef5793693908a4ed23b2dca46f62a0521e6eeafa16084a81",
+      "sha256_extraction": "be434679f0541cb124ac42447d20e31ec55a4d861967a74239079db3d61a9c02",
+      "octets_fichier": 5659,
+      "caracteres_extraction": 854
+    },
+    "ventes-mensuelles-fec-epis-2025": {
+      "fichier": "ventes-mensuelles-fec-epis-2025.xlsx",
+      "format": "xlsx",
+      "degradation": null,
+      "sha256_fichier": "163da8914f1f1711b2597d3e97d2e1079f31c72721cac5c56579cf0aaf7389c8",
+      "sha256_extraction": "192a83a9ea2cd296df3ec766dbe03da1f159bc1ed72261f857b9fb2bbedd116c",
+      "octets_fichier": 5517,
+      "caracteres_extraction": 656
+    },
+    "declarations-tva-epis-2025": {
+      "fichier": "declarations-tva-epis-2025.xlsx",
+      "format": "xlsx",
+      "degradation": null,
+      "sha256_fichier": "b54dd3ae13b6761ba508754bceff3bfe92025a2429d16444b2fc601a98df04d3",
+      "sha256_extraction": "0ba4b349cdf6ea7ac4ed77954a331cc7c64f8c25cb13e3bec15bec26e57b2cd5",
+      "octets_fichier": 5504,
+      "caracteres_extraction": 621
+    },
+    "lot-factures-fournisseurs-2026-02": {
+      "fichier": "lot-factures-fournisseurs-2026-02.xlsx",
+      "format": "xlsx",
+      "degradation": null,
+      "sha256_fichier": "81515569021d78e0ad1bec278c385c8862018036a6ad193bca4c8c6f1702e487",
+      "sha256_extraction": "59bd1069a22f902aca6bf8a7445f9d6c936b337391a3909901592c57d933b1d9",
+      "octets_fichier": 5718,
+      "caracteres_extraction": 1005
+    },
+    "releve-banque-epis-2026-02": {
+      "fichier": "releve-banque-epis-2026-02.csv",
+      "format": "csv",
+      "degradation": null,
+      "sha256_fichier": "8758f3c8864470fcb3b8db02c655bc5501d9ec627e17ab0c645d668e8c4067f8",
+      "sha256_extraction": "106fe41a28c15eed19b1921ea40c0a524c6c18c8660f4087a18eaa58a87379c3",
+      "octets_fichier": 1410,
+      "caracteres_extraction": 1421
+    },
+    "grand-livre-512-epis-2026-02": {
+      "fichier": "grand-livre-512-epis-2026-02.xlsx",
+      "format": "xlsx",
+      "degradation": null,
+      "sha256_fichier": "b902bc0176fb57d7a417be13015d843e8150a880bac7b5a9670f5c06bbb88505",
+      "sha256_extraction": "e17dff4a72a2de9cc13301c144e60f8b9401aed465fe0052f742ff57b044d7ee",
+      "octets_fichier": 5920,
+      "caracteres_extraction": 1558
+    },
+    "note-interne-mouettes": {
+      "fichier": "note-interne-mouettes.docx",
+      "format": "docx",
+      "degradation": null,
+      "sha256_fichier": "f6bac963539f3dbbc3aef48d20ffc252c72ad9b61c8069eed609fa963432f6ae",
+      "sha256_extraction": "1d32f99848020bfe9991d743ca5e1ef947d5efa395b3857e6eee1ecdf4d4eb2f",
+      "octets_fichier": 36938,
+      "caracteres_extraction": 359
+    },
+    "courrier-banque-epis-2026": {
+      "fichier": "courrier-banque-epis-2026.pdf",
+      "format": "pdf",
+      "degradation": "photo",
+      "sha256_fichier": "b19932f7a90a62e70aed6de23cd25e881c4d2227f1acd27b2d47d58676c52a98",
+      "sha256_extraction": "121e402b39bff12ce80ae80f0284f2acd8aa5af841df9cfd8c8df9cadba33664",
+      "octets_fichier": 85642,
+      "caracteres_extraction": 588
     }
   }
 }

@@ -25,11 +25,20 @@ propres, et **PDF dégradés** (un scan et une photo prise de travers, lus par r
 **FEC** de 483 lignes s'y ajoute. Un assistant qui ne saurait lire que du texte propre ne ressemblerait en rien à
 ce qu'un cabinet utilise : voir le [détail du corpus](corpus/README.md).
 
+## Ce que la deuxième série a durci (17/11/2026)
+
+Une première mesure sur un modèle de taille modeste a donné des scores élevés : les épreuves étaient trop simples. 21 tâches s'ajoutent,
+toutes **déduites du corpus** (aucune ne demande de connaître une règle comptable que le corpus ne donne pas) : **écritures d'inventaire**
+(charges constatées d'avance, factures non parvenues, amortissements), **rapprochement des déclarations de TVA et du FEC**, **imputation et
+contrôle d'un lot de factures**, **rapprochement bancaire sur 28 lignes**, **conversation à plusieurs tours**, et quatre épreuves de
+sécurité : ne pas mélanger deux clients, résister à une instruction cachée dans un courrier **scanné**, demander une précision au lieu
+d'inventer. La moitié des tâches de discussion et d'action sont désormais complexes.
+
 ## Les trois épreuves
 
 ### 1. Discuter : [`chat/`](chat/README.md)
 
-24 situations de conversation, des plus simples aux plus complexes : rédiger un courriel de relance, expliquer la TVA collectée
+32 situations de conversation, des plus simples aux plus complexes : rédiger un courriel de relance, expliquer la TVA collectée
 à un dirigeant, choisir un compte du plan comptable, **calculer le résultat d'une balance, repérer l'opération bancaire sans justificatif,
 répondre à une cliente qui conteste ses honoraires, dresser les actions de clôture d'un dossier** à partir de plusieurs documents, et **contrôler un fichier des écritures comptables (FEC)** : repérer un doublon, une écriture déséquilibrée, un taux de TVA incohérent.
 
@@ -42,7 +51,7 @@ surtout deux comportements qui comptent dans un cabinet :
 
 ### 2. Chercher dans les dossiers : [`rag/`](rag/README.md)
 
-23 questions sur les documents du cabinet fictif. L'assistant doit retrouver le bon passage, répondre
+29 questions sur les documents du cabinet fictif. L'assistant doit retrouver le bon passage, répondre
 **à partir de ce passage seulement** et citer le document. Pour que l'épreuve soit réaliste, le corpus
 contient des pièges que vous connaissez bien :
 
@@ -55,7 +64,7 @@ de ce qu'il a retrouvé ?* Ainsi, on sait si un mauvais résultat vient de la re
 
 ### 3. Agir : [`agentique/`](agentique/README.md)
 
-23 tâches où l'assistant dispose d'outils factices : chercher dans les documents, lire un document, interroger un FEC,
+30 tâches où l'assistant dispose d'outils factices : chercher dans les documents, lire un document, interroger un FEC,
 extraire des champs, écrire dans un tableau de suivi, **préparer un courriel sans l'envoyer**. Les
 tâches demandent plusieurs étapes (par exemple : trouver les dates de clôture, calculer les dates de
 relance, les inscrire dans le tableau).
@@ -91,7 +100,7 @@ cette configuration.
   environnement, avec des données qui restent chez vous ;
 - que la **justesse métier** est établie : tant qu'une réponse de référence est « à valider », le
   score correspondant est provisoire ;
-- qu'un écart de quelques points compte : avec 23 tâches environ par épreuve, de petits écarts sont du
+- qu'un écart de quelques points compte : avec 30 tâches environ par épreuve, de petits écarts sont du
   bruit.
 
 ## Les modèles testés

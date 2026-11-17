@@ -3,7 +3,7 @@
 **Question posée : l'assistant retrouve-t-il le bon document, répond-il uniquement à partir de ce qu'il a
 trouvé, cite-t-il sa source, et dit-il « je ne sais pas » quand la réponse n'y est pas ?**
 
-Statut : première version. **23 questions**, toutes « à valider par un professionnel ». Aucun résultat publié.
+Statut : première version. **29 questions**, toutes « à valider par un professionnel ». Aucun résultat publié.
 
 ## Ce qu'on teste, et pourquoi ça compte dans un cabinet
 
@@ -20,7 +20,7 @@ document, et dangereux s'il complète avec ce qu'il croit savoir. Les questions 
 | **Réponse partielle** | 1 | Il donne ce qui est dans les documents et **dit ce qui manque** | Adresse postale (absente) et chiffre d'affaires (lisible dans la balance) d'un client |
 | **Sans réponse** | 4 | Il **dit qu'il ne sait pas** au lieu d'inventer | « Quel est le taux horaire d'un stagiaire ? » (aucun document n'en parle) |
 
-Répartition par difficulté : **4 simples, 12 moyennes, 7 complexes**.
+Répartition par difficulté : **6 simples, 15 moyennes, 8 complexes**.
 
 ## Deux étages, notés séparément
 

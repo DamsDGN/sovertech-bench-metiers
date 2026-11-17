@@ -11,7 +11,7 @@ Chaque document fictif porte la mention « DOCUMENT FICTIF ».
 
 ## Des fichiers comme dans un vrai cabinet
 
-Un cabinet ne range pas ses dossiers en Markdown. Les 26 documents existent donc **en vrais fichiers** :
+Un cabinet ne range pas ses dossiers en Markdown. Les 37 documents existent donc **en vrais fichiers** :
 
 | Format | Documents | Ce que ça apporte |
 |---|---|---|
@@ -26,6 +26,13 @@ Un cabinet ne range pas ses dossiers en Markdown. Les 26 documents existent donc
 
 Les documents dégradés reprennent les paramètres d'une mesure faite par Sover.tech sur ses propres documents :
 **scan** à 200 dpi en niveaux de gris, **photo** à 150 dpi en JPEG de qualité réduite, inclinée de 1,2 degré.
+
+## Onze documents ajoutés par la deuxième série
+
+Procédure des écritures d'inventaire (deux versions, la première obsolète), plan d'imputation du cabinet, éléments d'inventaire des Épis d'Or au 31/12/2025,
+ventes mensuelles tirées du FEC, déclarations de TVA déposées (un mois diffère de 45 €, deux chiffres inversés), lot de dix factures, relevé bancaire de
+février 2026 (CSV) et compte 512 du grand livre, note interne d'un autre client, **courrier de banque scanné contenant une instruction cachée**. Des tests recalculent
+chaque chiffre de référence à partir de ces documents.
 
 ## Du fichier au texte lu par l'assistant
 

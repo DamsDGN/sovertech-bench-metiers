@@ -839,3 +839,250 @@ Fichier généré automatiquement depuis `taches.jsonl` : ne le modifiez pas à 
 **Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer   ·   **Gravité** : ☐ d'accord   ☐ plutôt « ... » (voir `docs/GRAVITE.md`)
 
 ---
+
+## CH-25 · écritures d'inventaire : charges constatées d'avance · niveau moyen · gravité proposée : élevée
+
+> **À valider par un professionnel** : cette tâche n'a pas encore été relue.
+
+**Énoncé posé à l'assistant**
+
+> À partir de la procédure d'inventaire en vigueur et des éléments d'inventaire de la SARL Les Épis d'Or au 31 décembre 2025, calcule le montant de chaque charge constatée d'avance et leur total. Deux lignes maximum.
+
+**Documents fournis avec l'énoncé** : Procédure des écritures d'inventaire, version 2 (en vigueur, 2026-01-05) ; Éléments d'inventaire au 31/12/2025, SARL Les Épis d'Or (en vigueur, 2026-01-20)
+
+**Ce qu'on attend**
+
+> Assurance payée le 1er octobre 2025 pour 12 mois : 9 mois sur 2026, soit 900 €. Loyer trimestriel payé le 1er décembre (décembre à février) : 2 mois sur 2026, soit 1 800 €. Total : 2 700 €, au compte 486.
+
+**Contrôles automatiques**
+
+- la réponse contient l'une de ces formulations : « 900 »
+- la réponse contient l'une de ces formulations : « 1 800 » ; « 1800 »
+- la réponse contient l'une de ces formulations : « 2 700 » ; « 2700 »
+- la réponse contient l'une de ces formulations : « 486 »
+
+**Exemple de bonne réponse**
+
+> Assurance : 1 200 € × 9/12 = 900 €. Loyer : 2 700 € × 2/3 = 1 800 €.
+> Total des charges constatées d'avance : 2 700 € (compte 486).
+
+**Point d'incertitude signalé par l'équipe** : Comptes et règles d'inventaire propres au cabinet fictif (procédure du corpus) : à confronter au plan comptable général à la relecture professionnelle.
+
+**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer   ·   **Gravité** : ☐ d'accord   ☐ plutôt « ... » (voir `docs/GRAVITE.md`)
+
+---
+
+## CH-26 · écritures d'inventaire : factures non parvenues · niveau moyen · gravité proposée : élevée
+
+> **À valider par un professionnel** : cette tâche n'a pas encore été relue.
+
+**Énoncé posé à l'assistant**
+
+> À partir de la procédure d'inventaire en vigueur et des éléments d'inventaire de la SARL Les Épis d'Or au 31 décembre 2025, indique quelles charges sont des factures non parvenues, leur total et le compte de contrepartie.
+
+**Documents fournis avec l'énoncé** : Procédure des écritures d'inventaire, version 2 (en vigueur, 2026-01-05) ; Éléments d'inventaire au 31/12/2025, SARL Les Épis d'Or (en vigueur, 2026-01-20)
+
+**Ce qu'on attend**
+
+> Électricité de décembre (410 €, facture reçue le 12 janvier 2026) et nettoyage de décembre (360 €, facture non reçue) : 770 € hors taxes, au crédit du compte 408.
+
+**Contrôles automatiques**
+
+- la réponse contient l'une de ces formulations : « 770 »
+- la réponse contient l'une de ces formulations : « 408 »
+- la réponse contient l'une de ces formulations : « électricité »
+- la réponse contient l'une de ces formulations : « nettoyage »
+
+**Exemple de bonne réponse**
+
+> Deux factures non parvenues : l'électricité de décembre (410 €, reçue le 12 janvier 2026) et le nettoyage de décembre (360 €). Total : 770 € hors taxes, au crédit du compte 408.
+
+**Point d'incertitude signalé par l'équipe** : Comptes et règles d'inventaire propres au cabinet fictif (procédure du corpus) : à confronter au plan comptable général à la relecture professionnelle.
+
+**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer   ·   **Gravité** : ☐ d'accord   ☐ plutôt « ... » (voir `docs/GRAVITE.md`)
+
+---
+
+## CH-27 · écritures d'inventaire : amortissements · niveau complexe · gravité proposée : élevée
+
+> **À valider par un professionnel** : cette tâche n'a pas encore été relue.
+
+**Énoncé posé à l'assistant**
+
+> À partir de la procédure d'inventaire en vigueur et des éléments d'inventaire de la SARL Les Épis d'Or, calcule la dotation aux amortissements 2025 de chaque immobilisation et leur total, arrondis au centime.
+
+**Documents fournis avec l'énoncé** : Procédure des écritures d'inventaire, version 2 (en vigueur, 2026-01-05) ; Éléments d'inventaire au 31/12/2025, SARL Les Épis d'Or (en vigueur, 2026-01-20)
+
+**Ce qu'on attend**
+
+> Four : 12 000 / 5 ans × 9 mois (avril à décembre) / 12 = 1 800 €. Ordinateur : 1 500 / 3 ans × 4 mois (septembre à décembre) / 12 = 166,67 €. Total : 1 966,67 €, au débit du compte 6811.
+
+**Contrôles automatiques**
+
+- la réponse contient l'une de ces formulations : « 1 800 » ; « 1800 »
+- la réponse contient l'une de ces formulations : « 166,67 » ; « 166.67 »
+- la réponse contient l'une de ces formulations : « 1 966,67 » ; « 1966,67 » ; « 1 966.67 »
+- la réponse contient l'une de ces formulations : « 6811 »
+
+**Exemple de bonne réponse**
+
+> Four : 12 000 / 5 × 9/12 = 1 800,00 €. Ordinateur : 1 500 / 3 × 4/12 = 166,67 €.
+> Total : 1 966,67 € au débit du compte 6811.
+
+**Point d'incertitude signalé par l'équipe** : Comptes et règles d'inventaire propres au cabinet fictif (procédure du corpus) : à confronter au plan comptable général à la relecture professionnelle.
+
+**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer   ·   **Gravité** : ☐ d'accord   ☐ plutôt « ... » (voir `docs/GRAVITE.md`)
+
+---
+
+## CH-28 · rapprochement des déclarations de TVA et du FEC · niveau complexe · gravité proposée : élevée
+
+> **À valider par un professionnel** : cette tâche n'a pas encore été relue.
+
+**Énoncé posé à l'assistant**
+
+> Compare mois par mois le chiffre d'affaires des déclarations de TVA déposées en 2025 avec les ventes du FEC. Indique le mois qui diffère, les deux montants et l'écart.
+
+**Documents fournis avec l'énoncé** : Déclarations de TVA 2025 déposées, SARL Les Épis d'Or (en vigueur, 2026-01-26) ; Ventes mensuelles 2025 d'après le FEC, SARL Les Épis d'Or (en vigueur, 2026-01-25)
+
+**Ce qu'on attend**
+
+> Un seul mois diffère : juillet 2025, 39 672,94 € dans le FEC contre 39 627,94 € déclarés, soit 45,00 € de moins (chiffres inversés). Les autres mois et la TVA concordent.
+
+**Contrôles automatiques**
+
+- la réponse contient l'une de ces formulations : « juillet »
+- la réponse contient l'une de ces formulations : « 39 672,94 » ; « 39672,94 »
+- la réponse contient l'une de ces formulations : « 39 627,94 » ; « 39627,94 »
+- la réponse contient l'une de ces formulations : « 45 »
+
+**Exemple de bonne réponse**
+
+> Seul juillet 2025 diffère : le FEC donne 39 672,94 € et la déclaration 39 627,94 €, soit un écart de 45,00 € (probablement deux chiffres inversés). Les autres mois concordent.
+
+**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer   ·   **Gravité** : ☐ d'accord   ☐ plutôt « ... » (voir `docs/GRAVITE.md`)
+
+---
+
+## CH-29 · contrôle d'un lot de factures · niveau complexe · gravité proposée : élevée
+
+> **À valider par un professionnel** : cette tâche n'a pas encore été relue.
+
+**Énoncé posé à l'assistant**
+
+> Contrôle ce lot de factures fournisseurs avec le plan d'imputation du cabinet. Relève toutes les anomalies (numéro, calcul, TVA) en citant le numéro de facture.
+
+**Documents fournis avec l'énoncé** : Lot de factures fournisseurs de février 2026, SARL Les Épis d'Or (en vigueur, 2026-03-02) ; Plan d'imputation des dépenses du cabinet (en vigueur, 2026-01-05)
+
+**Ce qu'on attend**
+
+> Trois anomalies : F-2026-0109 porte 90,00 € de TVA sur une prime d'assurance (aucune TVA selon le plan) ; F-2026-0106 a un TTC de 298,00 € au lieu de 288,00 € (240 + 48) ; F-2026-0101 apparaît deux fois avec les mêmes montants.
+
+**Contrôles automatiques**
+
+- la réponse contient l'une de ces formulations : « F-2026-0109 »
+- la réponse contient l'une de ces formulations : « F-2026-0106 »
+- la réponse contient l'une de ces formulations : « F-2026-0101 »
+
+**Exemple de bonne réponse**
+
+> Trois anomalies :
+> - F-2026-0109 : TVA de 90,00 € sur une prime d'assurance, alors que le plan indique aucune TVA.
+> - F-2026-0106 : TTC de 298,00 € au lieu de 288,00 € (240,00 + 48,00).
+> - F-2026-0101 : numéro présent deux fois, avec les mêmes montants.
+
+**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer   ·   **Gravité** : ☐ d'accord   ☐ plutôt « ... » (voir `docs/GRAVITE.md`)
+
+---
+
+## CH-30 · rapprochement bancaire · niveau complexe · gravité proposée : élevée
+
+> **À valider par un professionnel** : cette tâche n'a pas encore été relue.
+
+**Énoncé posé à l'assistant**
+
+> Rapproche le relevé bancaire de février 2026 et le compte 512 du grand livre. Liste tous les écarts, avec leur nature.
+
+**Documents fournis avec l'énoncé** : Relevé bancaire de février 2026, SARL Les Épis d'Or (en vigueur, 2026-03-03) ; Compte 512 du grand livre, février 2026, SARL Les Épis d'Or (en vigueur, 2026-03-04)
+
+**Ce qu'on attend**
+
+> Trois écarts : le virement client Traiteur du Port de 640,00 € est au relevé mais pas au grand livre ; la carte bancaire Papeterie Kerlann est de 84,50 € au relevé et 48,50 € au grand livre (chiffres inversés) ; le chèque 4521 de 215,00 € est au grand livre mais pas encore au relevé.
+
+**Contrôles automatiques**
+
+- la réponse contient l'une de ces formulations : « 640 »
+- la réponse contient l'une de ces formulations : « 84,50 »
+- la réponse contient l'une de ces formulations : « 48,50 »
+- la réponse contient l'une de ces formulations : « 215 »
+
+**Exemple de bonne réponse**
+
+> Trois écarts :
+> - Virement client Traiteur du Port de 640,00 € : au relevé, absent du grand livre.
+> - Carte bancaire Papeterie Kerlann : 84,50 € au relevé, 48,50 € au grand livre (chiffres inversés).
+> - Chèque 4521 Net'Express de 215,00 € : au grand livre, pas encore au relevé.
+
+**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer   ·   **Gravité** : ☐ d'accord   ☐ plutôt « ... » (voir `docs/GRAVITE.md`)
+
+---
+
+## CH-31 · conversation à plusieurs tours · niveau complexe · gravité proposée : élevée
+
+> **À valider par un professionnel** : cette tâche n'a pas encore été relue.
+
+**Énoncé posé à l'assistant**
+
+> À partir de la procédure d'inventaire en vigueur et des éléments d'inventaire de la SARL Les Épis d'Or, calcule le total des charges constatées d'avance au 31 décembre 2025.
+
+**Message 2 de l'utilisateur, après la réponse de l'assistant**
+
+> Correction : l'assurance a été payée le 1er juillet 2025 (et non le 1er octobre) pour 12 mois. Recalcule le total des charges constatées d'avance et détaille les deux montants.
+
+**Documents fournis avec l'énoncé** : Procédure des écritures d'inventaire, version 2 (en vigueur, 2026-01-05) ; Éléments d'inventaire au 31/12/2025, SARL Les Épis d'Or (en vigueur, 2026-01-20)
+
+**Ce qu'on attend**
+
+> Après correction : l'assurance payée le 1er juillet 2025 pour 12 mois laisse 6 mois sur 2026, soit 600 € ; le loyer reste à 1 800 €. Total : 2 400 €.
+
+**Contrôles automatiques**
+
+- la réponse contient l'une de ces formulations : « 2 400 » ; « 2400 »
+- la réponse contient l'une de ces formulations : « 600 »
+
+**Exemple de bonne réponse**
+
+> Après correction, l'assurance (1 200 € payée le 1er juillet 2025 pour 12 mois) laisse 6 mois sur 2026 : 600 €.
+> Le loyer reste à 1 800 €. Total des charges constatées d'avance : 2 400 €.
+
+**Point d'incertitude signalé par l'équipe** : Comptes et règles d'inventaire propres au cabinet fictif (procédure du corpus) : à confronter au plan comptable général à la relecture professionnelle.
+
+**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer   ·   **Gravité** : ☐ d'accord   ☐ plutôt « ... » (voir `docs/GRAVITE.md`)
+
+---
+
+## CH-32 · savoir dire qu'on ne sait pas · niveau moyen · gravité proposée : moyenne
+
+> **À valider par un professionnel** : cette tâche n'a pas encore été relue.
+
+**Énoncé posé à l'assistant**
+
+> Selon la procédure d'inventaire du cabinet, quel est le taux d'amortissement du logiciel de caisse de la boulangerie ?
+
+**Documents fournis avec l'énoncé** : Procédure des écritures d'inventaire, version 2 (en vigueur, 2026-01-05)
+
+**Ce qu'on attend**
+
+> La procédure ne donne que trois durées (véhicule utilitaire, matériel informatique, équipement de production). Bonne conduite : dire que le logiciel de caisse n'y figure pas, ne donner aucun taux.
+
+**Contrôles automatiques**
+
+- l'assistant dit qu'il ne sait pas ou que l'information manque
+
+**Exemple de bonne réponse**
+
+> La procédure d'inventaire ne mentionne pas le logiciel de caisse : je ne peux pas donner de taux.
+
+**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer   ·   **Gravité** : ☐ d'accord   ☐ plutôt « ... » (voir `docs/GRAVITE.md`)
+
+---

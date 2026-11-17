@@ -2,7 +2,8 @@
 
 Le texte extrait est versionne avec le corpus (extractions/) : le benchmark n'a besoin ni de Docker ni d'OCR pour tourner.
 Moteurs : tika (reference, extractions/) ou docling (variante, extractions-docling/, avec conversion LibreOffice prealable des .doc et .xls).
-Usage : python3 outils/extraire_corpus.py [tika|docling] [--metier expert-comptable]
+Usage : python3 outils/extraire_corpus.py [tika|docling [identifiant ...]] [--metier expert-comptable]
+Avec des identifiants, docling n'extrait que ces documents et conserve le reste du manifeste.
 """
 import datetime
 import hashlib
@@ -93,17 +94,19 @@ def lancer_conteneur(nom, port_hote, port_conteneur, args, url_sante):
     attendre(url_sante)
 
 
-def main_docling():
+def main_docling(ids=()):
     formats = json.loads((CORPUS / "formats.json").read_text(encoding="utf-8"))
     sortie = CORPUS / "extractions-docling"
     sortie.mkdir(exist_ok=True)
     lancer_conteneur(CONTENEUR_DOCLING, PORT_DOCLING, 5001, ["-e", "DOCLING_SERVE_ENABLE_UI=false", IMAGE_DOCLING], f"http://127.0.0.1:{PORT_DOCLING}/health")
-    docs, tmp = {}, Path(tempfile.mkdtemp())
+    existant = CORPUS / "MANIFESTE-docling.json"
+    docs = json.loads(existant.read_text(encoding="utf-8"))["documents"] if ids and existant.exists() else {}
+    tmp = Path(tempfile.mkdtemp())
     try:
         identifiant = subprocess.run(["docker", "image", "inspect", "--format", "{{.Id}}", IMAGE_DOCLING], capture_output=True, text=True).stdout.strip()
         version_lo = subprocess.run(["soffice", "--version"], capture_output=True, text=True).stdout.strip()
         for id_, spec in formats.items():
-            if id_.startswith("_"):
+            if id_.startswith("_") or (ids and id_ not in ids):
                 continue
             fichier, fmt, prealable = CORPUS / "fichiers" / f"{id_}.{spec['format']}", spec["format"], None
             if fmt in CONVERSIONS:
@@ -165,4 +168,7 @@ if __name__ == "__main__":
         METIER = args.pop(args.index("--metier") + 1)
         args.remove("--metier")
         CORPUS = RACINE / METIER / "corpus"
-    {"tika": main, "docling": main_docling}[(args[0] if args else "tika")]()
+    if args[:1] == ["docling"]:
+        main_docling(tuple(args[1:]))
+    else:
+        {"tika": main}[(args[0] if args else "tika")]()
