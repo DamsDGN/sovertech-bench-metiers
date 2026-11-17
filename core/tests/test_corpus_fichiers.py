@@ -13,7 +13,7 @@ class VarianteDocling(unittest.TestCase):
     def test_la_variante_est_complete_et_coherente(self):
         self.assertEqual(d.verifier_variante_extraction("expert-comptable", "docling"), [])
         manifeste = json.loads((SOURCE / "MANIFESTE-docling.json").read_text(encoding="utf-8"))["documents"]
-        self.assertEqual(len(manifeste), 26)
+        self.assertEqual(len(manifeste), 37)
 
     def test_les_formats_herites_sont_convertis_avant_docling(self):
         manifeste = json.loads((SOURCE / "MANIFESTE-docling.json").read_text(encoding="utf-8"))["documents"]

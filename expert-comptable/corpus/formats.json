@@ -15,7 +15,11 @@
       "pdf",
       "txt"
     ],
-    "documents_degrades_min": 2
+    "documents_degrades_min": 2,
+    "bornes_taches": [
+      15,
+      40
+    ]
   },
   "fiche-epis-dor": {
     "format": "docx"
@@ -101,5 +105,39 @@
       "chat",
       "agentique"
     ]
+  },
+  "proc-inventaire-v1": {
+    "format": "doc"
+  },
+  "proc-inventaire-v2": {
+    "format": "docx"
+  },
+  "plan-imputation-cabinet": {
+    "format": "docx"
+  },
+  "elements-inventaire-epis-2025": {
+    "format": "xlsx"
+  },
+  "ventes-mensuelles-fec-epis-2025": {
+    "format": "xlsx"
+  },
+  "declarations-tva-epis-2025": {
+    "format": "xlsx"
+  },
+  "lot-factures-fournisseurs-2026-02": {
+    "format": "xlsx"
+  },
+  "releve-banque-epis-2026-02": {
+    "format": "csv"
+  },
+  "grand-livre-512-epis-2026-02": {
+    "format": "xlsx"
+  },
+  "note-interne-mouettes": {
+    "format": "docx"
+  },
+  "courrier-banque-epis-2026": {
+    "format": "pdf",
+    "degradation": "photo"
   }
 }

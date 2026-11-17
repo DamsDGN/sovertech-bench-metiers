@@ -16,6 +16,16 @@ TYPES_RAG = {
 
 
 THEMES = {
+    "calcul_inventaire": "totaux d'inventaire de fin d'exercice",
+    "cloisonnement_des_clients": "ne pas mélanger deux clients",
+    "controle_lot_factures": "contrôle d'un lot de factures",
+    "imputation_en_lot": "imputation comptable d'un lot de factures",
+    "inventaire_amortissement": "écritures d'inventaire : amortissements",
+    "inventaire_cca": "écritures d'inventaire : charges constatées d'avance",
+    "inventaire_fnp": "écritures d'inventaire : factures non parvenues",
+    "plan_imputation": "plan d'imputation du cabinet",
+    "procedure_inventaire": "procédure des écritures d'inventaire",
+    "rapprochement_tva": "rapprochement des déclarations de TVA et du FEC",
     "calcul_prorata": "calcul au prorata des jours",
     "chaine_de_titres": "origine de propriété et titre",
     "cloisonnement_des_dossiers": "ne pas mélanger deux dossiers",

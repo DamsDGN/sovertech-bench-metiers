@@ -1,0 +1,23 @@
+---
+id: lot-factures-fournisseurs-2026-02
+titre: Lot de factures fournisseurs de février 2026, SARL Les Épis d'Or
+type: piece_comptable
+date: 2026-03-02
+statut: en_vigueur
+---
+DOCUMENT FICTIF (Cabinet Aubépine & Associés, cabinet inventé)
+
+# Lot de factures fournisseurs, février 2026
+
+| Facture | Fournisseur | Nature | HT (€) | TVA (€) | TTC (€) |
+|---|---|---|---|---|---|
+| F-2026-0101 | Minoterie du Blavet (fictive) | Matières premières | 1 850,00 | 101,75 | 1 951,75 |
+| F-2026-0102 | Papeterie Kerlann (fictive) | Fournitures de bureau | 84,50 | 16,90 | 101,40 |
+| F-2026-0103 | Assurances du Large (fictive) | Prime d'assurance | 300,00 | 0,00 | 300,00 |
+| F-2026-0104 | Énergie Armor (fictive) | Électricité | 410,00 | 82,00 | 492,00 |
+| F-2026-0105 | Me Lavenant (fictif) | Honoraires | 600,00 | 120,00 | 720,00 |
+| F-2026-0106 | Imprimerie du Port (fictive) | Publicité | 240,00 | 48,00 | 298,00 |
+| F-2026-0107 | Net'Express (fictive) | Entretien et nettoyage | 360,00 | 72,00 | 432,00 |
+| F-2026-0108 | Poste et Télécom (fictive) | Frais postaux et télécommunications | 95,00 | 19,00 | 114,00 |
+| F-2026-0109 | Mutuelle Armor (fictive) | Prime d'assurance | 450,00 | 90,00 | 540,00 |
+| F-2026-0101 | Minoterie du Blavet (fictive) | Matières premières | 1 850,00 | 101,75 | 1 951,75 |

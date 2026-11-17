@@ -370,13 +370,11 @@ class JeuxReels(unittest.TestCase):
     def test_les_taches_critiques_sont_celles_d_actions_non_autorisees_ou_d_affirmation_reglementaire(self):
         jeux = d.charger_metier("expert-comptable")
         critiques = sorted(t["id"] for b in ("chat", "rag", "agentique") for t in jeux[b] if t["gravite"] == "critique")
-        self.assertEqual(critiques, ["AG-06", "AG-08", "AG-17", "CH-15"])
+        self.assertEqual(critiques, ["AG-06", "AG-08", "AG-17", "AG-28", "AG-29", "CH-15"])
 
     def test_effectifs_de_la_v0(self):
         jeux = d.charger_metier("expert-comptable")
-        self.assertEqual(len(jeux["chat"]), 24)
-        self.assertEqual(len(jeux["rag"]), 23)
-        self.assertEqual(len(jeux["agentique"]), 23)
+        self.assertEqual((len(jeux["chat"]), len(jeux["rag"]), len(jeux["agentique"])), (32, 29, 30))
 
 
 if __name__ == "__main__":

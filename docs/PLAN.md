@@ -226,10 +226,10 @@ figés et versionnés. Un seul réglage échappe à la règle « identique pour 
 - **Mesures systématiques** : débit (tokens/s), TTFT, temps par tâche, pic de VRAM (`nvidia-smi`,
   échantillonné pendant la passe), **coût par tâche** = temps de GPU consommé par la tâche × tarif
   horaire du pod. Le coût exclut le chargement du modèle, qui est rapporté à part.
-- **Budget GPU** : 108 tâches (70 + 38) × 5 passes ≈ 540 générations par modèle, ×7 ≈ 3 800 au total.
-  Mesuré sur Atlas (Gemma 12B, une requête à la fois) : environ 20 minutes par passe pour les 70 tâches des
-  experts-comptables et 7 minutes pour les 38 des notaires. À cette vitesse : 5 passes ≈ 2,3 h par modèle,
-  ≈ 16 h pour 7 modèles, soit **~32 h à budgéter** après doublement (règle de prudence de Sover.tech). C'est un
+- **Budget GPU** : 148 tâches (91 + 57) × 5 passes ≈ 740 générations par modèle, ×7 ≈ 5 200 au total.
+  Mesuré sur Atlas avant le durcissement (Gemma 12B, une requête à la fois) : environ 20 minutes par passe pour les 70 tâches des
+  experts-comptables et 7 minutes pour les 38 des notaires, soit environ 27 minutes pour 108 tâches. Extrapolé à 148 tâches :
+  ≈ 37 minutes par passe, 5 passes ≈ 3 h par modèle, ≈ 22 h pour 7 modèles, soit **~44 h à budgéter** après doublement (règle de prudence de Sover.tech). C'est un
   **plancher** : les modèles plus gros et ceux qui raisonnent beaucoup (famille Qwen) seront plus lents, l'estimation
   sera refaite après la première passe sur Runpod. Plafond de génération de 32 768 tokens et contexte maximal du modèle
   (262 000) sur Runpod. Hors rechargement et incidents. Le tarif horaire exact est à relever avant lancement.

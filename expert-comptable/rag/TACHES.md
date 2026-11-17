@@ -748,3 +748,176 @@ Fichier généré automatiquement depuis `questions.jsonl` : ne le modifiez pas 
 **Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer   ·   **Gravité** : ☐ d'accord   ☐ plutôt « ... » (voir `docs/GRAVITE.md`)
 
 ---
+
+## RG-24 · procédure des écritures d'inventaire · niveau moyen · gravité proposée : élevée
+
+> **À valider par un professionnel** : cette tâche n'a pas encore été relue.
+
+**Type** : Piège : une ancienne version dit autre chose
+
+**Question posée à l'assistant**
+
+> Sur combien d'années amortit-on un véhicule utilitaire selon la procédure d'inventaire en vigueur ?
+
+**Documents où se trouve la réponse** : Procédure des écritures d'inventaire, version 2 (en vigueur, 2026-01-05)
+
+**Documents « pièges »** : Procédure des écritures d'inventaire, version 1 (obsolete, 2024-09-01)
+
+**Ce qu'on attend**
+
+> 5 ans (version 2). La version 1 indiquait 4 ans : obsolète.
+
+**Contrôles automatiques**
+
+- la réponse contient l'une de ces formulations : « 5 ans »
+
+**Exemple de bonne réponse**
+
+> Selon la procédure d'inventaire en vigueur (version 2), un véhicule utilitaire s'amortit sur 5 ans.
+
+**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer   ·   **Gravité** : ☐ d'accord   ☐ plutôt « ... » (voir `docs/GRAVITE.md`)
+
+---
+
+## RG-25 · procédure des écritures d'inventaire · niveau simple · gravité proposée : moyenne
+
+> **À valider par un professionnel** : cette tâche n'a pas encore été relue.
+
+**Type** : Réponse directe dans un document
+
+**Question posée à l'assistant**
+
+> Sur quel compte enregistre-t-on la part d'une charge payée d'avance qui concerne l'exercice suivant ?
+
+**Documents où se trouve la réponse** : Procédure des écritures d'inventaire, version 2 (en vigueur, 2026-01-05)
+
+**Documents « pièges »** : Procédure des écritures d'inventaire, version 1 (obsolete, 2024-09-01)
+
+**Ce qu'on attend**
+
+> Au débit du compte 486.
+
+**Contrôles automatiques**
+
+- la réponse contient l'une de ces formulations : « 486 »
+
+**Exemple de bonne réponse**
+
+> Cette part est portée au débit du compte 486 (charges constatées d'avance), d'après la procédure d'inventaire.
+
+**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer   ·   **Gravité** : ☐ d'accord   ☐ plutôt « ... » (voir `docs/GRAVITE.md`)
+
+---
+
+## RG-26 · écritures d'inventaire : factures non parvenues · niveau moyen · gravité proposée : élevée
+
+> **À valider par un professionnel** : cette tâche n'a pas encore été relue.
+
+**Type** : Il faut combiner plusieurs documents
+
+**Question posée à l'assistant**
+
+> Quel est le total des factures non parvenues des Épis d'Or au 31 décembre 2025 et sur quel compte les constate-t-on ?
+
+**Documents où se trouve la réponse** : Procédure des écritures d'inventaire, version 2 (en vigueur, 2026-01-05) ; Éléments d'inventaire au 31/12/2025, SARL Les Épis d'Or (en vigueur, 2026-01-20)
+
+**Ce qu'on attend**
+
+> Électricité de décembre (410 €) et nettoyage (360 €) : 770 € hors taxes, au crédit du compte 408.
+
+**Contrôles automatiques**
+
+- la réponse contient l'une de ces formulations : « 770 »
+- la réponse contient l'une de ces formulations : « 408 »
+
+**Exemple de bonne réponse**
+
+> Deux factures non parvenues : l'électricité de décembre (410 €) et le nettoyage (360 €), soit 770 € hors taxes, constatés au crédit du compte 408.
+
+**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer   ·   **Gravité** : ☐ d'accord   ☐ plutôt « ... » (voir `docs/GRAVITE.md`)
+
+---
+
+## RG-27 · plan d'imputation du cabinet · niveau simple · gravité proposée : moyenne
+
+> **À valider par un professionnel** : cette tâche n'a pas encore été relue.
+
+**Type** : Réponse directe dans un document
+
+**Question posée à l'assistant**
+
+> Les primes d'assurance portent-elles de la TVA selon le plan d'imputation du cabinet ?
+
+**Documents où se trouve la réponse** : Plan d'imputation des dépenses du cabinet (en vigueur, 2026-01-05)
+
+**Ce qu'on attend**
+
+> Non : aucune TVA, compte 616.
+
+**Contrôles automatiques**
+
+- la réponse contient l'une de ces formulations : « aucune TVA » ; « pas de TVA » ; « sans TVA »
+
+**Exemple de bonne réponse**
+
+> Non : d'après le plan d'imputation du cabinet, les primes d'assurance (compte 616) ne portent aucune TVA.
+
+**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer   ·   **Gravité** : ☐ d'accord   ☐ plutôt « ... » (voir `docs/GRAVITE.md`)
+
+---
+
+## RG-28 · procédure des écritures d'inventaire · niveau moyen · gravité proposée : moyenne
+
+> **À valider par un professionnel** : cette tâche n'a pas encore été relue.
+
+**Type** : Piège : la réponse n'est dans aucun document
+
+**Question posée à l'assistant**
+
+> Quel est le taux d'amortissement d'un logiciel de caisse selon le cabinet ?
+
+**Ce qu'on attend**
+
+> Aucun document ne donne ce taux. Bonne conduite : le dire, ne donner aucun taux.
+
+**Contrôles automatiques**
+
+- l'assistant dit qu'il ne sait pas ou que l'information manque
+
+**Exemple de bonne réponse**
+
+> Les documents fournis ne donnent pas de taux pour un logiciel de caisse : je ne peux pas le préciser.
+
+**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer   ·   **Gravité** : ☐ d'accord   ☐ plutôt « ... » (voir `docs/GRAVITE.md`)
+
+---
+
+## RG-29 · écritures d'inventaire : amortissements · niveau complexe · gravité proposée : élevée
+
+> **À valider par un professionnel** : cette tâche n'a pas encore été relue.
+
+**Type** : Piège : une ancienne version dit autre chose
+
+**Question posée à l'assistant**
+
+> Quelle est la dotation d'amortissement 2025 du four professionnel des Épis d'Or ?
+
+**Documents où se trouve la réponse** : Procédure des écritures d'inventaire, version 2 (en vigueur, 2026-01-05) ; Éléments d'inventaire au 31/12/2025, SARL Les Épis d'Or (en vigueur, 2026-01-20)
+
+**Documents « pièges »** : Procédure des écritures d'inventaire, version 1 (obsolete, 2024-09-01)
+
+**Ce qu'on attend**
+
+> 1 800 € (12 000 sur 5 ans, 9 mois). Avec la durée obsolète de 4 ans, on obtiendrait 2 250 €.
+
+**Contrôles automatiques**
+
+- la réponse contient l'une de ces formulations : « 1 800 » ; « 1800 »
+
+**Exemple de bonne réponse**
+
+> Le four (12 000 € HT, acquis en avril 2025) s'amortit sur 5 ans selon la procédure en vigueur : 12 000 / 5 × 9/12 = 1 800 €.
+
+**Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer   ·   **Gravité** : ☐ d'accord   ☐ plutôt « ... » (voir `docs/GRAVITE.md`)
+
+---

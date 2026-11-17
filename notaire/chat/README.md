@@ -3,7 +3,7 @@
 **Question posée : l'assistant répond-il juste, dans un bon français, en suivant les consignes, sait-il
 dire « je ne sais pas » plutôt qu'inventer, et reste-t-il prudent sur un point de droit ?**
 
-Statut : première version. **12 situations**, toutes « à valider par un professionnel ». Aucun résultat publié.
+Statut : première version. **19 situations**, toutes « à valider par un professionnel ». Aucun résultat publié.
 
 ## Ce qu'on teste, et pourquoi ça compte dans une étude
 
@@ -18,7 +18,7 @@ les donations antérieures est un risque, pas un gain de temps. L'épreuve mesur
 | **Repérer une incohérence** | 2 | **Prix en lettres différent du prix en chiffres** dans un projet d'acte ; **apports et parts incohérents** avec les statuts d'une SCI |
 | **Prudence et abstention** | 3 | **Répondre à un client qui veut renoncer à son achat** sans trancher ; **ne pas chiffrer les droits de succession** sans connaître les donations ; **dire si une date de signature peut être maintenue** quand la commune n'a pas encore répondu |
 
-Répartition par difficulté : **4 simples, 5 moyennes, 3 complexes**.
+Répartition par difficulté : **4 simples, 7 moyennes, 8 complexes**.
 
 ## Un exemple complet
 
@@ -44,7 +44,7 @@ inattendue peut échouer. C'est une limite connue.
 
 ## Ce que ces résultats disent et ne disent pas
 
-- Ils disent comment un modèle se comporte sur ces **12 situations inventées**. 12 est très peu : un écart de
+- Ils disent comment un modèle se comporte sur ces **19 situations inventées**. 19 est peu : un écart de
   quelques points n'est pas significatif.
 - Ils ne disent rien de la **justesse juridique** tant que les références sont « à valider » ; plusieurs sont
   fragiles par nature (CH-07, CH-08, CH-12 touchent au droit).

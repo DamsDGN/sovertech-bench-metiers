@@ -1,0 +1,25 @@
+---
+id: declarations-tva-epis-2025
+titre: Déclarations de TVA 2025 déposées, SARL Les Épis d'Or
+type: piece_comptable
+date: 2026-01-26
+statut: en_vigueur
+---
+DOCUMENT FICTIF (Cabinet Aubépine & Associés, cabinet inventé)
+
+# Déclarations de TVA mensuelles déposées en 2025
+
+| Mois | Chiffre d'affaires HT déclaré (€) | TVA collectée déclarée (€) |
+|---|---|---|
+| janvier 2025 | 27 465,88 | 1 510,62 |
+| février 2025 | 27 465,88 | 1 510,62 |
+| mars 2025 | 36 517,65 | 2 278,47 |
+| avril 2025 | 30 517,65 | 1 678,47 |
+| mai 2025 | 32 043,53 | 1 762,39 |
+| juin 2025 | 41 095,29 | 2 530,24 |
+| juillet 2025 | 39 627,94 | 2 182,01 |
+| août 2025 | 41 198,82 | 2 265,94 |
+| septembre 2025 | 38 043,53 | 2 362,39 |
+| octobre 2025 | 30 517,65 | 1 678,47 |
+| novembre 2025 | 28 991,76 | 1 594,55 |
+| décembre 2025 | 39 569,42 | 2 446,32 |

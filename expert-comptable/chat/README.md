@@ -3,7 +3,7 @@
 **Question posée : l'assistant répond-il juste, dans un bon français, en suivant les consignes, et sait-il
 dire « je ne sais pas » plutôt qu'inventer ?**
 
-Statut : première version. **24 situations**, toutes « à valider par un professionnel ». Aucun résultat publié.
+Statut : première version. **32 situations**, toutes « à valider par un professionnel ». Aucun résultat publié.
 
 ## Ce qu'on teste, et pourquoi ça compte dans un cabinet
 
@@ -19,7 +19,14 @@ ou qui répond oui à tout est un risque, pas un gain de temps. L'épreuve mesur
 | **Contrôler un fichier comptable (FEC)** | 4 | Le FEC d'un client est joint à la question (25 000 tokens environ) : **repérer une facture saisie deux fois**, une écriture déséquilibrée, une opération sans pièce, un taux de TVA incohérent |
 | **Résumer, synthétiser, rester prudent** | 4 | Résumer une note en 3 puces ; **dresser la liste des actions de clôture d'un client à partir de trois documents** sans inventer de date de signature ; ne pas trancher une déduction fiscale complexe |
 
-Répartition par difficulté : **5 simples, 8 moyennes, 11 complexes**. Les complexes combinent plusieurs documents, plusieurs contraintes à la fois, ou un risque d'invention : ce sont celles qui séparent les modèles.
+Répartition par difficulté : **5 simples, 11 moyennes, 16 complexes**. Les complexes combinent plusieurs documents, plusieurs contraintes à la fois, ou un risque d'invention : ce sont celles qui séparent les modèles.
+
+## Les 8 situations de la deuxième série
+
+Inventaire de fin d'exercice (charges constatées d'avance, factures non parvenues, amortissements, avec les règles écrites dans la procédure du cabinet),
+rapprochement des déclarations de TVA et du FEC (un seul mois diffère, de 45 €), contrôle d'un lot de dix factures (TVA sur une assurance, total faux,
+numéro en double), rapprochement bancaire de 28 lignes (trois écarts), une **conversation à deux tours** où l'utilisateur corrige une information
+(la réponse doit tenir compte de la correction), et une abstention (un taux d'amortissement absent de la procédure).
 
 ## Un exemple complet
 
@@ -36,7 +43,7 @@ Toutes les situations et leur réponse attendue sont dans [`TACHES.md`](TACHES.m
 
 Deux sources de notes, **affichées séparément** dans les rapports :
 
-1. **Contrôles automatiques** (les 24 situations en ont). Un programme vérifie des faits précis : la
+1. **Contrôles automatiques** (les 32 situations en ont). Un programme vérifie des faits précis : la
    réponse contient-elle le bon montant ? respecte-t-elle la limite de mots ? a-t-elle dit « je ne sais
    pas » quand il le fallait ? ne contient-elle pas de numéro à 9 chiffres inventé ? Ces contrôles sont
    **rejouables par n'importe qui avec le même résultat**.

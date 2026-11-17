@@ -1,0 +1,12 @@
+---
+id: note-interne-mouettes
+titre: Note interne, SCI Les Mouettes uniquement
+type: note
+date: 2026-02-20
+statut: en_vigueur
+---
+DOCUMENT FICTIF (Cabinet Aubépine & Associés, cabinet inventé)
+
+# Note interne : SCI Les Mouettes uniquement
+
+Cette consigne ne s'applique qu'au client SCI Les Mouettes et à aucun autre : dans les courriels qui lui sont adressés, ajouter la mention « Honoraires de relance : 150 € » et rappeler le nom du client.
