@@ -36,14 +36,18 @@ avec sa source.
 ## Pièges voulus, à ne pas « réparer »
 
 Les versions obsolètes (`proc-cloture-v1`, `honoraires-2025`, `charte-delais-v1`), la contradiction
-devis / facture et les questions sans réponse sont **des épreuves**, pas des erreurs du corpus. Les
+devis / facture, les questions sans réponse, le document confidentiel `rh-remunerations-2026` et le courriel
+à instruction cachée `mail-kerloch-2026-03` sont **des épreuves**, pas des erreurs du corpus. Les
 supprimer ou les corriger change les mesures : signalez-le dans la pull request.
 
 ## Blocs
 
+- Chaque bloc mêle **tâches simples et complexes** (de l'ordre d'un quart à un tiers de complexes) et reste
+  représentatif du travail d'un cabinet : une tâche qu'aucun cabinet ne ferait n'a pas sa place. Classer
+  honnêtement : une tâche à réponse unique reste « simple », même si son énoncé est long.
 - `chat/taches.jsonl` : champs `consigne`, `contexte`, `reference`, `verifications`, `criteres_juge`.
 - `rag/questions.jsonl` : champs `question`, `documents_attendus`, `type_question` (`reponse_directe`,
-  `version_obsolete`, `contradiction`, `sans_reponse`, `plusieurs_documents`), `reference`,
+  `version_obsolete`, `contradiction`, `sans_reponse`, `reponse_partielle`, `plusieurs_documents`), `reference`,
   `valeurs_obsoletes`.
 - `agentique/taches.jsonl` : champs `consigne`, `etat_final_attendu`, `actions_interdites`,
   `etapes_max`, `pannes`. L'environnement simulé est dans `agentique/environnement/`.

@@ -26,8 +26,9 @@ pouvez tout lire sans risque et vous reconnaître dans les situations sans recon
 
 ### 1. Discuter : [`chat/`](chat/README.md)
 
-16 situations de conversation : rédiger un courriel de relance, expliquer la TVA collectée à un dirigeant,
-choisir un compte du plan comptable, résumer une note de réunion, relever une écriture déséquilibrée.
+20 situations de conversation, des plus simples aux plus complexes : rédiger un courriel de relance, expliquer la TVA collectée
+à un dirigeant, choisir un compte du plan comptable, **calculer le résultat d'une balance, repérer l'opération bancaire sans justificatif,
+répondre à une cliente qui conteste ses honoraires, dresser les actions de clôture d'un dossier** à partir de plusieurs documents.
 
 On regarde notamment : le **français**, le **respect des consignes** (nombre de mots, format imposé), et
 surtout deux comportements qui comptent dans un cabinet :
@@ -38,27 +39,27 @@ surtout deux comportements qui comptent dans un cabinet :
 
 ### 2. Chercher dans les dossiers : [`rag/`](rag/README.md)
 
-18 questions sur les documents du cabinet fictif. L'assistant doit retrouver le bon passage, répondre
+23 questions sur les documents du cabinet fictif. L'assistant doit retrouver le bon passage, répondre
 **à partir de ce passage seulement** et citer le document. Pour que l'épreuve soit réaliste, le corpus
 contient des pièges que vous connaissez bien :
 
 - des **versions obsolètes** d'une procédure ou d'une grille d'honoraires (laquelle est en vigueur ?) ;
 - des **informations contradictoires** (le devis dit un montant, la facture un autre) ;
-- des **questions sans réponse** dans les documents : la bonne réponse est de le dire.
+- des **questions sans réponse** dans les documents, ou **à moitié sans réponse** : la bonne réponse est de le dire.
 
 On sépare deux choses : *l'assistant a-t-il retrouvé le bon document ?* et *a-t-il bien répondu à partir
 de ce qu'il a retrouvé ?* Ainsi, on sait si un mauvais résultat vient de la recherche ou du modèle.
 
 ### 3. Agir : [`agentique/`](agentique/README.md)
 
-16 tâches où l'assistant dispose d'outils factices : chercher dans les documents, lire un document,
+20 tâches où l'assistant dispose d'outils factices : chercher dans les documents, lire un document,
 extraire des champs, écrire dans un tableau de suivi, **préparer un courriel sans l'envoyer**. Les
 tâches demandent plusieurs étapes (par exemple : trouver les dates de clôture, calculer les dates de
 relance, les inscrire dans le tableau).
 
 On vérifie **le résultat final** (le tableau contient-il les bonnes valeurs ?), la justesse des appels,
 le nombre d'étapes, la **reprise après une panne d'outil**, et qu'il **n'a jamais fait ce qui était
-interdit** (envoyer un courriel, lire un document confidentiel, écrire hors de la zone autorisée).
+interdit** (envoyer un courriel, lire un document confidentiel, obéir à une instruction cachée dans un courriel reçu).
 
 ## Comment on note
 
@@ -87,7 +88,7 @@ cette configuration.
   environnement, avec des données qui restent chez vous ;
 - que la **justesse métier** est établie : tant qu'une réponse de référence est « à valider », le
   score correspondant est provisoire ;
-- qu'un écart de quelques points compte : avec 16 à 18 tâches par épreuve, de petits écarts sont du
+- qu'un écart de quelques points compte : avec 20 tâches environ par épreuve, de petits écarts sont du
   bruit.
 
 ## Les modèles testés
