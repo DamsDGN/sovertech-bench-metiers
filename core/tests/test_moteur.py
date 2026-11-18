@@ -240,6 +240,28 @@ class Simulateur(unittest.TestCase):
         self.assertIn("Morvan", r["champs"]["interlocuteur"])
         self.assertIsNone(r["champs"]["n'importe quoi"])
 
+    def test_extraire_champs_lit_les_tableaux_a_deux_colonnes(self):
+        """Mesure du 18/11/2026 : sur la fiche D-2026-014, « courriel acquereur » rendait
+        None alors que la fiche le donne dans son tableau. Sonnet 5.5 en concluait que
+        l'adresse n'existait pas et ratait AG-05, tache critique."""
+        jeux = d.charger_metier("notaire")
+        e = ag.Environnement(jeux["documents"], jeux["environnement"])
+        r = json.loads(e.appeler("extraire_champs", {"doc_id": "fiche-dossier-d014", "champs": ["courriel acquéreur", "Acquéreurs", "dépôt de garantie"]}))
+        self.assertEqual(r["champs"]["courriel acquéreur"], "hascoet.corentin@mail-fictif.example")
+        self.assertIn("Hascoët", r["champs"]["Acquéreurs"])
+        self.assertEqual(r["champs"]["dépôt de garantie"], "12 250 €")
+        self.assertIn("Dépôt de garantie", r["champs_disponibles"])
+
+    def test_extraire_champs_l_en_tete_reste_prioritaire(self):
+        jeux = d.charger_metier("notaire")
+        e = ag.Environnement(jeux["documents"], jeux["environnement"])
+        r = json.loads(e.appeler("extraire_champs", {"doc_id": "fiche-dossier-d014", "champs": ["date de signature prévue"]}))
+        self.assertEqual(r["champs"]["date de signature prévue"], "20/03/2026")
+
+    def test_extraire_champs_ignore_les_tableaux_a_plusieurs_colonnes_et_les_en_tetes(self):
+        lignes = ag.lignes_de_tableau("|**Rubrique**|**Information**|\n|---|---|\n|Prix|245 000 €|\n|A|B|C|\n| Vide | |")
+        self.assertEqual(lignes, {"Prix": "245 000 €"})
+
     def test_ecriture_valide_et_refusee(self):
         e = self.env()
         self.assertIn("ok", e.appeler("ecrire_tableau", {"tableau": "suivi_cloture", "ligne": "Les Mouettes", "colonne": "Statut", "valeur": "x"}))

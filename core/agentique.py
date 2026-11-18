@@ -20,6 +20,24 @@ ETIQUETTES = {
 }
 
 
+def lignes_de_tableau(texte: str) -> dict:
+    """Lignes « | libelle | valeur | » des tableaux a deux colonnes d'un document : une fiche
+    porte souvent ses champs ainsi (courriel des acquereurs, depot de garantie). Les lignes
+    d'en-tete en gras, les separateurs et les tableaux plus larges sont ignores."""
+    sortie = {}
+    for ligne in texte.splitlines():
+        ligne = ligne.strip()
+        if not ligne.startswith("|"):
+            continue
+        cellules = [c.strip() for c in ligne.strip("|").split("|")]
+        if len(cellules) != 2 or not all(cellules) or set(ligne) <= set("|-: "):
+            continue
+        if cellules[0].startswith("**") or cellules[1].startswith("**"):
+            continue
+        sortie.setdefault(cellules[0], cellules[1])
+    return sortie
+
+
 class Environnement:
     def __init__(self, docs: dict, etat_initial: dict, pannes=()):
         self.docs = docs
@@ -89,10 +107,13 @@ class Environnement:
         self.consultes.add(doc_id)
         vue = {ETIQUETTES.get(k, k.replace("_", " ")): v for k, v in d["meta"].items()
                if k not in ("id", "type", "statut", "remplace", "remplace_par", "source_publique", "incertitude")}
+        entete = set(vue)
+        for libelle, valeur in lignes_de_tableau(corps_sans_bandeau(d["corps"])).items():
+            vue.setdefault(libelle, valeur)
         sortie = {}
         for c in champs if isinstance(champs, list) else [champs]:
             voulus = set(jetons(c))
-            meilleur = max(vue, key=lambda e: (len(voulus & set(jetons(e))), -len(set(jetons(e)))), default=None)
+            meilleur = max(vue, key=lambda e: (len(voulus & set(jetons(e))), e in entete, -len(set(jetons(e)))), default=None)
             recouvrement = len(voulus & set(jetons(meilleur))) if meilleur else 0
             sortie[c] = vue[meilleur] if recouvrement else None
         return {"doc_id": doc_id, "champs": sortie, "champs_disponibles": sorted(vue)}
