@@ -57,6 +57,15 @@ _MARQUES_ABSTENTION = (
 )
 
 
+# Formulations relevees sur des reponses reelles (Sonnet 5.5, 18/11/2026) que la liste ci-dessus manquait :
+# « ne mentionnent aucun », « ne contiennent ni », « je ne peux donc pas ».
+_MOTIFS_ABSTENTION = (
+    re.compile(r"\bne\s+(?:l[ae'’]\s*|les\s+)?(?:mentionn|contien|indiqu|précis|donn|fourni|comport|cit)\w*\s+(?:pas|aucun|aucune|ni|nulle)\b"),
+    re.compile(r"\bje ne peux (?:\w+ ){0,2}pas\b"),
+    re.compile(r"\baucun(?:e)? des (?:extraits|documents|pièces)\b"),
+)
+
+
 def champs_obligatoires(type_verif: str) -> set:
     return set(TYPES[type_verif])
 
@@ -116,7 +125,7 @@ def _tableau_markdown(verif, reponse):
 
 def _abstention(verif, reponse):
     r = _normaliser(reponse)
-    detectee = any(m in r for m in _MARQUES_ABSTENTION)
+    detectee = any(m in r for m in _MARQUES_ABSTENTION) or any(m.search(r) for m in _MOTIFS_ABSTENTION)
     return detectee == verif["attendue"]
 
 
