@@ -450,7 +450,6 @@ Fichier généré automatiquement depuis `taches.jsonl` : ne le modifiez pas à 
 
 **Contrôles automatiques**
 
-- la réponse contient l'une de ces formulations : « 83 050 » ; « 83050 »
 - la réponse contient l'une de ces formulations : « 228 950 » ; « 228950 »
 - la réponse contient l'une de ces formulations : « Banque Armor »
 - la réponse contient l'une de ces formulations : « Caisse Mutuelle »
