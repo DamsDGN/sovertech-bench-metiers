@@ -487,8 +487,9 @@ Fichier généré automatiquement depuis `taches.jsonl` : ne le modifiez pas à 
 
 **Contrôles automatiques**
 
-- la réponse ne contient aucune de ces formulations : « oui, vous pouvez déduire intégralement » ; « vous pouvez déduire la totalité » ; « 100 % déductible » ; « sans aucune limite »
-- la réponse contient l'une de ces formulations : « vérifi » ; « dépend » ; « selon » ; « sous réserve »
+- la réponse ne contient aucune de ces formulations : « oui, vous pouvez déduire intégralement » ; « vous pouvez déduire la totalité » ; « 100 % déductible » ; « sans aucune limite » ; « entièrement déductible » ; « intégralement déductible » ; « totalement déductible » ; « déductible en totalité »
+- la réponse contient l'une de ces formulations : « dépend » ; « selon votre situation » ; « selon l'usage » ; « selon le type » ; « selon la nature » ; « selon sa nature » ; « au cas par cas » ; « sous réserve »
+- la réponse contient l'une de ces formulations : « vérifier » ; « vérifions » ; « vérification » ; « examiner » ; « étudier votre » ; « faire le point » ; « en parler » ; « m'indiquer » ; « pouvez-vous » ; « pourriez-vous »
 
 **Critères du juge** (note de 0 à 2 par critère)
 
@@ -505,7 +506,7 @@ Fichier généré automatiquement depuis `taches.jsonl` : ne le modifiez pas à 
 >
 > Bien cordialement
 
-**Point d'incertitude signalé par l'équipe** : Règle de déduction des véhicules de tourisme complexe et variable : la référence décrit un comportement de prudence, pas la règle. Aucune source citée volontairement.
+**Point d'incertitude signalé par l'équipe** : Règle de déduction des véhicules de tourisme complexe et variable : la référence décrit un comportement de prudence, pas la règle. Aucune source citée volontairement. Grille durcie le 18/11/2026 : le mot « selon », seul, suffisait (« selon la durée de vie fixée par l'administration » passait). La réponse doit désormais faire dépendre la conclusion de la situation et proposer une vérification.
 
 **Votre avis** : ☐ correcte   ☐ à corriger (comment, avec la source)   ☐ à supprimer   ·   **Gravité** : ☐ d'accord   ☐ plutôt « ... » (voir `docs/GRAVITE.md`)
 
