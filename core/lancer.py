@@ -42,9 +42,6 @@ def construire_releve(config, entree, infos_serveur, jeux) -> dict:
     servi = infos_serveur.get("modele_servi")
     raisons = []
     etalon = catalogue.est_etalon(entree)
-    if entree.get("fournisseur") == "claude_cli":
-        raisons.append("obtenu via le CLI claude -p (abonnement) : prompt systeme du CLI en plus, appels d'outils emules en texte, "
-                       "conversations rejouees en transcription ; pas un appel d'API direct")
     if not etalon:
         if not config.get("materiel"):
             raisons.append("materiel non declare (--materiel)")

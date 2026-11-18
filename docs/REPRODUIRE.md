@@ -91,8 +91,8 @@ configuration, avec le prompt système du benchmark : le modèle ne peut pas lir
 référence. Le plafond `--budget-usd` reste exigé ; il porte sur un équivalent calculé au tarif du catalogue,
 car rien n'est facturé à l'usage. Cette voie diffère d'un appel d'API direct : le CLI ajoute son propre contexte,
 le CLI donne la date de la machine au modèle (une consigne ajoutée au prompt système lui demande de l'ignorer), les appels d'outils sont émulés en texte, les conversations à plusieurs tours sont rejouées sous forme de
-transcription, et le raisonnement ne se règle pas comme avec l'API. Le résultat est donc toujours
-**marqué « non comparable »**.
+transcription, et le raisonnement ne se règle pas comme avec l'API. La voie utilisée est
+enregistrée dans le relevé (`serveur.voie`) et rappelée dans le rapport.
 
 ## Parcours B : sur Runpod, comme Sover.tech
 
