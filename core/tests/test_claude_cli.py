@@ -46,6 +46,10 @@ class Appels(unittest.TestCase):
         self.assertEqual(appels, [])
         self.assertIn("pas du json", texte)
 
+    def test_retour_a_la_ligne_brut_dans_un_texte_json_accepte(self):
+        _, appels = c.lire_appels('<appel>{"name": "rediger_mail", "arguments": {"corps": "Bonjour,\nmerci"}}</appel>')
+        self.assertEqual(json.loads(appels[0]["arguments"])["corps"], "Bonjour,\nmerci")
+
     def test_arguments_non_objet_refuses(self):
         _, appels = c.lire_appels('<appel>{"name": "lire", "arguments": [1]}</appel>')
         self.assertEqual(appels, [])
@@ -79,6 +83,21 @@ class Client(unittest.TestCase):
         rep = cl.completer([{"role": "system", "content": "S"}, {"role": "user", "content": "Q"}], outils=[OUTIL])
         self.assertIn("- lire : Lit un document.", vus[0][0])
         self.assertEqual((rep.fin, rep.appels_outils[0]["name"]), ("tool_calls", "lire"))
+
+    def test_appel_au_mauvais_format_relance_une_fois_avec_un_rappel(self):
+        cl, vus = self.client([sortie('<invoke name="lire">\n<parameter name="doc_id">a</parameter>\n</invoke>'),
+                               sortie('<appel>{"name": "lire", "arguments": {"doc_id": "a"}}</appel>')])
+        rep = cl.completer([{"role": "system", "content": "S"}, {"role": "user", "content": "Q"}], outils=[OUTIL])
+        self.assertEqual(len(vus), 2)
+        self.assertIn("<appel>", vus[1][1].split("Q", 1)[1])
+        self.assertEqual(rep.appels_outils[0]["name"], "lire")
+
+    def test_appel_toujours_illisible_apres_le_rappel_reste_dans_le_texte(self):
+        brut = '<invoke name="lire"></invoke>'
+        cl, vus = self.client([sortie(brut), sortie(brut)])
+        rep = cl.completer([{"role": "user", "content": "Q"}], outils=[OUTIL])
+        self.assertEqual((len(vus), rep.appels_outils), (2, []))
+        self.assertIn("<invoke", rep.texte)
 
     def test_sans_outils_les_blocs_appel_ne_sont_pas_interpretes(self):
         cl, _ = self.client([sortie('<appel>{"name": "lire", "arguments": {}}</appel>')])

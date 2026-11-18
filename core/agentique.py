@@ -144,7 +144,7 @@ class Environnement:
         return {"ok": True, "envoye": True}
 
 
-_APPEL_BRUT = re.compile(r"<\|?tool_call|tool_call\|?>|\bcall:\w+\s*\{")
+_APPEL_BRUT = re.compile(r"<\|?tool_call|tool_call\|?>|\bcall:\w+\s*\{|<invoke\b|<appel>")
 
 
 def anomalie(rep):
