@@ -65,6 +65,12 @@ _MOTIFS_ABSTENTION = (
     re.compile(r"\baucun(?:e)? des (?:extraits|documents|pièces)\b"),
     re.compile(r"\baucun(?:e)? (?:document|extrait|pièce|fichier)s?\b[^.]{0,80}?\bne\b"),
     re.compile(r"\bje n['’]ai (?:pas|rien) trouvé\b"),
+    # Relevees sur Qwen 3.6 35B (18/11/2026).
+    re.compile(r"\bn['’]y figure(?:nt)? pas\b"),
+    re.compile(r"\baucune mention\b"),
+    re.compile(r"\binformation (?:demandée )?(?:est )?(?:donc )?(?:manquante|manque)\b"),
+    re.compile(r"\bpas été trouvée?s?\b"),
+    re.compile(r"\baucun(?:e)? (?:\w+ ){1,3}n['’](?:est|a été) (?:indiqu|mentionn|précis|communiqu|fourni|donné)"),
 )
 
 
@@ -75,6 +81,7 @@ def champs_obligatoires(type_verif: str) -> set:
 def _normaliser(texte: str) -> str:
     for c in _ESPACES:
         texte = texte.replace(c, " ")
+    texte = texte.replace("’", "'").replace("ʼ", "'")
     return re.sub(r"[ \t]+", " ", texte).lower()
 
 
