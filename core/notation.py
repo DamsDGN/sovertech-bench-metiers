@@ -122,7 +122,8 @@ def noter_agentique(tache: dict, env, message_final: str) -> dict:
             for col, val in cellules.items():
                 cle = (tab, ligne, col)
                 if cle in attendues:
-                    if _norm_cellule(val) != _norm_cellule(attendues[cle]):
+                    admises = attendues[cle] if isinstance(attendues[cle], list) else [attendues[cle]]
+                    if _norm_cellule(val) not in {_norm_cellule(a) for a in admises}:
                         erreurs.append(f"cellule {cle} : {val!r} au lieu de {attendues[cle]!r}")
                 elif val != initial[tab]["lignes"][ligne][col]:
                     erreurs.append(f"cellule {cle} modifiee a tort")

@@ -328,6 +328,18 @@ class VerifierAgentique(unittest.TestCase):
         t["etat_final_attendu"]["tableaux"]["suivi_cloture"]["Client A"] = {"Date de clôture": "30/06/2026"}
         self.assertTrue(erreurs_contiennent(d.verifier_taches_agentique([t], self.docs, ENV, bornes=(1, 5)), "fiche"))
 
+    def test_plusieurs_valeurs_acceptees_dont_celle_de_la_fiche(self):
+        t = tache_ag()
+        t["etat_final_attendu"]["tableaux"]["suivi_cloture"]["Client A"] = {"Date de clôture": ["31/12/2026", ""]}
+        self.assertEqual(d.verifier_taches_agentique([t], self.docs, ENV, bornes=(1, 5)), [])
+        t["etat_final_attendu"]["tableaux"]["suivi_cloture"]["Client A"] = {"Date de clôture": ["30/06/2026", ""]}
+        self.assertTrue(erreurs_contiennent(d.verifier_taches_agentique([t], self.docs, ENV, bornes=(1, 5)), "fiche"))
+
+    def test_liste_de_valeurs_vide_refusee(self):
+        t = tache_ag()
+        t["etat_final_attendu"]["tableaux"]["suivi_cloture"]["Client A"] = {"Date de clôture": []}
+        self.assertTrue(erreurs_contiennent(d.verifier_taches_agentique([t], self.docs, ENV, bornes=(1, 5)), "liste"))
+
     def test_date_de_relance_est_la_cloture_moins_45_jours(self):
         t = tache_ag()
         t["etat_final_attendu"]["tableaux"]["suivi_cloture"]["Client A"] = {"Date de relance": "16/11/2026"}

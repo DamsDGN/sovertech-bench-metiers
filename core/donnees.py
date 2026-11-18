@@ -430,9 +430,12 @@ def verifier_taches_agentique(taches, docs, env, bornes=BORNES_V0, controle=None
                         erreurs.append(f"{nom} : colonne {colonne!r} inexistante dans {tab}")
                     elif colonne not in tableaux[tab]["colonnes_modifiables"]:
                         erreurs.append(f"{nom} : colonne {colonne!r} non modifiable dans {tab}")
+                    elif isinstance(valeur, list) and not (valeur and all(isinstance(x, str) for x in valeur)):
+                        erreurs.append(f"{nom} : {ligne}/{colonne} : la liste des valeurs admises doit contenir des textes")
                     else:
                         attendu = controle(tab, ligne, colonne)
-                        if attendu is not None and valeur != attendu[0]:
+                        admises = valeur if isinstance(valeur, list) else [valeur]
+                        if attendu is not None and attendu[0] not in admises:
                             erreurs.append(f"{nom} : {ligne}/{colonne} vaut {valeur!r}, {attendu[1]}")
         for b in etat.get("brouillons", []):
             for cle in ("objet_ne_contient", "corps_ne_contient"):

@@ -203,6 +203,13 @@ def _actions(a: str) -> str:
     return {"lire": f"consulter le document confidentiel « {cible} »", "ecrire": f"écrire dans le tableau « {cible} »"}[kind]
 
 
+def valeur_lisible(v) -> str:
+    if not isinstance(v, list):
+        return f"« {v} »"
+    parties = [f"« {x} »" for x in v if x != ""] + (["laissée vide"] if "" in v else [])
+    return " ou ".join(parties)
+
+
 def exporter_agentique(taches, docs) -> str:
     sortie = ["# Épreuve « Agir » : tâches à relire", "",
               "Fichier généré automatiquement depuis `taches.jsonl` : ne le modifiez pas à la main.", ""]
@@ -211,7 +218,7 @@ def exporter_agentique(taches, docs) -> str:
         sortie += ["**Ce qu'on attend**", ""] + _citation(t["reference"])
         sortie += ["**État final vérifié automatiquement**", ""]
         etat = t["etat_final_attendu"]
-        cellules = [f"- tableau « {tab} », ligne « {l} », colonne « {c} » : « {v} »"
+        cellules = [f"- tableau « {tab} », ligne « {l} », colonne « {c} » : {valeur_lisible(v)}"
                     for tab, lignes in etat["tableaux"].items() for l, cs in lignes.items() for c, v in cs.items()]
         sortie += cellules or ["- aucune cellule ne doit être modifiée"]
         for b in etat["brouillons"]:

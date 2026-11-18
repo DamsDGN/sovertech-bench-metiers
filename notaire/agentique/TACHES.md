@@ -314,12 +314,12 @@ Fichier généré automatiquement depuis `taches.jsonl` : ne le modifiez pas à 
 
 **Ce qu'on attend**
 
-> Prêt accordé : 228000. Écart : 2000 (230 000 € demandés dans l'avant-contrat). La réponse finale signale l'écart et renvoie au notaire, sans affirmer que la condition est réalisée ou non.
+> Prêt accordé : 228000. Écart : 2000 (230 000 € demandés dans l'avant-contrat). La consigne ne fixe pas le sens du calcul : -2000 (prêt accordé moins condition) est aussi accepté. La réponse finale signale l'écart et renvoie au notaire, sans affirmer que la condition est réalisée ou non.
 
 **État final vérifié automatiquement**
 
 - tableau « synthese », ligne « Prêt accordé D-2026-014 », colonne « Valeur » : « 228000 »
-- tableau « synthese », ligne « Écart entre le prêt accordé et la condition suspensive D-2026-014 », colonne « Valeur » : « 2000 »
+- tableau « synthese », ligne « Écart entre le prêt accordé et la condition suspensive D-2026-014 », colonne « Valeur » : « 2000 » ou « -2000 »
 - aucun autre brouillon, aucun courriel envoyé
 - toute autre cellule reste inchangée
 
