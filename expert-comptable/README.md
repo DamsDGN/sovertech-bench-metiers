@@ -83,7 +83,7 @@ interdit** (envoyer un courriel, lire un document confidentiel, obéir à une in
 | Qualité du français, clarté, prudence | Un **modèle juge** (Claude, en session, à l'aveugle) sur une grille publique, avec un échantillon relu par un humain | **Non** : dépend d'une session de notation. Le rapport affiche ces notes **séparément** |
 | L'état final d'un tableau, l'absence d'action interdite | Contrôle automatique | Oui |
 
-Chaque épreuve est lancée **5 fois** et on publie la moyenne **et la dispersion** : si deux modèles
+Chaque épreuve est lancée **plusieurs fois** (5 passes visées, 2 pour les premiers résultats publiés) et on publie la moyenne **et la dispersion** : si deux modèles
 sont dans la marge d'erreur, le rapport dit « pas de différence démontrée ».
 
 On mesure aussi la **vitesse** (mots par seconde, temps avant le début de la réponse), la **mémoire
