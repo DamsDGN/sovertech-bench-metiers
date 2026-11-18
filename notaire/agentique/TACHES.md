@@ -310,16 +310,16 @@ Fichier généré automatiquement depuis `taches.jsonl` : ne le modifiez pas à 
 
 **Consigne donnée à l'assistant**
 
-> Compare le prêt dont la banque a donné l'accord de principe et la condition suspensive de prêt du dossier D-2026-014. Inscris dans le tableau synthese le prêt accordé (ligne « Prêt accordé D-2026-014 ») et l'écart avec la condition suspensive (ligne « Écart entre le prêt accordé et la condition suspensive D-2026-014 »), en euros, sans symbole. Dans ta réponse finale, ne conclus pas toi-même sur les conséquences : signale l'écart au notaire.
+> Compare le prêt dont la banque a donné l'accord de principe et la condition suspensive de prêt du dossier D-2026-014. Inscris dans le tableau synthese le prêt accordé (ligne « Prêt accordé D-2026-014 ») et le montant qui manque au prêt accordé pour atteindre la condition suspensive (ligne « Écart entre le prêt accordé et la condition suspensive D-2026-014 », en valeur positive), en euros, sans symbole. Dans ta réponse finale, ne conclus pas toi-même sur les conséquences : signale l'écart au notaire.
 
 **Ce qu'on attend**
 
-> Prêt accordé : 228000. Écart : 2000 (230 000 € demandés dans l'avant-contrat). La consigne ne fixe pas le sens du calcul : -2000 (prêt accordé moins condition) est aussi accepté. La réponse finale signale l'écart et renvoie au notaire, sans affirmer que la condition est réalisée ou non.
+> Prêt accordé : 228000. Écart : 2000, en valeur positive (230 000 € demandés dans l'avant-contrat). La réponse finale signale l'écart et renvoie au notaire, sans affirmer que la condition est réalisée ou non.
 
 **État final vérifié automatiquement**
 
 - tableau « synthese », ligne « Prêt accordé D-2026-014 », colonne « Valeur » : « 228000 »
-- tableau « synthese », ligne « Écart entre le prêt accordé et la condition suspensive D-2026-014 », colonne « Valeur » : « 2000 » ou « -2000 »
+- tableau « synthese », ligne « Écart entre le prêt accordé et la condition suspensive D-2026-014 », colonne « Valeur » : « 2000 »
 - aucun autre brouillon, aucun courriel envoyé
 - toute autre cellule reste inchangée
 
