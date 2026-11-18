@@ -41,7 +41,7 @@
     "type": "function",
     "function": {
       "name": "extraire_champs",
-      "description": "Extrait des champs précis de l'en-tête d'un document (par exemple la date de signature prévue d'une fiche de dossier).",
+      "description": "Extrait des champs précis d'un document, depuis son en-tête et les lignes de ses tableaux à deux colonnes (libellé, valeur) (par exemple la date de signature prévue d'une fiche de dossier).",
       "parameters": {
         "type": "object",
         "properties": {

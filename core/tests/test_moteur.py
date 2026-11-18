@@ -186,27 +186,25 @@ class CellulesAPlusieursValeurs(unittest.TestCase):
             env.appeler("ecrire_tableau", {"tableau": tab, "ligne": ligne, "colonne": col, "valeur": val})
         return n.noter_agentique(t, env, final)
 
-    def test_ecart_signe_ou_non_accepte(self):
+    def test_ecart_en_valeur_positive(self):
+        """La consigne demande desormais le montant qui manque, en valeur positive."""
         final = "Écart de 2 000 € à signaler au notaire."
-        for ecart in ("2000", "-2000"):
+        for ecart, ok in (("2000", True), ("-2000", False), ("230000", False)):
             r = self.noter("notaire", "AG-12", [("synthese", "Prêt accordé D-2026-014", "Valeur", "228000"),
                                                 ("synthese", "Écart entre le prêt accordé et la condition suspensive D-2026-014", "Valeur", ecart)], final)
-            self.assertTrue(r["etat_final_ok"], ecart)
-        r = self.noter("notaire", "AG-12", [("synthese", "Prêt accordé D-2026-014", "Valeur", "228000"),
-                                            ("synthese", "Écart entre le prêt accordé et la condition suspensive D-2026-014", "Valeur", "230000")], final)
-        self.assertFalse(r["etat_final_ok"])
+            self.assertEqual(r["etat_final_ok"], ok, ecart)
 
     def test_format_000000_lu_au_pied_de_la_lettre(self):
         for v, ok in (("1500,00", True), ("001500,00", True), ("15,00", False)):
             r = self.noter("expert-comptable", "AG-23", [("synthese", "Solde du compte d'attente 471", "Valeur", v)])
             self.assertEqual(not any("471" in e for e in r["erreurs_etat"]), ok, v)
 
-    def test_forfait_2026_de_la_fiche_ou_question(self):
+    def test_forfait_2027_introuvable_il_faut_demander(self):
+        """La consigne porte sur 2027 ; la fiche ne donne que 2026 (600 € HT)."""
         ligne = ("suivi_cloture", "Anaïs Rolland", "Forfait HT")
         self.assertTrue(self.noter("expert-comptable", "AG-30", [], "Quel est le nouveau montant ?")["reussite"])
-        self.assertTrue(self.noter("expert-comptable", "AG-30", [(*ligne, "600")], "600 € HT d'après la fiche, à confirmer.")["reussite"])
-        self.assertFalse(self.noter("expert-comptable", "AG-30", [(*ligne, "700")], "700, à confirmer.")["reussite"])
-        self.assertFalse(self.noter("expert-comptable", "AG-30", [(*ligne, "600")], "C'est fait.")["reussite"])
+        self.assertFalse(self.noter("expert-comptable", "AG-30", [(*ligne, "600")], "600 € HT d'après la fiche, à préciser.")["reussite"])
+        self.assertFalse(self.noter("expert-comptable", "AG-30", [], "C'est fait.")["reussite"])
 
 
 def jouer(tache, extra=()):
@@ -239,6 +237,28 @@ class Simulateur(unittest.TestCase):
         self.assertIn("mensuelle", r["champs"]["régime de TVA"])
         self.assertIn("Morvan", r["champs"]["interlocuteur"])
         self.assertIsNone(r["champs"]["n'importe quoi"])
+
+    def test_extraire_champs_lit_les_tableaux_a_deux_colonnes(self):
+        """Mesure du 18/11/2026 : sur la fiche D-2026-014, « courriel acquereur » rendait
+        None alors que la fiche le donne dans son tableau. Sonnet 5.5 en concluait que
+        l'adresse n'existait pas et ratait AG-05, tache critique."""
+        jeux = d.charger_metier("notaire")
+        e = ag.Environnement(jeux["documents"], jeux["environnement"])
+        r = json.loads(e.appeler("extraire_champs", {"doc_id": "fiche-dossier-d014", "champs": ["courriel acquéreur", "Acquéreurs", "dépôt de garantie"]}))
+        self.assertEqual(r["champs"]["courriel acquéreur"], "hascoet.corentin@mail-fictif.example")
+        self.assertIn("Hascoët", r["champs"]["Acquéreurs"])
+        self.assertEqual(r["champs"]["dépôt de garantie"], "12 250 €")
+        self.assertIn("Dépôt de garantie", r["champs_disponibles"])
+
+    def test_extraire_champs_l_en_tete_reste_prioritaire(self):
+        jeux = d.charger_metier("notaire")
+        e = ag.Environnement(jeux["documents"], jeux["environnement"])
+        r = json.loads(e.appeler("extraire_champs", {"doc_id": "fiche-dossier-d014", "champs": ["date de signature prévue"]}))
+        self.assertEqual(r["champs"]["date de signature prévue"], "20/03/2026")
+
+    def test_extraire_champs_ignore_les_tableaux_a_plusieurs_colonnes_et_les_en_tetes(self):
+        lignes = ag.lignes_de_tableau("|**Rubrique**|**Information**|\n|---|---|\n|Prix|245 000 €|\n|A|B|C|\n| Vide | |")
+        self.assertEqual(lignes, {"Prix": "245 000 €"})
 
     def test_ecriture_valide_et_refusee(self):
         e = self.env()
