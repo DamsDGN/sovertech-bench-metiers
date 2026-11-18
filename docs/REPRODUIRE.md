@@ -125,3 +125,18 @@ localement : le résultat sera marqué « non comparable ».
 
 `python3 -m core.rapport results/expert-comptable/<date>/<modèle>` régénère `rapport.md` et `resume.csv` à
 partir de `resultats.jsonl` et `releve.json`.
+
+## Renoter une mesure après une correction de la notation
+
+Quand le code qui note change (un contrôle corrigé, une grille durcie), il n'est pas nécessaire de rappeler le
+modèle : ses réponses sont conservées. `python3 -m core.renoter results/<métier>/<date>/<modèle>` recalcule les
+notes avec le code et les grilles actuels, régénère le rapport et liste les verdicts qui changent.
+
+- Le fichier d'origine est gardé à côté, sous le nom `resultats.avant-renotage.jsonl`.
+- Chaque renotage est inscrit dans `releve.json` (date, commit, verdicts changés).
+- Une tâche dont la **consigne** a changé depuis la mesure n'est pas renotée : sa réponse ne répond plus à la
+  même question. Il faut la remesurer.
+- Pour l'épreuve « Agir », les appels d'outils du modèle sont rejoués. Si le rejeu ne redonne pas les tableaux
+  et brouillons enregistrés, l'ancienne note est gardée et le cas est signalé.
+- Un dossier modifié depuis moins de dix minutes est ignoré, car une mesure y écrit peut-être encore (`--force`
+  pour passer outre).
