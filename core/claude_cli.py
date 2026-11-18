@@ -78,7 +78,7 @@ def lire_appels(texte: str, depart: int = 0):
 
     def remplacer(m):
         try:
-            donnees = json.loads(m.group(1))
+            donnees = json.loads(m.group(1), strict=False)
             nom, args = donnees["name"], donnees.get("arguments") or {}
             if not isinstance(nom, str) or not isinstance(args, dict):
                 raise ValueError
@@ -114,6 +114,14 @@ def lancer_cli(systeme: str, message: str, modele: str, effort: str | None, max_
         raise ErreurClient(f"claude -p : sortie illisible : {r.stdout[:200]}") from None
 
 
+# Mesure du 18/11/2026 : Sonnet 5.5 ecrit parfois ses appels au format natif d'Anthropic (<invoke>) au lieu du
+# protocole <appel> emule ici ; aucun outil ne s'executait et l'echec etait compte au modele.
+RAPPEL_FORMAT = ("\n\n[Système] Ton message précédent contenait un appel d'outil illisible, qui n'a pas été exécuté. "
+                 'Pour appeler un outil, écris exactement <appel>{"name": "nom_de_l_outil", "arguments": {...}}</appel>, '
+                 "avec un JSON valide, puis arrête-toi.")
+_APPEL_ILLISIBLE = re.compile(r"<invoke\b|<appel>")
+
+
 class ClientClaudeCli:
     def __init__(self, modele: str, reglages: dict | None = None, lanceur=None, delai: float = 900, tentatives: int = 2):
         self.modele, self.reglages, self.delai, self.tentatives = modele, reglages or {}, delai, tentatives
@@ -129,6 +137,16 @@ class ClientClaudeCli:
         systeme += NEUTRALISATION_DATE
         if outils:
             systeme += decrire_outils(outils)
+        rep = self._completer(systeme, message, outils, max_tokens)
+        if outils and not rep.appels_outils and _APPEL_ILLISIBLE.search(rep.texte):
+            premiere = rep
+            rep = self._completer(systeme, message + RAPPEL_FORMAT, outils, max_tokens)
+            rep.duree += premiere.duree
+            rep.tokens_prompt = (rep.tokens_prompt or 0) + (premiere.tokens_prompt or 0)
+            rep.tokens_completion = (rep.tokens_completion or 0) + (premiere.tokens_completion or 0)
+        return rep
+
+    def _completer(self, systeme, message, outils, max_tokens) -> Reponse:
         derniere = None
         t0 = time.monotonic()
         for essai in range(self.tentatives):

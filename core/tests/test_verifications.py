@@ -86,6 +86,21 @@ class TableauMarkdown(unittest.TestCase):
         self.assertFalse(ok({"type": "tableau_markdown", "colonnes": 3, "lignes": 3}, "Voici : 411, 512, 706"))
 
 
+class MotsMaxTexteLivre(unittest.TestCase):
+    def test_les_notes_sous_un_separateur_ne_comptent_pas(self):
+        texte = "Madame,\n\n" + "mot " * 18 + "\n\nCordialement\n\n---\n\nNote : la date du 20 février est passée, à vérifier."
+        self.assertTrue(ok({"type": "mots_max", "max": 20}, texte))
+        self.assertFalse(ok({"type": "mots_max", "max": 20}, texte.replace("---", "")))
+
+    def test_le_texte_livre_est_le_plus_long_des_blocs(self):
+        texte = "Voici une proposition.\n\n***\n\n" + "mot " * 30 + "\n\n***\n\nNote : à relire."
+        self.assertFalse(ok({"type": "mots_max", "max": 20}, texte))
+        self.assertTrue(ok({"type": "mots_max", "max": 30}, texte))
+
+    def test_sans_separateur_tout_compte(self):
+        self.assertFalse(ok({"type": "mots_max", "max": 3}, "un deux trois quatre"))
+
+
 class Abstention(unittest.TestCase):
     def test_detecte_une_abstention(self):
         for phrase in [
@@ -106,6 +121,13 @@ class Abstention(unittest.TestCase):
             "Je ne peux malheureusement pas vous la donner.",
             "Aucun des extraits fournis ne la mentionne.",
             "La fiche ne comporte aucune donnée financière.",
+        ]:
+            self.assertTrue(ok({"type": "abstention", "attendue": True}, phrase), phrase)
+
+    def test_formulations_relevees_dans_l_epreuve_agir(self):
+        for phrase in [
+            "La cellule reste vide, car aucun document de l'étude ne donne son numéro de téléphone.",
+            "Je n'ai pas trouvé le numéro de téléphone de Mme Quéméner, donc je n'ai rien écrit.",
         ]:
             self.assertTrue(ok({"type": "abstention", "attendue": True}, phrase), phrase)
 

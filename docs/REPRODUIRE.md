@@ -138,5 +138,10 @@ notes avec le code et les grilles actuels, régénère le rapport et liste les v
   même question. Il faut la remesurer.
 - Pour l'épreuve « Agir », les appels d'outils du modèle sont rejoués. Si le rejeu ne redonne pas les tableaux
   et brouillons enregistrés, l'ancienne note est gardée et le cas est signalé.
+- Pour un étalon interrogé par le CLI (`--via-cli`), les outils passent par un protocole que nous émulons en
+  texte. Une épreuve « Agir » **ratée** parce qu'un appel d'outil y est resté illisible (format natif
+  `<invoke>`, bloc `<appel>` au JSON invalide) devient une **erreur d'infrastructure** : elle est retirée du
+  calcul, comme une panne réseau, et `--reprise` la rejoue seule. Une épreuve réussie n'est jamais retirée. Sur
+  un serveur local, le même défaut reste compté : c'est l'analyseur d'outils que le client aura.
 - Un dossier modifié depuis moins de dix minutes est ignoré, car une mesure y écrit peut-être encore (`--force`
   pour passer outre).

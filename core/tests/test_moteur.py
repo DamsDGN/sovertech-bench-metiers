@@ -130,7 +130,7 @@ class Oracle:
         self.tache, self.i, self.dernier = tache, 0, None
         etat = tache["etat_final_attendu"]
         self.plan = [("lire", {"doc_id": p["document"]}) for p in tache["pannes"] if p["outil"] == "lire"]
-        self.plan += [("ecrire_tableau", {"tableau": tab, "ligne": l, "colonne": c, "valeur": v})
+        self.plan += [("ecrire_tableau", {"tableau": tab, "ligne": l, "colonne": c, "valeur": v[0] if isinstance(v, list) else v})
                       for tab, ls in etat["tableaux"].items() for l, cs in ls.items() for c, v in cs.items()]
         self.plan += [("rediger_mail", {"destinataire": b["destinataire"], "objet": " ".join(b["objet_contient"]) or "Objet",
                                          "corps": " ".join(b["corps_contient"]) or "Bonjour"}) for b in etat["brouillons"]]
@@ -158,6 +158,45 @@ class Oracle:
             return Reponse(texte=self.final(), fin="stop", duree=0.1, ttft=0.05)
         self.dernier = (nom, args)
         return Reponse(appels_outils=[{"id": f"c{self.i}", "name": nom, "arguments": json.dumps(args)}], fin="tool_calls", duree=0.1, ttft=0.05)
+
+
+class Anomalies(unittest.TestCase):
+    def test_appels_bruts_reconnus(self):
+        for texte in ['<invoke name="lire">', 'texte <appel>{"name": "lire"', "<|tool_call>call:lire{doc_id:x}"]:
+            self.assertEqual(ag.anomalie(Reponse(texte=texte)), "appel_outil_non_analyse", texte)
+        self.assertIsNone(ag.anomalie(Reponse(texte="J'ai invoqué la procédure.")))
+
+
+class CellulesAPlusieursValeurs(unittest.TestCase):
+    def noter(self, metier, id_, ecritures, final="Tâche terminée."):
+        jeux = d.charger_metier(metier)
+        t = next(x for x in jeux["agentique"] if x["id"] == id_)
+        env = ag.Environnement(jeux["documents"], jeux["environnement"], t["pannes"])
+        for tab, ligne, col, val in ecritures:
+            env.appeler("ecrire_tableau", {"tableau": tab, "ligne": ligne, "colonne": col, "valeur": val})
+        return n.noter_agentique(t, env, final)
+
+    def test_ecart_signe_ou_non_accepte(self):
+        final = "Écart de 2 000 € à signaler au notaire."
+        for ecart in ("2000", "-2000"):
+            r = self.noter("notaire", "AG-12", [("synthese", "Prêt accordé D-2026-014", "Valeur", "228000"),
+                                                ("synthese", "Écart entre le prêt accordé et la condition suspensive D-2026-014", "Valeur", ecart)], final)
+            self.assertTrue(r["etat_final_ok"], ecart)
+        r = self.noter("notaire", "AG-12", [("synthese", "Prêt accordé D-2026-014", "Valeur", "228000"),
+                                            ("synthese", "Écart entre le prêt accordé et la condition suspensive D-2026-014", "Valeur", "230000")], final)
+        self.assertFalse(r["etat_final_ok"])
+
+    def test_format_000000_lu_au_pied_de_la_lettre(self):
+        for v, ok in (("1500,00", True), ("001500,00", True), ("15,00", False)):
+            r = self.noter("expert-comptable", "AG-23", [("synthese", "Solde du compte d'attente 471", "Valeur", v)])
+            self.assertEqual(not any("471" in e for e in r["erreurs_etat"]), ok, v)
+
+    def test_forfait_2026_de_la_fiche_ou_question(self):
+        ligne = ("suivi_cloture", "Anaïs Rolland", "Forfait HT")
+        self.assertTrue(self.noter("expert-comptable", "AG-30", [], "Quel est le nouveau montant ?")["reussite"])
+        self.assertTrue(self.noter("expert-comptable", "AG-30", [(*ligne, "600")], "600 € HT d'après la fiche, à confirmer.")["reussite"])
+        self.assertFalse(self.noter("expert-comptable", "AG-30", [(*ligne, "700")], "700, à confirmer.")["reussite"])
+        self.assertFalse(self.noter("expert-comptable", "AG-30", [(*ligne, "600")], "C'est fait.")["reussite"])
 
 
 def jouer(tache, extra=()):

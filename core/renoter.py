@@ -10,6 +10,7 @@ Usage : python3 -m core.renoter DOSSIER [DOSSIER ...]
 import argparse
 import datetime
 import json
+import re
 import subprocess
 import sys
 import time
@@ -20,6 +21,7 @@ from . import donnees as d
 from . import lancer
 from . import notation as n
 from . import rapport
+from .client import Reponse
 
 VUS_PAR_LE_MODELE = {"chat": ("consigne", "contexte", "suite"), "rag": ("question",),
                      "agentique": ("consigne", "pannes", "etapes_max")}
@@ -77,6 +79,30 @@ def _etat_conforme(env, enregistres: dict) -> bool:
     return all(nom in env.tableaux and set(lignes) <= set(env.tableaux[nom]["lignes"]) for nom, lignes in enregistres.items())
 
 
+_BLOC_APPEL = re.compile(r"<appel>\s*\{")
+
+
+def est_voie_cli(releve: dict) -> bool:
+    return (releve.get("modele_catalogue", {}).get("fournisseur") == "claude_cli"
+            or str(releve.get("serveur", {}).get("voie") or "").startswith("claude -p"))
+
+
+def anomalies_des_tours(enr: dict) -> list:
+    """Anomalies recalculees sur le texte conserve de chaque tour, avec la detection actuelle."""
+    sorties = []
+    for t in enr.get("tours") or []:
+        texte = t.get("texte") or ""
+        if t.get("fin") == "tool_calls":
+            # Des appels ont ete executes a ce tour : un <invoke> a cote d'un <appel> valide double le meme appel,
+            # seul un bloc <appel> reste illisible (le client retire ceux qu'il a lus) signale une perte.
+            a = t.get("anomalie") or ("appel_outil_non_analyse" if _BLOC_APPEL.search(texte) else None)
+        else:
+            a = t.get("anomalie") or ag.anomalie(Reponse(texte=texte, fin=t.get("fin")))
+        if a:
+            sorties.append(a)
+    return sorties
+
+
 def renoter_enregistrement(enr: dict, tache: dict, jeux: dict):
     """Renvoie (nouvelle note ou None si elle ne peut pas etre recalculee, statut)."""
     reponse = enr.get("reponse") or ""
@@ -111,7 +137,8 @@ def renoter(dossier: Path, jeux=None, anciennes="git", recent_ok=False) -> dict:
     lignes = [json.loads(l) for l in chemin.read_text(encoding="utf-8").splitlines() if l.strip()]
     bilan = {"date": datetime.datetime.now().astimezone().isoformat(timespec="seconds"), "commit": lancer._commit(),
              "consignes_verifiees": anciennes is not None, "renotees": 0, "reussite_changee": [],
-             "tache_absente": [], "consigne_modifiee": [], "rejeu_divergent": []}
+             "tache_absente": [], "consigne_modifiee": [], "rejeu_divergent": [], "erreur_voie_cli": []}
+    voie_cli = est_voie_cli(releve)
     for enr in lignes:
         if enr.get("erreur"):
             continue
@@ -124,7 +151,18 @@ def renoter(dossier: Path, jeux=None, anciennes="git", recent_ok=False) -> dict:
         if anciennes is not None and (cle not in anciennes or consigne_modifiee(enr["bloc"], anciennes[cle], tache)):
             bilan["consigne_modifiee"].append(etiquette)
             continue
+        if enr["bloc"] == "agentique" and enr.get("tours"):
+            enr["anomalies_serveur"] = anomalies_des_tours(enr)
         note, statut = renoter_enregistrement(enr, tache, jeux)
+        if (note is not None and voie_cli and not note.get("reussite")
+                and "appel_outil_non_analyse" in enr.get("anomalies_serveur", [])):
+            # Le protocole d'outils de la voie CLI est notre emulation, pas ce que le modele aurait via l'API :
+            # un echec qu'il a cause est une erreur d'infrastructure, retiree du calcul et rejouable.
+            enr["erreur"] = ("voie CLI : appel d'outil illisible dans le protocole emule, non execute "
+                             "(erreur d'infrastructure, rejouable avec --reprise)")
+            enr["note"] = note
+            bilan["erreur_voie_cli"].append(etiquette)
+            continue
         if note is None:
             bilan[statut].append(etiquette)
             continue
@@ -157,7 +195,7 @@ def main(argv=None):
         print(f"{dossier} : {b['renotees']} renotees, {len(b['reussite_changee'])} verdicts changes")
         for ligne in b["reussite_changee"]:
             print(f"  {ligne}")
-        for cle in ("tache_absente", "consigne_modifiee", "rejeu_divergent"):
+        for cle in ("tache_absente", "consigne_modifiee", "rejeu_divergent", "erreur_voie_cli"):
             if b[cle]:
                 print(f"  {cle} : {', '.join(b[cle])}")
         if not b["consignes_verifiees"]:

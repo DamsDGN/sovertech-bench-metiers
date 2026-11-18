@@ -12,6 +12,14 @@ VERIFS = [
 ]
 
 
+class ValeursMultiples(unittest.TestCase):
+    def test_une_cellule_a_plusieurs_valeurs_est_lisible(self):
+        from core import export_lisible as x
+        self.assertEqual(x.valeur_lisible(["2000", "-2000"]), "« 2000 » ou « -2000 »")
+        self.assertEqual(x.valeur_lisible(["600", ""]), "« 600 » ou laissée vide")
+        self.assertEqual(x.valeur_lisible("85"), "« 85 »")
+
+
 class DecrireVerification(unittest.TestCase):
     def test_chaque_type_a_une_description_en_francais(self):
         for v in VERIFS:
