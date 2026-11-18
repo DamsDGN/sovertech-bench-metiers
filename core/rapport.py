@@ -162,7 +162,7 @@ def performance(enrs):
     return {"cout_usd_par_reussite": cout_par_reussite, "ttft_median": statistics.median(ttft) if ttft else None, "debit_moyen": moyenne(debit),
             "duree_moyenne": moyenne(duree), "tokens_moyens": moyenne(tc), "cout_moyen": moyenne(couts) if couts else None,
             "cout_usd_moyen": moyenne(couts_usd) if couts_usd else None, "cout_usd_total": sum(couts_usd) if couts_usd else None,
-            "tronquees": sum(1 for e in ok if e.get("fin") == "length")}
+            "tronquees": sum(1 for e in ok if e.get("fin") == "length" or any(t.get("fin") == "length" for t in e.get("tours") or []))}
 
 
 def generer(dossier: Path) -> Path:

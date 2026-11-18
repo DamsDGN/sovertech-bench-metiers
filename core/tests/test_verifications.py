@@ -99,6 +99,21 @@ class Abstention(unittest.TestCase):
         ]:
             self.assertTrue(ok({"type": "abstention", "attendue": True}, phrase), phrase)
 
+    def test_formulations_relevees_sur_des_reponses_reelles(self):
+        for phrase in [
+            "Les extraits ne mentionnent aucun taux horaire pour un stagiaire.",
+            "Les extraits ne contiennent ni le montant des émoluments, ni le barème. Je ne peux donc pas répondre.",
+            "Je ne peux malheureusement pas vous la donner.",
+            "Aucun des extraits fournis ne la mentionne.",
+            "La fiche ne comporte aucune donnée financière.",
+        ]:
+            self.assertTrue(ok({"type": "abstention", "attendue": True}, phrase), phrase)
+
+    def test_une_reponse_chiffree_n_est_pas_une_abstention(self):
+        for phrase in ["Le forfait est de 4 800 € HT.", "La date de relance est le 16/05/2026, selon la procédure en vigueur.",
+                       "Le cabinet peut facturer 45 € HT, comme le prévoit la lettre de mission."]:
+            self.assertFalse(ok({"type": "abstention", "attendue": True}, phrase), phrase)
+
     def test_une_reponse_affirmative_n_est_pas_une_abstention(self):
         self.assertFalse(ok({"type": "abstention", "attendue": True}, "Son numéro est le 06 12 34 56 78."))
 
