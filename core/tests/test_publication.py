@@ -44,6 +44,17 @@ def jeu():
     return enrs
 
 
+class Voie(unittest.TestCase):
+    def test_la_voie_d_acces_est_exportee_si_elle_existe(self):
+        releve = {"passes": 1, "max_tokens": 1, "echantillonnage": {}, "serveur": {"voie": "claude -p"}, "extraction": {"moteur": "tika"},
+                  "recuperateur": {}, "materiel_declare": None, "date": "2026-11-18T00:00:00", "moteur": {"commit": "abc"},
+                  "comparable_aux_resultats_publies": True}
+        m = publication.mesure_metier(releve, [], 0.0)
+        self.assertEqual(m["configuration"]["voie"], "claude -p")
+        releve["serveur"] = {}
+        self.assertIsNone(publication.mesure_metier(releve, [], 0.0)["configuration"]["voie"])
+
+
 class Export(unittest.TestCase):
     def setUp(self):
         self.tmp = tempfile.TemporaryDirectory()
