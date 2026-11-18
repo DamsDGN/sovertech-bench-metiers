@@ -4,8 +4,9 @@
 vous aider au quotidien ? Ce projet permet de le mesurer, publiquement et en toute transparence.**
 
 > **Projet en construction.** Les premiers résultats sont publiés sur
-> [sover.tech/comparatif-llm](https://sover.tech/comparatif-llm/), pour **deux assistants seulement** (Gemma 4 12B en local
-> et Claude Sonnet 5.5), en **2 passes** par épreuve. Ce sont des résultats préliminaires. Les réponses de référence
+> [sover.tech/professions-reglementees](https://sover.tech/professions-reglementees/#resultats), pour **quatre assistants**
+> (Gemma 4 12B, Qwen 3.8 27B et Qwen 3.6 35B A3B en local, Claude Sonnet 5.5 comme valeur de référence en ligne), en
+> **2 passes** par épreuve. Ce sont des résultats préliminaires. Les réponses de référence
 > écrites par l'équipe n'ont **pas encore été relues par un professionnel** : chacune est marquée
 > « à valider ». **Vous avez repéré une erreur, ou vous exercez le métier et voulez relire ? Votre
 > aide est précieuse** : voir [comment contribuer](CONTRIBUTING.md).
