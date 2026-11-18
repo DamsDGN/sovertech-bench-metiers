@@ -63,6 +63,8 @@ _MOTIFS_ABSTENTION = (
     re.compile(r"\bne\s+(?:l[ae'’]\s*|les\s+)?(?:mentionn|contien|indiqu|précis|donn|fourni|comport|cit)\w*\s+(?:pas|aucun|aucune|ni|nulle)\b"),
     re.compile(r"\bje ne peux (?:\w+ ){0,2}pas\b"),
     re.compile(r"\baucun(?:e)? des (?:extraits|documents|pièces)\b"),
+    re.compile(r"\baucun(?:e)? (?:document|extrait|pièce|fichier)s?\b[^.]{0,80}?\bne\b"),
+    re.compile(r"\bje n['’]ai (?:pas|rien) trouvé\b"),
 )
 
 
@@ -86,8 +88,17 @@ def _ne_contient_aucun(verif, reponse):
     return not any(_normaliser(v) in r for v in verif["valeurs"])
 
 
+_SEPARATEUR = re.compile(r"^\s*(?:-{3,}|\*{3,}|_{3,})\s*$", re.M)
+
+
+def texte_livre(reponse: str) -> str:
+    """Le plus long des blocs separes par une ligne « --- », « *** » ou « ___ ». Les modeles y isolent souvent
+    une introduction ou des notes adressees a l'utilisateur, qui ne font pas partie du courrier demande."""
+    return max(_SEPARATEUR.split(reponse), key=lambda b: len(b.split()))
+
+
 def _mots_max(verif, reponse):
-    return len(reponse.split()) <= verif["max"]
+    return len(texte_livre(reponse).split()) <= verif["max"]
 
 
 def _compter_lignes(reponse, motif):
