@@ -134,10 +134,16 @@ if __name__ == "__main__":
 
 
 class Releve(unittest.TestCase):
-    def test_un_resultat_via_cli_est_non_comparable(self):
+    def test_la_voie_cli_n_empeche_pas_la_comparabilite_et_reste_declaree(self):
         from core import catalogue, lancer
         from core.tests.test_lancer import JEUX
         entree = {**catalogue.charger("claude-sonnet-5-5-etalon"), "fournisseur": "claude_cli"}
-        releve = lancer.construire_releve({"metier": "expert-comptable", "max_tokens": 1, "passes": 1, "blocs": []}, entree, {}, JEUX)
-        self.assertFalse(releve["comparable_aux_resultats_publies"])
-        self.assertIn("claude -p", releve["raisons_non_comparable"][0])
+        infos = c.ClientClaudeCli("claude-sonnet-5-5").infos_serveur()
+        releve = lancer.construire_releve({"metier": "expert-comptable", "max_tokens": 1, "passes": 1, "blocs": []}, entree, infos, JEUX)
+        self.assertTrue(releve["comparable_aux_resultats_publies"])
+        self.assertIn("claude -p", releve["serveur"]["voie"])
+        self.assertEqual(releve["modele_catalogue"]["fournisseur"], "claude_cli")
+
+
+if __name__ == "__main__":
+    unittest.main()
