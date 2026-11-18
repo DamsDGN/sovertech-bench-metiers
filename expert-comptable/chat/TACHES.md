@@ -677,7 +677,7 @@ Fichier généré automatiquement depuis `taches.jsonl` : ne le modifiez pas à 
 - la réponse comporte une liste numérotée d'exactement 5 éléments
 - la réponse fait au plus 200 mots
 - la réponse contient l'une de ces formulations : « 16 novembre » ; « 16/11 »
-- la réponse contient l'une de ces formulations : « 30 septembre » ; « 30/09 »
+- la réponse contient l'une de ces formulations : « 30 septembre » ; « 30/09 » ; « fin septembre »
 
 **Critères du juge** (note de 0 à 2 par critère)
 
@@ -852,14 +852,13 @@ Fichier généré automatiquement depuis `taches.jsonl` : ne le modifiez pas à 
 
 **Ce qu'on attend**
 
-> Assurance payée le 1er octobre 2025 pour 12 mois : 9 mois sur 2026, soit 900 €. Loyer trimestriel payé le 1er décembre (décembre à février) : 2 mois sur 2026, soit 1 800 €. Total : 2 700 €, au compte 486.
+> Assurance payée le 1er octobre 2025 pour 12 mois : 9 mois sur 2026, soit 900 €. Loyer trimestriel payé le 1er décembre (décembre à février) : 2 mois sur 2026, soit 1 800 €. Total : 2 700 €, au compte 486. Le compte 486 n'est pas exigé : la consigne ne le demande pas.
 
 **Contrôles automatiques**
 
 - la réponse contient l'une de ces formulations : « 900 »
 - la réponse contient l'une de ces formulations : « 1 800 » ; « 1800 »
 - la réponse contient l'une de ces formulations : « 2 700 » ; « 2700 »
-- la réponse contient l'une de ces formulations : « 486 »
 
 **Exemple de bonne réponse**
 
@@ -915,14 +914,13 @@ Fichier généré automatiquement depuis `taches.jsonl` : ne le modifiez pas à 
 
 **Ce qu'on attend**
 
-> Four : 12 000 / 5 ans × 9 mois (avril à décembre) / 12 = 1 800 €. Ordinateur : 1 500 / 3 ans × 4 mois (septembre à décembre) / 12 = 166,67 €. Total : 1 966,67 €, au débit du compte 6811.
+> Four : 12 000 / 5 ans × 9 mois (avril à décembre) / 12 = 1 800 €. Ordinateur : 1 500 / 3 ans × 4 mois (septembre à décembre) / 12 = 166,67 €. Total : 1 966,67 €, au débit du compte 6811. Le compte 6811 n'est pas exigé : la consigne ne le demande pas.
 
 **Contrôles automatiques**
 
 - la réponse contient l'une de ces formulations : « 1 800 » ; « 1800 »
 - la réponse contient l'une de ces formulations : « 166,67 » ; « 166.67 »
 - la réponse contient l'une de ces formulations : « 1 966,67 » ; « 1966,67 » ; « 1 966.67 »
-- la réponse contient l'une de ces formulations : « 6811 »
 
 **Exemple de bonne réponse**
 
