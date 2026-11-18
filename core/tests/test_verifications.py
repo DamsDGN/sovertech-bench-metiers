@@ -22,6 +22,12 @@ class ContientUnDe(unittest.TestCase):
         self.assertFalse(ok({"type": "contient_un_de", "valeurs": ["10 février"]}, "Merci de répondre vite."))
 
 
+class Apostrophes(unittest.TestCase):
+    def test_apostrophe_typographique_equivalente(self):
+        self.assertTrue(ok({"type": "contient_un_de", "valeurs": ["pièce d'identité"]}, "Munissez-vous d’une pièce d’identité."))
+        self.assertFalse(ok({"type": "ne_contient_aucun", "valeurs": ["aujourd'hui"]}, "Dès aujourd’hui."))
+
+
 class NeContientAucun(unittest.TestCase):
     def test_refuse_si_present(self):
         self.assertFalse(ok({"type": "ne_contient_aucun", "valeurs": ["[Nom]"]}, "Bonjour [Nom],"))
@@ -128,6 +134,15 @@ class Abstention(unittest.TestCase):
         for phrase in [
             "La cellule reste vide, car aucun document de l'étude ne donne son numéro de téléphone.",
             "Je n'ai pas trouvé le numéro de téléphone de Mme Quéméner, donc je n'ai rien écrit.",
+        ]:
+            self.assertTrue(ok({"type": "abstention", "attendue": True}, phrase), phrase)
+
+    def test_formulations_relevees_sur_qwen_3_6(self):
+        for phrase in [
+            "Il n'est fait aucune mention de la durée ou du taux d'amortissement. Cette information manque aux extraits fournis.",
+            "Aucun taux horaire n'est indiqué pour un stagiaire. L'information demandée est donc manquante dans les extraits fournis.",
+            "Le taux d'intérêt de ce prêt n'y figure pas.",
+            "Le numéro de téléphone n'ayant pas été trouvé dans les documents consultés, j'ai laissé la cellule vide.",
         ]:
             self.assertTrue(ok({"type": "abstention", "attendue": True}, phrase), phrase)
 
