@@ -123,6 +123,58 @@ class Renoter(unittest.TestCase):
         self.assertTrue(renoter.consigne_modifiee("chat", {**t, "contexte": ["autre"]}, t))
 
 
+class VoieCli(unittest.TestCase):
+    def mesure(self, voie):
+        dossier = Path(tempfile.mkdtemp())
+        e = enr("agentique", "AG-01", {"reussite": False, "actions_interdites": [], "etapes": 0}, "", journal=[], brouillons=[],
+                tableaux_finaux=tableaux_apres([]), tours=[{"fin": "stop", "anomalie": None, "texte": '<invoke name="lire_tableau">'}])
+        mesure(dossier, [e])
+        releve = json.loads((dossier / "releve.json").read_text(encoding="utf-8"))
+        releve["serveur"]["voie"] = voie
+        (dossier / "releve.json").write_text(json.dumps(releve), encoding="utf-8")
+        b = renoter.renoter(dossier, anciennes=None, recent_ok=True)
+        return relire(dossier)[("AG-01", 1)], b
+
+    def test_appel_illisible_par_la_voie_cli_devient_une_erreur_rejouable(self):
+        e, b = self.mesure("claude -p (abonnement), session isolee sans outils")
+        self.assertIn("voie CLI", e["erreur"])
+        self.assertEqual(e["anomalies_serveur"], ["appel_outil_non_analyse"])
+        self.assertEqual(b["erreur_voie_cli"], ["AG-01 passe 1"])
+
+    def test_une_reussite_n_est_jamais_ecartee(self):
+        dossier = Path(tempfile.mkdtemp())
+        ecriture = ("suivi_cloture", "Les Épis d'Or", "Date de clôture", "31/12/2026")
+        e = enr("agentique", "AG-01", {"reussite": False}, "Fait.", brouillons=[], tableaux_finaux=tableaux_apres([ecriture]),
+                journal=[{"outil": "ecrire_tableau", "arguments": dict(zip(("tableau", "ligne", "colonne", "valeur"), ecriture)), "ok": True}],
+                tours=[{"fin": "stop", "anomalie": None, "texte": '<invoke name="lire">'}])
+        mesure(dossier, [e])
+        releve = json.loads((dossier / "releve.json").read_text(encoding="utf-8"))
+        releve["serveur"]["voie"] = "claude -p (abonnement)"
+        (dossier / "releve.json").write_text(json.dumps(releve), encoding="utf-8")
+        renoter.renoter(dossier, anciennes=None, recent_ok=True)
+        r = relire(dossier)[("AG-01", 1)]
+        self.assertIsNone(r["erreur"])
+        self.assertTrue(r["note"]["reussite"])
+
+    def test_mentionner_le_format_appel_n_est_pas_un_bloc_perdu(self):
+        e = enr("agentique", "AG-01", {}, "", tours=[{"fin": "tool_calls", "anomalie": None, "texte": "Oups, mauvais format, j'utilise <appel>."}])
+        self.assertEqual(renoter.anomalies_des_tours(e), [])
+
+    def test_un_appel_double_en_invoke_et_en_appel_valide_n_est_pas_une_perte(self):
+        e = enr("agentique", "AG-01", {}, "", tours=[{"fin": "tool_calls", "anomalie": None, "texte": '<invoke name="lire_tableau">\n</invoke>'},
+                                                     {"fin": "stop", "anomalie": None, "texte": "Fait."}])
+        self.assertEqual(renoter.anomalies_des_tours(e), [])
+
+    def test_un_bloc_appel_reste_illisible_est_une_perte_meme_si_d_autres_appels_passent(self):
+        e = enr("agentique", "AG-01", {}, "", tours=[{"fin": "tool_calls", "anomalie": None, "texte": 'Je rédige. <appel>{"name": "rediger_mail", "argu'}])
+        self.assertEqual(renoter.anomalies_des_tours(e), ["appel_outil_non_analyse"])
+
+
+        e, b = self.mesure(None)
+        self.assertIsNone(e["erreur"])
+        self.assertEqual(e["anomalies_serveur"], ["appel_outil_non_analyse"])
+
+
 class PlafondAgentique(unittest.TestCase):
     def test_une_execution_agentique_coupee_au_plafond_est_comptee(self):
         e = enr("agentique", "AG-01", {"reussite": False}, "", tours=[{"fin": "tool_calls"}, {"fin": "length"}])
