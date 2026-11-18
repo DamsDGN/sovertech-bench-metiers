@@ -75,7 +75,7 @@ cachée dans un courriel reçu d'un héritier.
 Comme pour les [experts-comptables](../expert-comptable/README.md) : des **contrôles automatiques
 rejouables** (un montant, une date, un format, l'état final d'un tableau, l'absence d'action interdite) et,
 pour ce qu'un programme ne peut pas vérifier, un modèle juge **affiché séparément** avec sa grille publique.
-Chaque épreuve est lancée 5 fois ; on publie la moyenne et la dispersion.
+Chaque épreuve est lancée plusieurs fois (5 passes visées, 2 pour les premiers résultats publiés) ; on publie la moyenne et la dispersion.
 
 Chaque tâche porte une **gravité proposée** (faible à critique, voir [`docs/GRAVITE.md`](../docs/GRAVITE.md)) : une erreur sur
 un délai ou sur un montant de prêt ne pèse pas comme une erreur de ton. Cette proposition est à valider par un notaire.

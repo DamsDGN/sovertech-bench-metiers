@@ -3,8 +3,9 @@
 **Une intelligence artificielle installée dans votre cabinet ou votre étude est-elle assez bonne pour
 vous aider au quotidien ? Ce projet permet de le mesurer, publiquement et en toute transparence.**
 
-> **Projet en construction.** Aucun résultat n'est publié pour l'instant : seules des mesures de validation du
-> fonctionnement ont été faites, sur un seul modèle. Les réponses de référence
+> **Projet en construction.** Les premiers résultats sont publiés sur
+> [sover.tech/comparatif-llm](https://sover.tech/comparatif-llm/), pour **deux assistants seulement** (Gemma 4 12B en local
+> et Claude Sonnet 5.5), en **2 passes** par épreuve. Ce sont des résultats préliminaires. Les réponses de référence
 > écrites par l'équipe n'ont **pas encore été relues par un professionnel** : chacune est marquée
 > « à valider ». **Vous avez repéré une erreur, ou vous exercez le métier et voulez relire ? Votre
 > aide est précieuse** : voir [comment contribuer](CONTRIBUTING.md).
@@ -44,7 +45,7 @@ teste, comment il note, et ce que ses résultats veulent dire ou ne veulent pas 
 - **Aucune donnée réelle, jamais.** Les cabinets, clients, dossiers et actes sont **inventés**.
   Quand nous nous appuyons sur le droit ou la comptabilité, ce sont des **textes publics**, cités.
 - **Un seul paramètre change : le modèle.** Mêmes documents, mêmes consignes, mêmes outils, mêmes
-  réglages pour tous. Chaque épreuve est lancée **5 fois** et on publie la moyenne et la dispersion.
+  réglages pour tous. Chaque épreuve est lancée **plusieurs fois** (5 passes visées, 2 pour les premiers résultats publiés) et on publie la moyenne et la dispersion.
 - **Une note n'est pas une vérité.** Une partie est calculée automatiquement (la date est-elle
   juste ?). Une autre est donnée par un modèle « juge », dont nous indiquons les biais, et un échantillon
   est relu par un humain pour vérifier le juge.
@@ -54,7 +55,7 @@ teste, comment il note, et ce que ses résultats veulent dire ou ne veulent pas 
 - **Toutes les erreurs ne se valent pas.** Chaque tâche porte une **gravité** (faible, moyenne, élevée, critique), et
   les rapports publient le **taux d'échec sur les tâches graves** à côté du score global : un modèle qui réussit 90 %
   des tâches mais se trompe sur les plus graves n'est pas présenté comme fiable (voir [`docs/GRAVITE.md`](docs/GRAVITE.md)).
-- **Une incertitude honnête.** Rejouer cinq fois les mêmes tâches mesure la variabilité du modèle, pas le fait que
+- **Une incertitude honnête.** Rejouer plusieurs fois les mêmes tâches mesure la variabilité du modèle, pas le fait que
   l'on n'ait testé qu'un échantillon de situations. Les écarts entre modèles sont donc comparés **tâche par tâche**,
   avec un intervalle de confiance : deux modèles ne sont départagés que si cet intervalle exclut zéro.
 - **Les limites sont écrites** dans chaque publication : nombre de tâches, nombre de passes, méthode de
