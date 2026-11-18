@@ -5,7 +5,8 @@ mémoire, sans hooks, sans serveur MCP, avec le prompt système du benchmark. Le
 le dépôt (réponses de référence comprises) ni agir sur la machine.
 
 Écarts avec un appel d'API direct, à déclarer dans tout résultat obtenu ainsi :
-- le CLI ajoute son propre contexte fixe (environnement : système, shell) ;
+- le CLI ajoute son propre contexte fixe (environnement : système, shell, date du jour), que NEUTRALISATION_DATE
+  demande d'ignorer ;
 - les appels d'outils sont émulés en texte (blocs <appel>), pas par le mécanisme natif de l'API ;
 - une conversation à plusieurs tours est rejouée sous forme de transcription dans un seul message ;
 - le raisonnement et l'échantillonnage ne se règlent pas comme avec l'API.
@@ -21,6 +22,12 @@ from .client import ErreurClient, Reponse
 
 FIN_CLI = {"end_turn": "stop", "max_tokens": "length", "stop_sequence": "stop", "tool_use": "tool_calls"}
 _APPEL = re.compile(r"<appel>\s*(.*?)\s*</appel>", re.S)
+# Le CLI donne au modele la date de la machine, que les autres modeles du benchmark ne voient pas : sans cette
+# consigne, il commente que les dates des dossiers (2026) sont "anterieures a la date du jour".
+NEUTRALISATION_DATE = (
+    "\n\nLa date du jour et toute information sur la machine ou l'environnement ne te concernent pas : "
+    "ne les mentionne jamais. Seules comptent les dates et informations de la consigne et des documents fournis."
+)
 PROTOCOLE_OUTILS = (
     "\n\nTu disposes des outils ci-dessous. Pour appeler un ou plusieurs outils, écris pour chacun un bloc "
     '<appel>{"name": "nom_de_l_outil", "arguments": {...}}</appel>, puis arrête-toi : les résultats te seront '
@@ -119,6 +126,7 @@ class ClientClaudeCli:
 
     def completer(self, messages, outils=None, echantillonnage=None, max_tokens=None) -> Reponse:
         systeme, message = construire_invite(messages)
+        systeme += NEUTRALISATION_DATE
         if outils:
             systeme += decrire_outils(outils)
         derniere = None

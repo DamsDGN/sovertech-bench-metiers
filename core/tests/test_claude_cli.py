@@ -67,7 +67,8 @@ class Client(unittest.TestCase):
         cl, vus = self.client([sortie("Bonjour")])
         rep = cl.completer([{"role": "system", "content": "S"}, {"role": "user", "content": "Q"}], max_tokens=32768)
         self.assertEqual((rep.texte, rep.fin, rep.tokens_prompt, rep.tokens_completion), ("Bonjour", "stop", 652, 30))
-        self.assertEqual(vus[0], ("S", "Q", "claude-sonnet-5-5", "high", 32768))
+        self.assertEqual(vus[0], ("S" + c.NEUTRALISATION_DATE, "Q", "claude-sonnet-5-5", "high", 32768))
+        self.assertIn("date du jour", vus[0][0])
 
     def test_coupure_au_plafond(self):
         cl, _ = self.client([sortie("abc", stop_reason="max_tokens")])

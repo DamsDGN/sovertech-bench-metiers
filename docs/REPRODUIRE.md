@@ -90,7 +90,7 @@ Chaque appel lance un processus neuf, dans un dossier temporaire vide, **sans au
 configuration, avec le prompt système du benchmark : le modèle ne peut pas lire le dépôt ni les réponses de
 référence. Le plafond `--budget-usd` reste exigé ; il porte sur un équivalent calculé au tarif du catalogue,
 car rien n'est facturé à l'usage. Cette voie diffère d'un appel d'API direct : le CLI ajoute son propre contexte,
-les appels d'outils sont émulés en texte, les conversations à plusieurs tours sont rejouées sous forme de
+le CLI donne la date de la machine au modèle (une consigne ajoutée au prompt système lui demande de l'ignorer), les appels d'outils sont émulés en texte, les conversations à plusieurs tours sont rejouées sous forme de
 transcription, et le raisonnement ne se règle pas comme avec l'API. Le résultat est donc toujours
 **marqué « non comparable »**.
 
