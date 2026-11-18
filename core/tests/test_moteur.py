@@ -167,6 +167,16 @@ class Anomalies(unittest.TestCase):
         self.assertIsNone(ag.anomalie(Reponse(texte="J'ai invoqué la procédure.")))
 
 
+class CellulesNumeriques(unittest.TestCase):
+    def test_meme_nombre_ecrit_autrement(self):
+        for a, b in (("2700,00", "2700"), ("001500,00", "1500,00"), ("1 966,67", "1966,67"), ("228000", "228 000")):
+            self.assertEqual(n._norm_cellule(a), n._norm_cellule(b), (a, b))
+
+    def test_nombres_differents_et_dates_non_confondus(self):
+        for a, b in (("-2000", "2000"), ("360,00", "770"), ("16/05/2026", "15/05/2026"), ("1966,6", "1966,67")):
+            self.assertNotEqual(n._norm_cellule(a), n._norm_cellule(b), (a, b))
+
+
 class CellulesAPlusieursValeurs(unittest.TestCase):
     def noter(self, metier, id_, ecritures, final="Tâche terminée."):
         jeux = d.charger_metier(metier)

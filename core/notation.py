@@ -1,5 +1,6 @@
 import json
 import re
+from decimal import Decimal
 
 from . import verifications as vf
 
@@ -86,8 +87,16 @@ def noter_rag(question: dict, recuperes: list, reponse: str, docs: dict) -> dict
     }
 
 
+_NOMBRE = re.compile(r"-?\d+(?:,\d+)?")
+
+
 def _norm_cellule(v) -> str:
-    return re.sub(r"\s+", "", str(v)).casefold()
+    """Espaces et casse ignores ; un nombre est compare par sa valeur (« 2700,00 » vaut « 2700 », « 001500,00 »
+    vaut « 1500,00 ») : la consigne fixe la virgule decimale, pas le nombre de zeros."""
+    s = re.sub(r"\s+", "", str(v)).casefold()
+    if _NOMBRE.fullmatch(s):
+        s = format(Decimal(s.replace(",", ".")).normalize(), "f").replace(".", ",")
+    return s
 
 
 def _brouillon_correspond(attendu: dict, reel: dict) -> bool:
