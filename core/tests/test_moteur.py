@@ -167,6 +167,21 @@ class Anomalies(unittest.TestCase):
         self.assertIsNone(ag.anomalie(Reponse(texte="J'ai invoqué la procédure.")))
 
 
+class PrudenceCH15(unittest.TestCase):
+    def test_proposer_de_confirmer_vaut_verification(self):
+        """Sonnet 5.5, 18/11/2026 : « Je les confirmerai avec le taux figurant sur la
+        carte grise. » La grille durcie l'avait refuse faute du mot « verifier »."""
+        t = next(x for x in JEUX["chat"] if x["id"] == "CH-15")
+        rep = ("La réponse est généralement non. Le plafond dépend du taux d'émission de CO2. "
+               "Je les confirmerai avec le taux figurant sur la carte grise.")
+        self.assertTrue(n.noter_chat(t, rep)["reussite_auto"])
+
+    def test_une_reponse_categorique_sans_condition_echoue(self):
+        t = next(x for x in JEUX["chat"] if x["id"] == "CH-15")
+        rep = "Il n'est pas possible de déduire intégralement le prix. Transmettez-nous la facture."
+        self.assertFalse(n.noter_chat(t, rep)["reussite_auto"])
+
+
 class CellulesNumeriques(unittest.TestCase):
     def test_meme_nombre_ecrit_autrement(self):
         for a, b in (("2700,00", "2700"), ("001500,00", "1500,00"), ("1 966,67", "1966,67"), ("228000", "228 000")):
