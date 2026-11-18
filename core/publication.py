@@ -83,7 +83,7 @@ def mesure_metier(releve, enrs, part_validee):
         "configuration": {"passes": releve["passes"], "plafond_generation_tokens": releve["max_tokens"], "echantillonnage": releve["echantillonnage"],
                           "contexte_max_serveur": releve.get("serveur", {}).get("contexte_max"), "extraction": releve["extraction"]["moteur"],
                           "recuperateur": releve["recuperateur"], "materiel_declare": releve.get("materiel_declare"),
-                          "date_mesure": releve["date"][:10], "version_benchmark": (releve["moteur"]["commit"] or "")[:10], "etiquette": releve.get("etiquette")},
+                          "date_mesure": releve["date"][:10], "version_benchmark": (releve["moteur"]["commit"] or "")[:10], "etiquette": releve.get("etiquette"), "voie": releve.get("serveur", {}).get("voie")},
         "comparable": bool(releve["comparable_aux_resultats_publies"]), "raisons_non_comparable": list(releve.get("raisons_non_comparable", [])),
         "part_references_validees": part_validee,
     }
