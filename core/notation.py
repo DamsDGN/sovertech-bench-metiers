@@ -15,12 +15,53 @@ def _contient(texte: str, valeur: str) -> bool:
     return vf.normaliser(valeur) in vf.normaliser(texte)
 
 
-def _cite(reponse: str, doc_id: str, titre: str) -> bool:
+def _suite_contigue(sous: list, liste: list) -> bool:
+    n = len(sous)
+    return n > 0 and any(liste[i:i + n] == sous for i in range(len(liste) - n + 1))
+
+
+def _cite(reponse: str, doc_id: str, titre: str, titres_concurrents=()) -> bool:
+    """Le titre cite en entier vaut citation. Sinon, 80 % de ses mots suffisent, a condition qu'aucun document
+    concurrent (une autre version du meme document) ne soit couvert aussi bien : « version 1 » et « version 2 »
+    partagent 4 mots sur 5, et un « 2 » isole dans la reponse ne designe pas la version 2."""
     from .rag import jetons
     if _contient(reponse, doc_id):
         return True
-    voulus, presents = set(jetons(titre)), set(jetons(reponse))
-    return bool(voulus) and len(voulus & presents) / len(voulus) >= 0.8
+    mots = jetons(reponse)
+    if _suite_contigue(jetons(titre), mots):
+        return True
+    presents = set(mots)
+
+    def couverture(t):
+        voulus = set(jetons(t))
+        return len(voulus & presents) / len(voulus) if voulus else 0.0
+
+    c = couverture(titre)
+    return c >= 0.8 and all(c > couverture(t) for t in titres_concurrents)
+
+
+_FIN_DE_PHRASE = re.compile(r"[.!?\n]")
+
+
+def piege_obsolete_tombe(question: dict, reponse: str) -> bool:
+    """La reponse donne-t-elle une valeur obsolete comme reponse ? Rappeler l'ancienne valeur apres la bonne
+    (« 85 €, contre 80 € en 2025 ») n'est pas tomber dans le piege ; l'annoncer d'abord l'est, sauf si sa phrase
+    la dit ancienne ou remplacee. Une affirmation fausse assortie d'un de ces mots echappe au controle : le juge
+    et la relecture humaine la rattrapent."""
+    r = vf.normaliser(reponse)
+    obsoletes = [r.find(vf.normaliser(v)) for v in question["valeurs_obsoletes"]]
+    obsoletes = [i for i in obsoletes if i >= 0]
+    if not obsoletes:
+        return False
+    pos_obs = min(obsoletes)
+    bonnes = [r.find(vf.normaliser(x)) for v in question["verifications"] if v["type"] == "contient_un_de" for x in v["valeurs"]]
+    bonnes = [i for i in bonnes if i >= 0]
+    if bonnes and min(bonnes) < pos_obs:
+        return False
+    debut = max((m.end() for m in _FIN_DE_PHRASE.finditer(r, 0, pos_obs)), default=0)
+    fin = _FIN_DE_PHRASE.search(r, pos_obs)
+    phrase = r[debut:fin.start() if fin else len(r)]
+    return not any(m in phrase for m in _MARQUES_OBSOLESCENCE)
 
 
 def noter_rag(question: dict, recuperes: list, reponse: str, docs: dict) -> dict:
@@ -30,10 +71,9 @@ def noter_rag(question: dict, recuperes: list, reponse: str, docs: dict) -> dict
     verifs_ok = all(ok for _, ok in res)
     citation = None
     if attendus:
-        citation = any(_cite(reponse, i, docs[i]["meta"]["titre"]) for i in attendus)
-    obsolete = False
-    if question["valeurs_obsoletes"] and not any(_contient(reponse, m) for m in _MARQUES_OBSOLESCENCE):
-        obsolete = any(_contient(reponse, v) for v in question["valeurs_obsoletes"])
+        concurrents = [docs[p]["meta"]["titre"] for p in question.get("documents_pieges", []) if p in docs and p not in attendus]
+        citation = any(_cite(reponse, i, docs[i]["meta"]["titre"], concurrents) for i in attendus)
+    obsolete = piege_obsolete_tombe(question, reponse)
     return {
         "recuperes": recuperes,
         "rappel": rappel(attendus, recuperes),

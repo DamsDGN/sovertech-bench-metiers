@@ -69,6 +69,42 @@ class NotationRag(unittest.TestCase):
         r = n.noter_rag(q, ["proc-cloture-v2"], "45 jours ; l'ancienne version prévoyait 30 jours, elle est remplacée.", DOCS)
         self.assertFalse(r["piege_obsolete_tombe"])
 
+    def test_citer_seulement_la_version_obsolete_n_est_pas_citer_la_bonne(self):
+        for id_ in ("RG-01", "RG-02", "RG-03", "RG-15", "RG-16"):
+            q = self.q(id_)
+            titre_piege = DOCS[q["documents_pieges"][0]]["meta"]["titre"]
+            r = n.noter_rag(q, q["documents_attendus"], f"Réponse. Source : {titre_piege}", DOCS)
+            self.assertFalse(r["citation_ok"], id_)
+
+    def test_citer_la_version_obsolete_avec_un_chiffre_qui_ressemble_au_numero_de_version(self):
+        q = self.q("RG-02")
+        r = n.noter_rag(q, q["documents_attendus"], "Sous 2 jours ouvrés. Source : Charte des délais de réponse aux clients, version 1", DOCS)
+        self.assertFalse(r["citation_ok"])
+
+    def test_citer_la_bonne_version_reste_une_citation(self):
+        q = self.q("RG-01")
+        for rep in ["45 jours (Procédure de clôture annuelle, version 2).",
+                    "45 jours selon la Procédure de clôture annuelle, version 2 ; la version 1 disait 30 jours (Procédure de clôture annuelle, version 1).",
+                    "45 jours. Source : procédure de clôture annuelle (version 2)."]:
+            self.assertTrue(n.noter_rag(q, q["documents_attendus"], rep, DOCS)["citation_ok"], rep)
+
+    def test_rappeler_l_ancienne_valeur_apres_la_bonne_n_est_pas_tomber_dans_le_piege(self):
+        for id_, rep in [("RG-03", "85 € HT de l'heure en 2026 (contre 80 € en 2025)."),
+                         ("RG-21", "Le coût est de 395 € HT, soit 25 € de plus qu'en 2025 (370 €).")]:
+            r = n.noter_rag(self.q(id_), self.q(id_)["documents_attendus"], rep, DOCS)
+            self.assertFalse(r["piege_obsolete_tombe"], rep)
+            self.assertTrue(r["reussite_generation"], rep)
+
+    def test_ancienne_valeur_annoncee_avant_la_bonne_sans_la_dire_remplacee(self):
+        q = self.q("RG-03")
+        r = n.noter_rag(q, q["documents_attendus"], "Un collaborateur coûte 80 € HT. Pour un associé, comptez 85 € HT de frais.", DOCS)
+        self.assertTrue(r["piege_obsolete_tombe"])
+
+    def test_ancienne_valeur_citee_d_abord_mais_dite_obsolete(self):
+        q = self.q("RG-01")
+        r = n.noter_rag(q, q["documents_attendus"], "La version 1 disait 30 jours, elle est remplacée. La version en vigueur dit 45 jours.", DOCS)
+        self.assertFalse(r["piege_obsolete_tombe"])
+
     def test_abstention_sans_reponse(self):
         q = self.q("RG-13")
         r = n.noter_rag(q, [], q["reponse_modele"], DOCS)
