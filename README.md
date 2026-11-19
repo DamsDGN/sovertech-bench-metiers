@@ -4,9 +4,12 @@
 vous aider au quotidien ? Ce projet permet de le mesurer, publiquement et en toute transparence.**
 
 > **Projet en construction.** Les premiers résultats sont publiés sur
-> [sover.tech/professions-reglementees](https://sover.tech/professions-reglementees/#resultats), pour **quatre assistants**
-> (Gemma 4 12B, Qwen 3.8 27B et Qwen 3.6 35B A3B en local, Claude Sonnet 5.5 comme valeur de référence en ligne), en
-> **2 passes** par épreuve. Ce sont des résultats préliminaires. Les réponses de référence
+> [sover.tech/professions-reglementees](https://sover.tech/professions-reglementees/#resultats), pour **huit assistants** :
+> sept installables en local (Qwen 3.8 27B, Gemma 4 31B, Qwen 3.6 35B A3B, Gemma 4 26B A4B, Nemotron 3.5 Lightning,
+> Gemma 4 12B et gpt-oss-20b) et Claude Sonnet 5.5 comme valeur de référence en ligne, en **2 passes** par épreuve.
+> gpt-oss-20b est mesuré dans son format d'origine (MXFP4), les autres en NVFP4. Deux modèles prévus n'ont pas pu l'être
+> pour l'instant, Ministral 3 14B et Muse-Glimmer 30B : le logiciel qui les fait fonctionner refuse de les charger.
+> Ce sont des résultats préliminaires. Les réponses de référence
 > écrites par l'équipe n'ont **pas encore été relues par un professionnel** : chacune est marquée
 > « à valider ». **Vous avez repéré une erreur, ou vous exercez le métier et voulez relire ? Votre
 > aide est précieuse** : voir [comment contribuer](CONTRIBUTING.md).
